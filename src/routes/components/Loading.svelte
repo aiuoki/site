@@ -10,4 +10,4 @@
 		<span class="loading loading-spinner text-error"></span>
 	</div>
 </div> -->
-<iframe src='https://www.minijuegos.com/embed/bike-mania' style='width:100%;height:100%;' frameborder='0' allowfullscreen></iframe>
+<iframe title="minijuegos" src='https://www.minijuegos.com/embed/bike-mania' style='width:100%;height:100%;' frameborder='0' allowfullscreen></iframe>

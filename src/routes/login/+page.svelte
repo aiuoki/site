@@ -25,7 +25,7 @@
 		<div class="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
 			<form class="card-body" on:submit={login}>
 				<div class="form-control">
-					<label class="label">
+					<label for="nick" class="label">
 						<span class="label-text">Nick</span>
 					</label>
 					<input
@@ -37,7 +37,7 @@
 					/>
 				</div>
 				<div class="form-control">
-					<label class="label">
+					<label for="password" class="label">
 						<span class="label-text">Password</span>
 					</label>
 					<input
@@ -47,7 +47,7 @@
 						class="input input-bordered"
 						required
 					/>
-					<label class="label">
+					<label for="" class="label">
 						<a href="#forgot" class="label-text-alt link link-hover">Forgot password?</a>
 					</label>
 				</div>
