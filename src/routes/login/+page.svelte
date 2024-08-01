@@ -6,9 +6,11 @@
 
 	function login() {
 		event?.preventDefault();
-		if (nick !== '' && password !== '') {
+		if (nick === 'dan' && password === '123') {
 			console.log(nick, password);
 			goto('/main');
+		} else {
+			alert('Wrong credentials!');
 		}
 	}
 </script>
@@ -18,14 +20,14 @@
 		<div class="text-center lg:text-left">
 			<h1 class="text-5xl font-bold">Login now!</h1>
 			<p class="py-6">
-				Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-				quasi. In deleniti eaque aut repudiandae et a id nisi.
+				Enter your credentials to access your account. If you have any problems contact with the
+				administrator.
 			</p>
 		</div>
 		<div class="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
 			<form class="card-body" on:submit={login}>
 				<div class="form-control">
-					<label class="label">
+					<label class="label" for="nick">
 						<span class="label-text">Nick</span>
 					</label>
 					<input
@@ -37,7 +39,7 @@
 					/>
 				</div>
 				<div class="form-control">
-					<label class="label">
+					<label class="label" for="password">
 						<span class="label-text">Password</span>
 					</label>
 					<input
@@ -45,14 +47,14 @@
 						bind:value={password}
 						placeholder="password"
 						class="input input-bordered"
-						required
 					/>
-					<label class="label">
-						<a href="#forgot" class="label-text-alt link link-hover">Forgot password?</a>
-					</label>
 				</div>
 				<div class="form-control mt-6">
 					<button type="submit" class="btn btn-primary">Login</button>
+
+					<label class="label" for="fPasswd">
+						<a href="#forgot" class="label-text-alt link link-hover mt-3" on:click={() => goto('/')}>Go back.</a>
+					</label>
 				</div>
 			</form>
 		</div>
