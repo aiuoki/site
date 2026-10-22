@@ -87,7 +87,7 @@ Web de apuntes interactivos de matemáticas. Astro (salida estática) + islas de
    │  ├─ interactive/         TopicApp.astro elige la isla del tema; trig/: UnitCircle, AngleSum, paneles,
    │  │                       LiveCheck, QuadrantGrid, NotableTable y state.svelte.ts (estado compartido entre islas);
    │  │                       complex/: ComplexPlane (plano, panel, formas), ComplexLive, LoadExample, examples.ts
-   │  └─ mascot/              Mascot.astro (pulpo con insignia Ω; props pose, size, label), MascotDock.astro (fija abajo a la derecha), poses.ts, mascot.css
+   │  └─ mascot/              Mascot.astro (pulpo con insignia Ω; props pose, size, label), poses.ts, mascot.css
    ├─ layouts/BaseLayout.astro   html, head, variables del tema, fuentes
    └─ pages/
       ├─ index.astro          redirige al idioma guardado o a /es/
@@ -103,7 +103,7 @@ Web de apuntes interactivos de matemáticas. Astro (salida estática) + islas de
 - Contenido en otro idioma (fallback): la página fija `Astro.locals.contentLang`; los componentes usan `contentLang(Astro)` para que fórmulas, figuras y etiquetas sigan al texto, no a la página.
 - Las palabras propias de un tema dentro de fórmulas se escriben `\W{clave}` y salen de `words` en `i18n/topics/<tema>`.
 - Las islas reciben los textos por props (`dict.trig`, `notation`, `locale`); nunca importan `src/i18n/index.ts` en el cliente (cargaría los 9 idiomas). Usa `src/lib/text.ts` para interpolar.
-- Mascota: `<Mascot pose="idle|wave|think|happy|build" size="160px" />`. BaseLayout la muestra fija abajo a la derecha (sin capturar clics); las páginas que la muestran en el contenido pasan `dock={false}` para que nunca haya dos (p. ej. «Próximamente» con `build`). Es decorativa (aria-hidden) salvo que reciba `label` desde los JSON de idioma. Sus colores son los tokens `mascot*` de `theme.ts`; las poses son estados CSS de las mismas capas y se paran con `prefers-reduced-motion`.
+- Mascota: `<Mascot pose="idle|wave|think|happy|build" size="160px" />`. Solo aparece en el panel de «Próximamente» (pose `build`); no hay mascota fija en las páginas. Es decorativa (aria-hidden) salvo que reciba `label` desde los JSON de idioma. Sus colores son los tokens `mascot*` de `theme.ts`; las poses son estados CSS de las mismas capas y se paran con `prefers-reduced-motion`.
 - Variables CSS del tema: cada token de `theme.ts` se convierte en `--token` en kebab-case (`surface2` → `--surface-2`). Alias de complejos: `--z`, `--w`, `--result`, `--re`, `--im`.
 
 ## Entorno

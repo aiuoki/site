@@ -66,7 +66,7 @@
 .mascot[data-pose="build"] .m-helmet { display: inline; }
 .mascot[data-pose="build"] .m-badge,
 .mascot[data-pose="build"] .m-gloss { display: none; }
-.mascot[data-pose="build"] .m-raised { animation: m-hammer 0.9s ease-in infinite; }
+.mascot[data-pose="build"] .m-raised { transform: rotate(8deg); animation: m-hammer 0.9s ease-in infinite; }
 
 /* think: tilts, looks up and closes the mouth a little. */
 .mascot[data-pose="think"] .m-body,
@@ -108,9 +108,9 @@
 }
 
 @keyframes m-hammer {
-  0%, 100% { transform: rotate(-16deg); }
-  45% { transform: rotate(18deg); }
-  55% { transform: rotate(14deg); }
+  0%, 100% { transform: rotate(30deg); }
+  45% { transform: rotate(4deg); }
+  55% { transform: rotate(8deg); }
 }
 
 @keyframes m-blink {
