@@ -23,7 +23,8 @@ html {
 
 body {
   margin: 0;
-  padding-block: 28px 22px;
+  /* The mascot dock raises --page-pad-bottom to keep the footer visible. */
+  padding-block: 28px var(--page-pad-bottom, 22px);
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
   overflow-x: hidden;

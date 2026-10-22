@@ -15,6 +15,7 @@ import Header from "../components/layout/Header.astro";
 import SubjectNav from "../components/layout/SubjectNav.astro";
 import Support from "../components/layout/Support.astro";
 import TopicTabs from "../components/layout/TopicTabs.astro";
+import MascotDock from "../components/mascot/MascotDock.astro";
 import { aliases, themeStorageKey, themes } from "../config/theme";
 import { site, type Subject } from "../config/site";
 import { localeMeta, locales, useTranslations, type Locale } from "../i18n";
@@ -29,9 +30,11 @@ interface Props {
   description?: string;
   subject?: Subject;
   topic?: string;
+  // Fixed mascot in the corner; off on pages that show it inline.
+  dock?: boolean;
 }
 
-const { lang, eyebrow, heading, intro, description, subject, topic } = Astro.props;
+const { lang, eyebrow, heading, intro, description, subject, topic, dock = true } = Astro.props;
 const t = useTranslations(lang);
 const title = `${heading} · ${t("site.title")}`;
 const css = themeCss(themes, aliases);
@@ -72,6 +75,7 @@ const canonical = new URL(path, site.url);
       <Support lang={lang} />
       <Footer />
     </div>
+    {dock && <MascotDock />}
   </body>
 </html>
 
@@ -80,7 +84,8 @@ const canonical = new URL(path, site.url);
     display: flex;
     flex-direction: column;
     gap: 32px;
-    min-height: calc(100dvh - 50px);
+    /* Viewport minus the body padding, so short pages fill it without scrolling. */
+    min-height: calc(100dvh - 28px - var(--page-pad-bottom, 22px));
   }
 
   .navs {

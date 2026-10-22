@@ -8,6 +8,7 @@ const mascot = {
   mascotEye: "#1b1220", mascotShine: "#ffffff", mascotShineDim: "#d9d9d9", mascotCheek: "#c97be8",
   mascotMouth: "#5b0d2c", mascotTongue: "#ff4d6d",
   mascotBadge: "#f7f2ff", mascotBadgeRing: "#d9c8f7", mascotBadgeInk: "#6d3be6",
+  mascotHelmet: "#ffc83d", mascotHelmetShade: "#e0a516", mascotWood: "#b07a4a", mascotMetal: "#9aa3b2",
 } as const;
 
 export const themes = {

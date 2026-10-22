@@ -12,7 +12,7 @@ describe("Mascot", () => {
     for (const layer of ["m-ground", "m-arms", "m-body", "m-badge", "m-face", "m-eyes", "m-mouth"]) {
       expect(html, layer).toContain(layer);
     }
-    expect(html.match(/class="m-arm /g)).toHaveLength(6);
+    expect(html.match(/class="m-arm /g)).toHaveLength(5);
   });
 
   it.each(MASCOT_POSES)("supports the %s pose", async (pose) => {

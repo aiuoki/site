@@ -17,7 +17,8 @@
 
 .m-ground { fill: var(--mascot-ground); transform-origin: 512px 1314px; }
 .m-figure { transform-origin: 512px 1200px; }
-.m-arm { fill: none; stroke-width: 132; stroke-linecap: round; }
+.m-arm,
+.m-limb { fill: none; stroke-width: 132; stroke-linecap: round; }
 .m-arm-light { stroke: var(--mascot-arm); }
 .m-arm-dark { stroke: var(--mascot-arm-dark); }
 .m-rim { fill: var(--mascot-rim); }
@@ -30,7 +31,16 @@
 .m-shine { fill: var(--mascot-shine); }
 .m-shine-dim { fill: var(--mascot-shine-dim); }
 .m-eyes-happy { display: none; }
-.m-arm-wave { display: none; }
+.m-raised,
+.m-hammer,
+.m-helmet { display: none; }
+.m-hammer-handle { fill: var(--mascot-wood); }
+.m-hammer-head { fill: var(--mascot-metal); }
+.m-helmet-shell { fill: var(--mascot-helmet); }
+.m-helmet-brim { fill: var(--mascot-helmet-shade); }
+.m-helmet-shine { fill: none; stroke: var(--mascot-shine); stroke-width: 22; stroke-linecap: round; opacity: 0.6; }
+.m-helmet-plate { fill: var(--mascot-badge); stroke: var(--mascot-helmet-shade); stroke-width: 8; }
+.m-helmet-ink { font-size: 72px; }
 .m-eyes-happy path { fill: none; stroke: var(--mascot-eye); stroke-width: 18; stroke-linecap: round; }
 .m-cheek { fill: var(--mascot-cheek); opacity: 0.85; transition: opacity 0.3s; }
 .m-mouth { transform-origin: 512px 740px; transition: transform 0.3s; }
@@ -46,8 +56,17 @@
 .m-eye { animation: m-blink 5s infinite; }
 
 /* wave: the right outer arm is raised and waves. */
-.mascot[data-pose="wave"] .m-arm-2 { display: none; }
-.mascot[data-pose="wave"] .m-arm-wave { display: inline; animation: m-wave 0.9s ease-in-out infinite alternate; }
+.mascot[data-pose="wave"] .m-arm-2,
+.mascot[data-pose="build"] .m-arm-2 { display: none; }
+.mascot[data-pose="wave"] .m-raised { display: inline; animation: m-wave 0.9s ease-in-out infinite alternate; }
+
+/* build: hard hat with the Ω, and a hammer going up and down. */
+.mascot[data-pose="build"] .m-raised,
+.mascot[data-pose="build"] .m-hammer,
+.mascot[data-pose="build"] .m-helmet { display: inline; }
+.mascot[data-pose="build"] .m-badge,
+.mascot[data-pose="build"] .m-gloss { display: none; }
+.mascot[data-pose="build"] .m-raised { animation: m-hammer 0.9s ease-in infinite; }
 
 /* think: tilts, looks up and closes the mouth a little. */
 .mascot[data-pose="think"] .m-body,
@@ -86,6 +105,12 @@
 @keyframes m-wave {
   from { transform: rotate(-10deg); }
   to { transform: rotate(14deg); }
+}
+
+@keyframes m-hammer {
+  0%, 100% { transform: rotate(-16deg); }
+  45% { transform: rotate(18deg); }
+  55% { transform: rotate(14deg); }
 }
 
 @keyframes m-blink {

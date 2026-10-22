@@ -1,4 +1,5 @@
 ---
+import Mascot from "../mascot/Mascot.astro";
 import { subjects, type Subject } from "../../config/site";
 import { useTranslations, type Locale, type UiKey } from "../../i18n";
 import { topicPath } from "../../lib/paths";
@@ -18,23 +19,44 @@ const backHref = available && firstTopic ? topicPath(lang, available.slug, first
 ---
 
 <section class="soon">
-  <div class="soon-ic mr" aria-hidden="true">{subject.soonSymbol ?? subject.symbol}</div>
-  <h2>{t("nav.soonTitle")}</h2>
-  <p>{t("nav.soonText", { s: t(`subjects.${subject.slug}` as UiKey) })}</p>
-  <a class="linkbtn" href={backHref}>{t("nav.back")}</a>
+  <div class="soon-text">
+    <div class="soon-ic mr" aria-hidden="true">{subject.soonSymbol ?? subject.symbol}</div>
+    <h2>{t("nav.soonTitle")}</h2>
+    <p>{t("nav.soonText", { s: t(`subjects.${subject.slug}` as UiKey) })}</p>
+    <a class="linkbtn" href={backHref}>{t("nav.back")}</a>
+  </div>
+  <Mascot pose="build" size="150px" class="soon-mascot" />
 </section>
 
 <style>
   .soon {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 24px;
     padding: 40px clamp(18px, 4vw, 40px);
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 16px;
-    max-width: 640px;
+    max-width: 760px;
+  }
+
+  .soon-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  @media (max-width: 560px) {
+    .soon {
+      grid-template-columns: 1fr;
+    }
+
+    .soon :global(.soon-mascot) {
+      justify-self: center;
+      width: 120px;
+    }
   }
 
   .soon-ic {

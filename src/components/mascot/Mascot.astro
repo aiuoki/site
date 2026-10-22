@@ -2,7 +2,7 @@
 // The site mascot: a purple octopus wearing an Ω badge. Layers (ground,
 // arms, body, badge, face) are separate groups so poses can move them.
 import "./mascot.css";
-import { ARMS, DOME, EYES, WAVE_ARM, type MascotPose } from "./poses";
+import { ARMS, DOME, EYES, HELMET, RAISED_ARM, type MascotPose } from "./poses";
 
 interface Props {
   pose?: MascotPose;
@@ -55,11 +55,13 @@ const uid = `mascot-${count}`;
           />
         ))
       }
-      <path
-        class="m-arm m-arm-light m-arm-wave"
-        d={WAVE_ARM.d}
-        style={`transform-origin: ${WAVE_ARM.root[0]}px ${WAVE_ARM.root[1]}px`}
-      />
+      <g class="m-raised" style={`transform-origin: ${RAISED_ARM.root[0]}px ${RAISED_ARM.root[1]}px`}>
+        <g class="m-hammer">
+          <rect class="m-hammer-handle" x="958" y="290" width="34" height="250" rx="12"></rect>
+          <rect class="m-hammer-head" x="890" y="232" width="170" height="80" rx="14"></rect>
+        </g>
+        <path class="m-limb m-arm-light" d={RAISED_ARM.d}></path>
+      </g>
     </g>
 
     <g class="m-body">
@@ -75,6 +77,14 @@ const uid = `mascot-${count}`;
       <circle cx="512" cy="318" r="96" fill={`url(#${uid}-badge)`}></circle>
       <circle class="m-badge-ring" cx="512" cy="318" r="80"></circle>
       <text class="m-badge-ink" x="512" y="356" text-anchor="middle">Ω</text>
+    </g>
+
+    <g class="m-helmet">
+      <path class="m-helmet-shell" d={HELMET.shell}></path>
+      <path class="m-helmet-shine" d={HELMET.shine}></path>
+      <rect class="m-helmet-brim" x="150" y="300" width="724" height="44" rx="22"></rect>
+      <circle class="m-helmet-plate" cx={HELMET.plate.cx} cy={HELMET.plate.cy} r={HELMET.plate.r}></circle>
+      <text class="m-badge-ink m-helmet-ink" x={HELMET.plate.cx} y={HELMET.plate.cy + 24} text-anchor="middle">Ω</text>
     </g>
 
     <g class="m-face">
