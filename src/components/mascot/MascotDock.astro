@@ -25,9 +25,14 @@ import Mascot from "./Mascot.astro";
     pointer-events: none;
   }
 
+  /* On phones it would cover the interactive canvases, so it is hidden. */
   @media (max-width: 600px) {
+    .mascot-dock {
+      display: none;
+    }
+
     :global(body:has(.mascot-dock)) {
-      --dock-size: 60px;
+      --page-pad-bottom: 22px;
     }
   }
 
