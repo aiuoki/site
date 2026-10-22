@@ -1,3 +1,4 @@
+import { evaluate, type Parsed } from "./expr";
 import { fmtDeg, neg, piFrac } from "./format";
 
 export const RATIOS = ["sin", "cos", "tan", "cot", "sec", "csc"] as const;
@@ -93,71 +94,18 @@ export function angDist(a: number, b: number): number {
   return Math.min(x, 360 - x);
 }
 
-export interface ParsedAngle {
-  val: number;
-  hasPi: boolean;
-}
+export type ParsedAngle = Parsed;
 
-// Safe arithmetic parser: numbers, π, + − * / and parentheses.
-// "2π/3" and "3(π/6)" are implicit products.
+// Angle typed by the user: degrees, or radians when it uses π.
 export function parseAngle(input: string): ParsedAngle | null {
-  // "3 4" is two numbers, not 34.
-  if (/[\d.]\s+[\d.]/.test(input)) return null;
   const text = input
     .trim()
     .toLowerCase()
     .replace(/,/g, ".")
     .replace(/−/g, "-")
     .replace(/°|º|deg|rad|рад/g, "")
-    .replace(/pi/g, "π")
-    .replace(/\s+/g, "");
-  const tokens = text.match(/\d+\.?\d*|\.\d+|[π+\-*/()]|./g);
-  if (!tokens || tokens.some((t) => !/^(\d+\.?\d*|\.\d+|[π+\-*/()])$/.test(t))) return null;
-
-  let i = 0;
-  const peek = () => tokens[i];
-  const expr = (): number => {
-    let v = term();
-    while (peek() === "+" || peek() === "-") v = tokens[i++] === "+" ? v + term() : v - term();
-    return v;
-  };
-  const term = (): number => {
-    let v = unary();
-    for (;;) {
-      const t = peek();
-      if (t === "*" || t === "/") {
-        i++;
-        v = t === "*" ? v * unary() : v / unary();
-      } else if (t === "π" || t === "(") {
-        v *= unary();
-      } else return v;
-    }
-  };
-  const unary = (): number => {
-    if (peek() === "-") return i++, -unary();
-    if (peek() === "+") return i++, unary();
-    return primary();
-  };
-  const primary = (): number => {
-    const t = tokens[i++];
-    if (t === "π") return Math.PI;
-    if (t === "(") {
-      const v = expr();
-      if (tokens[i++] !== ")") throw new Error("unbalanced");
-      return v;
-    }
-    if (t !== undefined && /^(\d+\.?\d*|\.\d+)$/.test(t)) return Number(t);
-    throw new Error("unexpected token");
-  };
-
-  try {
-    const val = expr();
-    // Anything beyond 1e9 is a typo, and would overflow when converted.
-    if (i !== tokens.length || !Number.isFinite(val) || Math.abs(val) > 1e9) return null;
-    return { val, hasPi: text.includes("π") };
-  } catch {
-    return null;
-  }
+    .replace(/pi/g, "π");
+  return evaluate(text);
 }
 
 export function toDegrees(p: ParsedAngle, unit: AngleUnit): number {

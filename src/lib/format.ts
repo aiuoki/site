@@ -44,3 +44,9 @@ export const neg = (s: string) => (s.startsWith("(") || !/[+−]/.test(s) ? `−
 // Wraps a value in parentheses when it is negative or a sum.
 export const paren = (s: string) =>
   s.startsWith("−") || (/[+−]/.test(s) && !s.startsWith("(")) ? `(${s})` : s;
+
+// Up to `digits` decimals, trailing zeros dropped: 0.5 -> "0,5", 1/3 -> "0,333".
+export function fmtMax(x: number, locale: string, digits = 3): string {
+  const value = Math.abs(x) < 5 * 10 ** -(digits + 1) ? 0 : x;
+  return minus(value.toLocaleString(locale, { maximumFractionDigits: digits, useGrouping: false }));
+}
