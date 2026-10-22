@@ -46,6 +46,7 @@ Web de apuntes interactivos de matemáticas. Astro (salida estática) + islas de
 ├─ astro.config.mjs           salida estática, i18n, KaTeX, Svelte y MDX
 ├─ package.json               scripts: dev, build, preview, check, test
 ├─ tsconfig.json              TypeScript estricto (excluye legacy/)
+├─ vitest.config.ts           Vitest con la config de Astro (permite renderizar .astro en tests)
 ├─ svelte.config.js           preprocesado de TypeScript en Svelte
 ├─ legacy/                    web antigua, solo como referencia (no se publica)
 ├─ .claude/skills/
@@ -60,20 +61,28 @@ Web de apuntes interactivos de matemáticas. Astro (salida estática) + islas de
    │  └─ flags.ts             SVG de las banderas (colores nacionales, no del tema)
    ├─ styles/
    │  ├─ global.css           reset, tipografía y layout base
-   │  └─ components/          un CSS por bloque grande si hace falta
+   │  └─ components/          interactive.css (lienzos y paneles), guide.css, demo-dialog.css, katex.css
    ├─ i18n/
    │  ├─ ui/<lang>.json       textos de la interfaz (9 idiomas, mismas claves que es.json)
    │  ├─ locales.ts           lista de idiomas y metadatos (sin dependencias)
    │  └─ index.ts             t(), idioma por defecto y fallback de contenido
    ├─ content.config.ts       esquema de las colecciones (Astro 7 lo exige aquí)
    ├─ content/<asignatura>/<tema>/<lang>.mdx   apuntes de cada tema
-   ├─ demos/                  datos de cada demostración: pasos, fórmulas y figura (por tema)
-   ├─ lib/                    lógica pura y probada: trig.ts, complex.ts, format.ts, theme-css.ts, paths.ts
+   ├─ demos/
+   │  ├─ types.ts             forma de una demostración (fórmulas y textos)
+   │  ├─ index.ts             demosForTopic(): demostraciones de cada página
+   │  └─ <tema>/              formulas.ts (LaTeX por paso + figuras) y text/<lang>.json
+   ├─ lib/                    lógica pura y probada, sin DOM:
+   │                          trig.ts, format.ts, plot.ts (lienzo 700×700), trig-checks.ts (comprobaciones en vivo),
+   │                          notation.ts + katex.ts (fórmulas por idioma), remark-localized-math.ts,
+   │                          figure.ts, theme-css.ts, paths.ts, text.ts
    ├─ components/
    │  ├─ layout/              Header, Footer, SubjectNav, TopicTabs, LangSwitch, ThemeToggle, Support, DonateButton, Flag, Soon
-   │  ├─ ui/                  Card, Chip, Segmented, Field, Formula, DemoDialog
-   │  ├─ figures/             figuras SVG de las demostraciones (una por archivo)
-   │  ├─ interactive/         islas Svelte: UnitCircle, AngleSum, ComplexPlane, cada una con su panel
+   │  ├─ ui/                  Card, Formula, DemoDialog(s) (Astro); Chip, Segmented (Svelte)
+   │  ├─ guide/               bloques de las guías MDX (Section, IdCard, RatioCard, Steps, Uses...); index.ts los registra
+   │  ├─ figures/             figuras SVG de las demostraciones (una por archivo, parts/ compartidas, index.ts registro)
+   │  ├─ interactive/         TopicApp.astro elige la isla del tema; trig/: UnitCircle, AngleSum, paneles,
+   │  │                       LiveCheck, QuadrantGrid, NotableTable y state.svelte.ts (estado compartido entre islas)
    │  └─ mascot/              la mascota
    ├─ layouts/BaseLayout.astro   html, head, variables del tema, fuentes
    └─ pages/
@@ -86,9 +95,12 @@ Web de apuntes interactivos de matemáticas. Astro (salida estática) + islas de
 ```
 
 - Los tests (`*.test.ts`, Vitest) van junto al archivo que prueban. `npm test` los ejecuta.
+- Fórmulas: LaTeX renderizado con KaTeX al compilar (`Formula.astro` o `$...$` en MDX). Usa las macros `\Sin \Cos \Tan \Cot \Sec \Csc` y `\Hyp \Opp \Adj \Rad` (se traducen por idioma desde `notation` en los JSON), `\hl{...}` para resaltar y `\degree` para los grados (no `^\circ`, que con STIX sale diminuto).
+- Las islas reciben los textos por props (`dict.trig`, `notation`, `locale`); nunca importan `src/i18n/index.ts` en el cliente (cargaría los 9 idiomas). Usa `src/lib/text.ts` para interpolar.
 - Variables CSS del tema: cada token de `theme.ts` se convierte en `--token` en kebab-case (`surface2` → `--surface-2`). Alias de complejos: `--z`, `--w`, `--result`, `--re`, `--im`.
 
 ## Entorno
 
 - Node 24 (Homebrew `node@24`, keg-only: añadir `/opt/homebrew/opt/node@24/bin` al `PATH` si `node` no se encuentra).
+- No uses `sd` con reemplazos que contengan `$`: lo interpreta como grupo de captura y rompe las plantillas `${...}`. Lo mismo con `String.replace` de JavaScript (`` $` `` y `$'` insertan texto del documento): pasa el reemplazo como función, `s.replace(a, () => b)`.
 - `legacy/` es la web antigua: solo referencia visual y funcional, no se publica ni se compila.

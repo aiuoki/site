@@ -32,9 +32,10 @@ Usar al añadir una asignatura, un tema dentro de una asignatura o al pasar una 
 
 1. Añade el tema en `site.ts` (`slug`, `symbol` opcional, `locales`).
 2. Añade `topics.<slug>` (y `subjects.<slug>` si es nueva) a los 9 JSON de `src/i18n/ui/`.
-3. Crea `src/content/<asignatura>/<tema>/<lang>.mdx` por idioma con `title` y `description`.
-4. Si tiene demostraciones, sigue el skill `nueva-demostracion`.
-5. Ejecuta `npm test` y `npm run build`.
+3. Crea `src/content/<asignatura>/<tema>/<lang>.mdx` por idioma con `title`, `eyebrow`, `intro` y `description`. El cuerpo usa los componentes de `src/components/guide/` (registrados en `guide/index.ts`).
+4. Si tiene lienzo interactivo, añade la isla en `src/components/interactive/<tema>/` y su caso en `TopicApp.astro`.
+5. Si tiene demostraciones, sigue el skill `nueva-demostracion` y devuélvelas en `demosForTopic()` (`src/demos/index.ts`).
+6. Ejecuta `npm test` (comprueba que existe el MDX de cada idioma declarado) y `npm run build`.
 
 ## Output Contract
 
