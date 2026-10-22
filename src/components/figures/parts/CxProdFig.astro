@@ -1,0 +1,39 @@
+---
+import { plane } from "../../../lib/complex-figure";
+import { polar, tint } from "../../../lib/figure";
+import CxArc from "./CxArc.astro";
+import CxArrow from "./CxArrow.astro";
+import CxAxes from "./CxAxes.astro";
+import CxText from "./CxText.astro";
+
+interface Props {
+  // Exponential labels (e^(iθ)) instead of polar ones (ρ_α).
+  euler?: boolean;
+}
+
+const { euler = false } = Astro.props;
+const m = plane({ s: 72, ox: 50, oy: 200, h: 230 });
+const a = 28;
+const b = 42;
+const [r1, r2] = [1.35, 1.25];
+const [zx, zy] = polar(a, r1);
+const [wx, wy] = polar(b, r2);
+const [px, py] = polar(a + b, r1 * r2);
+const [ax, ay] = polar(a / 2, 0.62);
+const [bx, by] = polar(a + b / 2, 0.8);
+---
+
+<svg class="mfig" viewBox={m.viewBox} aria-hidden="true">
+  <CxAxes m={m} x0={-0.3} x1={3.4} y0={-0.3} y1={2.8} />
+  <CxArc m={m} r={0.42} a0={0} a1={a} color="var(--z)" width={2} fill={tint("z", 16)} />
+  <CxArc m={m} r={0.62} a0={a} a1={a + b} color="var(--w)" width={2.2} />
+  <CxArc m={m} r={0.5} a0={0} a1={b} color="var(--w)" width={1.2} />
+  <CxArrow m={m} x1={0} y1={0} x2={zx} y2={zy} color="var(--z)" />
+  <CxArrow m={m} x1={0} y1={0} x2={wx} y2={wy} color="var(--w)" />
+  <CxArrow m={m} x1={0} y1={0} x2={px} y2={py} color="var(--result)" width={3.2} />
+  <CxText m={m} x={ax} y={ay} t={euler ? "θ" : "α"} color="var(--z)" size={14} italic />
+  <CxText m={m} x={bx} y={by} t={euler ? "ω" : "β"} color="var(--w)" size={14} italic />
+  <CxText m={m} x={zx + 0.08} y={zy - 0.05} t={euler ? "e^(iθ)" : "z = ρ₁_α"} color="var(--z)" anchor="start" size={14} italic />
+  <CxText m={m} x={wx + 0.02} y={wy + 0.14} t={euler ? "e^(iω)" : "w = ρ₂_β"} color="var(--w)" anchor="start" size={14} italic />
+  <CxText m={m} x={px + 0.06} y={py + 0.1} t={euler ? "e^(i(θ+ω))" : "zw = (ρ₁ρ₂)_(α+β)"} color="var(--result)" anchor="start" size={14} italic />
+</svg>

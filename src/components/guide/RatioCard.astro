@@ -1,6 +1,6 @@
 ---
 import Formula from "../ui/Formula.astro";
-import { notationFor, pageLocale, useTranslations } from "../../i18n";
+import { contentLang, notationFor, useTranslations } from "../../i18n";
 import type { Ratio } from "../../lib/trig";
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const { ratio, name, tex, text } = Astro.props;
-const lang = pageLocale(Astro.currentLocale);
+const lang = contentLang(Astro);
 const t = useTranslations(lang);
 ---
 

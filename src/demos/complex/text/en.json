@@ -1,0 +1,347 @@
+{
+  "cx-axiom": {
+    "title": "Axiomatic definition: ℂ = (ℝ², +, ·)",
+    "summary": "A complex number is a pair of reals with a special multiplication rule. i² = −1 follows from it.",
+    "steps": [
+      "A complex number is an ordered pair of real numbers (a, b). The first is the real part and the second the imaginary part.",
+      "Addition is done component by component, just like with vectors.",
+      "To guess what the product should be, we multiply (a + bi)(c + di) like two binomials: every term by every term (distributive property).",
+      "We use i² = −1, so bd·i² = −bd. Grouping: what has no i is the real part (ac − bd); what has i, the imaginary part (ad + bc).",
+      "That rule is exactly what's taken as the definition of the product of pairs. The symbol := means “is defined as”.",
+      "With this definition, i = (0, 1), and multiplying it by itself gives (−1, 0), which is the real number −1. So i² = −1 is no longer an “impossible number” but a consequence."
+    ],
+    "use": "Complex numbers are built from real numbers alone, no magic: they are points of the plane with a special way of multiplying."
+  },
+  "cx-ipow": {
+    "title": "Powers of i",
+    "summary": "Powers of i repeat every 4: 1, i, −1, −i, 1, …",
+    "steps": [
+      "Start from the definition: i squared is −1.",
+      "For i³ multiply by i once more: (−1)·i = −i.",
+      "i⁴ = i²·i² = (−1)(−1) = 1. We're back to the start.",
+      "Since every four powers we're back to 1, to compute iⁿ we only need the remainder r of dividing n by 4 (r = 0, 1, 2 or 3).",
+      "Example: 27 = 4·6 + 3, remainder 3. Since i⁴ = 1, (i⁴)⁶ = 1, leaving i³ = −i."
+    ],
+    "use": "Multiplying by i rotates 90° counterclockwise; four 90° turns make a full turn. That's why the cycle has length 4."
+  },
+  "cx-field": {
+    "title": "ℂ is a field",
+    "summary": "Addition and multiplication follow the usual rules and every z ≠ 0 has an inverse.",
+    "steps": [
+      "Addition and multiplication are commutative (order doesn't matter) and associative (grouping doesn't matter). They inherit this from ℝ.",
+      "The distributive property holds: multiplying by a sum is adding the products.",
+      "There are identity elements: 0 = 0 + 0i changes nothing when added, and 1 = 1 + 0i changes nothing when multiplied.",
+      "Every z has an opposite −z, which added to z gives 0.",
+      "Inverse: to make the denominator real, multiply top and bottom by a − bi (the conjugate). The bottom becomes a² + b², which is positive if z ≠ 0.",
+      "Example: the inverse of 1 + i is (1 − i)/2. Check: (1 + i)(1 − i)/2 = (1 − i²)/2 = 2/2 = 1."
+    ],
+    "use": "ℂ being a field means you can solve equations with complex numbers exactly like with real ones."
+  },
+  "cx-order": {
+    "title": "Is 2 < i? No: ℂ can't be ordered",
+    "summary": "There is no order on ℂ compatible with its operations. Comparing complex numbers with < makes no sense.",
+    "steps": [
+      "A “compatible” order (like the one on ℝ) must make the product of two positives positive.",
+      "Consequence: the square of any nonzero number is positive (if x < 0, then −x > 0 and x² = (−x)² > 0).",
+      "Suppose such an order exists on ℂ. Since i ≠ 0, we'd need i² > 0.",
+      "But i² = −1, so we'd get −1 > 0.",
+      "On the other hand, 1 = 1² is also a square, so 1 > 0.",
+      "Adding two positives (−1 and 1) must give a positive number: 0 > 0. That's impossible, so no such order exists."
+    ],
+    "use": "In ℂ you never say one number is bigger than another. What you can compare is their moduli |z| and |w|, which are real numbers."
+  },
+  "cx-phasor": {
+    "title": "Phasor: a complex number of modulus 1",
+    "summary": "Complex numbers with |z| = 1 form the unit circle: they are the trigonometric circle.",
+    "steps": [
+      "A phasor is a complex z with |z| = 1. Recall that |z| = √(a² + b²).",
+      "Squaring, |z| = 1 means a² + b² = 1, the equation of the circle of radius 1 centred at the origin.",
+      "Every point on that circle has coordinates (cos θ, sin θ), as on the trigonometric circle.",
+      "So every phasor can be written z = cos θ + i sin θ, which is 1<sub>θ</sub> in polar form and e<sup>iθ</sup> in exponential form."
+    ],
+    "use": "Multiplying by a phasor rotates without changing size. In electricity they represent sinusoidal waves."
+  },
+  "cx-conj1": {
+    "title": "The conjugate of the conjugate",
+    "summary": "Conjugating twice leaves the number as it was.",
+    "steps": [
+      "Conjugating flips the sign of the imaginary part: a + bi becomes a − bi.",
+      "Conjugate again: the imaginary part is now −b, and we flip its sign once more.",
+      "−(−b) = b, so we get back a + bi = z."
+    ],
+    "use": "Geometrically, conjugating is reflecting across the real axis; reflecting twice leaves the point where it was."
+  },
+  "cx-conj2": {
+    "title": "Conjugate of a sum",
+    "summary": "Adding then conjugating is the same as conjugating then adding.",
+    "steps": [
+      "Write both numbers in rectangular form.",
+      "Add real parts to real parts and imaginary parts to imaginary parts.",
+      "Conjugate the result: flip the sign of the imaginary part.",
+      "Split it up: it's the sum of a − bi and c − di, that is, z̄ + w̄."
+    ],
+    "use": "It lets you conjugate long expressions term by term, for example when simplifying fractions."
+  },
+  "cx-conj3": {
+    "title": "Conjugate of a product",
+    "summary": "The conjugate of a product is the product of the conjugates. In particular, conj(zⁿ) = z̄ⁿ.",
+    "steps": [
+      "Product in rectangular form (definition of the product).",
+      "Conjugate it: only the sign of the imaginary part changes.",
+      "Now multiply the conjugates (a − bi)(c − di) term by term.",
+      "With i² = −1 we get (ac − bd) − (ad + bc)i: the same as in step 2.",
+      "A power is a repeated product, so applying the rule n times: conj(zⁿ) = (z̄)ⁿ."
+    ],
+    "use": "If a polynomial with real coefficients has a complex root z, it also has the root z̄: complex roots come in pairs."
+  },
+  "cx-mod1": {
+    "title": "The modulus is ≥ 0 and only 0 at z = 0",
+    "summary": "|z| is a distance: never negative, and 0 only at the origin.",
+    "steps": [
+      "The modulus is the distance from (a, b) to the origin: by Pythagoras, the hypotenuse with legs a and b.",
+      "a² and b² are squares, so they aren't negative; neither is their sum, nor its square root.",
+      "A sum of squares is 0 only if both squares are 0, that is, a = 0 and b = 0.",
+      "Example: |3 + 4i| = √(9 + 16) = √25 = 5 (the 3-4-5 triangle)."
+    ],
+    "use": "The modulus measures the size of a complex number. It's what gets compared instead of the numbers themselves."
+  },
+  "cx-tri": {
+    "title": "Triangle inequality",
+    "summary": "The size of a sum never exceeds the sum of the sizes.",
+    "steps": [
+      "z + w is the diagonal of the parallelogram formed by the arrows z and w (parallelogram rule).",
+      "To get from 0 to z + w we can go through z: first the arrow z (length |z|), then a copy of w (length |w|). That makes a triangle.",
+      "In a triangle, one side is never longer than the other two combined: the direct path is the shortest.",
+      "Equality only happens when z and w point the same way: the triangle flattens into a segment.",
+      "Example: |3 + 4i| = 5, while |3| + |4i| = 3 + 4 = 7."
+    ],
+    "use": "It gives bounds: if you know how big z and w are, you know at most how big z + w is."
+  },
+  "cx-modprod": {
+    "title": "Modulus of a product",
+    "summary": "When multiplying complex numbers, the moduli multiply: |zw| = |z||w|.",
+    "steps": [
+      "Apply the definition of modulus to the product zw = (ac − bd) + (ad + bc)i.",
+      "Expand both squares. The terms −2abcd and +2abcd cancel.",
+      "Factor: a² multiplies (c² + d²) and so does b².",
+      "That's |z|²·|w|². Since moduli are ≥ 0, we can drop the squares.",
+      "A power is a repeated product, so |zⁿ| = |z|ⁿ."
+    ],
+    "use": "It's half of the polar product rule: sizes multiply (the other half: angles add)."
+  },
+  "cx-modconj": {
+    "title": "A number and its conjugate have the same size",
+    "summary": "|z| = |z̄|: reflecting doesn't change the distance to the origin.",
+    "steps": [
+      "The conjugate of a + bi is a − bi.",
+      "When squaring, (−b)² = b², so the modulus is the same."
+    ],
+    "use": "z and z̄ are at the same distance from the origin, with opposite angles θ and −θ."
+  },
+  "cx-zz": {
+    "title": "z · z̄ = |z|²",
+    "summary": "A complex number times its conjugate is always a real number ≥ 0.",
+    "steps": [
+      "Multiply z = a + bi by its conjugate a − bi.",
+      "Expand: the terms −abi and +abi cancel.",
+      "Since i² = −1, −b²i² = +b².",
+      "We're left with a² + b², the modulus squared: a real, non-negative number."
+    ],
+    "use": "It's the trick for dividing: multiplying by the conjugate turns a complex number into a real one."
+  },
+  "cx-div": {
+    "title": "Division: z/w = z·w̄ / |w|²",
+    "summary": "To divide, multiply top and bottom by the conjugate of the denominator.",
+    "steps": [
+      "Multiply numerator and denominator by w̄. That's multiplying by w̄/w̄ = 1, so the value doesn't change.",
+      "The bottom becomes w·w̄ = |w|², a real number. Dividing by a real number is easy: divide each part.",
+      "Special case z = 1: the inverse of w is w̄/|w|².",
+      "Example: (2 + 3i)/(1 + 2i). The conjugate of 1 + 2i is 1 − 2i and |1 + 2i|² = 1² + 2² = 5.",
+      "Expand: 2 − 4i + 3i − 6i² = 2 + 6 − i = 8 − i. Divide each part by 5."
+    ],
+    "use": "That's how you divide in rectangular form. In polar form it's even easier: divide the moduli and subtract the angles."
+  },
+  "cx-arg": {
+    "title": "From rectangular to polar (and the arctan trap)",
+    "summary": "ρ = √(a² + b²) and θ = arctan(b/a), corrected by quadrant.",
+    "steps": [
+      "In the triangle with legs a (horizontal) and b (vertical) and hypotenuse ρ, sine is opposite/hypotenuse and cosine is adjacent/hypotenuse.",
+      "Dividing, tan θ = b/a, so θ = arctan(b/a)… but only sometimes.",
+      "arctan only returns angles between −π/2 and π/2 (quadrants I and IV), which are the ones with a > 0. There the formula is right.",
+      "If a < 0 the point is on the left: b/a gives the same value for z and for −z (the opposite point), so we must correct by adding π (if b ≥ 0) or subtracting π (if b < 0).",
+      "If a = 0, b/a doesn't exist: the point is on the imaginary axis, θ = π/2 if b > 0 and −π/2 if b < 0.",
+      "arg (lowercase) is the set of all valid angles; Arg (capital) is the principal one, the only one in (−π, π]."
+    ],
+    "use": "Careful with calculators: arctan((−1)/(−1)) = π/4, but −1 − i is in the third quadrant and its Arg is −3π/4."
+  },
+  "cx-p2b": {
+    "title": "From polar to rectangular",
+    "summary": "a = ρ cos θ and b = ρ sin θ. This gives the trigonometric form.",
+    "steps": [
+      "From cos θ = a/ρ, solve for a by multiplying by ρ.",
+      "From sin θ = b/ρ, solve for b the same way.",
+      "Substitute into a + bi and factor out ρ: that's the trigonometric form ρ(cos θ + i sin θ).",
+      "Example: 2<sub>π/3</sub>. Since cos(π/3) = 1/2 and sin(π/3) = √3/2, we get 1 + √3 i."
+    ],
+    "use": "Rectangular form is best for adding and subtracting; polar form for multiplying, dividing, powers and roots."
+  },
+  "cx-pprod": {
+    "title": "Product in polar form: multiply moduli, add angles",
+    "summary": "(ρ₁)<sub>θ₁</sub> · (ρ₂)<sub>θ₂</sub> = (ρ₁ρ₂)<sub>θ₁+θ₂</sub>",
+    "steps": [
+      "Write both numbers in trigonometric form, with angles α and β.",
+      "The moduli ρ₁ and ρ₂ are real numbers: move them to the front.",
+      "Multiply the two brackets like binomials, with i² = −1, and group real and imaginary parts.",
+      "They are exactly the angle-sum formulas for cosine and sine! (the ones in the α ± β tab).",
+      "The result is a complex number with modulus ρ₁ρ₂ and angle α + β.",
+      "If α + β falls outside (−π, π], add or subtract 2π to get the principal argument: it's the same point."
+    ],
+    "use": "Multiplying = multiplying sizes and adding turns. That's why complex numbers are perfect for describing rotations."
+  },
+  "cx-pquot": {
+    "title": "Quotient in polar form: divide moduli, subtract angles",
+    "summary": "(ρ₁)<sub>θ₁</sub> / (ρ₂)<sub>θ₂</sub> = (ρ₁/ρ₂)<sub>θ₁−θ₂</sub>",
+    "steps": [
+      "Dividing means finding the number q that, multiplied by w, gives z.",
+      "Write q = r<sub>φ</sub> and use the product rule: moduli multiply, angles add.",
+      "Two complex numbers in polar form are equal if they have the same modulus and the same angle (up to full turns of 2π).",
+      "Solving: r = ρ₁/ρ₂ and φ = θ₁ − θ₂."
+    ],
+    "use": "Dividing undoes the turn: sizes divide and angles subtract."
+  },
+  "cx-pconj": {
+    "title": "Conjugate and inverse in polar form",
+    "summary": "z̄ = ρ<sub>−θ</sub> and z⁻¹ = (1/ρ)<sub>−θ</sub>",
+    "steps": [
+      "Write ρ<sub>θ</sub> in trigonometric form.",
+      "Conjugating flips the sign of the imaginary part. Since cos(−θ) = cos θ and sin(−θ) = −sin θ, that's the same as replacing θ with −θ.",
+      "Same modulus, opposite angle: ρ<sub>−θ</sub>.",
+      "For the inverse, write 1 = 1₀ (modulus 1, angle 0) and apply the quotient rule."
+    ],
+    "use": "The inverse points the same way as the conjugate, but with size 1/ρ: if z is far from the origin, 1/z is close to it."
+  },
+  "cx-moivre": {
+    "title": "De Moivre's theorem",
+    "summary": "(cos θ + i sin θ)ⁿ = cos nθ + i sin nθ. Raising to n multiplies the angle by n.",
+    "steps": [
+      "Raising to n means multiplying the number by itself n times.",
+      "By the product rule, the moduli multiply (ρⁿ) and the angles add (θ + θ + … = nθ).",
+      "If the modulus is 1, we get 1 to the n, which is 1: only the angle changes.",
+      "Written in trigonometric form, that's De Moivre's theorem.",
+      "Example n = 2: expanding the square on the left and matching real and imaginary parts gives cos 2θ = cos²θ − sin²θ and sin 2θ = 2 sin θ cos θ.",
+      "Example: 1 + i = √2<sub>π/4</sub>. To the 8th: (√2)⁸ = 16 and 8·π/4 = 2π, a full turn: the result is 16."
+    ],
+    "use": "Compute large powers without expanding binomials, and derive multiple-angle formulas (cos 3θ, sin 4θ…)."
+  },
+  "cx-rot": {
+    "title": "Multiplying by 1<sub>β</sub> rotates by β",
+    "summary": "Multiplying by cos β + i sin β rotates the whole plane by β around the origin.",
+    "steps": [
+      "The point 1 = (1, 0) becomes cos β + i sin β = (cos β, sin β).",
+      "The point i = (0, 1) becomes i cos β + i² sin β = −sin β + i cos β = (−sin β, cos β).",
+      "Both axes rotate by the same angle β, so the whole plane rotates by β.",
+      "With β = 90°, multiplying by 1<sub>90°</sub> = i takes the real axis to the imaginary one: a 90° turn.",
+      "Example from your notes: rotating 30° and then 90° is rotating 120°, with sin 120° = √3/2 and cos 120° = −1/2."
+    ],
+    "use": "It's the basis of rotations in computer graphics, robotics and animation."
+  },
+  "cx-euler": {
+    "title": "Euler's formula",
+    "summary": "e<sup>iθ</sup> := cos θ + i sin θ. It's the exponential form of a phasor.",
+    "steps": [
+      "It's a definition: it extends powers of e to imaginary exponents. θ is always in radians.",
+      "Its modulus is 1 by Pythagoras (sin²θ + cos²θ = 1): e<sup>iθ</sup> always lies on the unit circle.",
+      "Its argument is θ (if θ is in (−π, π]; otherwise θ plus or minus full turns of 2π).",
+      "Any complex number in polar form can be written ρ e<sup>iθ</sup>: the exponential form.",
+      "With θ = π we get e<sup>iπ</sup> = −1, Euler's identity, which puts e, i, π, 1 and 0 into a single formula."
+    ],
+    "use": "With exponential notation, working with complex numbers is working with powers: e<sup>iα</sup>·e<sup>iβ</sup> = e<sup>i(α+β)</sup>."
+  },
+  "cx-cossin": {
+    "title": "Sine and cosine as exponentials",
+    "summary": "Adding and subtracting e<sup>iθ</sup> and e<sup>−iθ</sup> isolates cos θ and sin θ.",
+    "steps": [
+      "Euler's formula with θ.",
+      "Euler's formula with −θ. Since cosine is even and sine is odd, we get cos θ − i sin θ: the conjugate of e<sup>iθ</sup>.",
+      "Add them: the sines cancel, leaving 2 cos θ.",
+      "Divide by 2.",
+      "Subtract them: the cosines cancel, leaving 2i sin θ.",
+      "Divide by 2i."
+    ],
+    "use": "It turns products of sines and cosines into sums of exponentials, which are much easier to integrate and differentiate."
+  },
+  "cx-eprop": {
+    "title": "Properties of e<sup>iθ</sup>",
+    "summary": "It behaves like an ordinary power: exponents add and multiply.",
+    "steps": [
+      "In polar form, e<sup>iθ</sup> = 1<sub>θ</sub>. Multiplying adds the angles: that's adding exponents.",
+      "Raising to n multiplies the angle by n (De Moivre): that's multiplying the exponent by n.",
+      "With any moduli: the moduli multiply and the angles add."
+    ],
+    "use": "The exponent rules work just like with real numbers: e<sup>a</sup>·e<sup>b</sup> = e<sup>a+b</sup> and (e<sup>a</sup>)ⁿ = e<sup>na</sup>."
+  },
+  "cx-roots": {
+    "title": "n-th roots",
+    "summary": "Every z ≠ 0 has n n-th roots, with modulus ⁿ√ρ and angles (θ + 2πk)/n.",
+    "steps": [
+      "We look for every w = r<sub>φ</sub> with wⁿ = z.",
+      "By De Moivre, wⁿ has modulus rⁿ and angle nφ.",
+      "Match moduli: rⁿ = ρ, so r is the real (positive) n-th root of ρ.",
+      "Match angles, but angles may differ by full turns: nφ = θ + 2πk. Solve for φ.",
+      "With k = n we're back at the angle for k = 0 (a full turn), so k = 0, 1, …, n − 1 is enough: there are n distinct roots.",
+      "Consecutive roots are 2π/n apart: they form a regular n-sided polygon centred at the origin."
+    ],
+    "use": "Solve equations like zⁿ = c. In ℝ, x³ = 8 has only one solution; in ℂ it has three."
+  },
+  "cx-root1": {
+    "title": "Example: the cube roots of 1",
+    "summary": "∛1 = {1, ω, ω²} with ω = −1/2 + (√3/2)i.",
+    "steps": [
+      "Write 1 in polar form: modulus 1 and angle 0.",
+      "Apply the formula with n = 3. The real root of 1 is 1, so all of them have modulus 1.",
+      "k = 0: angle 0, the real root 1.",
+      "k = 1: angle 2π/3 = 120°. cos 120° = −1/2 and sin 120° = √3/2. This root is called ω.",
+      "k = 2: angle 4π/3 = 240°. It's the conjugate of ω, and also ω² (two 120° turns).",
+      "k = 3 would give 2π = 360°: back to 1. That's why there are only 3 roots."
+    ],
+    "use": "The cube roots of unity form an equilateral triangle and show up when solving cubic equations."
+  },
+  "cx-z38": {
+    "title": "Example: z³ − 8 = 0",
+    "summary": "The solutions are 2 and −1 ± √3 i: the cube roots of 1 times 2.",
+    "steps": [
+      "Isolate z: z is a cube root of 8.",
+      "Trick: since 8 = 2³, divide the equation by 8 to get (z/2)³ = 1.",
+      "So z/2 is a cube root of 1, which we already know.",
+      "Multiplying by 2: z = 2, z = −1 + √3 i and z = −1 − √3 i.",
+      "With the direct formula: 8 = 8₀, its real cube root is 2 and the angles are 0, 2π/3 and 4π/3. Same result."
+    ],
+    "use": "In ℝ this equation only has the solution 2. In ℂ all three appear, on an equilateral triangle of radius 2."
+  },
+  "cx-exp": {
+    "title": "Complex exponential e<sup>z</sup>",
+    "summary": "e<sup>a+bi</sup> = e<sup>a</sup> (cos b + i sin b): modulus e<sup>a</sup> and angle b.",
+    "steps": [
+      "It's defined so that e<sup>x+y</sup> = e<sup>x</sup> · e<sup>y</sup> still holds.",
+      "e<sup>a</sup> is a positive real and e<sup>bi</sup> is a phasor with angle b: the result is already in polar form.",
+      "The modulus of e<sup>z</sup> depends only on the real part of z.",
+      "The angle of e<sup>z</sup> is the imaginary part of z (plus full turns).",
+      "Adding 2πi adds a full turn and changes nothing: e<sup>z</sup> is periodic with period 2πi.",
+      "Example: e<sup>1 + iπ/2</sup> = e · e<sup>iπ/2</sup> = e · i."
+    ],
+    "use": "It describes oscillations that grow or decay: the real part controls size and the imaginary part the turning (RLC circuits, springs)."
+  },
+  "cx-log": {
+    "title": "Complex logarithm",
+    "summary": "log z = ln|z| + i arg z. It has infinitely many values, 2πi apart.",
+    "steps": [
+      "The logarithm of z is the number w you must put in the exponent to get z: e<sup>w</sup> = z.",
+      "Write w = x + yi. Then e<sup>w</sup> has modulus e<sup>x</sup> and angle y; z has modulus ρ and angle θ.",
+      "Match moduli: e<sup>x</sup> = ρ, so x is the natural (real) logarithm of |z|.",
+      "Match angles up to full turns: y = θ + 2πk. There are infinitely many logarithms, one for each k.",
+      "The principal logarithm Log z uses the principal argument Arg z ∈ (−π, π] (k = 0).",
+      "Example: −1 has modulus 1 and angle π, so Log(−1) = ln 1 + iπ = iπ. In ℂ, negative numbers do have logarithms!"
+    ],
+    "use": "It lets you define complex powers as z<sup>w</sup> = e<sup>w·log z</sup> and solve exponential equations in ℂ."
+  }
+}

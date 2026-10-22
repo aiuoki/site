@@ -1,0 +1,16 @@
+---
+import { round } from "../../../lib/figure";
+import type { Plane } from "../../../lib/complex-figure";
+
+interface Props {
+  m: Plane;
+  x: number;
+  y: number;
+  color?: string;
+  r?: number;
+}
+
+const { m, x, y, color = "var(--fg)", r = 4.5 } = Astro.props;
+---
+
+<circle cx={round(m.px(x))} cy={round(m.py(y))} r={r} fill={color} />

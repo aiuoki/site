@@ -1,0 +1,15 @@
+---
+import type { Plane } from "../../../lib/complex-figure";
+
+interface Props {
+  m: Plane;
+  r: number;
+  color?: string;
+  width?: number;
+  dash?: string;
+}
+
+const { m, r, color = "var(--muted)", width = 1.3, dash } = Astro.props;
+---
+
+<circle cx={m.ox} cy={m.oy} r={r * m.s} fill="none" stroke={color} stroke-width={width} stroke-dasharray={dash} opacity=".8" />

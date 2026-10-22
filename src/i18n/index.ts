@@ -64,3 +64,10 @@ export function notationFor(lang: Locale): Notation {
 export function pageLocale(current: string | undefined): Locale {
   return isLocale(current) ? current : defaultLocale;
 }
+
+// Language of the content being rendered. Topic pages set
+// Astro.locals.contentLang when they show a fallback translation, so formulas,
+// figures and guide labels follow the text and not the page.
+export function contentLang(astro: { locals: App.Locals; currentLocale: string | undefined }): Locale {
+  return pageLocale(astro.locals.contentLang ?? astro.currentLocale);
+}

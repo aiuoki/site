@@ -1,12 +1,12 @@
 ---
-import { notationFor, pageLocale } from "../../i18n";
+import { contentLang, notationFor } from "../../i18n";
 import { unitAngle } from "../../lib/figure";
 import Label from "./parts/Label.astro";
 import TanConstruction from "./parts/TanConstruction.astro";
 import ThetaArc from "./parts/ThetaArc.astro";
 import UnitFrame from "./parts/UnitFrame.astro";
 
-const n = notationFor(pageLocale(Astro.currentLocale));
+const n = notationFor(contentLang(Astro));
 const { tn } = unitAngle(40);
 ---
 

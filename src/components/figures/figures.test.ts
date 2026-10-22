@@ -5,7 +5,7 @@ import { defaultLocale, locales } from "../../i18n";
 import { figures, type FigureId } from "./index";
 
 const ids = Object.keys(figures) as FigureId[];
-const wideIds: FigureId[] = ["dist", "notables"];
+const wideIds: FigureId[] = ["dist", "notables", "cx-exp", "cx-log"];
 
 // The container only knows the page language through the manifest.
 const i18nManifest = {
@@ -21,8 +21,9 @@ const render = (id: FigureId, url = "http://localhost/es/calculo") =>
   container.renderToString(figures[id], { request: new Request(url), routeType: "page" });
 
 describe("figures", () => {
-  it("registers the 21 legacy figures", () => {
-    expect(ids).toHaveLength(21);
+  it("registers the 21 trigonometry and 22 complex-number figures", () => {
+    expect(ids).toHaveLength(43);
+    expect(ids.filter((id) => id.startsWith("cx-"))).toHaveLength(22);
   });
 
   it.each(ids)("renders %s as a clean SVG", async (id) => {
@@ -44,6 +45,30 @@ describe("figures", () => {
   it("localizes the notation by page language", async () => {
     expect(await render("pyth")).toContain("sen θ");
     expect(await render("pyth", "http://localhost/en/calculus")).toContain("sin θ");
+  });
+
+  it("localizes the notation inside complex-number labels", async () => {
+    expect(await render("cx-polar")).toContain("sen θ");
+    expect(await render("cx-polar", "http://localhost/en/calculus")).toContain("sin θ");
+    expect(await render("cx-polar", "http://localhost/en/calculus")).not.toContain("sen θ");
+  });
+
+  it("formats the principal argument with the locale decimal separator", async () => {
+    expect(await render("cx-quad")).toContain("≈ −0,588");
+    expect(await render("cx-quad", "http://localhost/en/calculus")).toContain("≈ −0.588");
+  });
+
+  it("renders real superscripts and subscripts", async () => {
+    expect(await render("cx-exp")).toContain('baseline-shift="super"');
+    expect(await render("cx-phasor-e")).toContain('baseline-shift="sub"');
+    expect(await render("cx-prod-e")).not.toMatch(/\^\(|_\(/);
+  });
+
+  it("keeps the shared variants distinct", async () => {
+    expect(await render("cx-phasor")).toContain("z = 1");
+    expect(await render("cx-phasor-e")).toContain("e<tspan");
+    expect(await render("cx-roots3")).toContain("120°");
+    expect(await render("cx-roots")).toContain("2π/5");
   });
 
   it("keeps marker ids prefixed", async () => {

@@ -1,5 +1,5 @@
 import katex from "katex";
-import { expandNotation, type Notation } from "./notation";
+import { expandNotation, type Notation, type Words } from "./notation";
 
 // Shared by the Formula component and the MDX pipeline.
 export const katexOptions = {
@@ -9,8 +9,8 @@ export const katexOptions = {
   strict: "ignore" as const,
 };
 
-export function renderTex(tex: string, notation: Notation, displayMode = false): string {
-  return katex.renderToString(expandNotation(tex, notation), {
+export function renderTex(tex: string, notation: Notation, displayMode = false, words: Words = {}): string {
+  return katex.renderToString(expandNotation(tex, notation, words), {
     ...katexOptions,
     // Copy: KaTeX mutates the macros object when it sees \def.
     macros: { ...katexOptions.macros },

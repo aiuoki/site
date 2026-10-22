@@ -1,0 +1,116 @@
+---
+title: "Números Complejos"
+eyebrow: "Guía interactiva · números complejos"
+intro: "Arrastra <i>z</i> (y <i>w</i>) por el plano o escribe sus coordenadas. Verás a la vez sus formas binómica, polar y exponencial, y lo que pasa al operar. Pulsa cualquier tarjeta para ver su demostración paso a paso."
+description: "Arrastra z (y w) por el plano o escribe sus coordenadas. Verás a la vez sus formas binómica, polar y exponencial, y lo que pasa al operar. Pulsa cualquier tarjeta para ver su demostración paso a paso."
+---
+
+<Section eyebrow={"01 · Definición"} title={"¿Qué es un número complejo?"} lead={"La ecuación x² + 1 = 0 no tiene solución real, porque ningún número real al cuadrado da −1. Se añade un número nuevo, i, que cumple i² = −1, y con él se construyen todos los complejos."}>
+  <Defs>
+    <DefItem title={"Unidad imaginaria"} text={"<span class=\"mr\"><i>i</i> = √−1</span>, es decir, <span class=\"mr\"><i>i</i>² = −1</span>."} />
+    <DefItem title={"Forma binómica"} text={"<span class=\"mr\"><i>z</i> = <i>a</i> + <i>bi</i></span>, con <span class=\"mr\"><i>a</i></span> y <span class=\"mr\"><i>b</i></span> números reales. Se llama binómica porque tiene dos términos."} />
+    <DefItem title={"Parte real"} text={"<span class=\"mr\">Re(<i>z</i>) = <i>a</i></span>: el término sin <span class=\"mr\"><i>i</i></span>."} />
+    <DefItem title={"Parte imaginaria"} text={"<span class=\"mr\">Im(<i>z</i>) = <i>b</i></span>: el número que acompaña a <span class=\"mr\"><i>i</i></span> (sin la <span class=\"mr\"><i>i</i></span>)."} />
+    <DefItem title={"El conjunto ℂ"} text={"<span class=\"mr\">ℂ = {<i>a</i> + <i>bi</i> : <i>a</i>, <i>b</i> ∈ ℝ}</span>. Los reales son los complejos con <span class=\"mr\"><i>b</i> = 0</span>."} />
+  </Defs>
+  <IdGroup>
+    <DemoCard demo="cx-axiom" />
+    <DemoCard demo="cx-ipow" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"02 · Estructura"} title={"ℂ es un cuerpo… pero no se puede ordenar"} lead={"Un cuerpo es un conjunto donde se puede sumar, restar, multiplicar y dividir (salvo entre 0) con las reglas de siempre. ℂ lo es, pero pierde algo que sí tiene ℝ: el orden."}>
+  <IdGroup>
+    <DemoCard demo="cx-field" />
+    <DemoCard demo="cx-order" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"03 · Representación gráfica"} title={"El plano complejo"} lead={"Como un complejo es un par (a, b), se dibuja como un punto del plano o como una flecha (vector) desde el origen."}>
+  <Split figure="cx-example" html={"El eje <b>X</b> es el <b>eje real</b>: los puntos (x, 0) son los reales x. El eje <b>Y</b> es el <b>eje imaginario</b>: los puntos (0, y) son los imaginarios puros yi. En el dibujo, los ejemplos de tus apuntes: <span class=\"mr\"><i>z</i> = 2 − <i>i</i></span> y <span class=\"mr\"><i>w</i> = 1 + 2<i>i</i></span>."}>
+    <LoadExample index={1} label={"Ver z = 2 − i y w = 1 + 2i en el plano"} />
+  </Split>
+  <IdGroup>
+    <DemoCard demo="cx-phasor" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"04 · Conjugado"} title={"El conjugado z̄"} lead={"El conjugado de z = a + bi es z̄ = a − bi: se cambia el signo de la parte imaginaria. En el plano es la reflexión de z respecto al eje real (como un espejo)."}>
+  <IdGroup>
+    <DemoCard demo="cx-conj1" />
+    <DemoCard demo="cx-conj2" />
+    <DemoCard demo="cx-conj3" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"05 · Módulo"} title={"El módulo |z|"} lead={"El módulo |z| = √(a² + b²) es la longitud de la flecha, es decir, la distancia de z al origen. Sale del teorema de Pitágoras con catetos a y b."}>
+  <IdGroup>
+    <DemoCard demo="cx-mod1" />
+    <DemoCard demo="cx-tri" live />
+    <DemoCard demo="cx-modprod" live />
+    <DemoCard demo="cx-modconj" />
+    <DemoCard demo="cx-zz" live />
+    <DemoCard demo="cx-div" live />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"06 · Forma polar"} title={"Forma polar ρ<sub>θ</sub>"} lead={"Un punto también queda fijado por dos datos: lo lejos que está del origen y el ángulo que forma con el eje real positivo. Es como dar una dirección diciendo «a 5 km, hacia el noreste»."}>
+  <Defs>
+    <DefItem title={"ρ (rho): módulo"} text={"<span class=\"mr\"><i>ρ</i> := |<i>z</i>|</span>, la distancia al origen."} />
+    <DefItem title={"θ (theta): argumento principal"} text={"<span class=\"mr\"><i>θ</i> := Arg(<i>z</i>) ∈ (−π, π]</span>, el ángulo medido desde el eje real positivo; en sentido antihorario es positivo."} />
+    <DefItem title={"arg(z): todos los argumentos"} text={"<span class=\"mr\">arg(<i>z</i>) = {<i>θ</i> + 2π<i>n</i> : <i>n</i> ∈ ℤ}</span>. Dar vueltas completas (2π = 360°) lleva al mismo punto."} />
+    <DefItem title={"Notación polar"} text={"<span class=\"mr\"><i>z</i> = <i>ρ</i><sub><i>θ</i></sub></span>, donde <span class=\"mr\"><i>ρ</i> = |<i>z</i>|</span> y <span class=\"mr\"><i>θ</i> = Arg(<i>z</i>)</span>."} />
+  </Defs>
+  <FormsTable />
+  <IdGroup>
+    <DemoCard demo="cx-arg" live />
+    <DemoCard demo="cx-p2b" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"07 · Operaciones en polar"} title={"Multiplicar es girar"} lead={"En forma polar las operaciones son muy sencillas: al multiplicar, los módulos se multiplican y los ángulos se suman. Por eso multiplicar por un complejo es girar y estirar."}>
+  <IdGroup>
+    <DemoCard demo="cx-pprod" live />
+    <DemoCard demo="cx-pquot" />
+    <DemoCard demo="cx-pconj" />
+    <DemoCard demo="cx-rot" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"08 · De Moivre"} title={"Teorema de De Moivre"} lead={"Elevar a una potencia es multiplicar varias veces el mismo número, así que el ángulo se suma n veces consigo mismo."}>
+  <IdGroup>
+    <DemoCard demo="cx-moivre" live />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"09 · Forma exponencial"} title={"La fórmula de Euler: e<sup>iθ</sup>"} lead={"Con la forma exponencial, las reglas de los complejos se convierten en las reglas de las potencias que ya conoces."}>
+  <Prose html={"¿Qué significa una potencia? <span class=\"mr\">2³ = 2 · 2 · 2</span> se entiende contando. Pero <span class=\"mr\">π²</span> ya no es «π veces», y <span class=\"mr\">2<sup>π</sup></span> aún menos: son <b>definiciones</b> que extienden la idea manteniendo sus reglas. Con <span class=\"mr\"><i>e</i><sup><i>iθ</i></sup></span> pasa lo mismo: se define para que siga cumpliéndose <span class=\"mr\"><i>e</i><sup><i>a</i></sup><i>e</i><sup><i>b</i></sup> = <i>e</i><sup><i>a</i>+<i>b</i></sup></span>."} />
+  <IdGroup>
+    <DemoCard demo="cx-euler" />
+    <DemoCard demo="cx-cossin" />
+    <DemoCard demo="cx-eprop" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"10 · Raíces"} title={"Raíces n-ésimas"} lead={"En ℂ, todo número distinto de 0 tiene exactamente n raíces n-ésimas distintas, repartidas como los vértices de un polígono regular."}>
+  <IdGroup>
+    <DemoCard demo="cx-roots" live />
+    <DemoCard demo="cx-root1" />
+    <DemoCard demo="cx-z38" />
+  </IdGroup>
+  <ExampleRow>
+    <LoadExample index={6} label="∛1" />
+    <LoadExample index={7} label="z³ = 8" />
+  </ExampleRow>
+</Section>
+
+<Section eyebrow={"11 · Exponencial y logaritmo"} title={"e<sup>z</sup> y log z en ℂ"} lead={"La exponencial se extiende a cualquier exponente complejo; su inversa, el logaritmo, existe incluso para números negativos, pero tiene infinitos valores."}>
+  <IdGroup>
+    <DemoCard demo="cx-exp" live />
+    <DemoCard demo="cx-log" live />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"12 · Aplicaciones"} title={"¿Para qué sirven los complejos?"}>
+  <Uses items={[["Electricidad","En corriente alterna, tensiones e intensidades son fasores. La impedancia Z = R + iX junta resistencia y reactancia en un solo número."],["Señales y sonido","La transformada de Fourier descompone cualquier señal en ondas e<sup>iωt</sup>. Así funcionan el MP3, el JPEG o el 5G."],["Gráficos y videojuegos","Girar un punto un ángulo θ es multiplicarlo por e<sup>iθ</sup>. Los cuaterniones, su versión 3D, giran cámaras y personajes."],["Ecuaciones","Teorema fundamental del álgebra: todo polinomio de grado n tiene exactamente n raíces en ℂ (contando repeticiones)."],["Física cuántica","La función de onda de una partícula es compleja; la probabilidad se obtiene con su módulo al cuadrado |ψ|²."],["Fractales","El conjunto de Mandelbrot sale de repetir z → z² + c con complejos y ver si el resultado se escapa."]]} />
+</Section>

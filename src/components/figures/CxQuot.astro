@@ -1,0 +1,30 @@
+---
+import { plane } from "../../lib/complex-figure";
+import { polar } from "../../lib/figure";
+import CxArc from "./parts/CxArc.astro";
+import CxArrow from "./parts/CxArrow.astro";
+import CxAxes from "./parts/CxAxes.astro";
+import CxText from "./parts/CxText.astro";
+
+const m = plane({ s: 72, ox: 50, oy: 200, h: 230 });
+const a = 80;
+const b = 30;
+const [zx, zy] = polar(a, 1.8);
+const [wx, wy] = polar(b, 1.2);
+const [qx, qy] = polar(a - b, 1.5);
+const [tx, ty] = polar(a - b / 2, 0.85);
+---
+
+<svg class="mfig" viewBox={m.viewBox} aria-hidden="true">
+  <CxAxes m={m} x0={-0.3} x1={3.4} y0={-0.3} y1={2.8} />
+  <CxArc m={m} r={0.42} a0={0} a1={a} color="var(--z)" width={1.6} />
+  <CxArc m={m} r={0.62} a0={a} a1={a - b} color="var(--w)" width={2.2} />
+  <CxArc m={m} r={0.5} a0={0} a1={b} color="var(--w)" width={1.2} />
+  <CxArrow m={m} x1={0} y1={0} x2={zx} y2={zy} color="var(--z)" />
+  <CxArrow m={m} x1={0} y1={0} x2={wx} y2={wy} color="var(--w)" />
+  <CxArrow m={m} x1={0} y1={0} x2={qx} y2={qy} color="var(--result)" width={3.2} />
+  <CxText m={m} x={zx + 0.08} y={zy} t="z = ρ₁_θ₁" color="var(--z)" anchor="start" size={14} italic />
+  <CxText m={m} x={wx + 0.08} y={wy - 0.05} t="w = ρ₂_θ₂" color="var(--w)" anchor="start" size={14} italic />
+  <CxText m={m} x={qx + 0.08} y={qy + 0.05} t="z/w = (ρ₁/ρ₂)_(θ₁−θ₂)" color="var(--result)" anchor="start" size={13} italic />
+  <CxText m={m} x={tx} y={ty} t="−θ₂" color="var(--w)" size={13} italic />
+</svg>

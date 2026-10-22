@@ -1,7 +1,7 @@
 ---
 import Formula from "../ui/Formula.astro";
 import Live from "./Live.astro";
-import { pageLocale, useTranslations } from "../../i18n";
+import { contentLang, useTranslations } from "../../i18n";
 import type { CircleCheck, SumCheck } from "../../lib/trig-checks";
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const { demo, tex, text, title, live } = Astro.props;
-const t = useTranslations(pageLocale(Astro.currentLocale));
+const t = useTranslations(contentLang(Astro));
 ---
 
 <div class="id demo" data-demo={demo} role="button" tabindex="0">

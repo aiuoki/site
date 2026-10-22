@@ -1,0 +1,8 @@
+---
+import Button from "../interactive/complex/LoadExample.svelte";
+
+// Button that loads a worked example (see interactive/complex/examples.ts).
+const { index, label } = Astro.props as { index: number; label: string };
+---
+
+<Button client:visible index={index} label={label} />

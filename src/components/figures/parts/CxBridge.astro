@@ -1,0 +1,14 @@
+---
+import { svgT } from "../../../lib/complex-figure";
+
+interface Props {
+  // Label above the arrow that links the two planes.
+  t: string;
+}
+
+const { t } = Astro.props;
+---
+
+<path d="M228 70 Q265 52 302 70" fill="none" stroke="var(--muted)" stroke-width="1.5" />
+<path d="M302 70 l-9 -1 l5 -7 z" fill="var(--muted)" />
+<text x="265" y="46" text-anchor="middle" font-size="15" font-style="italic" fill="var(--muted)" set:html={svgT(t)} />

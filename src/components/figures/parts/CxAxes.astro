@@ -1,0 +1,27 @@
+---
+import { round } from "../../../lib/figure";
+import type { Plane } from "../../../lib/complex-figure";
+
+interface Props {
+  m: Plane;
+  // Extent of each half-axis in plane units.
+  x0: number;
+  x1: number;
+  y0: number;
+  y1: number;
+  labels?: boolean;
+}
+
+const { m, x0, x1, y0, y1, labels = true } = Astro.props;
+---
+
+<line x1={round(m.px(x0))} y1={m.oy} x2={round(m.px(x1))} y2={m.oy} stroke="var(--axis)" stroke-width="1.2" />
+<line x1={m.ox} y1={round(m.py(y0))} x2={m.ox} y2={round(m.py(y1))} stroke="var(--axis)" stroke-width="1.2" />
+{
+  labels && (
+    <>
+      <text x={round(m.px(x1) - 2)} y={m.oy - 7} text-anchor="end" font-size="12" fill="var(--muted)">Re</text>
+      <text x={m.ox + 6} y={round(m.py(y1) + 11)} font-size="12" fill="var(--muted)">Im</text>
+    </>
+  )
+}

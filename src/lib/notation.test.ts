@@ -25,6 +25,16 @@ describe("expandNotation", () => {
   });
 });
 
+describe("topic words", () => {
+  it("replaces \\W{key} with the word as text", () => {
+    expect(expandNotation(String.raw`r = \W{rest}(n)`, es, { rest: "resto" })).toBe(String.raw`r = \text{resto}(n)`);
+  });
+
+  it("keeps unknown words so KaTeX reports them", () => {
+    expect(expandNotation(String.raw`\W{foo}`, es)).toBe(String.raw`\W{foo}`);
+  });
+});
+
 describe("expandText", () => {
   it("replaces §name markers in plain text", () => {
     expect(expandText("§sin θ = 0: §hyp", es)).toBe("sen θ = 0: hipotenusa");

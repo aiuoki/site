@@ -1,0 +1,36 @@
+---
+import { contentLang, notationFor } from "../../i18n";
+import { plane } from "../../lib/complex-figure";
+import { polar } from "../../lib/figure";
+import CxArc from "./parts/CxArc.astro";
+import CxArrow from "./parts/CxArrow.astro";
+import CxAxes from "./parts/CxAxes.astro";
+import CxCirc from "./parts/CxCirc.astro";
+import CxDot from "./parts/CxDot.astro";
+import CxLine from "./parts/CxLine.astro";
+import CxText from "./parts/CxText.astro";
+
+const n = notationFor(contentLang(Astro));
+const m = plane({ s: 82, ox: 120, oy: 120 });
+const d = 50;
+const [c, s] = polar(d);
+---
+
+<svg class="mfig" viewBox={m.viewBox} aria-hidden="true">
+  <CxAxes m={m} x0={-1.25} x1={2} y0={-1.3} y1={1.3} />
+  <CxCirc m={m} r={1} color="var(--muted)" />
+  <CxArc m={m} r={0.24} a0={0} a1={d} color="var(--z)" width={1.6} />
+  <CxArc m={m} r={0.24} a0={0} a1={-d} color="var(--result)" width={1.6} />
+  <CxLine m={m} x1={c} y1={s} x2={c} y2={-s} color="var(--im)" width={4} />
+  <CxArrow m={m} x1={0} y1={0} x2={c} y2={s} color="var(--z)" />
+  <CxArrow m={m} x1={0} y1={0} x2={c} y2={-s} color="var(--result)" />
+  <CxArrow m={m} x1={c} y1={s} x2={2 * c} y2={0} color="var(--result)" width={1.4} dash="3 4" />
+  <CxArrow m={m} x1={c} y1={-s} x2={2 * c} y2={0} color="var(--z)" width={1.4} dash="3 4" />
+  <CxLine m={m} x1={0} y1={0} x2={2 * c} y2={0} color="var(--re)" width={4} />
+  <CxDot m={m} x={2 * c} y={0} color="var(--re)" r={5} />
+  <CxText m={m} x={c + 0.06} y={s + 0.12} t="e^(iθ)" color="var(--z)" anchor="start" size={14} italic />
+  <CxText m={m} x={c + 0.06} y={-s - 0.12} t="e^(−iθ)" color="var(--result)" anchor="start" size={14} italic />
+  <CxText m={m} x={2 * c + 0.05} y={-0.2} t={`2 ${n.cos} θ`} color="var(--re)" size={14} italic />
+  <CxText m={m} x={-1.2} y={1.18} t={`e^(iθ) + e^(−iθ) = 2 ${n.cos} θ`} color="var(--re)" anchor="start" size={12} italic />
+  <CxText m={m} x={-1.2} y={-1.2} t={`e^(iθ) − e^(−iθ) = 2i ${n.sin} θ`} color="var(--im)" anchor="start" size={12} italic />
+</svg>

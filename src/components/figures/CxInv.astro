@@ -1,0 +1,29 @@
+---
+import { plane } from "../../lib/complex-figure";
+import CxArrow from "./parts/CxArrow.astro";
+import CxAxes from "./parts/CxAxes.astro";
+import CxCirc from "./parts/CxCirc.astro";
+import CxDot from "./parts/CxDot.astro";
+import CxLine from "./parts/CxLine.astro";
+import CxText from "./parts/CxText.astro";
+
+const m = plane({ s: 58, ox: 120, oy: 120 });
+const z = [1.6, 1.2] as const;
+const zb = [1.6, -1.2] as const;
+const inv = [0.4, -0.3] as const;
+---
+
+<svg class="mfig" viewBox={m.viewBox} aria-hidden="true">
+  <CxAxes m={m} x0={-1.2} x1={2.6} y0={-1.9} y1={1.9} />
+  <CxCirc m={m} r={1} width={1.2} dash="3 4" />
+  <CxLine m={m} x1={z[0]} y1={z[1]} x2={zb[0]} y2={zb[1]} color="var(--muted)" width={1.2} dash="3 4" />
+  <CxArrow m={m} x1={0} y1={0} x2={z[0]} y2={z[1]} color="var(--z)" width={2.8} />
+  <CxArrow m={m} x1={0} y1={0} x2={zb[0]} y2={zb[1]} color="var(--result)" width={2.2} dash="5 4" />
+  <CxArrow m={m} x1={0} y1={0} x2={inv[0]} y2={inv[1]} color="var(--w)" width={3} />
+  <CxDot m={m} x={z[0]} y={z[1]} color="var(--z)" />
+  <CxDot m={m} x={zb[0]} y={zb[1]} color="var(--result)" />
+  <CxDot m={m} x={inv[0]} y={inv[1]} color="var(--w)" />
+  <CxText m={m} x={z[0] + 0.12} y={z[1] + 0.12} t="z  (ρ = 2)" color="var(--z)" anchor="start" size={14} italic />
+  <CxText m={m} x={zb[0] + 0.12} y={zb[1] - 0.12} t={"z̅"} color="var(--result)" anchor="start" size={16} italic />
+  <CxText m={m} x={inv[0] + 0.1} y={inv[1] - 0.25} t="1/z  (1/ρ = 1/2)" color="var(--w)" anchor="start" size={13} italic />
+</svg>

@@ -1,0 +1,30 @@
+---
+import { cx } from "../../lib/complex";
+import { expH, polH, trigH } from "../../lib/complex-format";
+import { contentLang, localeMeta, notationFor } from "../../i18n";
+import { complexDict } from "../../i18n/topics/complejos";
+
+// The four forms of z = 1 + i and w = 1 − i, as in the notes.
+const lang = contentLang(Astro);
+const locale = localeMeta[lang].bcp47;
+const n = notationFor(lang);
+const { ui, formsH } = complexDict(lang);
+const [z, w] = [cx(1, 1), cx(1, -1)];
+const rows = [
+  [ui.rowBin, "<i>a</i> + <i>bi</i>", "1 + <i>i</i>", "1 − <i>i</i>"],
+  [ui.rowPol, "<i>ρ</i><sub><i>θ</i></sub>", polH(z, "rad", locale), polH(w, "rad", locale)],
+  [ui.rowTrig, `<i>ρ</i>(${n.cos} <i>θ</i> + <i>i</i> ${n.sin} <i>θ</i>)`, trigH(z, "rad", locale, n), trigH(w, "rad", locale, n)],
+  [ui.rowExp, "<i>ρe</i><sup><i>iθ</i></sup>", expH(z, locale), expH(w, locale)],
+];
+---
+
+<div class="tablewrap">
+  <table class="big forms">
+    <thead>
+      <tr>{formsH.map((h) => <th set:html={h} />)}</tr>
+    </thead>
+    <tbody>
+      {rows.map((row) => <tr>{row.map((cell) => <td set:html={cell} />)}</tr>)}
+    </tbody>
+  </table>
+</div>

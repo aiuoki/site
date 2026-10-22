@@ -1,0 +1,31 @@
+---
+import { contentLang, localeMeta } from "../../i18n";
+import { fmtAngle, plane } from "../../lib/complex-figure";
+import CxArc from "./parts/CxArc.astro";
+import CxArrow from "./parts/CxArrow.astro";
+import CxAxes from "./parts/CxAxes.astro";
+import CxDot from "./parts/CxDot.astro";
+import CxText from "./parts/CxText.astro";
+
+const locale = localeMeta[contentLang(Astro)].bcp47;
+const m = plane({ s: 58, ox: 150, oy: 118 });
+const z = [-1.5, 1] as const;
+const opposite = [1.5, -1] as const;
+const toDeg = 180 / Math.PI;
+const argZ = Math.atan2(1, -1.5) * toDeg;
+const principal = Math.atan(1 / -1.5) * toDeg;
+---
+
+<svg class="mfig" viewBox={m.viewBox} aria-hidden="true">
+  <CxAxes m={m} x0={-2.4} x1={2.4} y0={-1.9} y1={1.9} />
+  <CxArc m={m} r={0.45} a0={0} a1={principal} color="var(--muted)" width={1.6} />
+  <CxArc m={m} r={0.62} a0={0} a1={argZ} color="var(--z)" width={2.2} />
+  <CxArrow m={m} x1={0} y1={0} x2={opposite[0]} y2={opposite[1]} color="var(--muted)" width={2} dash="4 4" />
+  <CxArrow m={m} x1={0} y1={0} x2={z[0]} y2={z[1]} color="var(--z)" width={2.8} />
+  <CxDot m={m} x={z[0]} y={z[1]} color="var(--z)" />
+  <CxText m={m} x={z[0] - 0.05} y={z[1] + 0.22} t="z = −3/2 + i" color="var(--z)" size={13} italic />
+  <CxText m={m} x={opposite[0] + 0.05} y={opposite[1] - 0.2} t={`arctan(b/a) ≈ ${fmtAngle(principal / toDeg, locale)}`} color="var(--muted)" size={12} italic />
+  <CxText m={m} x={0.15} y={0.78} t={`Arg z = arctan(b/a) + π ≈ ${fmtAngle(argZ / toDeg, locale)}`} color="var(--z)" anchor="start" size={12} italic />
+  <CxText m={m} x={-2.2} y={-1.55} t="II" color="var(--muted)" anchor="start" size={12} />
+  <CxText m={m} x={2.2} y={-1.55} t="IV" color="var(--muted)" anchor="end" size={12} />
+</svg>

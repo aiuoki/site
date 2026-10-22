@@ -1,0 +1,35 @@
+---
+import { contentLang, notationFor } from "../../i18n";
+import { plane } from "../../lib/complex-figure";
+import { polar } from "../../lib/figure";
+import CxArc from "./parts/CxArc.astro";
+import CxArrow from "./parts/CxArrow.astro";
+import CxAxes from "./parts/CxAxes.astro";
+import CxCirc from "./parts/CxCirc.astro";
+import CxText from "./parts/CxText.astro";
+
+const n = notationFor(contentLang(Astro));
+const m = plane({ s: 78, ox: 150, oy: 120 });
+const b = 30;
+const [c, s] = polar(b);
+const [c2, s2] = polar(90 + b);
+const [ax, ay] = polar(b / 2, 1.25);
+const [bx, by] = polar(90 + b / 2, 1.25);
+---
+
+<svg class="mfig" viewBox={m.viewBox} aria-hidden="true">
+  <CxAxes m={m} x0={-1.6} x1={1.6} y0={-0.5} y1={1.45} />
+  <CxCirc m={m} r={1} width={1.2} dash="3 4" />
+  <CxArrow m={m} x1={0} y1={0} x2={1} y2={0} color="var(--muted)" width={2} dash="4 3" />
+  <CxArrow m={m} x1={0} y1={0} x2={0} y2={1} color="var(--muted)" width={2} dash="4 3" />
+  <CxArc m={m} r={1.1} a0={0} a1={b} color="var(--z)" width={2} />
+  <CxArc m={m} r={1.1} a0={90} a1={90 + b} color="var(--w)" width={2} />
+  <CxArrow m={m} x1={0} y1={0} x2={c} y2={s} color="var(--z)" width={3} />
+  <CxArrow m={m} x1={0} y1={0} x2={c2} y2={s2} color="var(--w)" width={3} />
+  <CxText m={m} x={1.05} y={-0.14} t="1" color="var(--muted)" size={14} />
+  <CxText m={m} x={0.1} y={1.14} t="i" color="var(--muted)" anchor="start" size={14} italic />
+  <CxText m={m} x={ax} y={ay} t="β" color="var(--z)" size={14} italic />
+  <CxText m={m} x={bx} y={by} t="β" color="var(--w)" size={14} italic />
+  <CxText m={m} x={c + 0.06} y={s + 0.1} t={`(${n.cos} β, ${n.sin} β)`} color="var(--z)" anchor="start" size={13} italic />
+  <CxText m={m} x={c2 - 0.06} y={s2 + 0.12} t={`(−${n.sin} β, ${n.cos} β)`} color="var(--w)" anchor="end" size={13} italic />
+</svg>

@@ -1,5 +1,5 @@
 ---
-import { notationFor, pageLocale } from "../../i18n";
+import { contentLang, notationFor } from "../../i18n";
 import { rad } from "../../lib/trig";
 import { tint } from "../../lib/figure";
 import Arc from "./parts/Arc.astro";
@@ -9,7 +9,7 @@ import Line from "./parts/Line.astro";
 import PolarLabel from "./parts/PolarLabel.astro";
 import UnitFrame from "./parts/UnitFrame.astro";
 
-const n = notationFor(pageLocale(Astro.currentLocale));
+const n = notationFor(contentLang(Astro));
 const a = 25;
 const b = 20;
 const sum = a + b;

@@ -1,9 +1,9 @@
 ---
 import DemoDialog from "./DemoDialog.astro";
-import type { DemoFormulas, DemoText } from "../../demos/types";
+import type { TopicDemo } from "../../demos";
 
 interface Props {
-  demos: { id: string; formulas: DemoFormulas; text: DemoText }[];
+  demos: TopicDemo[];
   labels: { title: string; use: string; close: string };
 }
 

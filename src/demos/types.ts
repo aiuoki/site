@@ -9,6 +9,8 @@ export interface DemoFormulas {
 
 export interface DemoText {
   title: string;
+  // One-line summary shown on the guide card (complex numbers).
+  summary?: string;
   // One explanation per formula step.
   steps: string[];
   // "What it is for" paragraph.

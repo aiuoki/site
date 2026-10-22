@@ -1,0 +1,35 @@
+---
+import { arrowShape, type Plane } from "../../../lib/complex-figure";
+
+interface Props {
+  m: Plane;
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  color?: string;
+  width?: number;
+  dash?: string;
+}
+
+const { m, x1, y1, x2, y2, color = "var(--fg)", width = 2.6, dash } = Astro.props;
+const shape = arrowShape(m, x1, y1, x2, y2);
+---
+
+{
+  shape && (
+    <>
+      <line
+        x1={shape.line[0]}
+        y1={shape.line[1]}
+        x2={shape.line[2]}
+        y2={shape.line[3]}
+        stroke={color}
+        stroke-width={width}
+        stroke-linecap="round"
+        stroke-dasharray={dash}
+      />
+      <path d={shape.head} fill={color} />
+    </>
+  )
+}

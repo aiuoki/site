@@ -1,0 +1,60 @@
+---
+import { contentLang, localeMeta } from "../../i18n";
+import { fmtAngle, plane } from "../../lib/complex-figure";
+import { round } from "../../lib/figure";
+import { minus } from "../../lib/format";
+import CxArc from "./parts/CxArc.astro";
+import CxArrow from "./parts/CxArrow.astro";
+import CxAxes from "./parts/CxAxes.astro";
+import CxBridge from "./parts/CxBridge.astro";
+import CxCirc from "./parts/CxCirc.astro";
+import CxText from "./parts/CxText.astro";
+
+const wide = true;
+const z = plane({ s: 34, ox: 90, oy: 140, w: 560, h: 240 });
+const logs = plane({ s: 14, ox: 400, oy: 120, w: 560, h: 240 });
+const radius = Math.E;
+const theta = 0.8;
+const locale = localeMeta[contentLang(Astro)].bcp47;
+const [zx, zy] = [radius * Math.cos(theta), radius * Math.sin(theta)];
+// ln e = 1, stretched horizontally so the branch points stay apart.
+const column = logs.px(3);
+const branches = [-1, 0, 1].map((k) => ({
+  k,
+  y: round(logs.py(theta + 2 * Math.PI * k)),
+  label: k ? `k = ${minus(String(k))}` : "Log z  (k = 0)",
+}));
+---
+
+<svg class:list={["mfig", { wide }]} viewBox={z.viewBox} aria-hidden="true">
+  <CxAxes m={z} x0={-1.5} x1={3.4} y0={-1.2} y1={3} />
+  <CxCirc m={z} r={radius} color="var(--re)" width={1} dash="3 4" />
+  <CxArc m={z} r={0.7} a0={0} a1={(theta * 180) / Math.PI} color="var(--im)" width={2} />
+  <CxArrow m={z} x1={0} y1={0} x2={zx} y2={zy} color="var(--z)" width={2.8} />
+  <CxText m={z} x={zx + 0.1} y={zy + 0.15} t={`z = e_${fmtAngle(theta, locale)}`} color="var(--z)" anchor="start" size={14} italic />
+  <CxText m={z} x={1.2} y={0.35} t="θ" color="var(--im)" anchor="start" size={14} italic />
+  <line x1={logs.px(-6)} y1="120" x2={logs.px(9)} y2="120" stroke="var(--axis)" stroke-width="1.2" />
+  <line x1="400" y1="232" x2="400" y2="8" stroke="var(--axis)" stroke-width="1.2" />
+  {
+    branches.map(({ k, y, label }) => (
+      <>
+        <circle cx={column} cy={y} r={k ? 4.5 : 6} fill="var(--result)" />
+        <text x={column + 10} y={y + 5} font-size="13" font-style="italic" fill="var(--result)" paint-order="stroke" stroke="var(--surface)" stroke-width="4">
+          {label}
+        </text>
+      </>
+    ))
+  }
+  <line
+    x1={column}
+    y1={round(logs.py(theta - 2 * Math.PI))}
+    x2={column}
+    y2={round(logs.py(theta + 2 * Math.PI))}
+    stroke="var(--result)"
+    stroke-width="1.2"
+    stroke-dasharray="3 4"
+  />
+  <text x={column} y={logs.py(0) + 18} text-anchor="middle" font-size="12" fill="var(--re)" font-style="italic">ln|z| = 1</text>
+  <text x={column - 10} y={round(logs.py(theta + Math.PI) + 4)} text-anchor="end" font-size="12" fill="var(--muted)" font-style="italic">+2π</text>
+  <CxBridge t="log" />
+</svg>

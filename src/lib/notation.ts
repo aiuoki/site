@@ -20,8 +20,14 @@ const WORDS = ["hyp", "opp", "adj", "rad"] as const;
 const capitalize = (s: string) => s[0]!.toUpperCase() + s.slice(1);
 const MACRO = new RegExp(`\\\\(${[...FUNCTIONS, ...WORDS].map(capitalize).join("|")})(?![a-zA-Z])`, "g");
 
-export function expandNotation(tex: string, n: Notation): string {
-  return tex.replace(MACRO, (_, name: string) => {
+// Topic words used inside formulas, e.g. \W{rest} -> \text{resto}.
+export type Words = Readonly<Record<string, string>>;
+
+export function expandNotation(tex: string, n: Notation, words: Words = {}): string {
+  const withWords = tex.replace(/\\W\{(\w+)\}/g, (match, key: string) =>
+    key in words ? `\\text{${words[key]}}` : match,
+  );
+  return withWords.replace(MACRO, (_, name: string) => {
     const key = name.toLowerCase() as keyof Notation;
     return (FUNCTIONS as readonly string[]).includes(key)
       ? `\\operatorname{${n[key]}}`

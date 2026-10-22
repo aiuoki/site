@@ -25,11 +25,14 @@ export const getStaticPaths = (() =>
 const { lang, subject, topic } = Astro.props;
 const t = useTranslations(lang);
 const content = contentLocale(lang, topic.locales);
+// Formulas, figures and guide labels follow the language of the notes.
+Astro.locals.contentLang = content.locale;
+const tc = useTranslations(content.locale);
 const entryId = `${subject.slug}/${topic.slug}/${content.locale}`;
 // Topics without written notes yet render only their header and canvas.
 const entry = (await getCollection("notes")).find((e) => e.id === entryId);
 const rendered = entry ? await render(entry) : null;
-const demos = demosForTopic(topic.slug, lang);
+const demos = demosForTopic(topic.slug, content.locale);
 ---
 
 <BaseLayout
@@ -42,15 +45,17 @@ const demos = demosForTopic(topic.slug, lang);
   topic={topic.slug}
 >
   {content.fallback && <p class="note">{t("nav.contentFallback")}</p>}
-  <TopicApp lang={lang} topic={topic.slug} />
-  {
-    rendered && (
-      <div class="guide">
-        <rendered.Content components={guideComponents} />
-      </div>
-    )
-  }
-  <DemoDialogs demos={demos} labels={{ title: t("demo.title"), use: t("demo.use"), close: t("demo.close") }} />
+  <div lang={content.fallback ? content.locale : undefined}>
+    <TopicApp lang={lang} content={content.locale} topic={topic.slug} />
+    {
+      rendered && (
+        <div class="guide">
+          <rendered.Content components={guideComponents} />
+        </div>
+      )
+    }
+    <DemoDialogs demos={demos} labels={{ title: tc("demo.title"), use: tc("demo.use"), close: tc("demo.close") }} />
+  </div>
 </BaseLayout>
 
 <style>

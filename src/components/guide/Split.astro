@@ -1,0 +1,15 @@
+---
+import { figures, type FigureId } from "../figures";
+
+// Figure on one side, paragraph (and slot content) on the other.
+const { figure, html } = Astro.props as { figure: FigureId; html: string };
+const Figure = figures[figure];
+---
+
+<div class="split">
+  <div class="fig-inline"><Figure /></div>
+  <div class="split-txt">
+    <p set:html={html} />
+    <div class="ex-row"><slot /></div>
+  </div>
+</div>

@@ -1,16 +1,19 @@
 ---
-import { notationFor, pageLocale } from "../../i18n";
+import { contentLang, notationFor } from "../../i18n";
 import { renderTex } from "../../lib/katex";
+import type { Words } from "../../lib/notation";
 
 interface Props {
   // LaTeX with notation macros (\Sin, \Hyp...), rendered at build time.
   tex: string;
   display?: boolean;
   class?: string;
+  // Topic words for \W{...}.
+  words?: Words;
 }
 
-const { tex, display = false, class: className } = Astro.props;
-const html = renderTex(tex, notationFor(pageLocale(Astro.currentLocale)), display);
+const { tex, display = false, class: className, words } = Astro.props;
+const html = renderTex(tex, notationFor(contentLang(Astro)), display, words);
 ---
 
 <span class:list={["formula", className]} set:html={html} />

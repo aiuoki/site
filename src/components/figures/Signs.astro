@@ -1,9 +1,9 @@
 ---
-import { notationFor, pageLocale } from "../../i18n";
+import { contentLang, notationFor } from "../../i18n";
 import CircleFrame from "./parts/CircleFrame.astro";
 import Label from "./parts/Label.astro";
 
-const n = notationFor(pageLocale(Astro.currentLocale));
+const n = notationFor(contentLang(Astro));
 const cx = 150;
 const cy = 120;
 const functions = [n.sin, n.cos, n.tan];

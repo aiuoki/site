@@ -1,12 +1,12 @@
 ---
-import { notationFor, pageLocale } from "../../i18n";
+import { contentLang, notationFor } from "../../i18n";
 import { pointOn, round, tint } from "../../lib/figure";
 import CircleFrame from "./parts/CircleFrame.astro";
 import Dot from "./parts/Dot.astro";
 import Label from "./parts/Label.astro";
 import Line from "./parts/Line.astro";
 
-const n = notationFor(pageLocale(Astro.currentLocale));
+const n = notationFor(contentLang(Astro));
 const cx = 150;
 const cy = 125;
 const radius = 90;

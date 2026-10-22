@@ -1,5 +1,5 @@
 ---
-import { notationFor, pageLocale } from "../../i18n";
+import { contentLang, notationFor } from "../../i18n";
 import { unitAngle } from "../../lib/figure";
 import Dot from "./parts/Dot.astro";
 import Label from "./parts/Label.astro";
@@ -7,7 +7,7 @@ import Line from "./parts/Line.astro";
 import PolarLabel from "./parts/PolarLabel.astro";
 import UnitFrame from "./parts/UnitFrame.astro";
 
-const n = notationFor(pageLocale(Astro.currentLocale));
+const n = notationFor(contentLang(Astro));
 const a = 40;
 const { tn: ta, ct: ca } = unitAngle(a);
 ---

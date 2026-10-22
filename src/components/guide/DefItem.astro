@@ -1,5 +1,5 @@
 ---
-import { pageLocale, useTranslations } from "../../i18n";
+import { contentLang, useTranslations } from "../../i18n";
 
 interface Props {
   title: string;
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const { title, text, demo, more = "open" } = Astro.props;
-const t = useTranslations(pageLocale(Astro.currentLocale));
+const t = useTranslations(contentLang(Astro));
 ---
 
 {

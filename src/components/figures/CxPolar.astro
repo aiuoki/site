@@ -1,0 +1,34 @@
+---
+import { contentLang, notationFor } from "../../i18n";
+import { plane } from "../../lib/complex-figure";
+import { polar } from "../../lib/figure";
+import CxArc from "./parts/CxArc.astro";
+import CxArrow from "./parts/CxArrow.astro";
+import CxAxes from "./parts/CxAxes.astro";
+import CxDot from "./parts/CxDot.astro";
+import CxLine from "./parts/CxLine.astro";
+import CxText from "./parts/CxText.astro";
+
+const n = notationFor(contentLang(Astro));
+const m = plane({ s: 70, ox: 40, oy: 195, h: 230 });
+const a = 2.4;
+const b = 1.6;
+const d = (Math.atan2(b, a) * 180) / Math.PI;
+const [tx, ty] = polar(d / 2, 0.68);
+const rightAngle = `M${m.px(a) - 10} ${m.py(0)} v-10 h10`;
+---
+
+<svg class="mfig" viewBox={m.viewBox} aria-hidden="true">
+  <CxAxes m={m} x0={-0.3} x1={3.7} y0={-0.3} y1={2.55} />
+  <CxLine m={m} x1={0} y1={0} x2={a} y2={0} color="var(--re)" width={4.5} />
+  <CxLine m={m} x1={a} y1={0} x2={a} y2={b} color="var(--im)" width={4.5} />
+  <CxArrow m={m} x1={0} y1={0} x2={a} y2={b} color="var(--z)" width={3} />
+  <CxDot m={m} x={a} y={b} color="var(--z)" />
+  <CxArc m={m} r={0.5} a0={0} a1={d} color="var(--fg)" width={1.6} />
+  <CxText m={m} x={tx} y={ty} t="θ" italic />
+  <path d={rightAngle} fill="none" stroke="var(--muted)" stroke-width="1.2" />
+  <CxText m={m} x={a / 2} y={-0.2} t={`a = ρ ${n.cos} θ`} color="var(--re)" size={14} italic />
+  <CxText m={m} x={a + 0.1} y={b / 2} t={`b = ρ ${n.sin} θ`} color="var(--im)" anchor="start" size={14} italic />
+  <CxText m={m} x={a / 2 - 0.1} y={b / 2 + 0.16} t="ρ = |z|" color="var(--z)" anchor="end" size={14} italic />
+  <CxText m={m} x={a} y={b + 0.2} t="z" color="var(--z)" size={16} italic />
+</svg>

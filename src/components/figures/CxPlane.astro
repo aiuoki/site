@@ -1,0 +1,23 @@
+---
+import { plane } from "../../lib/complex-figure";
+import CxArrow from "./parts/CxArrow.astro";
+import CxAxes from "./parts/CxAxes.astro";
+import CxDot from "./parts/CxDot.astro";
+import CxLine from "./parts/CxLine.astro";
+import CxText from "./parts/CxText.astro";
+
+const m = plane({ s: 52, ox: 58, oy: 190, h: 230 });
+const a = 3;
+const b = 2;
+---
+
+<svg class="mfig" viewBox={m.viewBox} aria-hidden="true">
+  <CxAxes m={m} x0={-0.7} x1={4.6} y0={-0.6} y1={3.4} />
+  <CxLine m={m} x1={0} y1={0} x2={a} y2={0} color="var(--re)" width={4.5} />
+  <CxLine m={m} x1={a} y1={0} x2={a} y2={b} color="var(--im)" width={4.5} />
+  <CxArrow m={m} x1={0} y1={0} x2={a} y2={b} color="var(--z)" width={3} />
+  <CxDot m={m} x={a} y={b} color="var(--z)" />
+  <CxText m={m} x={a / 2} y={-0.32} t="a = Re(z)" color="var(--re)" />
+  <CxText m={m} x={a + 0.12} y={b / 2} t="b = Im(z)" color="var(--im)" anchor="start" />
+  <CxText m={m} x={a - 0.1} y={b + 0.32} t="z = a + bi ≡ (a, b)" color="var(--z)" italic />
+</svg>

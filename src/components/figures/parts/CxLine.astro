@@ -1,0 +1,28 @@
+---
+import { round } from "../../../lib/figure";
+import type { Plane } from "../../../lib/complex-figure";
+
+interface Props {
+  m: Plane;
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  color?: string;
+  width?: number;
+  dash?: string;
+}
+
+const { m, x1, y1, x2, y2, color = "var(--fg)", width = 2, dash } = Astro.props;
+---
+
+<line
+  x1={round(m.px(x1))}
+  y1={round(m.py(y1))}
+  x2={round(m.px(x2))}
+  y2={round(m.py(y2))}
+  stroke={color}
+  stroke-width={width}
+  stroke-linecap="round"
+  stroke-dasharray={dash}
+/>

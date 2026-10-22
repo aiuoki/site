@@ -1,0 +1,347 @@
+{
+  "cx-axiom": {
+    "title": "Definición axiomática: ℂ = (ℝ², +, ·)",
+    "summary": "Un complejo es un par de reales con una regla especial para multiplicar. De ella sale i² = −1.",
+    "steps": [
+      "Un número complejo es un par ordenado de números reales (a, b). El primero es la parte real y el segundo la imaginaria.",
+      "La suma se hace componente a componente, igual que con vectores.",
+      "Para adivinar cómo debe ser el producto, multiplicamos (a + bi)(c + di) como dos binomios: cada término por cada término (propiedad distributiva).",
+      "Usamos i² = −1, así que bd·i² = −bd. Agrupamos: lo que no lleva i es la parte real (ac − bd); lo que lleva i, la imaginaria (ad + bc).",
+      "Esa regla es justamente la que se toma como definición del producto de pares. El símbolo := significa «se define como».",
+      "Con esta definición, i = (0, 1) y al multiplicarlo por sí mismo sale (−1, 0), que es el real −1. Así i² = −1 ya no es un «número imposible», sino una consecuencia."
+    ],
+    "use": "Los complejos se construyen solo con números reales, sin magia: son puntos del plano con una forma especial de multiplicar."
+  },
+  "cx-ipow": {
+    "title": "Potencias de i",
+    "summary": "Las potencias de i se repiten cada 4: 1, i, −1, −i, 1, …",
+    "steps": [
+      "Partimos de la definición: i al cuadrado es −1.",
+      "Para i³ multiplicamos una vez más por i: (−1)·i = −i.",
+      "i⁴ = i²·i² = (−1)(−1) = 1. Hemos vuelto al principio.",
+      "Como cada cuatro potencias se vuelve a 1, para calcular iⁿ basta mirar el resto r de dividir n entre 4 (r = 0, 1, 2 o 3).",
+      "Ejemplo: 27 = 4·6 + 3, resto 3. Como i⁴ = 1, (i⁴)⁶ = 1, y queda i³ = −i."
+    ],
+    "use": "Multiplicar por i es girar 90° en sentido antihorario; cuatro giros de 90° dan la vuelta completa. Por eso el ciclo es de 4."
+  },
+  "cx-field": {
+    "title": "ℂ es un cuerpo",
+    "summary": "Suma y producto cumplen las reglas de siempre y todo z ≠ 0 tiene inverso.",
+    "steps": [
+      "Suma y producto son conmutativos (el orden no importa) y asociativos (da igual cómo agrupes). Se heredan de las reglas de ℝ.",
+      "Se cumple la propiedad distributiva: multiplicar por una suma es sumar los productos.",
+      "Hay elementos neutros: 0 = 0 + 0i no cambia nada al sumar y 1 = 1 + 0i no cambia nada al multiplicar.",
+      "Todo z tiene opuesto −z, que sumado a z da 0.",
+      "Inverso: para que el denominador sea real, multiplicamos arriba y abajo por a − bi (el conjugado). Abajo queda a² + b², que es positivo si z ≠ 0.",
+      "Ejemplo: el inverso de 1 + i es (1 − i)/2. Comprobación: (1 + i)(1 − i)/2 = (1 − i²)/2 = 2/2 = 1."
+    ],
+    "use": "Que ℂ sea un cuerpo significa que puedes despejar ecuaciones con complejos exactamente igual que con reales."
+  },
+  "cx-order": {
+    "title": "¿2 < i? No: ℂ no se puede ordenar",
+    "summary": "No existe un orden en ℂ compatible con las operaciones. Comparar complejos con < no tiene sentido.",
+    "steps": [
+      "Un orden «compatible» (como el de ℝ) debe cumplir que el producto de dos positivos es positivo.",
+      "Consecuencia: el cuadrado de cualquier número no nulo es positivo (si x < 0, entonces −x > 0 y x² = (−x)² > 0).",
+      "Supongamos que existe ese orden en ℂ. Como i ≠ 0, tendría que ser i² > 0.",
+      "Pero i² = −1, así que tendríamos −1 > 0.",
+      "Por otro lado, 1 = 1² también es un cuadrado, así que 1 > 0.",
+      "Sumando dos positivos (−1 y 1) el resultado debe ser positivo: 0 > 0. Eso es imposible, así que ese orden no existe."
+    ],
+    "use": "En ℂ no se dice que un número es mayor que otro. Lo que sí se compara son sus módulos |z| y |w|, que son números reales."
+  },
+  "cx-phasor": {
+    "title": "Fasor: complejo de módulo 1",
+    "summary": "Los complejos con |z| = 1 forman la circunferencia unidad: son el círculo trigonométrico.",
+    "steps": [
+      "Un fasor es un complejo z con |z| = 1. Recordamos que |z| = √(a² + b²).",
+      "Elevando al cuadrado, |z| = 1 equivale a a² + b² = 1, que es la ecuación de la circunferencia de radio 1 centrada en el origen.",
+      "Todo punto de esa circunferencia tiene coordenadas (cos θ, sen θ), como en el círculo trigonométrico.",
+      "Por tanto todo fasor se escribe z = cos θ + i sen θ, que en polar es 1<sub>θ</sub> y en exponencial e<sup>iθ</sup>."
+    ],
+    "use": "Multiplicar por un fasor gira sin cambiar el tamaño. En electricidad se usan para representar ondas sinusoidales."
+  },
+  "cx-conj1": {
+    "title": "El conjugado del conjugado",
+    "summary": "Conjugar dos veces deja el número como estaba.",
+    "steps": [
+      "Conjugar es cambiar el signo de la parte imaginaria: de a + bi pasamos a a − bi.",
+      "Volvemos a conjugar: la parte imaginaria ahora es −b, y le cambiamos el signo otra vez.",
+      "−(−b) = b, así que recuperamos a + bi = z."
+    ],
+    "use": "Geométricamente, conjugar es reflejar respecto al eje real; reflejar dos veces deja el punto donde estaba."
+  },
+  "cx-conj2": {
+    "title": "Conjugado de una suma",
+    "summary": "Da igual sumar y luego conjugar que conjugar y luego sumar.",
+    "steps": [
+      "Escribimos los dos números en forma binómica.",
+      "Sumamos partes reales con reales e imaginarias con imaginarias.",
+      "Conjugamos el resultado: cambiamos el signo de la parte imaginaria.",
+      "Separamos: es la suma de a − bi y c − di, es decir, z̄ + w̄."
+    ],
+    "use": "Permite conjugar término a término expresiones largas, por ejemplo al simplificar fracciones."
+  },
+  "cx-conj3": {
+    "title": "Conjugado de un producto",
+    "summary": "El conjugado de un producto es el producto de los conjugados. En particular, conj(zⁿ) = z̄ⁿ.",
+    "steps": [
+      "Producto en binómica (definición del producto).",
+      "Lo conjugamos: solo cambia el signo de la parte imaginaria.",
+      "Ahora multiplicamos los conjugados (a − bi)(c − di) término a término.",
+      "Con i² = −1 sale (ac − bd) − (ad + bc)i: lo mismo que en el paso 2.",
+      "Una potencia es un producto repetido, así que aplicando la regla n veces: conj(zⁿ) = (z̄)ⁿ."
+    ],
+    "use": "Si un polinomio con coeficientes reales tiene una raíz compleja z, también tiene la raíz z̄: las raíces complejas van por parejas."
+  },
+  "cx-mod1": {
+    "title": "El módulo es ≥ 0 y solo vale 0 en z = 0",
+    "summary": "|z| es una distancia: nunca es negativa y solo es 0 en el origen.",
+    "steps": [
+      "El módulo es la distancia del punto (a, b) al origen: por Pitágoras, la hipotenusa de catetos a y b.",
+      "a² y b² son cuadrados, así que no son negativos; su suma tampoco, y su raíz tampoco.",
+      "Una suma de cuadrados solo es 0 si los dos cuadrados son 0, es decir, a = 0 y b = 0.",
+      "Ejemplo: |3 + 4i| = √(9 + 16) = √25 = 5 (el triángulo 3, 4, 5)."
+    ],
+    "use": "El módulo mide el tamaño de un complejo. Es lo que se compara en lugar de los propios números."
+  },
+  "cx-tri": {
+    "title": "Desigualdad triangular",
+    "summary": "El tamaño de una suma nunca supera la suma de los tamaños.",
+    "steps": [
+      "z + w es la diagonal del paralelogramo formado por las flechas z y w (regla del paralelogramo).",
+      "Para ir de 0 a z + w podemos pasar por z: primero la flecha z (longitud |z|) y después una copia de w (longitud |w|). Se forma un triángulo.",
+      "En un triángulo, un lado nunca es más largo que la suma de los otros dos: el camino directo es el más corto.",
+      "La igualdad solo se da cuando z y w apuntan en la misma dirección: el triángulo se aplasta en un segmento.",
+      "Ejemplo: |3 + 4i| = 5, mientras que |3| + |4i| = 3 + 4 = 7."
+    ],
+    "use": "Sirve para acotar: si sabes lo grandes que son z y w, sabes como mucho lo grande que es z + w."
+  },
+  "cx-modprod": {
+    "title": "Módulo de un producto",
+    "summary": "Al multiplicar complejos, los módulos se multiplican: |zw| = |z||w|.",
+    "steps": [
+      "Aplicamos la definición de módulo al producto zw = (ac − bd) + (ad + bc)i.",
+      "Desarrollamos los dos cuadrados. Los términos −2abcd y +2abcd se anulan.",
+      "Sacamos factor común: a² multiplica a (c² + d²) y b² también.",
+      "Eso es |z|²·|w|². Como los módulos son ≥ 0, podemos quitar los cuadrados.",
+      "Una potencia es un producto repetido, así que |zⁿ| = |z|ⁿ."
+    ],
+    "use": "Es la mitad de la regla polar del producto: los tamaños se multiplican (la otra mitad: los ángulos se suman)."
+  },
+  "cx-modconj": {
+    "title": "Un número y su conjugado miden lo mismo",
+    "summary": "|z| = |z̄|: reflejar no cambia la distancia al origen.",
+    "steps": [
+      "El conjugado de a + bi es a − bi.",
+      "Al elevar al cuadrado, (−b)² = b², así que el módulo es el mismo."
+    ],
+    "use": "z y z̄ están a la misma distancia del origen, con ángulos opuestos θ y −θ."
+  },
+  "cx-zz": {
+    "title": "z · z̄ = |z|²",
+    "summary": "Un complejo por su conjugado siempre da un número real ≥ 0.",
+    "steps": [
+      "Multiplicamos z = a + bi por su conjugado a − bi.",
+      "Desarrollamos: los términos −abi y +abi se anulan.",
+      "Como i² = −1, −b²i² = +b².",
+      "Queda a² + b², que es el módulo al cuadrado: un número real y no negativo."
+    ],
+    "use": "Es el truco para dividir: multiplicar por el conjugado convierte un complejo en un número real."
+  },
+  "cx-div": {
+    "title": "División: z/w = z·w̄ / |w|²",
+    "summary": "Para dividir, se multiplica arriba y abajo por el conjugado del denominador.",
+    "steps": [
+      "Multiplicamos numerador y denominador por w̄. Es multiplicar por w̄/w̄ = 1, así que el valor no cambia.",
+      "Abajo queda w·w̄ = |w|², un número real. Dividir entre un real es fácil: se divide cada parte.",
+      "Caso particular z = 1: el inverso de w es w̄/|w|².",
+      "Ejemplo: (2 + 3i)/(1 + 2i). El conjugado de 1 + 2i es 1 − 2i y |1 + 2i|² = 1² + 2² = 5.",
+      "Desarrollamos: 2 − 4i + 3i − 6i² = 2 + 6 − i = 8 − i. Dividimos cada parte entre 5."
+    ],
+    "use": "Así se divide en forma binómica. En polar es aún más fácil: se dividen los módulos y se restan los ángulos."
+  },
+  "cx-arg": {
+    "title": "De binómica a polar (y el cuidado con arctan)",
+    "summary": "ρ = √(a² + b²) y θ = arctan(b/a), corrigiendo según el cuadrante.",
+    "steps": [
+      "En el triángulo de catetos a (horizontal) y b (vertical) y de hipotenusa ρ, el seno es opuesto/hipotenusa y el coseno contiguo/hipotenusa.",
+      "Dividiendo, tan θ = b/a, así que θ = arctan(b/a)… pero solo a veces.",
+      "arctan solo devuelve ángulos entre −π/2 y π/2 (cuadrantes I y IV), que son los de a > 0. Ahí la fórmula es correcta.",
+      "Si a < 0 el punto está a la izquierda: b/a da el mismo valor para z y para −z (el punto opuesto), así que hay que corregir sumando π (si b ≥ 0) o restando π (si b < 0).",
+      "Si a = 0, b/a no existe: el punto está en el eje imaginario, θ = π/2 si b > 0 y −π/2 si b < 0.",
+      "arg (con minúscula) es el conjunto de todos los ángulos válidos; Arg (con mayúscula) es el principal, el único que está en (−π, π]."
+    ],
+    "use": "Cuidado con la calculadora: arctan((−1)/(−1)) = π/4, pero −1 − i está en el tercer cuadrante y su Arg es −3π/4."
+  },
+  "cx-p2b": {
+    "title": "De polar a binómica",
+    "summary": "a = ρ cos θ y b = ρ sen θ. Así sale la forma trigonométrica.",
+    "steps": [
+      "De cos θ = a/ρ despejamos a multiplicando por ρ.",
+      "De sen θ = b/ρ despejamos b igual.",
+      "Sustituimos en a + bi y sacamos ρ factor común: es la forma trigonométrica ρ(cos θ + i sen θ).",
+      "Ejemplo: 2<sub>π/3</sub>. Como cos(π/3) = 1/2 y sen(π/3) = √3/2, queda 1 + √3 i."
+    ],
+    "use": "La forma binómica va mejor para sumar y restar; la polar, para multiplicar, dividir, elevar y sacar raíces."
+  },
+  "cx-pprod": {
+    "title": "Producto en polar: se multiplican módulos y se suman ángulos",
+    "summary": "(ρ₁)<sub>θ₁</sub> · (ρ₂)<sub>θ₂</sub> = (ρ₁ρ₂)<sub>θ₁+θ₂</sub>",
+    "steps": [
+      "Escribimos los dos números en forma trigonométrica, con ángulos α y β.",
+      "Los módulos ρ₁ y ρ₂ son números reales: los sacamos delante.",
+      "Multiplicamos los dos paréntesis como binomios, con i² = −1, y agrupamos parte real e imaginaria.",
+      "¡Son exactamente las fórmulas del coseno y del seno de la suma! (las de la pestaña α ± β).",
+      "El resultado es un complejo de módulo ρ₁ρ₂ y ángulo α + β.",
+      "Si α + β se sale de (−π, π], se le suma o resta 2π para dar el argumento principal: es el mismo punto."
+    ],
+    "use": "Multiplicar = multiplicar tamaños y sumar giros. Por eso los complejos son perfectos para describir rotaciones."
+  },
+  "cx-pquot": {
+    "title": "Cociente en polar: se dividen módulos y se restan ángulos",
+    "summary": "(ρ₁)<sub>θ₁</sub> / (ρ₂)<sub>θ₂</sub> = (ρ₁/ρ₂)<sub>θ₁−θ₂</sub>",
+    "steps": [
+      "Dividir es buscar el número q que multiplicado por w da z.",
+      "Escribimos q = r<sub>φ</sub> y usamos la regla del producto: módulos multiplicados, ángulos sumados.",
+      "Dos complejos en polar son iguales si tienen el mismo módulo y el mismo ángulo (salvo vueltas de 2π).",
+      "Despejando: r = ρ₁/ρ₂ y φ = θ₁ − θ₂."
+    ],
+    "use": "Dividir deshace el giro: se dividen los tamaños y se restan los ángulos."
+  },
+  "cx-pconj": {
+    "title": "Conjugado e inverso en polar",
+    "summary": "z̄ = ρ<sub>−θ</sub> y z⁻¹ = (1/ρ)<sub>−θ</sub>",
+    "steps": [
+      "Escribimos ρ<sub>θ</sub> en forma trigonométrica.",
+      "Conjugar cambia el signo de la parte imaginaria. Como cos(−θ) = cos θ y sen(−θ) = −sen θ, es lo mismo que cambiar θ por −θ.",
+      "Mismo módulo, ángulo opuesto: ρ<sub>−θ</sub>.",
+      "Para el inverso escribimos 1 = 1₀ (módulo 1, ángulo 0) y aplicamos la regla del cociente."
+    ],
+    "use": "El inverso está en la misma dirección que el conjugado, pero con tamaño 1/ρ: si z está lejos del origen, 1/z está cerca."
+  },
+  "cx-moivre": {
+    "title": "Teorema de De Moivre",
+    "summary": "(cos θ + i sen θ)ⁿ = cos nθ + i sen nθ. Elevar a n es multiplicar el ángulo por n.",
+    "steps": [
+      "Elevar a n es multiplicar el número n veces por sí mismo.",
+      "Por la regla del producto, los módulos se multiplican (ρⁿ) y los ángulos se suman (θ + θ + … = nθ).",
+      "Si el módulo es 1, queda 1 elevado a n, que es 1: solo cambia el ángulo.",
+      "Escrito en forma trigonométrica, eso es el teorema de De Moivre.",
+      "Ejemplo n = 2: desarrollando el cuadrado a la izquierda e igualando partes reales e imaginarias salen cos 2θ = cos²θ − sen²θ y sen 2θ = 2 sen θ cos θ.",
+      "Ejemplo: 1 + i = √2<sub>π/4</sub>. Elevado a 8: (√2)⁸ = 16 y 8·π/4 = 2π, que es una vuelta completa: el resultado es 16."
+    ],
+    "use": "Calcular potencias grandes sin desarrollar binomios y deducir fórmulas de ángulos múltiplos (cos 3θ, sen 4θ…)."
+  },
+  "cx-rot": {
+    "title": "Multiplicar por 1<sub>β</sub> es girar un ángulo β",
+    "summary": "Al multiplicar por cos β + i sen β, todo el plano gira β alrededor del origen.",
+    "steps": [
+      "El punto 1 = (1, 0) se convierte en cos β + i sen β = (cos β, sen β).",
+      "El punto i = (0, 1) se convierte en i cos β + i² sen β = −sen β + i cos β = (−sen β, cos β).",
+      "Los dos ejes giran el mismo ángulo β, así que todo el plano gira β.",
+      "Con β = 90°, multiplicar por 1<sub>90°</sub> = i lleva el eje real al imaginario: girar 90°.",
+      "Ejemplo de tus apuntes: girar 30° y después 90° es girar 120°, con sen 120° = √3/2 y cos 120° = −1/2."
+    ],
+    "use": "Es la base de las rotaciones en gráficos por ordenador, robótica y animación."
+  },
+  "cx-euler": {
+    "title": "La fórmula de Euler",
+    "summary": "e<sup>iθ</sup> := cos θ + i sen θ. Es la forma exponencial de un fasor.",
+    "steps": [
+      "Es una definición: extiende la potencia de e a exponentes imaginarios. θ va siempre en radianes.",
+      "Su módulo es 1 por el teorema de Pitágoras (sen²θ + cos²θ = 1): e<sup>iθ</sup> siempre está en la circunferencia unidad.",
+      "Su argumento es θ (si θ está en (−π, π]; si no, θ más o menos vueltas de 2π).",
+      "Cualquier complejo en polar se puede escribir como ρ e<sup>iθ</sup>: es la forma exponencial.",
+      "Con θ = π sale e<sup>iπ</sup> = −1, la identidad de Euler, que junta e, i, π, 1 y 0 en una sola fórmula."
+    ],
+    "use": "Con la notación exponencial, operar con complejos es operar con potencias: e<sup>iα</sup>·e<sup>iβ</sup> = e<sup>i(α+β)</sup>."
+  },
+  "cx-cossin": {
+    "title": "Seno y coseno con exponenciales",
+    "summary": "Sumando y restando e<sup>iθ</sup> y e<sup>−iθ</sup> se despejan cos θ y sen θ.",
+    "steps": [
+      "Fórmula de Euler con θ.",
+      "Fórmula de Euler con −θ. Como el coseno es par y el seno impar, sale cos θ − i sen θ: es el conjugado de e<sup>iθ</sup>.",
+      "Sumamos las dos: los senos se anulan y queda 2 cos θ.",
+      "Dividimos entre 2.",
+      "Restamos: los cosenos se anulan y queda 2i sen θ.",
+      "Dividimos entre 2i."
+    ],
+    "use": "Convierte productos de senos y cosenos en sumas de exponenciales, mucho más fáciles de integrar y derivar."
+  },
+  "cx-eprop": {
+    "title": "Propiedades de e<sup>iθ</sup>",
+    "summary": "Se comporta como una potencia normal: los exponentes se suman y se multiplican.",
+    "steps": [
+      "En polar, e<sup>iθ</sup> = 1<sub>θ</sub>. Multiplicar suma los ángulos: es sumar exponentes.",
+      "Elevar a n multiplica el ángulo por n (De Moivre): es multiplicar el exponente por n.",
+      "Con módulos cualesquiera: se multiplican los módulos y se suman los ángulos."
+    ],
+    "use": "Las reglas de los exponentes funcionan igual que con números reales: e<sup>a</sup>·e<sup>b</sup> = e<sup>a+b</sup> y (e<sup>a</sup>)ⁿ = e<sup>na</sup>."
+  },
+  "cx-roots": {
+    "title": "Raíces n-ésimas",
+    "summary": "Todo z ≠ 0 tiene n raíces n-ésimas, con módulo ⁿ√ρ y ángulos (θ + 2πk)/n.",
+    "steps": [
+      "Buscamos todos los w = r<sub>φ</sub> tales que wⁿ = z.",
+      "Por De Moivre, wⁿ tiene módulo rⁿ y ángulo nφ.",
+      "Igualamos módulos: rⁿ = ρ, así que r es la raíz n-ésima real (positiva) de ρ.",
+      "Igualamos ángulos, pero los ángulos pueden diferir en vueltas completas: nφ = θ + 2πk. Despejamos φ.",
+      "Con k = n volvemos al ángulo de k = 0 (hemos dado una vuelta entera), así que basta con k = 0, 1, …, n − 1: hay n raíces distintas.",
+      "Dos raíces seguidas se separan 2π/n: forman un polígono regular de n lados centrado en el origen."
+    ],
+    "use": "Resolver ecuaciones como zⁿ = c. En ℝ, x³ = 8 solo tiene una solución; en ℂ tiene tres."
+  },
+  "cx-root1": {
+    "title": "Ejemplo: las raíces cúbicas de 1",
+    "summary": "∛1 = {1, ω, ω²} con ω = −1/2 + (√3/2)i.",
+    "steps": [
+      "Escribimos 1 en polar: módulo 1 y ángulo 0.",
+      "Aplicamos la fórmula con n = 3. La raíz real de 1 es 1, así que todas tienen módulo 1.",
+      "k = 0: ángulo 0, la raíz real 1.",
+      "k = 1: ángulo 2π/3 = 120°. cos 120° = −1/2 y sen 120° = √3/2. A esta raíz se le llama ω.",
+      "k = 2: ángulo 4π/3 = 240°. Es el conjugado de ω, y también ω² (dos giros de 120°).",
+      "k = 3 daría 2π = 360°: volvemos a 1. Por eso solo hay 3 raíces."
+    ],
+    "use": "Las raíces cúbicas de la unidad forman un triángulo equilátero y aparecen al resolver ecuaciones de tercer grado."
+  },
+  "cx-z38": {
+    "title": "Ejemplo: z³ − 8 = 0",
+    "summary": "Las soluciones son 2 y −1 ± √3 i: las raíces cúbicas de 1 multiplicadas por 2.",
+    "steps": [
+      "Despejamos: z es una raíz cúbica de 8.",
+      "Truco: como 8 = 2³, dividimos la ecuación entre 8 y queda (z/2)³ = 1.",
+      "Entonces z/2 es una raíz cúbica de 1, que ya conocemos.",
+      "Multiplicando por 2: z = 2, z = −1 + √3 i y z = −1 − √3 i.",
+      "Con la fórmula directa: 8 = 8₀, su raíz cúbica real es 2 y los ángulos son 0, 2π/3 y 4π/3. Sale lo mismo."
+    ],
+    "use": "En ℝ esta ecuación solo tiene la solución 2. En ℂ aparecen las tres, en un triángulo equilátero de radio 2."
+  },
+  "cx-exp": {
+    "title": "Exponencial compleja e<sup>z</sup>",
+    "summary": "e<sup>a+bi</sup> = e<sup>a</sup> (cos b + i sen b): módulo e<sup>a</sup> y ángulo b.",
+    "steps": [
+      "Se define para que siga cumpliéndose e<sup>x+y</sup> = e<sup>x</sup> · e<sup>y</sup>.",
+      "e<sup>a</sup> es un real positivo y e<sup>bi</sup> es un fasor de ángulo b: el resultado ya está en forma polar.",
+      "El módulo de e<sup>z</sup> depende solo de la parte real de z.",
+      "El ángulo de e<sup>z</sup> es la parte imaginaria de z (más vueltas completas).",
+      "Sumar 2πi añade una vuelta completa y no cambia nada: e<sup>z</sup> es periódica de periodo 2πi.",
+      "Ejemplo: e<sup>1 + iπ/2</sup> = e · e<sup>iπ/2</sup> = e · i."
+    ],
+    "use": "Describe oscilaciones que crecen o se amortiguan: la parte real controla el tamaño y la imaginaria el giro (circuitos RLC, muelles)."
+  },
+  "cx-log": {
+    "title": "Logaritmo complejo",
+    "summary": "log z = ln|z| + i arg z. Tiene infinitos valores, separados 2πi.",
+    "steps": [
+      "El logaritmo de z es el número w que hay que poner en el exponente para obtener z: e<sup>w</sup> = z.",
+      "Escribimos w = x + yi. Entonces e<sup>w</sup> tiene módulo e<sup>x</sup> y ángulo y; z tiene módulo ρ y ángulo θ.",
+      "Igualamos módulos: e<sup>x</sup> = ρ, así que x es el logaritmo neperiano (real) de |z|.",
+      "Igualamos ángulos salvo vueltas: y = θ + 2πk. Hay infinitos logaritmos, uno por cada k.",
+      "El logaritmo principal Log z usa el argumento principal Arg z ∈ (−π, π] (k = 0).",
+      "Ejemplo: −1 tiene módulo 1 y ángulo π, así que Log(−1) = ln 1 + iπ = iπ. ¡En ℂ los negativos sí tienen logaritmo!"
+    ],
+    "use": "Permite definir potencias complejas como z<sup>w</sup> = e<sup>w·log z</sup> y resolver ecuaciones exponenciales en ℂ."
+  }
+}

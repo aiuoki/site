@@ -100,3 +100,18 @@ td.nd { color: var(--muted); font-style: italic; font-size: 15px; }
 .id .f::-webkit-scrollbar,
 .tablewrap::-webkit-scrollbar,
 .step .t .f::-webkit-scrollbar { display: none; }
+
+/* Complex numbers guide */
+.split { display: grid; grid-template-columns: 1fr; gap: 18px; align-items: center; }
+@media (min-width: 820px) { .split { grid-template-columns: minmax(0, 440px) minmax(0, 1fr); } }
+.split-txt { display: flex; flex-direction: column; gap: 14px; max-width: 60ch; }
+.fig-inline { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px; max-width: 520px; }
+.ex-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.defs .def-item .mr { font-size: 1.1em; }
+table.big.forms { min-width: 560px; }
+table.big.forms td:first-child { font-family: var(--f-body); text-align: left; color: var(--muted); font-size: 14px; }
+table.big.forms tbody tr { cursor: default; }
+table.big.forms tbody tr:hover { background: none; }
+table.big.forms th { text-transform: none; font-family: var(--f-math); font-size: 15px; letter-spacing: 0; }
+table.big.forms th:first-child, table.big.forms th:nth-child(2) { font-family: var(--f-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+.id .live sub, .id .live sup { font-size: 0.7em; }

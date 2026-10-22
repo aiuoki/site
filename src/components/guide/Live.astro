@@ -1,10 +1,10 @@
 ---
 import LiveCheck from "../interactive/trig/LiveCheck.svelte";
-import { dictionaries, localeMeta, notationFor, pageLocale, type UiDict } from "../../i18n";
+import { contentLang, dictionaries, localeMeta, notationFor, type UiDict } from "../../i18n";
 import type { CircleCheck, SumCheck } from "../../lib/trig-checks";
 
 const { kind } = Astro.props as { kind: CircleCheck | SumCheck };
-const lang = pageLocale(Astro.currentLocale);
+const lang = contentLang(Astro);
 const trig = (dictionaries[lang] as UiDict).trig;
 const n = notationFor(lang);
 ---

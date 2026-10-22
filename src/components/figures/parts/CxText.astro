@@ -1,0 +1,32 @@
+---
+import { round } from "../../../lib/figure";
+import { svgT, type Plane } from "../../../lib/complex-figure";
+
+interface Props {
+  m: Plane;
+  x: number;
+  y: number;
+  // Label with ^x / _x markers for superscripts and subscripts.
+  t: string;
+  color?: string;
+  anchor?: "start" | "middle" | "end";
+  size?: number;
+  italic?: boolean;
+}
+
+const { m, x, y, t, color = "var(--fg)", anchor = "middle", size = 15, italic = false } = Astro.props;
+---
+
+<text
+  x={round(m.px(x))}
+  y={round(m.py(y) + size * 0.35)}
+  fill={color}
+  text-anchor={anchor}
+  font-size={size}
+  font-style={italic ? "italic" : undefined}
+  paint-order="stroke"
+  stroke="var(--surface)"
+  stroke-width="4"
+  stroke-linejoin="round"
+  set:html={svgT(t)}
+/>

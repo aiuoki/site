@@ -1,0 +1,30 @@
+---
+import { plane } from "../../lib/complex-figure";
+import CxArc from "./parts/CxArc.astro";
+import CxArrow from "./parts/CxArrow.astro";
+import CxAxes from "./parts/CxAxes.astro";
+import CxDot from "./parts/CxDot.astro";
+import CxLine from "./parts/CxLine.astro";
+import CxText from "./parts/CxText.astro";
+
+const m = plane({ s: 46, ox: 70, oy: 120 });
+const z = [2.4, 1.5] as const;
+const zb = [2.4, -1.5] as const;
+const d = (Math.atan2(1.5, 2.4) * 180) / Math.PI;
+---
+
+<svg class="mfig" viewBox={m.viewBox} aria-hidden="true">
+  <CxAxes m={m} x0={-0.8} x1={4.6} y0={-2.3} y1={2.3} />
+  <CxLine m={m} x1={-0.8} y1={0} x2={4.4} y2={0} color="var(--re)" width={2} />
+  <CxLine m={m} x1={z[0]} y1={z[1]} x2={zb[0]} y2={zb[1]} color="var(--muted)" width={1.2} dash="3 4" />
+  <CxArc m={m} r={0.7} a0={0} a1={d} color="var(--z)" />
+  <CxArc m={m} r={0.7} a0={0} a1={-d} color="var(--result)" />
+  <CxArrow m={m} x1={0} y1={0} x2={z[0]} y2={z[1]} color="var(--z)" width={2.8} />
+  <CxArrow m={m} x1={0} y1={0} x2={zb[0]} y2={zb[1]} color="var(--result)" width={2.8} />
+  <CxDot m={m} x={z[0]} y={z[1]} color="var(--z)" />
+  <CxDot m={m} x={zb[0]} y={zb[1]} color="var(--result)" />
+  <CxText m={m} x={z[0] + 0.15} y={z[1] + 0.1} t="z = a + bi" color="var(--z)" anchor="start" size={14} italic />
+  <CxText m={m} x={zb[0] + 0.15} y={zb[1] - 0.1} t={"z̅ = a − bi"} color="var(--result)" anchor="start" size={14} italic />
+  <CxText m={m} x={0.95} y={0.3} t="θ" color="var(--z)" anchor="start" size={14} italic />
+  <CxText m={m} x={0.95} y={-0.3} t="−θ" color="var(--result)" anchor="start" size={14} italic />
+</svg>

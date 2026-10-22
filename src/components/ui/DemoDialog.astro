@@ -2,15 +2,17 @@
 import Formula from "./Formula.astro";
 import { figures, type FigureId } from "../figures";
 import type { DemoFormulas, DemoText } from "../../demos/types";
+import type { Words } from "../../lib/notation";
 
 interface Props {
   id: string;
   formulas: DemoFormulas;
   text: DemoText;
+  words?: Words;
   labels: { title: string; use: string; close: string };
 }
 
-const { id, formulas, text, labels } = Astro.props;
+const { id, formulas, text, words, labels } = Astro.props;
 const figs = formulas.figures.map((f) => figures[f as FigureId]);
 ---
 
@@ -19,11 +21,11 @@ const figs = formulas.figures.map((f) => figures[f as FigureId]);
     <div class="dlg-head">
       <div>
         <span class="eyebrow">{labels.title}</span>
-        <h2 id={`demo-${id}-title`}>{text.title}</h2>
+        <h2 id={`demo-${id}-title`} set:html={text.title} />
       </div>
       <button type="button" class="x" data-close aria-label={labels.close}>×</button>
     </div>
-    <div class="stmt"><Formula tex={formulas.statement} /></div>
+    <div class="stmt"><Formula tex={formulas.statement} words={words} /></div>
     {
       figs.length > 0 && (
         <div class="figrow">
@@ -38,16 +40,16 @@ const figs = formulas.figures.map((f) => figures[f as FigureId]);
         formulas.steps.map((tex, i) => (
           <li>
             <div class="sf">
-              <Formula tex={tex} />
+              <Formula tex={tex} words={words} />
             </div>
-            <p>{text.steps[i]}</p>
+            <p set:html={text.steps[i]} />
           </li>
         ))
       }
     </ol>
     <div class="usebox">
       <b>{labels.use}</b>
-      <p>{text.use}</p>
+      <p set:html={text.use} />
     </div>
   </div>
 </dialog>

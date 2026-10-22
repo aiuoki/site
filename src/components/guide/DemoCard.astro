@@ -1,0 +1,41 @@
+---
+// Guide card built from a demonstration: title, statement, summary and,
+// optionally, a live check with the current values of the plane.
+import Formula from "../ui/Formula.astro";
+import ComplexLive from "../interactive/complex/ComplexLive.svelte";
+import { findDemo } from "../../demos";
+import { contentLang, localeMeta } from "../../i18n";
+import { complexDict } from "../../i18n/topics/complejos";
+import { COMPLEX_CHECKS, type ComplexCheck } from "../../lib/complex-checks";
+
+interface Props {
+  demo: string;
+  live?: boolean;
+}
+
+const { demo, live = false } = Astro.props;
+const lang = contentLang(Astro);
+const found = findDemo(demo, lang);
+if (!found) throw new Error(`Unknown demonstration: ${demo}`);
+if (live && !(COMPLEX_CHECKS as readonly string[]).includes(demo)) throw new Error(`No live check for ${demo}`);
+const ui = complexDict(lang).ui;
+---
+
+<div class="id demo" data-demo={demo} role="button" tabindex="0">
+  <h3 set:html={found.text.title} />
+  <div class="f"><Formula tex={found.formulas.statement} words={found.words} /></div>
+  {found.text.summary && <p set:html={found.text.summary} />}
+  {
+    live && (
+      <div class="live">
+        <ComplexLive
+          client:visible
+          kind={demo as ComplexCheck}
+          strings={{ noDiv: ui.noDiv, undefArg: ui.undefArg }}
+          locale={localeMeta[lang].bcp47}
+        />
+      </div>
+    )
+  }
+  <span class="more">{ui.seeDemo}</span>
+</div>

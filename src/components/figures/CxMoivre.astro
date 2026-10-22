@@ -1,0 +1,41 @@
+---
+import { plane, points } from "../../lib/complex-figure";
+import { polar } from "../../lib/figure";
+import CxArc from "./parts/CxArc.astro";
+import CxAxes from "./parts/CxAxes.astro";
+import CxCirc from "./parts/CxCirc.astro";
+import CxDot from "./parts/CxDot.astro";
+import CxLine from "./parts/CxLine.astro";
+import CxText from "./parts/CxText.astro";
+
+const m = plane({ s: 48, ox: 150, oy: 140, h: 236 });
+const r = 1.16;
+const d = 26;
+const n = 6;
+const last = n - 1;
+const powers = [1, 2, 3, 4, 5, 6].map((k) => polar(d * k, r ** k));
+const label = (i: number) => (i === 0 ? "z" : `z${"¹²³⁴⁵⁶"[i]}`);
+const [tx, ty] = polar(d / 2, 0.6);
+---
+
+<svg class="mfig" viewBox={m.viewBox} aria-hidden="true">
+  <CxAxes m={m} x0={-2.9} x1={2.9} y0={-0.9} y1={2.1} />
+  <CxCirc m={m} r={1} width={1.1} dash="3 4" />
+  <polyline points={points(m, powers)} fill="none" stroke="var(--muted)" stroke-width="1.3" stroke-dasharray="4 4" />
+  {
+    powers.map(([x, y], i) => {
+      const color = i === last ? "var(--result)" : "var(--z)";
+      const end = i === 0 || i === last;
+      return (
+        <>
+          <CxLine m={m} x1={0} y1={0} x2={x} y2={y} color={color} width={i === last ? 2.8 : 1.3} dash={end ? undefined : "2 4"} />
+          <CxDot m={m} x={x} y={y} color={color} r={end ? 5 : 3.5} />
+          <CxText m={m} x={x + (x >= 0 ? 0.1 : -0.1)} y={y + 0.2} t={label(i)} color={color} anchor={x >= 0 ? "start" : "end"} size={14} italic />
+        </>
+      );
+    })
+  }
+  <CxArc m={m} r={0.4} a0={0} a1={d} color="var(--z)" />
+  <CxText m={m} x={tx} y={ty} t="θ" color="var(--z)" size={13} italic />
+  <CxText m={m} x={2.75} y={1.85} t="z⁶ = (ρ⁶)_6θ" color="var(--result)" anchor="end" size={14} italic />
+</svg>

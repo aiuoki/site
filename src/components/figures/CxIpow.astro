@@ -1,0 +1,49 @@
+---
+import { plane } from "../../lib/complex-figure";
+import { polar } from "../../lib/figure";
+import CxArc from "./parts/CxArc.astro";
+import CxArrow from "./parts/CxArrow.astro";
+import CxAxes from "./parts/CxAxes.astro";
+import CxCirc from "./parts/CxCirc.astro";
+import CxDot from "./parts/CxDot.astro";
+import CxText from "./parts/CxText.astro";
+
+const m = plane({ s: 68, ox: 150, oy: 118, h: 236 });
+const pts: [number, number, string][] = [
+  [1, 0, "i⁰ = 1"],
+  [0, 1, "i¹ = i"],
+  [-1, 0, "i² = −1"],
+  [0, -1, "i³ = −i"],
+];
+
+// One quarter turn per power: the arc, its arrow tip and the "· i" label.
+const turns = [0, 1, 2, 3].map((q) => {
+  const a1 = q * 90 + 78;
+  const [ex, ey] = polar(a1, 1.22);
+  const [bx, by] = polar(a1 - 9, 1.22);
+  const [lx, ly] = polar(q * 90 + 45, 1.42);
+  return { a0: q * 90 + 12, a1, ex, ey, bx, by, lx, ly };
+});
+---
+
+<svg class="mfig" viewBox={m.viewBox} aria-hidden="true">
+  <CxAxes m={m} x0={-1.8} x1={1.8} y0={-1.55} y1={1.6} labels={false} />
+  <CxCirc m={m} r={1} />
+  {
+    turns.map(({ a0, a1, ex, ey, bx, by, lx, ly }) => (
+      <>
+        <CxArc m={m} r={1.22} a0={a0} a1={a1} color="var(--result)" width={2} />
+        <CxArrow m={m} x1={bx} y1={by} x2={ex} y2={ey} color="var(--result)" width={2} />
+        <CxText m={m} x={lx} y={ly} t="· i" color="var(--result)" size={13} />
+      </>
+    ))
+  }
+  {
+    pts.map(([x, y, label], q) => (
+      <>
+        <CxDot m={m} x={x} y={y} color="var(--z)" r={5} />
+        <CxText m={m} x={x * 0.62 + (q === 1 || q === 3 ? 0.3 : 0)} y={y * 0.62 + (q % 2 ? 0 : 0.14)} t={label} size={14} />
+      </>
+    ))
+  }
+</svg>

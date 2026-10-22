@@ -1,0 +1,19 @@
+---
+import { arcShape, type Plane } from "../../../lib/complex-figure";
+
+interface Props {
+  m: Plane;
+  // Radius in plane units and angles in degrees.
+  r: number;
+  a0: number;
+  a1: number;
+  color?: string;
+  width?: number;
+  fill?: string;
+}
+
+const { m, r, a0, a1, color = "var(--fg)", width = 1.8, fill } = Astro.props;
+const d = arcShape(m, r, a0, a1, fill !== undefined);
+---
+
+{d && <path d={d} fill={fill ?? "none"} stroke={color} stroke-width={width} />}

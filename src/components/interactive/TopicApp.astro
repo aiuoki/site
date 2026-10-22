@@ -3,17 +3,31 @@
 import "../../styles/components/interactive.css";
 import AngleSum from "./trig/AngleSum.svelte";
 import UnitCircle from "./trig/UnitCircle.svelte";
+import ComplexPlane from "./complex/ComplexPlane.svelte";
+import { complexDict } from "../../i18n/topics/complejos";
 import { dictionaries, localeMeta, notationFor, type Locale, type UiDict } from "../../i18n";
 
 interface Props {
   lang: Locale;
+  // Language of the notes (differs from lang on fallback pages).
+  content: Locale;
   topic: string;
 }
 
-const { lang, topic } = Astro.props;
+const { lang, content, topic } = Astro.props;
 const dict = dictionaries[lang] as UiDict;
 const props = { strings: dict.trig, notation: notationFor(lang), locale: localeMeta[lang].bcp47, seeDemo: dict.demo.open };
 ---
 
 {topic === "trigonometria" && <UnitCircle client:load {...props} />}
 {topic === "suma-angulos" && <AngleSum client:load {...props} />}
+{
+  topic === "complejos" && (
+    <ComplexPlane
+      client:load
+      strings={complexDict(content).ui}
+      notation={notationFor(content)}
+      locale={localeMeta[content].bcp47}
+    />
+  )
+}

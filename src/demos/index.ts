@@ -1,17 +1,37 @@
 import type { Locale } from "../i18n/locales";
-import { trigDemoText, trigDemos, trigTopicDemos } from "./trig";
+import { complexDict, isComplexLocale } from "../i18n/topics/complejos";
+import type { Words } from "../lib/notation";
+import { complexDemoIds, complexDemoText, complexDemos, type ComplexDemoId } from "./complex";
+import { trigDemoText, trigDemos, trigTopicDemos, type TrigDemoId } from "./trig";
 import type { DemoFormulas, DemoText } from "./types";
 
 export interface TopicDemo {
   id: string;
   formulas: DemoFormulas;
   text: DemoText;
+  // Topic words used by the formulas (\W{...}).
+  words?: Words;
+}
+
+// A demonstration by id, in the given content language.
+export function findDemo(id: string, lang: Locale): TopicDemo | null {
+  if (id in trigDemos) {
+    const key = id as TrigDemoId;
+    return { id, formulas: trigDemos[key], text: trigDemoText[lang][key] };
+  }
+  if (id in complexDemos) {
+    const key = id as ComplexDemoId;
+    const cl = isComplexLocale(lang) ? lang : "en";
+    return { id, formulas: complexDemos[key], text: complexDemoText[cl][key], words: complexDict(cl).words };
+  }
+  return null;
 }
 
 // Demonstrations rendered (as dialogs) on a topic page.
 export function demosForTopic(topic: string, lang: Locale): TopicDemo[] {
-  if (topic === "trigonometria" || topic === "suma-angulos") {
-    return trigTopicDemos[topic].map((id) => ({ id, formulas: trigDemos[id], text: trigDemoText[lang][id] }));
-  }
-  return [];
+  const ids: readonly string[] =
+    topic === "trigonometria" || topic === "suma-angulos" ? trigTopicDemos[topic]
+    : topic === "complejos" ? complexDemoIds
+    : [];
+  return ids.map((id) => findDemo(id, lang)).filter((d): d is TopicDemo => d !== null);
 }

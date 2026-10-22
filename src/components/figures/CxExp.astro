@@ -1,0 +1,42 @@
+---
+import { plane } from "../../lib/complex-figure";
+import { polar } from "../../lib/figure";
+import CxArc from "./parts/CxArc.astro";
+import CxArrow from "./parts/CxArrow.astro";
+import CxAxes from "./parts/CxAxes.astro";
+import CxBridge from "./parts/CxBridge.astro";
+import CxCirc from "./parts/CxCirc.astro";
+import CxDot from "./parts/CxDot.astro";
+import CxLine from "./parts/CxLine.astro";
+import CxText from "./parts/CxText.astro";
+
+const wide = true;
+const left = plane({ s: 52, ox: 70, oy: 140, w: 560, h: 240 });
+const right = plane({ s: 62, ox: 400, oy: 140, w: 560, h: 240 });
+const a = 0.4;
+const b = 1;
+const ea = Math.exp(a);
+const [ex, ey] = [ea * Math.cos(b), ea * Math.sin(b)];
+const [tx, ty] = polar(28, 0.62);
+---
+
+<svg class:list={["mfig", { wide }]} viewBox={left.viewBox} aria-hidden="true">
+  <CxAxes m={left} x0={-0.8} x1={2.3} y0={-1.6} y1={1.9} />
+  <CxLine m={left} x1={0} y1={0} x2={a} y2={0} color="var(--re)" width={4} />
+  <CxLine m={left} x1={a} y1={0} x2={a} y2={b} color="var(--im)" width={4} />
+  <CxDot m={left} x={a} y={b} color="var(--z)" r={5.5} />
+  <CxLine m={left} x1={-0.8} y1={b} x2={2.2} y2={b} color="var(--im)" width={1} dash="3 4" />
+  <CxLine m={left} x1={a} y1={-1.5} x2={a} y2={1.8} color="var(--re)" width={1} dash="3 4" />
+  <CxText m={left} x={a + 0.1} y={b + 0.25} t="z = a + bi" color="var(--z)" anchor="start" size={14} italic />
+  <CxText m={left} x={a / 2} y={-0.25} t="a" color="var(--re)" size={14} italic />
+  <CxText m={left} x={a + 0.1} y={b / 2} t="b" color="var(--im)" anchor="start" size={14} italic />
+  <CxAxes m={right} x0={-2} x1={2.3} y0={-1.7} y1={1.9} />
+  <CxCirc m={right} r={ea} color="var(--re)" width={1.2} dash="3 4" />
+  <CxArc m={right} r={0.4} a0={0} a1={(b * 180) / Math.PI} color="var(--im)" width={2.2} />
+  <CxArrow m={right} x1={0} y1={0} x2={ex} y2={ey} color="var(--result)" width={3} />
+  <CxDot m={right} x={ex} y={ey} color="var(--result)" r={5} />
+  <CxText m={right} x={ex + 0.08} y={ey + 0.15} t="e^z" color="var(--result)" anchor="start" italic />
+  <CxText m={right} x={tx} y={ty} t="b" color="var(--im)" size={14} italic />
+  <CxText m={right} x={ea * 0.5 - 0.2} y={-0.16} t="|e^(z)| = e^a" color="var(--re)" size={13} italic />
+  <CxBridge t="e^z" />
+</svg>

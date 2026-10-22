@@ -1,10 +1,10 @@
 ---
-import { notationFor, pageLocale } from "../../i18n";
+import { contentLang, notationFor } from "../../i18n";
 import Label from "./parts/Label.astro";
 import Line from "./parts/Line.astro";
 import RightAngle from "./parts/RightAngle.astro";
 
-const n = notationFor(pageLocale(Astro.currentLocale));
+const n = notationFor(contentLang(Astro));
 ---
 
 <svg class="mfig" viewBox="0 0 300 230" aria-hidden="true">

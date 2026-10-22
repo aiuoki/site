@@ -1,8 +1,8 @@
 ---
 import Table from "../interactive/trig/NotableTable.svelte";
-import { dictionaries, notationFor, pageLocale, type UiDict } from "../../i18n";
+import { contentLang, dictionaries, notationFor, type UiDict } from "../../i18n";
 
-const lang = pageLocale(Astro.currentLocale);
+const lang = contentLang(Astro);
 const trig = (dictionaries[lang] as UiDict).trig;
 ---
 

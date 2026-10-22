@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { subjects } from "./site";
 
 // Topics whose notes are still being migrated. Empty this set when done.
-const pending = new Set(["complejos"]);
+const pending = new Set<string>();
 
 describe("site registry", () => {
   const topics = subjects.flatMap((s) => s.topics.map((t) => ({ subject: s.slug, ...t })));

@@ -1,0 +1,116 @@
+---
+title: "Complex Numbers"
+eyebrow: "Interactive guide · complex numbers"
+intro: "Drag <i>z</i> (and <i>w</i>) around the plane or type their coordinates. You'll see their rectangular, polar and exponential forms at once, and what happens when you operate with them. Tap any card to see its step-by-step proof."
+description: "Drag z (and w) around the plane or type their coordinates. You'll see their rectangular, polar and exponential forms at once, and what happens when you operate with them. Tap any card to see its step-by-step proof."
+---
+
+<Section eyebrow={"01 · Definition"} title={"What is a complex number?"} lead={"The equation x² + 1 = 0 has no real solution, because no real number squared gives −1. We add a new number, i, with i² = −1, and build all complex numbers from it."}>
+  <Defs>
+    <DefItem title={"Imaginary unit"} text={"<span class=\"mr\"><i>i</i> = √−1</span>, that is, <span class=\"mr\"><i>i</i>² = −1</span>."} />
+    <DefItem title={"Rectangular (binomial) form"} text={"<span class=\"mr\"><i>z</i> = <i>a</i> + <i>bi</i></span>, with <span class=\"mr\"><i>a</i></span> and <span class=\"mr\"><i>b</i></span> real numbers. It has two terms, hence “binomial”."} />
+    <DefItem title={"Real part"} text={"<span class=\"mr\">Re(<i>z</i>) = <i>a</i></span>: the term without <span class=\"mr\"><i>i</i></span>."} />
+    <DefItem title={"Imaginary part"} text={"<span class=\"mr\">Im(<i>z</i>) = <i>b</i></span>: the number multiplying <span class=\"mr\"><i>i</i></span> (without the <span class=\"mr\"><i>i</i></span>)."} />
+    <DefItem title={"The set ℂ"} text={"<span class=\"mr\">ℂ = {<i>a</i> + <i>bi</i> : <i>a</i>, <i>b</i> ∈ ℝ}</span>. Real numbers are the complex numbers with <span class=\"mr\"><i>b</i> = 0</span>."} />
+  </Defs>
+  <IdGroup>
+    <DemoCard demo="cx-axiom" />
+    <DemoCard demo="cx-ipow" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"02 · Structure"} title={"ℂ is a field… but it can't be ordered"} lead={"A field is a set where you can add, subtract, multiply and divide (except by 0) with the usual rules. ℂ is one, but it loses something ℝ has: order."}>
+  <IdGroup>
+    <DemoCard demo="cx-field" />
+    <DemoCard demo="cx-order" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"03 · Graphical representation"} title={"The complex plane"} lead={"Since a complex number is a pair (a, b), it's drawn as a point of the plane or as an arrow (vector) from the origin."}>
+  <Split figure="cx-example" html={"The <b>X</b> axis is the <b>real axis</b>: points (x, 0) are the real numbers x. The <b>Y</b> axis is the <b>imaginary axis</b>: points (0, y) are the pure imaginaries yi. The drawing shows the examples from your notes: <span class=\"mr\"><i>z</i> = 2 − <i>i</i></span> and <span class=\"mr\"><i>w</i> = 1 + 2<i>i</i></span>."}>
+    <LoadExample index={1} label={"Show z = 2 − i and w = 1 + 2i on the plane"} />
+  </Split>
+  <IdGroup>
+    <DemoCard demo="cx-phasor" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"04 · Conjugate"} title={"The conjugate z̄"} lead={"The conjugate of z = a + bi is z̄ = a − bi: flip the sign of the imaginary part. On the plane it's the reflection of z across the real axis (like a mirror)."}>
+  <IdGroup>
+    <DemoCard demo="cx-conj1" />
+    <DemoCard demo="cx-conj2" />
+    <DemoCard demo="cx-conj3" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"05 · Modulus"} title={"The modulus |z|"} lead={"The modulus |z| = √(a² + b²) is the length of the arrow, that is, the distance from z to the origin. It comes from Pythagoras' theorem with legs a and b."}>
+  <IdGroup>
+    <DemoCard demo="cx-mod1" />
+    <DemoCard demo="cx-tri" live />
+    <DemoCard demo="cx-modprod" live />
+    <DemoCard demo="cx-modconj" />
+    <DemoCard demo="cx-zz" live />
+    <DemoCard demo="cx-div" live />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"06 · Polar form"} title={"Polar form ρ<sub>θ</sub>"} lead={"A point is also fixed by two pieces of data: how far it is from the origin and the angle it makes with the positive real axis. Like giving directions as “5 km, heading north-east”."}>
+  <Defs>
+    <DefItem title={"ρ (rho): modulus"} text={"<span class=\"mr\"><i>ρ</i> := |<i>z</i>|</span>, the distance to the origin."} />
+    <DefItem title={"θ (theta): principal argument"} text={"<span class=\"mr\"><i>θ</i> := Arg(<i>z</i>) ∈ (−π, π]</span>, the angle measured from the positive real axis; counterclockwise is positive."} />
+    <DefItem title={"arg(z): every argument"} text={"<span class=\"mr\">arg(<i>z</i>) = {<i>θ</i> + 2π<i>n</i> : <i>n</i> ∈ ℤ}</span>. Full turns (2π = 360°) lead to the same point."} />
+    <DefItem title={"Polar notation"} text={"<span class=\"mr\"><i>z</i> = <i>ρ</i><sub><i>θ</i></sub></span>, where <span class=\"mr\"><i>ρ</i> = |<i>z</i>|</span> and <span class=\"mr\"><i>θ</i> = Arg(<i>z</i>)</span>."} />
+  </Defs>
+  <FormsTable />
+  <IdGroup>
+    <DemoCard demo="cx-arg" live />
+    <DemoCard demo="cx-p2b" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"07 · Operations in polar form"} title={"Multiplying is rotating"} lead={"In polar form, operations are very simple: when multiplying, the moduli multiply and the angles add. That's why multiplying by a complex number rotates and stretches."}>
+  <IdGroup>
+    <DemoCard demo="cx-pprod" live />
+    <DemoCard demo="cx-pquot" />
+    <DemoCard demo="cx-pconj" />
+    <DemoCard demo="cx-rot" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"08 · De Moivre"} title={"De Moivre's theorem"} lead={"Raising to a power means multiplying the same number several times, so the angle gets added to itself n times."}>
+  <IdGroup>
+    <DemoCard demo="cx-moivre" live />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"09 · Exponential form"} title={"Euler's formula: e<sup>iθ</sup>"} lead={"With the exponential form, the rules of complex numbers become the rules of powers you already know."}>
+  <Prose html={"What does a power mean? <span class=\"mr\">2³ = 2 · 2 · 2</span> makes sense by counting. But <span class=\"mr\">π²</span> is no longer “π times”, and <span class=\"mr\">2<sup>π</sup></span> even less: they are <b>definitions</b> that extend the idea while keeping its rules. <span class=\"mr\"><i>e</i><sup><i>iθ</i></sup></span> is the same: it’s defined so that <span class=\"mr\"><i>e</i><sup><i>a</i></sup><i>e</i><sup><i>b</i></sup> = <i>e</i><sup><i>a</i>+<i>b</i></sup></span> still holds."} />
+  <IdGroup>
+    <DemoCard demo="cx-euler" />
+    <DemoCard demo="cx-cossin" />
+    <DemoCard demo="cx-eprop" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"10 · Roots"} title={"n-th roots"} lead={"In ℂ, every nonzero number has exactly n distinct n-th roots, spread out like the vertices of a regular polygon."}>
+  <IdGroup>
+    <DemoCard demo="cx-roots" live />
+    <DemoCard demo="cx-root1" />
+    <DemoCard demo="cx-z38" />
+  </IdGroup>
+  <ExampleRow>
+    <LoadExample index={6} label="∛1" />
+    <LoadExample index={7} label="z³ = 8" />
+  </ExampleRow>
+</Section>
+
+<Section eyebrow={"11 · Exponential and logarithm"} title={"e<sup>z</sup> and log z in ℂ"} lead={"The exponential extends to any complex exponent; its inverse, the logarithm, exists even for negative numbers, but it has infinitely many values."}>
+  <IdGroup>
+    <DemoCard demo="cx-exp" live />
+    <DemoCard demo="cx-log" live />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"12 · Applications"} title={"What are complex numbers for?"}>
+  <Uses items={[["Electricity","In AC circuits, voltages and currents are phasors. The impedance Z = R + iX packs resistance and reactance into a single number."],["Signals and sound","The Fourier transform breaks any signal into waves e<sup>iωt</sup>. That's how MP3, JPEG and 5G work."],["Graphics and games","Rotating a point by θ is multiplying it by e<sup>iθ</sup>. Quaternions, their 3D version, rotate cameras and characters."],["Equations","Fundamental theorem of algebra: every polynomial of degree n has exactly n roots in ℂ (counting repeats)."],["Quantum physics","A particle's wave function is complex; probabilities come from its modulus squared |ψ|²."],["Fractals","The Mandelbrot set comes from repeating z → z² + c with complex numbers and checking whether the result escapes."]]} />
+</Section>
