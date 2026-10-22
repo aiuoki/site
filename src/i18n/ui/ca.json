@@ -1,0 +1,22 @@
+{
+  "site": {
+    "title": "Apunts de matemàtiques"
+  },
+  "nav": {
+    "subjects": "Assignatures",
+    "soonTitle": "Properament",
+    "soonText": "Estic preparant els apunts de {s}. Mentrestant, pots repassar Càlcul.",
+    "back": "Anar a Càlcul",
+    "contentFallback": "De moment aquesta secció només està en castellà i anglès."
+  },
+  "subjects": {
+    "calculo": "Càlcul",
+    "estadistica": "Estadística",
+    "algebra-lineal": "Àlgebra lineal"
+  },
+  "topics": {
+    "trigonometria": "Un angle",
+    "suma-angulos": "Suma d'angles",
+    "complejos": "Nombres complexos"
+  }
+}

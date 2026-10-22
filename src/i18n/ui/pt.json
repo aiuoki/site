@@ -1,0 +1,22 @@
+{
+  "site": {
+    "title": "Apontamentos de matemática"
+  },
+  "nav": {
+    "subjects": "Disciplinas",
+    "soonTitle": "Em breve",
+    "soonText": "Estou a preparar os apontamentos de {s}. Entretanto, podes rever Cálculo.",
+    "back": "Ir para Cálculo",
+    "contentFallback": "Por agora esta secção só está disponível em espanhol e inglês."
+  },
+  "subjects": {
+    "calculo": "Cálculo",
+    "estadistica": "Estatística",
+    "algebra-lineal": "Álgebra linear"
+  },
+  "topics": {
+    "trigonometria": "Um ângulo",
+    "suma-angulos": "Soma de ângulos",
+    "complejos": "Números complexos"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "site": {
+    "title": "Notes de maths"
+  },
+  "nav": {
+    "subjects": "Matières",
+    "soonTitle": "Bientôt",
+    "soonText": "Je prépare les notes de {s}. En attendant, tu peux réviser l'Analyse.",
+    "back": "Aller à l'Analyse",
+    "contentFallback": "Pour l'instant, cette section n'existe qu'en espagnol et en anglais."
+  },
+  "subjects": {
+    "calculo": "Analyse",
+    "estadistica": "Statistique",
+    "algebra-lineal": "Algèbre linéaire"
+  },
+  "topics": {
+    "trigonometria": "Un angle",
+    "suma-angulos": "Somme d'angles",
+    "complejos": "Nombres complexes"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "site": {
+    "title": "Appunti di matematica"
+  },
+  "nav": {
+    "subjects": "Materie",
+    "soonTitle": "Prossimamente",
+    "soonText": "Sto preparando gli appunti di {s}. Nel frattempo puoi ripassare Analisi.",
+    "back": "Vai ad Analisi",
+    "contentFallback": "Per ora questa sezione è disponibile solo in spagnolo e inglese."
+  },
+  "subjects": {
+    "calculo": "Analisi",
+    "estadistica": "Statistica",
+    "algebra-lineal": "Algebra lineare"
+  },
+  "topics": {
+    "trigonometria": "Un angolo",
+    "suma-angulos": "Somma di angoli",
+    "complejos": "Numeri complessi"
+  }
+}

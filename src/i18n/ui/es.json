@@ -1,0 +1,22 @@
+{
+  "site": {
+    "title": "Apuntes de matemáticas"
+  },
+  "nav": {
+    "subjects": "Asignaturas",
+    "soonTitle": "Próximamente",
+    "soonText": "Estoy preparando los apuntes de {s}. Mientras tanto, puedes repasar Cálculo.",
+    "back": "Ir a Cálculo",
+    "contentFallback": "De momento esta sección solo está en español e inglés."
+  },
+  "subjects": {
+    "calculo": "Cálculo",
+    "estadistica": "Estadística",
+    "algebra-lineal": "Álgebra lineal"
+  },
+  "topics": {
+    "trigonometria": "Un ángulo",
+    "suma-angulos": "Suma de ángulos",
+    "complejos": "Números complejos"
+  }
+}

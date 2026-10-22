@@ -1,0 +1,22 @@
+{
+  "site": {
+    "title": "Mathe-Notizen"
+  },
+  "nav": {
+    "subjects": "Fächer",
+    "soonTitle": "Demnächst",
+    "soonText": "Ich bereite gerade die Unterlagen für {s} vor. Bis dahin kannst du Analysis wiederholen.",
+    "back": "Zur Analysis",
+    "contentFallback": "Dieser Abschnitt ist vorerst nur auf Spanisch und Englisch verfügbar."
+  },
+  "subjects": {
+    "calculo": "Analysis",
+    "estadistica": "Statistik",
+    "algebra-lineal": "Lineare Algebra"
+  },
+  "topics": {
+    "trigonometria": "Ein Winkel",
+    "suma-angulos": "Winkelsumme",
+    "complejos": "Komplexe Zahlen"
+  }
+}

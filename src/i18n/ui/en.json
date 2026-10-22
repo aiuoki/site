@@ -1,0 +1,22 @@
+{
+  "site": {
+    "title": "Maths notes"
+  },
+  "nav": {
+    "subjects": "Subjects",
+    "soonTitle": "Coming soon",
+    "soonText": "I'm preparing the notes for {s}. Meanwhile, you can review Calculus.",
+    "back": "Go to Calculus",
+    "contentFallback": "For now this section is only available in Spanish and English."
+  },
+  "subjects": {
+    "calculo": "Calculus",
+    "estadistica": "Statistics",
+    "algebra-lineal": "Linear algebra"
+  },
+  "topics": {
+    "trigonometria": "One angle",
+    "suma-angulos": "Angle sum",
+    "complejos": "Complex numbers"
+  }
+}

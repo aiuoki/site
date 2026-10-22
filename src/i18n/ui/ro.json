@@ -1,0 +1,22 @@
+{
+  "site": {
+    "title": "Notițe de matematică"
+  },
+  "nav": {
+    "subjects": "Materii",
+    "soonTitle": "În curând",
+    "soonText": "Pregătesc notițele pentru {s}. Între timp poți recapitula Analiza.",
+    "back": "Mergi la Analiză",
+    "contentFallback": "Deocamdată această secțiune este disponibilă doar în spaniolă și engleză."
+  },
+  "subjects": {
+    "calculo": "Analiză",
+    "estadistica": "Statistică",
+    "algebra-lineal": "Algebră liniară"
+  },
+  "topics": {
+    "trigonometria": "Un unghi",
+    "suma-angulos": "Suma unghiurilor",
+    "complejos": "Numere complexe"
+  }
+}
