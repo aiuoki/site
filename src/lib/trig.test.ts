@@ -134,6 +134,19 @@ describe("parseAngle", () => {
     expect(parseAngle("π/3 rad")?.val).toBeCloseTo(Math.PI / 3);
   });
 
+  it("accepts a trailing decimal point while typing", () => {
+    expect(parseAngle("5.")).toEqual({ val: 5, hasPi: false });
+  });
+
+  it("rejects numbers separated by spaces", () => {
+    expect(parseAngle("3 4")).toBeNull();
+  });
+
+  it("rejects values too large to be an angle", () => {
+    expect(parseAngle("9".repeat(400))).toBeNull();
+    expect(parseAngle("1e400")).toBeNull();
+  });
+
   it("rejects anything that is not arithmetic", () => {
     expect(parseAngle("")).toBeNull();
     expect(parseAngle("abc")).toBeNull();

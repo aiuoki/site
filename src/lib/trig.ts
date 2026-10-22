@@ -101,6 +101,8 @@ export interface ParsedAngle {
 // Safe arithmetic parser: numbers, π, + − * / and parentheses.
 // "2π/3" and "3(π/6)" are implicit products.
 export function parseAngle(input: string): ParsedAngle | null {
+  // "3 4" is two numbers, not 34.
+  if (/[\d.]\s+[\d.]/.test(input)) return null;
   const text = input
     .trim()
     .toLowerCase()
@@ -109,8 +111,8 @@ export function parseAngle(input: string): ParsedAngle | null {
     .replace(/°|º|deg|rad|рад/g, "")
     .replace(/pi/g, "π")
     .replace(/\s+/g, "");
-  const tokens = text.match(/\d*\.?\d+|[π+\-*/()]|./g);
-  if (!tokens || tokens.some((t) => !/^(\d*\.?\d+|[π+\-*/()])$/.test(t))) return null;
+  const tokens = text.match(/\d+\.?\d*|\.\d+|[π+\-*/()]|./g);
+  if (!tokens || tokens.some((t) => !/^(\d+\.?\d*|\.\d+|[π+\-*/()])$/.test(t))) return null;
 
   let i = 0;
   const peek = () => tokens[i];
@@ -144,13 +146,14 @@ export function parseAngle(input: string): ParsedAngle | null {
       if (tokens[i++] !== ")") throw new Error("unbalanced");
       return v;
     }
-    if (t !== undefined && /^\d*\.?\d+$/.test(t)) return Number(t);
+    if (t !== undefined && /^(\d+\.?\d*|\.\d+)$/.test(t)) return Number(t);
     throw new Error("unexpected token");
   };
 
   try {
     const val = expr();
-    if (i !== tokens.length || !Number.isFinite(val)) return null;
+    // Anything beyond 1e9 is a typo, and would overflow when converted.
+    if (i !== tokens.length || !Number.isFinite(val) || Math.abs(val) > 1e9) return null;
     return { val, hasPi: text.includes("π") };
   } catch {
     return null;
