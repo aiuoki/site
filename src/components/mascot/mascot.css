@@ -1,0 +1,101 @@
+/* Mascot colors come from theme.ts (--mascot-*). Poses are driven by the
+   data-pose attribute; every animation stops with prefers-reduced-motion. */
+
+.mascot {
+  display: block;
+  width: var(--mascot-size, 160px);
+  max-width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.mascot g,
+.mascot path,
+.mascot ellipse {
+  transform-box: view-box;
+}
+
+.m-ground { fill: var(--mascot-ground); transform-origin: 512px 1314px; }
+.m-figure { transform-origin: 512px 1200px; }
+.m-arm { fill: none; stroke-width: 132; stroke-linecap: round; }
+.m-arm-light { stroke: var(--mascot-arm); }
+.m-arm-dark { stroke: var(--mascot-arm-dark); }
+.m-rim { fill: var(--mascot-rim); }
+.m-gloss { fill: var(--mascot-shine); opacity: 0.55; }
+.m-bubble { fill: var(--mascot-shine); opacity: 0.18; }
+.m-badge-shadow { fill: var(--mascot-rim); opacity: 0.35; }
+.m-badge-ring { fill: none; stroke: var(--mascot-badge-ring); stroke-width: 7; }
+.m-badge-ink { fill: var(--mascot-badge-ink); font-family: var(--f-math); font-size: 118px; font-weight: 600; }
+.m-pupil { fill: var(--mascot-eye); }
+.m-shine { fill: var(--mascot-shine); }
+.m-shine-dim { fill: var(--mascot-shine-dim); }
+.m-eyes-happy { display: none; }
+.m-arm-wave { display: none; }
+.m-eyes-happy path { fill: none; stroke: var(--mascot-eye); stroke-width: 18; stroke-linecap: round; }
+.m-cheek { fill: var(--mascot-cheek); opacity: 0.85; transition: opacity 0.3s; }
+.m-mouth { transform-origin: 512px 740px; transition: transform 0.3s; }
+.m-mouth-open { fill: var(--mascot-mouth); }
+.m-tongue { fill: var(--mascot-tongue); }
+
+/* idle: floats, sways its arms and blinks. Every pose keeps these. */
+.m-figure { animation: m-bob 3.2s ease-in-out infinite; }
+.m-ground { animation: m-ground 3.2s ease-in-out infinite; }
+.m-arm { animation: m-sway 2.6s ease-in-out infinite alternate; }
+.m-arm-2, .m-arm-4 { animation-delay: -1.3s; }
+.m-arm-3 { animation-duration: 3.1s; }
+.m-eye { animation: m-blink 5s infinite; }
+
+/* wave: the right outer arm is raised and waves. */
+.mascot[data-pose="wave"] .m-arm-2 { display: none; }
+.mascot[data-pose="wave"] .m-arm-wave { display: inline; animation: m-wave 0.9s ease-in-out infinite alternate; }
+
+/* think: tilts, looks up and closes the mouth a little. */
+.mascot[data-pose="think"] .m-body,
+.mascot[data-pose="think"] .m-badge,
+.mascot[data-pose="think"] .m-face { transform: rotate(-4deg); transform-origin: 512px 945px; }
+.mascot[data-pose="think"] .m-eyes { transform: translate(10px, -14px); }
+.mascot[data-pose="think"] .m-mouth { transform: scale(0.55); }
+.mascot[data-pose="think"] .m-tongue { display: none; }
+
+/* happy: closed smiling eyes, rosy cheeks and little jumps. */
+.mascot[data-pose="happy"] .m-eyes { display: none; }
+.mascot[data-pose="happy"] .m-eyes-happy { display: inline; }
+.mascot[data-pose="happy"] .m-cheek { opacity: 1; }
+.mascot[data-pose="happy"] .m-figure { animation: m-jump 0.8s ease-in-out infinite; }
+.mascot[data-pose="happy"] .m-ground { animation: m-ground 0.8s ease-in-out infinite; }
+
+@keyframes m-bob {
+  50% { transform: translateY(-14px); }
+}
+
+@keyframes m-jump {
+  0%, 100% { transform: translateY(0) scale(1, 1); }
+  15% { transform: translateY(0) scale(1.04, 0.96); }
+  50% { transform: translateY(-48px) scale(0.98, 1.02); }
+}
+
+@keyframes m-ground {
+  50% { transform: scaleX(0.9); opacity: 0.8; }
+}
+
+@keyframes m-sway {
+  from { transform: rotate(-3deg); }
+  to { transform: rotate(3deg); }
+}
+
+@keyframes m-wave {
+  from { transform: rotate(-10deg); }
+  to { transform: rotate(14deg); }
+}
+
+@keyframes m-blink {
+  0%, 93%, 100% { transform: scaleY(1); }
+  96% { transform: scaleY(0.1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mascot *,
+  .mascot[data-pose] * {
+    animation: none !important;
+  }
+}

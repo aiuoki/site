@@ -1,0 +1,103 @@
+---
+// The site mascot: a purple octopus wearing an Ω badge. Layers (ground,
+// arms, body, badge, face) are separate groups so poses can move them.
+import "./mascot.css";
+import { ARMS, DOME, EYES, WAVE_ARM, type MascotPose } from "./poses";
+
+interface Props {
+  pose?: MascotPose;
+  // Rendered width; the height follows the drawing.
+  size?: string;
+  // Accessible name. Without it the mascot is decorative and hidden.
+  label?: string;
+  class?: string;
+}
+
+const { pose = "idle", size = "160px", label, class: className } = Astro.props;
+
+// Gradient ids must be unique when several mascots share a page.
+const count = (Astro.locals.mascotCount ?? 0) + 1;
+Astro.locals.mascotCount = count;
+const uid = `mascot-${count}`;
+---
+
+<svg
+  class:list={["mascot", className]}
+  data-pose={pose}
+  viewBox="0 0 1024 1370"
+  style={`--mascot-size: ${size}`}
+  role={label ? "img" : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : "true"}
+>
+  <defs>
+    <radialGradient id={`${uid}-body`} cx="0.36" cy="0.32" r="0.8">
+      <stop offset="0" style="stop-color: var(--mascot-light)"></stop>
+      <stop offset="0.55" style="stop-color: var(--mascot-body)"></stop>
+      <stop offset="1" style="stop-color: var(--mascot-edge)"></stop>
+    </radialGradient>
+    <radialGradient id={`${uid}-badge`} cx="0.4" cy="0.35" r="0.75">
+      <stop offset="0" style="stop-color: var(--mascot-shine)"></stop>
+      <stop offset="1" style="stop-color: var(--mascot-badge)"></stop>
+    </radialGradient>
+  </defs>
+
+  <ellipse class="m-ground" cx="512" cy="1314" rx="440" ry="50"></ellipse>
+
+  <g class="m-figure">
+    <g class="m-arms">
+      {
+        ARMS.map((arm, i) => (
+          <path
+            class:list={["m-arm", `m-arm-${i + 1}`, `m-arm-${arm.tone}`]}
+            d={arm.d}
+            style={`transform-origin: ${arm.root[0]}px ${arm.root[1]}px`}
+          />
+        ))
+      }
+      <path
+        class="m-arm m-arm-light m-arm-wave"
+        d={WAVE_ARM.d}
+        style={`transform-origin: ${WAVE_ARM.root[0]}px ${WAVE_ARM.root[1]}px`}
+      />
+    </g>
+
+    <g class="m-body">
+      <path class="m-rim" d={DOME} transform="translate(8 28)"></path>
+      <path d={DOME} fill={`url(#${uid}-body)`}></path>
+      <ellipse class="m-gloss" cx="300" cy="205" rx="135" ry="62" transform="rotate(-24 300 205)"></ellipse>
+      <circle class="m-bubble" cx="786" cy="326" r="40"></circle>
+      <circle class="m-bubble" cx="847" cy="450" r="22"></circle>
+    </g>
+
+    <g class="m-badge">
+      <circle class="m-badge-shadow" cx="520" cy="330" r="98"></circle>
+      <circle cx="512" cy="318" r="96" fill={`url(#${uid}-badge)`}></circle>
+      <circle class="m-badge-ring" cx="512" cy="318" r="80"></circle>
+      <text class="m-badge-ink" x="512" y="356" text-anchor="middle">Ω</text>
+    </g>
+
+    <g class="m-face">
+      <g class="m-eyes">
+        {
+          EYES.map((eye) => (
+            <g class="m-eye" style={`transform-origin: ${eye.cx}px ${eye.cy}px`}>
+              <ellipse class="m-pupil" cx={eye.cx} cy={eye.cy} rx="48" ry="62" />
+              <circle class="m-shine" cx={eye.cx + 18} cy={eye.cy - 20} r="20" />
+              <circle class="m-shine-dim" cx={eye.cx - 16} cy={eye.cy + 22} r="8" />
+            </g>
+          ))
+        }
+      </g>
+      <g class="m-eyes-happy">
+        {EYES.map((eye) => <path d={`M${eye.cx - 44} ${eye.cy + 10} Q${eye.cx} ${eye.cy - 50} ${eye.cx + 44} ${eye.cy + 10}`} />)}
+      </g>
+      <ellipse class="m-cheek" cx="265" cy="715" rx="58" ry="35"></ellipse>
+      <ellipse class="m-cheek" cx="759" cy="715" rx="58" ry="35"></ellipse>
+      <g class="m-mouth">
+        <path class="m-mouth-open" d="M463 714 L561 714 Q545 755 512 770 Q479 755 463 714 Z"></path>
+        <path class="m-tongue" d="M486 768 Q512 748 538 768 Q512 782 486 768 Z"></path>
+      </g>
+    </g>
+  </g>
+</svg>
