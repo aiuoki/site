@@ -65,24 +65,28 @@ Web de apuntes interactivos de matemáticas. Astro (salida estática) + islas de
    ├─ i18n/
    │  ├─ ui/<lang>.json       textos de la interfaz (9 idiomas, mismas claves que es.json)
    │  ├─ locales.ts           lista de idiomas y metadatos (sin dependencias)
-   │  └─ index.ts             t(), idioma por defecto y fallback de contenido
+   │  ├─ topics/<tema>/       textos propios de un tema que no está en los 9 idiomas (complejos: es, en)
+   │  └─ index.ts             t(), fallback de contenido y contentLang() (idioma del contenido de la página)
    ├─ content.config.ts       esquema de las colecciones (Astro 7 lo exige aquí)
    ├─ content/<asignatura>/<tema>/<lang>.mdx   apuntes de cada tema
    ├─ demos/
    │  ├─ types.ts             forma de una demostración (fórmulas y textos)
    │  ├─ index.ts             demosForTopic(): demostraciones de cada página
-   │  └─ <tema>/              formulas.ts (LaTeX por paso + figuras) y text/<lang>.json
+   │  └─ <tema>/              fórmulas en LaTeX por paso + figuras (trig/formulas.ts, complex/basics.ts y polar.ts) y text/<lang>.json
    ├─ lib/                    lógica pura y probada, sin DOM:
    │                          trig.ts, format.ts, plot.ts (lienzo 700×700), trig-checks.ts (comprobaciones en vivo),
    │                          notation.ts + katex.ts (fórmulas por idioma), remark-localized-math.ts,
-   │                          figure.ts, theme-css.ts, paths.ts, text.ts
+   │                          expr.ts (parser seguro de números con π y √), complex.ts (aritmética),
+   │                          complex-format.ts (formas exactas), complex-panel.ts, complex-checks.ts, complex-plot.ts,
+   │                          figure.ts, complex-figure.ts, theme-css.ts, paths.ts, text.ts
    ├─ components/
    │  ├─ layout/              Header, Footer, SubjectNav, TopicTabs, LangSwitch, ThemeToggle, Support, DonateButton, Flag, Soon
    │  ├─ ui/                  Card, Formula, DemoDialog(s) (Astro); Chip, Segmented (Svelte)
-   │  ├─ guide/               bloques de las guías MDX (Section, IdCard, RatioCard, Steps, Uses...); index.ts los registra
+   │  ├─ guide/               bloques de las guías MDX (Section, IdCard, DemoCard, RatioCard, Steps, Uses, FormsTable...); index.ts los registra
    │  ├─ figures/             figuras SVG de las demostraciones (una por archivo, parts/ compartidas, index.ts registro)
    │  ├─ interactive/         TopicApp.astro elige la isla del tema; trig/: UnitCircle, AngleSum, paneles,
-   │  │                       LiveCheck, QuadrantGrid, NotableTable y state.svelte.ts (estado compartido entre islas)
+   │  │                       LiveCheck, QuadrantGrid, NotableTable y state.svelte.ts (estado compartido entre islas);
+   │  │                       complex/: ComplexPlane (plano, panel, formas), ComplexLive, LoadExample, examples.ts
    │  └─ mascot/              la mascota
    ├─ layouts/BaseLayout.astro   html, head, variables del tema, fuentes
    └─ pages/
@@ -96,6 +100,8 @@ Web de apuntes interactivos de matemáticas. Astro (salida estática) + islas de
 
 - Los tests (`*.test.ts`, Vitest) van junto al archivo que prueban. `npm test` los ejecuta.
 - Fórmulas: LaTeX renderizado con KaTeX al compilar (`Formula.astro` o `$...$` en MDX). Usa las macros `\Sin \Cos \Tan \Cot \Sec \Csc` y `\Hyp \Opp \Adj \Rad` (se traducen por idioma desde `notation` en los JSON), `\hl{...}` para resaltar y `\degree` para los grados (no `^\circ`, que con STIX sale diminuto).
+- Contenido en otro idioma (fallback): la página fija `Astro.locals.contentLang`; los componentes usan `contentLang(Astro)` para que fórmulas, figuras y etiquetas sigan al texto, no a la página.
+- Las palabras propias de un tema dentro de fórmulas se escriben `\W{clave}` y salen de `words` en `i18n/topics/<tema>`.
 - Las islas reciben los textos por props (`dict.trig`, `notation`, `locale`); nunca importan `src/i18n/index.ts` en el cliente (cargaría los 9 idiomas). Usa `src/lib/text.ts` para interpolar.
 - Variables CSS del tema: cada token de `theme.ts` se convierte en `--token` en kebab-case (`surface2` → `--surface-2`). Alias de complejos: `--z`, `--w`, `--result`, `--re`, `--im`.
 
