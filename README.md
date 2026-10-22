@@ -36,4 +36,4 @@ Cloudflare Pages, desde la rama `main`:
 - **KaTeX** (`remark-math` + `rehype-katex` vía `@astrojs/markdown-remark`): las fórmulas se convierten a HTML al compilar, sin JavaScript en el navegador.
 - **i18n nativo de Astro**: rutas `/es/`, `/en/`, etc. La raíz redirige al idioma guardado o a español.
 - **Fontsource**: las fuentes se sirven desde el propio dominio, sin Google Fonts (más privacidad y sin dependencias externas).
-- **Cloudflare Pages**: aloja `dist/` en su CDN y despliega solo con cada push a `main`.
+- **Cloudflare Pages**: aloja `dist/` en su CDN y despliega automáticamente con cada push a `main`.
