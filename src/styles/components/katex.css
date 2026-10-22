@@ -20,6 +20,14 @@
   font-family: var(--f-math);
 }
 
+/* Negated relations (≠, ∉...) overlay a combining slash that only lines up
+   with KaTeX's own font metrics, not with STIX. */
+.katex .rlap,
+.katex .rlap * {
+  font-family: KaTeX_Main, "Times New Roman", serif;
+  font-style: normal;
+}
+
 .katex .k,
 .katex .k * {
   color: var(--g);
