@@ -26,5 +26,81 @@
     "trigonometria": "Un angle",
     "suma-angulos": "Suma d'angles",
     "complejos": "Nombres complexos"
+  },
+  "notation": {
+    "sin": "sin",
+    "cos": "cos",
+    "tan": "tg",
+    "cot": "cotg",
+    "sec": "sec",
+    "csc": "cosec",
+    "hyp": "hipotenusa",
+    "opp": "catet oposat",
+    "adj": "catet contigu",
+    "rad": "rad"
+  },
+  "demo": {
+    "open": "Veure demostració",
+    "why": "Veure per què",
+    "where": "Veure d'on surt",
+    "title": "Demostració",
+    "use": "Per a què serveix",
+    "close": "Tancar"
+  },
+  "trig": {
+    "angle": "Angle",
+    "deg": "Graus",
+    "radians": "Radiants",
+    "hintDeg": "De 0° a 360°. També pots escriure en radiants amb π, per exemple <span class=\"mr\">π/3</span>.",
+    "hintRad": "De <span class=\"mr\">−π</span> a <span class=\"mr\">π</span>. Escriu amb π (<span class=\"mr\">2π/3</span>, <span class=\"mr\">-pi/4</span>) o en decimal.",
+    "values": "Valors",
+    "labels": "Etiquetes",
+    "snap": "Imant als notables",
+    "proj": "sin i cos del resultat",
+    "undef": "no definida",
+    "quadrant": "Quadrant",
+    "ref": "angle de referència",
+    "onAxis": "Sobre un eix",
+    "result": "Resultat",
+    "withFormulas": "Amb les fórmules de suma",
+    "noExist": "no existeix",
+    "matches": "coincideix amb {x}",
+    "equiv": "{a} = {b}, que equival a {c}",
+    "tanNo": "tg {x} no existeix, així que aquesta fórmula no es pot fer servir.",
+    "useSinCos": "Fes servir sin / cos:",
+    "denom0": "El denominador val 0: tg({g}) no existeix",
+    "luck": "(aquí coincideixen per casualitat)",
+    "direct": "directe",
+    "legB": "β (l'arc mostra el gir des d'α)",
+    "thDeg": "Graus",
+    "thRad": "Radiants",
+    "whereFrom": "D'on surten aquests valors? →",
+    "live": {
+      "r1": "sin θ = 0: cosec θ no existeix amb aquest angle.",
+      "r2": "cos θ = 0: sec θ no existeix amb aquest angle.",
+      "r3": "tg θ o cotg θ no existeix amb aquest angle.",
+      "q1": "cos θ = 0: no es pot dividir, tg θ no existeix.",
+      "q2": "sin θ = 0: no es pot dividir, cotg θ no existeix.",
+      "p2": "Amb aquest angle tg i sec no existeixen.",
+      "p3": "Amb aquest angle cotg i cosec no existeixen.",
+      "noTanA": "tg α no existeix",
+      "noTan2A": "tg 2α no existeix"
+    },
+    "names": {
+      "sin": "Sinus",
+      "cos": "Cosinus",
+      "tan": "Tangent",
+      "cot": "Cotangent",
+      "sec": "Secant",
+      "csc": "Cosecant"
+    },
+    "def": {
+      "sin": "y de P · catet oposat",
+      "cos": "x de P · catet contigu",
+      "tan": "sin / cos",
+      "cot": "cos / sin = 1 / tg",
+      "sec": "1 / cos",
+      "csc": "1 / sin"
+    }
   }
 }

@@ -7,9 +7,12 @@ import it from "./ui/it.json";
 import pt from "./ui/pt.json";
 import ro from "./ui/ro.json";
 import ru from "./ui/ru.json";
-import { defaultLocale, type Locale } from "./locales";
+import { defaultLocale, isLocale, type Locale } from "./locales";
+import type { Notation } from "../lib/notation";
+import { interpolate, type Vars } from "../lib/text";
 
 export * from "./locales";
+export { interpolate } from "../lib/text";
 
 export type UiDict = typeof es;
 
@@ -18,7 +21,6 @@ type Leaves<T, P extends string = ""> = {
 }[keyof T & string];
 
 export type UiKey = Leaves<UiDict>;
-type Vars = Record<string, string | number>;
 
 export const dictionaries: Record<Locale, unknown> = { es, ca, en, fr, de, it, pt, ro, ru };
 
@@ -29,12 +31,6 @@ export function lookup(dict: unknown, key: string): string | undefined {
     node = (node as Record<string, unknown>)[part];
   }
   return typeof node === "string" ? node : undefined;
-}
-
-export function interpolate(text: string, vars: Vars = {}): string {
-  return text.replace(/\{(\w+)\}/g, (match, name: string) =>
-    name in vars ? String(vars[name]) : match,
-  );
 }
 
 export function t(lang: Locale, key: UiKey, vars?: Vars): string {
@@ -58,4 +54,13 @@ export function contentLocale(
   const chain = contentFallbacks[lang] ?? defaultContentFallback;
   const locale = chain.find((l) => available.includes(l)) ?? available[0] ?? defaultLocale;
   return { locale, fallback: true };
+}
+
+export function notationFor(lang: Locale): Notation {
+  return (dictionaries[lang] as UiDict).notation;
+}
+
+// Astro.currentLocale is a plain string; narrow it for components.
+export function pageLocale(current: string | undefined): Locale {
+  return isLocale(current) ? current : defaultLocale;
 }

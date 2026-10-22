@@ -26,5 +26,81 @@
     "trigonometria": "Un unghi",
     "suma-angulos": "Suma unghiurilor",
     "complejos": "Numere complexe"
+  },
+  "notation": {
+    "sin": "sin",
+    "cos": "cos",
+    "tan": "tg",
+    "cot": "ctg",
+    "sec": "sec",
+    "csc": "cosec",
+    "hyp": "ipotenuză",
+    "opp": "cateta opusă",
+    "adj": "cateta alăturată",
+    "rad": "rad"
+  },
+  "demo": {
+    "open": "Vezi demonstrația",
+    "why": "Vezi de ce",
+    "where": "Vezi de unde vine",
+    "title": "Demonstrație",
+    "use": "La ce folosește",
+    "close": "Închide"
+  },
+  "trig": {
+    "angle": "Unghi",
+    "deg": "Grade",
+    "radians": "Radiani",
+    "hintDeg": "De la 0° la 360°. Poți scrie și în radiani cu π, de exemplu <span class=\"mr\">π/3</span>.",
+    "hintRad": "De la <span class=\"mr\">−π</span> la <span class=\"mr\">π</span>. Scrie cu π (<span class=\"mr\">2π/3</span>, <span class=\"mr\">-pi/4</span>) sau ca număr zecimal.",
+    "values": "Valori",
+    "labels": "Etichete",
+    "snap": "Magnet la unghiurile remarcabile",
+    "proj": "sin și cos ale rezultatului",
+    "undef": "nedefinită",
+    "quadrant": "Cadranul",
+    "ref": "unghi de referință",
+    "onAxis": "Pe o axă",
+    "result": "Rezultat",
+    "withFormulas": "Cu formulele de adunare",
+    "noExist": "nu există",
+    "matches": "coincide cu {x}",
+    "equiv": "{a} = {b}, adică {c}",
+    "tanNo": "tg {x} nu există, deci formula nu se poate folosi.",
+    "useSinCos": "Folosește sin / cos:",
+    "denom0": "Numitorul este 0: tg({g}) nu există",
+    "luck": "(aici coincid din întâmplare)",
+    "direct": "direct",
+    "legB": "β (arcul arată rotația pornind de la α)",
+    "thDeg": "Grade",
+    "thRad": "Radiani",
+    "whereFrom": "De unde vin aceste valori? →",
+    "live": {
+      "r1": "sin θ = 0: cosec θ nu există pentru acest unghi.",
+      "r2": "cos θ = 0: sec θ nu există pentru acest unghi.",
+      "r3": "tg θ sau ctg θ nu există pentru acest unghi.",
+      "q1": "cos θ = 0: nu se poate împărți, tg θ nu există.",
+      "q2": "sin θ = 0: nu se poate împărți, ctg θ nu există.",
+      "p2": "Pentru acest unghi tg și sec nu există.",
+      "p3": "Pentru acest unghi ctg și cosec nu există.",
+      "noTanA": "tg α nu există",
+      "noTan2A": "tg 2α nu există"
+    },
+    "names": {
+      "sin": "Sinus",
+      "cos": "Cosinus",
+      "tan": "Tangentă",
+      "cot": "Cotangentă",
+      "sec": "Secantă",
+      "csc": "Cosecantă"
+    },
+    "def": {
+      "sin": "y al lui P · cateta opusă",
+      "cos": "x al lui P · cateta alăturată",
+      "tan": "sin / cos",
+      "cot": "cos / sin = 1 / tg",
+      "sec": "1 / cos",
+      "csc": "1 / sin"
+    }
   }
 }

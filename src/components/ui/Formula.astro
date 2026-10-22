@@ -1,0 +1,16 @@
+---
+import { notationFor, pageLocale } from "../../i18n";
+import { renderTex } from "../../lib/katex";
+
+interface Props {
+  // LaTeX with notation macros (\Sin, \Hyp...), rendered at build time.
+  tex: string;
+  display?: boolean;
+  class?: string;
+}
+
+const { tex, display = false, class: className } = Astro.props;
+const html = renderTex(tex, notationFor(pageLocale(Astro.currentLocale)), display);
+---
+
+<span class:list={["formula", className]} set:html={html} />

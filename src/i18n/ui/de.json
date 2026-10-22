@@ -26,5 +26,81 @@
     "trigonometria": "Ein Winkel",
     "suma-angulos": "Winkelsumme",
     "complejos": "Komplexe Zahlen"
+  },
+  "notation": {
+    "sin": "sin",
+    "cos": "cos",
+    "tan": "tan",
+    "cot": "cot",
+    "sec": "sec",
+    "csc": "csc",
+    "hyp": "Hypotenuse",
+    "opp": "Gegenkathete",
+    "adj": "Ankathete",
+    "rad": "rad"
+  },
+  "demo": {
+    "open": "Beweis ansehen",
+    "why": "Warum?",
+    "where": "Woher kommt das?",
+    "title": "Beweis",
+    "use": "Wofür man es braucht",
+    "close": "Schließen"
+  },
+  "trig": {
+    "angle": "Winkel",
+    "deg": "Grad",
+    "radians": "Bogenmaß",
+    "hintDeg": "Von 0° bis 360°. Du kannst auch im Bogenmaß mit π schreiben, z. B. <span class=\"mr\">π/3</span>.",
+    "hintRad": "Von <span class=\"mr\">−π</span> bis <span class=\"mr\">π</span>. Schreibe mit π (<span class=\"mr\">2π/3</span>, <span class=\"mr\">-pi/4</span>) oder als Dezimalzahl.",
+    "values": "Werte",
+    "labels": "Beschriftungen",
+    "snap": "An besondere Winkel einrasten",
+    "proj": "sin und cos des Ergebnisses",
+    "undef": "nicht definiert",
+    "quadrant": "Quadrant",
+    "ref": "Bezugswinkel",
+    "onAxis": "Auf einer Achse",
+    "result": "Ergebnis",
+    "withFormulas": "Mit den Additionstheoremen",
+    "noExist": "nicht definiert",
+    "matches": "stimmt mit {x} überein",
+    "equiv": "{a} = {b}, das entspricht {c}",
+    "tanNo": "tan {x} ist nicht definiert, also lässt sich diese Formel nicht anwenden.",
+    "useSinCos": "Nutze sin / cos:",
+    "denom0": "Der Nenner ist 0: tan({g}) ist nicht definiert",
+    "luck": "(hier stimmen sie zufällig überein)",
+    "direct": "direkt",
+    "legB": "β (der Bogen zeigt die Drehung ab α)",
+    "thDeg": "Grad",
+    "thRad": "Bogenmaß",
+    "whereFrom": "Woher kommen diese Werte? →",
+    "live": {
+      "r1": "sin θ = 0: csc θ ist für diesen Winkel nicht definiert.",
+      "r2": "cos θ = 0: sec θ ist für diesen Winkel nicht definiert.",
+      "r3": "tan θ oder cot θ ist für diesen Winkel nicht definiert.",
+      "q1": "cos θ = 0: Division nicht möglich, tan θ ist nicht definiert.",
+      "q2": "sin θ = 0: Division nicht möglich, cot θ ist nicht definiert.",
+      "p2": "Für diesen Winkel sind tan und sec nicht definiert.",
+      "p3": "Für diesen Winkel sind cot und csc nicht definiert.",
+      "noTanA": "tan α ist nicht definiert",
+      "noTan2A": "tan 2α ist nicht definiert"
+    },
+    "names": {
+      "sin": "Sinus",
+      "cos": "Kosinus",
+      "tan": "Tangens",
+      "cot": "Kotangens",
+      "sec": "Sekans",
+      "csc": "Kosekans"
+    },
+    "def": {
+      "sin": "y von P · Gegenkathete",
+      "cos": "x von P · Ankathete",
+      "tan": "sin / cos",
+      "cot": "cos / sin = 1 / tan",
+      "sec": "1 / cos",
+      "csc": "1 / sin"
+    }
   }
 }

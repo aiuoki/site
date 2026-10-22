@@ -26,5 +26,81 @@
     "trigonometria": "Un angle",
     "suma-angulos": "Somme d'angles",
     "complejos": "Nombres complexes"
+  },
+  "notation": {
+    "sin": "sin",
+    "cos": "cos",
+    "tan": "tan",
+    "cot": "cotan",
+    "sec": "sec",
+    "csc": "cosec",
+    "hyp": "hypoténuse",
+    "opp": "côté opposé",
+    "adj": "côté adjacent",
+    "rad": "rad"
+  },
+  "demo": {
+    "open": "Voir la démonstration",
+    "why": "Voir pourquoi",
+    "where": "Voir d'où ça vient",
+    "title": "Démonstration",
+    "use": "À quoi ça sert",
+    "close": "Fermer"
+  },
+  "trig": {
+    "angle": "Angle",
+    "deg": "Degrés",
+    "radians": "Radians",
+    "hintDeg": "De 0° à 360°. Tu peux aussi écrire en radians avec π, par exemple <span class=\"mr\">π/3</span>.",
+    "hintRad": "De <span class=\"mr\">−π</span> à <span class=\"mr\">π</span>. Écris avec π (<span class=\"mr\">2π/3</span>, <span class=\"mr\">-pi/4</span>) ou en décimal.",
+    "values": "Valeurs",
+    "labels": "Étiquettes",
+    "snap": "Aimant aux angles remarquables",
+    "proj": "sin et cos du résultat",
+    "undef": "non définie",
+    "quadrant": "Quadrant",
+    "ref": "angle de référence",
+    "onAxis": "Sur un axe",
+    "result": "Résultat",
+    "withFormulas": "Avec les formules d'addition",
+    "noExist": "n'existe pas",
+    "matches": "égal à {x}",
+    "equiv": "{a} = {b}, ce qui équivaut à {c}",
+    "tanNo": "tan {x} n'existe pas, donc cette formule ne s'applique pas.",
+    "useSinCos": "Utilise sin / cos :",
+    "denom0": "Le dénominateur vaut 0 : tan({g}) n'existe pas",
+    "luck": "(ici ils coïncident par hasard)",
+    "direct": "direct",
+    "legB": "β (l'arc montre la rotation depuis α)",
+    "thDeg": "Degrés",
+    "thRad": "Radians",
+    "whereFrom": "D'où viennent ces valeurs ? →",
+    "live": {
+      "r1": "sin θ = 0 : cosec θ n'existe pas pour cet angle.",
+      "r2": "cos θ = 0 : sec θ n'existe pas pour cet angle.",
+      "r3": "tan θ ou cotan θ n'existe pas pour cet angle.",
+      "q1": "cos θ = 0 : division impossible, tan θ n'existe pas.",
+      "q2": "sin θ = 0 : division impossible, cotan θ n'existe pas.",
+      "p2": "Pour cet angle, tan et sec n'existent pas.",
+      "p3": "Pour cet angle, cotan et cosec n'existent pas.",
+      "noTanA": "tan α n'existe pas",
+      "noTan2A": "tan 2α n'existe pas"
+    },
+    "names": {
+      "sin": "Sinus",
+      "cos": "Cosinus",
+      "tan": "Tangente",
+      "cot": "Cotangente",
+      "sec": "Sécante",
+      "csc": "Cosécante"
+    },
+    "def": {
+      "sin": "y de P · côté opposé",
+      "cos": "x de P · côté adjacent",
+      "tan": "sin / cos",
+      "cot": "cos / sin = 1 / tan",
+      "sec": "1 / cos",
+      "csc": "1 / sin"
+    }
   }
 }

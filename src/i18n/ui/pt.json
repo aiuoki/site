@@ -26,5 +26,81 @@
     "trigonometria": "Um ângulo",
     "suma-angulos": "Soma de ângulos",
     "complejos": "Números complexos"
+  },
+  "notation": {
+    "sin": "sen",
+    "cos": "cos",
+    "tan": "tg",
+    "cot": "cotg",
+    "sec": "sec",
+    "csc": "cosec",
+    "hyp": "hipotenusa",
+    "opp": "cateto oposto",
+    "adj": "cateto adjacente",
+    "rad": "rad"
+  },
+  "demo": {
+    "open": "Ver demonstração",
+    "why": "Ver porquê",
+    "where": "Ver de onde vem",
+    "title": "Demonstração",
+    "use": "Para que serve",
+    "close": "Fechar"
+  },
+  "trig": {
+    "angle": "Ângulo",
+    "deg": "Graus",
+    "radians": "Radianos",
+    "hintDeg": "De 0° a 360°. Também podes escrever em radianos com π, por exemplo <span class=\"mr\">π/3</span>.",
+    "hintRad": "De <span class=\"mr\">−π</span> a <span class=\"mr\">π</span>. Escreve com π (<span class=\"mr\">2π/3</span>, <span class=\"mr\">-pi/4</span>) ou em decimal.",
+    "values": "Valores",
+    "labels": "Etiquetas",
+    "snap": "Íman nos ângulos notáveis",
+    "proj": "sen e cos do resultado",
+    "undef": "não definida",
+    "quadrant": "Quadrante",
+    "ref": "ângulo de referência",
+    "onAxis": "Sobre um eixo",
+    "result": "Resultado",
+    "withFormulas": "Com as fórmulas da soma",
+    "noExist": "não existe",
+    "matches": "coincide com {x}",
+    "equiv": "{a} = {b}, que equivale a {c}",
+    "tanNo": "tg {x} não existe, por isso esta fórmula não se pode usar.",
+    "useSinCos": "Usa sen / cos:",
+    "denom0": "O denominador vale 0: tg({g}) não existe",
+    "luck": "(aqui coincidem por acaso)",
+    "direct": "direto",
+    "legB": "β (o arco mostra o giro a partir de α)",
+    "thDeg": "Graus",
+    "thRad": "Radianos",
+    "whereFrom": "De onde vêm estes valores? →",
+    "live": {
+      "r1": "sen θ = 0: cosec θ não existe para este ângulo.",
+      "r2": "cos θ = 0: sec θ não existe para este ângulo.",
+      "r3": "tg θ ou cotg θ não existe para este ângulo.",
+      "q1": "cos θ = 0: não se pode dividir, tg θ não existe.",
+      "q2": "sen θ = 0: não se pode dividir, cotg θ não existe.",
+      "p2": "Para este ângulo tg e sec não existem.",
+      "p3": "Para este ângulo cotg e cosec não existem.",
+      "noTanA": "tg α não existe",
+      "noTan2A": "tg 2α não existe"
+    },
+    "names": {
+      "sin": "Seno",
+      "cos": "Cosseno",
+      "tan": "Tangente",
+      "cot": "Cotangente",
+      "sec": "Secante",
+      "csc": "Cossecante"
+    },
+    "def": {
+      "sin": "y de P · cateto oposto",
+      "cos": "x de P · cateto adjacente",
+      "tan": "sen / cos",
+      "cot": "cos / sen = 1 / tg",
+      "sec": "1 / cos",
+      "csc": "1 / sen"
+    }
   }
 }

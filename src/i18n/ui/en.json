@@ -26,5 +26,81 @@
     "trigonometria": "One angle",
     "suma-angulos": "Angle sum",
     "complejos": "Complex numbers"
+  },
+  "notation": {
+    "sin": "sin",
+    "cos": "cos",
+    "tan": "tan",
+    "cot": "cot",
+    "sec": "sec",
+    "csc": "csc",
+    "hyp": "hypotenuse",
+    "opp": "opposite",
+    "adj": "adjacent",
+    "rad": "rad"
+  },
+  "demo": {
+    "open": "See proof",
+    "why": "See why",
+    "where": "See where it comes from",
+    "title": "Proof",
+    "use": "What it's for",
+    "close": "Close"
+  },
+  "trig": {
+    "angle": "Angle",
+    "deg": "Degrees",
+    "radians": "Radians",
+    "hintDeg": "From 0° to 360°. You can also type radians using π, e.g. <span class=\"mr\">π/3</span>.",
+    "hintRad": "From <span class=\"mr\">−π</span> to <span class=\"mr\">π</span>. Type with π (<span class=\"mr\">2π/3</span>, <span class=\"mr\">-pi/4</span>) or as a decimal.",
+    "values": "Values",
+    "labels": "Labels",
+    "snap": "Snap to key angles",
+    "proj": "sin and cos of the result",
+    "undef": "undefined",
+    "quadrant": "Quadrant",
+    "ref": "reference angle",
+    "onAxis": "On an axis",
+    "result": "Result",
+    "withFormulas": "Using the sum formulas",
+    "noExist": "undefined",
+    "matches": "matches {x}",
+    "equiv": "{a} = {b}, which is equivalent to {c}",
+    "tanNo": "tan {x} is undefined, so this formula can't be used.",
+    "useSinCos": "Use sin / cos:",
+    "denom0": "The denominator is 0: tan({g}) is undefined",
+    "luck": "(here they match by coincidence)",
+    "direct": "direct",
+    "legB": "β (the arc shows the turn from α)",
+    "thDeg": "Degrees",
+    "thRad": "Radians",
+    "whereFrom": "Where do these values come from? →",
+    "live": {
+      "r1": "sin θ = 0: csc θ is undefined for this angle.",
+      "r2": "cos θ = 0: sec θ is undefined for this angle.",
+      "r3": "tan θ or cot θ is undefined for this angle.",
+      "q1": "cos θ = 0: can't divide, tan θ is undefined.",
+      "q2": "sin θ = 0: can't divide, cot θ is undefined.",
+      "p2": "For this angle tan and sec are undefined.",
+      "p3": "For this angle cot and csc are undefined.",
+      "noTanA": "tan α is undefined",
+      "noTan2A": "tan 2α is undefined"
+    },
+    "names": {
+      "sin": "Sine",
+      "cos": "Cosine",
+      "tan": "Tangent",
+      "cot": "Cotangent",
+      "sec": "Secant",
+      "csc": "Cosecant"
+    },
+    "def": {
+      "sin": "y of P · opposite side",
+      "cos": "x of P · adjacent side",
+      "tan": "sin / cos",
+      "cot": "cos / sin = 1 / tan",
+      "sec": "1 / cos",
+      "csc": "1 / sin"
+    }
   }
 }

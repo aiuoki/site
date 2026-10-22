@@ -1,0 +1,40 @@
+/* KaTeX with the site formula font. KaTeX keeps its own fonts only for
+   large delimiters and symbols that STIX Two Text does not cover. */
+@import "katex/dist/katex.min.css";
+
+.katex {
+  font-size: 1.08em;
+  font-family: var(--f-math);
+}
+
+.katex .mathnormal,
+.katex .mathit {
+  font-family: var(--f-math);
+  font-style: italic;
+}
+
+.katex .mathrm,
+.katex .textrm,
+.katex .mop,
+.katex .mord.text {
+  font-family: var(--f-math);
+}
+
+.katex .k,
+.katex .k * {
+  color: var(--g);
+}
+
+/* Formulas never force a horizontal page scroll. */
+.formula {
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  vertical-align: middle;
+}
+
+.formula::-webkit-scrollbar {
+  display: none;
+}
