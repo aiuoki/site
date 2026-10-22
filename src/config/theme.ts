@@ -7,14 +7,14 @@ export const themes = {
     fg: "#e9edf4", muted: "#8a94a8", axis: "#c9d0dc", grid: "#1b212c", handle: "#ffffff",
     sin: "#ff9d2e", cos: "#a07bff", tan: "#ffd84a", cot: "#2fb3e3", sec: "#ff4d79", csc: "#a6d63a",
     a: "#ff8a3d", b: "#3fd0c0", g: "#ff5cb0",
-    coffee: "#FFDD00", coffeeFg: "#1b1a12",
+    coffee: "#FFDD00", coffeeFg: "#1b1a12", shadow: "#00000047",
   },
   light: {
     bg: "#eef5f1", surface: "#ffffff", surface2: "#e5efe9", line: "#d1dcd6",
     fg: "#13201b", muted: "#53625b", axis: "#26332d", grid: "#dfe8e3", handle: "#13201b",
     sin: "#d97000", cos: "#6c3ef0", tan: "#b58c00", cot: "#0a85b8", sec: "#dc1f55", csc: "#4f8f00",
     a: "#d4600f", b: "#0b8f82", g: "#c81d7a",
-    coffee: "#FFDD00", coffeeFg: "#1b1a12",
+    coffee: "#FFDD00", coffeeFg: "#1b1a12", shadow: "#00000047",
   },
 } as const;
 

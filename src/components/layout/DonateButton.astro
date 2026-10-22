@@ -1,0 +1,81 @@
+---
+import { site } from "../../config/site";
+import { useTranslations, type Locale } from "../../i18n";
+
+interface Props {
+  lang: Locale;
+  // Compact: hides the label on very narrow screens (header).
+  compact?: boolean;
+}
+
+const { lang, compact = false } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<a class:list={["coffee-btn", { compact }]} href={site.donateUrl} target="_blank" rel="noopener">
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z"></path>
+    <path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17"></path>
+    <path d="M8 3.5c0 1 1 1.5 1 2.5M12 3.5c0 1 1 1.5 1 2.5"></path>
+  </svg>
+  <span>{t("layout.donate")}</span>
+</a>
+
+<style>
+  .coffee-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 44px;
+    padding: 0 16px 0 13px;
+    border-radius: 999px;
+    background: var(--coffee);
+    color: var(--coffee-fg);
+    font: 700 14px var(--f-body);
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 0 1px 0 color-mix(in srgb, var(--shadow) 30%, transparent);
+    transition:
+      transform 0.15s,
+      filter 0.15s;
+  }
+
+  .coffee-btn svg {
+    width: 20px;
+    height: 20px;
+    flex: none;
+  }
+
+  .coffee-btn:hover {
+    filter: brightness(1.04);
+    transform: translateY(-1px);
+  }
+
+  .coffee-btn:focus-visible {
+    outline: 2px solid var(--fg);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 420px) {
+    .compact span {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .compact {
+      padding: 0 12px;
+    }
+  }
+</style>

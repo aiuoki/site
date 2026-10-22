@@ -10,20 +10,33 @@ import "@fontsource/ibm-plex-mono/400.css";
 import "@fontsource/ibm-plex-mono/500.css";
 import "@fontsource/ibm-plex-mono/600.css";
 import "../styles/global.css";
+import Footer from "../components/layout/Footer.astro";
+import Header from "../components/layout/Header.astro";
+import SubjectNav from "../components/layout/SubjectNav.astro";
+import Support from "../components/layout/Support.astro";
+import TopicTabs from "../components/layout/TopicTabs.astro";
 import { aliases, themeStorageKey, themes } from "../config/theme";
-import { site } from "../config/site";
-import { localeMeta, type Locale } from "../i18n";
+import { site, type Subject } from "../config/site";
+import { localeMeta, locales, useTranslations, type Locale } from "../i18n";
 import { themeCss } from "../lib/theme-css";
+import { switchLocale } from "../lib/paths";
 
 interface Props {
   lang: Locale;
-  title: string;
+  eyebrow: string;
+  heading: string;
+  intro?: string;
   description?: string;
+  subject?: Subject;
+  topic?: string;
 }
 
-const { lang, title, description } = Astro.props;
+const { lang, eyebrow, heading, intro, description, subject, topic } = Astro.props;
+const t = useTranslations(lang);
+const title = `${heading} · ${t("site.title")}`;
 const css = themeCss(themes, aliases);
-const canonical = new URL(Astro.url.pathname, site.url);
+const path = Astro.url.pathname;
+const canonical = new URL(path, site.url);
 ---
 
 <!doctype html>
@@ -34,6 +47,7 @@ const canonical = new URL(Astro.url.pathname, site.url);
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
     <link rel="canonical" href={canonical} />
+    {locales.map((code) => <link rel="alternate" hreflang={code} href={new URL(switchLocale(path, code), site.url)} />)}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta property="og:locale" content={localeMeta[lang].bcp47.replace("-", "_")} />
     <style is:inline set:html={css} />
@@ -46,10 +60,38 @@ const canonical = new URL(Astro.url.pathname, site.url);
     </script>
   </head>
   <body>
-    <slot name="header" />
-    <main>
-      <slot />
-    </main>
-    <slot name="footer" />
+    <div class="page wrap">
+      <Header lang={lang} eyebrow={eyebrow} title={heading} intro={intro} />
+      <div class="navs">
+        <SubjectNav lang={lang} current={subject?.slug} />
+        {subject && subject.topics.length > 0 && <TopicTabs lang={lang} subject={subject} current={topic} />}
+      </div>
+      <main>
+        <slot />
+      </main>
+      <Support lang={lang} />
+      <Footer />
+    </div>
   </body>
 </html>
+
+<style>
+  .page {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    min-height: calc(100dvh - 50px);
+  }
+
+  .navs {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* Pushes the support block and the footer to the bottom on short pages. */
+  main {
+    flex: 1 0 auto;
+    min-width: 0;
+  }
+</style>

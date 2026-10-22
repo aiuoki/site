@@ -1,0 +1,52 @@
+---
+import DonateButton from "./DonateButton.astro";
+import { useTranslations, type Locale } from "../../i18n";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="support">
+  <div class="support-txt">
+    <b>{t("layout.supportTitle")}</b>
+    <p>{t("layout.supportText")}</p>
+  </div>
+  <DonateButton lang={lang} />
+</section>
+
+<style>
+  .support {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px 24px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 18px 20px;
+  }
+
+  .support-txt {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    max-width: 60ch;
+  }
+
+  b {
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: 20px;
+  }
+
+  p {
+    color: var(--muted);
+    font-size: 15px;
+  }
+</style>

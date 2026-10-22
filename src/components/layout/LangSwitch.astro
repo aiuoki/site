@@ -1,0 +1,180 @@
+---
+import Flag from "./Flag.astro";
+import { langStorageKey, localeMeta, locales, useTranslations, type Locale } from "../../i18n";
+import { switchLocale } from "../../lib/paths";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const path = Astro.url.pathname;
+---
+
+<div class="langwrap" data-lang-switch data-storage-key={langStorageKey}>
+  <button
+    type="button"
+    class="lang-btn"
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-label={`${t("layout.language")}: ${localeMeta[lang].name}`}
+  >
+    <Flag lang={lang} idSuffix="current" />
+    <span>{localeMeta[lang].code}</span>
+    <svg class="chev" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <path d="M2 3.5 L5 6.5 L8 3.5"></path>
+    </svg>
+  </button>
+  <div class="lang-menu" role="menu" hidden>
+    {
+      locales.map((code) => (
+        <a
+          role="menuitemradio"
+          aria-checked={code === lang ? "true" : "false"}
+          href={switchLocale(path, code)}
+          hreflang={code}
+          lang={code}
+          data-lang={code}
+        >
+          <Flag lang={code} idSuffix="menu" />
+          <span>{localeMeta[code].name}</span>
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  for (const wrap of document.querySelectorAll<HTMLElement>("[data-lang-switch]")) {
+    const button = wrap.querySelector("button")!;
+    const menu = wrap.querySelector<HTMLElement>(".lang-menu")!;
+    const items = () => [...menu.querySelectorAll<HTMLAnchorElement>("a")];
+
+    const close = () => {
+      menu.hidden = true;
+      button.setAttribute("aria-expanded", "false");
+    };
+
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const open = menu.hidden;
+      menu.hidden = !open;
+      button.setAttribute("aria-expanded", String(open));
+      if (open) menu.querySelector<HTMLElement>('[aria-checked="true"]')?.focus();
+    });
+
+    menu.addEventListener("click", (event) => {
+      const link = (event.target as HTMLElement).closest<HTMLAnchorElement>("[data-lang]");
+      if (!link) return;
+      try {
+        localStorage.setItem(wrap.dataset.storageKey ?? "", link.dataset.lang ?? "");
+      } catch {}
+    });
+
+    menu.addEventListener("keydown", (event) => {
+      const list = items();
+      const i = list.indexOf(document.activeElement as HTMLAnchorElement);
+      const step = event.key === "ArrowDown" ? 1 : event.key === "ArrowUp" ? -1 : 0;
+      if (!step) return;
+      event.preventDefault();
+      list[(i + step + list.length) % list.length]?.focus();
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!menu.hidden && !wrap.contains(event.target as Node)) close();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !menu.hidden) {
+        close();
+        button.focus();
+      }
+    });
+  }
+</script>
+
+<style>
+  .langwrap {
+    position: relative;
+  }
+
+  .lang-btn {
+    height: 44px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--fg);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 14px 0 12px;
+    cursor: pointer;
+    font: 600 13px var(--f-mono);
+    letter-spacing: 0.04em;
+  }
+
+  .lang-btn:hover {
+    border-color: var(--muted);
+  }
+
+  .chev {
+    width: 10px;
+    height: 10px;
+    opacity: 0.7;
+  }
+
+  .lang-menu {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    z-index: 30;
+    padding: 6px;
+    min-width: 190px;
+    max-height: min(70dvh, 420px);
+    overflow-y: auto;
+    scrollbar-width: none;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 18px 50px var(--shadow);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .lang-menu::-webkit-scrollbar {
+    display: none;
+  }
+
+  .lang-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 10px;
+    border-radius: 9px;
+    color: var(--fg);
+    font: 15px var(--f-body);
+    text-decoration: none;
+  }
+
+  .lang-menu a:hover,
+  .lang-menu a:focus-visible {
+    background: var(--surface-2);
+    outline: none;
+  }
+
+  .lang-menu a[aria-checked="true"] {
+    font-weight: 700;
+  }
+
+  .lang-menu a[aria-checked="true"]::after {
+    content: "";
+    margin-left: auto;
+    margin-right: 4px;
+    width: 5px;
+    height: 10px;
+    border: solid var(--muted);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) translateY(-2px);
+  }
+</style>

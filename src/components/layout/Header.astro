@@ -1,0 +1,74 @@
+---
+import DonateButton from "./DonateButton.astro";
+import LangSwitch from "./LangSwitch.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+import type { Locale } from "../../i18n";
+
+interface Props {
+  lang: Locale;
+  eyebrow: string;
+  title: string;
+  intro?: string;
+}
+
+const { lang, eyebrow, title, intro } = Astro.props;
+---
+
+<div class="top">
+  <header>
+    <span class="eyebrow">{eyebrow}</span>
+    <h1>{title}</h1>
+    {intro && <p set:html={intro} />}
+  </header>
+  <div class="tools">
+    <DonateButton lang={lang} compact />
+    <LangSwitch lang={lang} />
+    <ThemeToggle lang={lang} />
+  </div>
+</div>
+
+<style>
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 70ch;
+    min-width: 0;
+  }
+
+  h1 {
+    font-size: clamp(30px, 4.6vw, 48px);
+    line-height: 1.05;
+    overflow-wrap: anywhere;
+  }
+
+  header p {
+    color: var(--muted);
+  }
+
+  .tools {
+    display: flex;
+    gap: 8px;
+    flex: none;
+    align-items: center;
+  }
+
+  @media (max-width: 520px) {
+    .top {
+      flex-direction: column-reverse;
+    }
+
+    .tools {
+      align-self: flex-end;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+  }
+</style>

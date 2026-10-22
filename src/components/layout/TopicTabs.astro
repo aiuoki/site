@@ -1,0 +1,74 @@
+---
+import type { Subject } from "../../config/site";
+import { useTranslations, type Locale, type UiKey } from "../../i18n";
+import { topicPath } from "../../lib/paths";
+
+interface Props {
+  lang: Locale;
+  subject: Subject;
+  current?: string;
+}
+
+const { lang, subject, current } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<nav class="tabs no-scrollbar" aria-label={t(`subjects.${subject.slug}` as UiKey)}>
+  {
+    subject.topics.map((topic) => (
+      <a
+        href={topicPath(lang, subject.slug, topic.slug)}
+        aria-current={topic.slug === current ? "page" : undefined}
+      >
+        {t(`topics.${topic.slug}` as UiKey)}
+        {topic.symbol && <span class="mr"> {topic.symbol}</span>}
+      </a>
+    ))
+  }
+</nav>
+
+<style>
+  .tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  a {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--muted);
+    padding: 10px 16px;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--fg);
+  }
+
+  .mr {
+    font-weight: 400;
+  }
+
+  a[aria-current="page"] {
+    color: var(--fg);
+    border-bottom-color: var(--fg);
+  }
+
+  @media (max-width: 600px) {
+    .tabs {
+      flex-wrap: wrap;
+      overflow: visible;
+    }
+
+    a {
+      padding: 9px 10px;
+      font-size: 14px;
+    }
+  }
+</style>

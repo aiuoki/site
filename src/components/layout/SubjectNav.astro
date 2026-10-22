@@ -1,0 +1,94 @@
+---
+import { subjects } from "../../config/site";
+import { useTranslations, type Locale, type UiKey } from "../../i18n";
+import { subjectPath, topicPath } from "../../lib/paths";
+
+interface Props {
+  lang: Locale;
+  current?: string;
+}
+
+const { lang, current } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<nav class="subjects no-scrollbar" aria-label={t("nav.subjects")}>
+  {
+    subjects.map((subject) => (
+      <a
+        href={subject.topics[0] ? topicPath(lang, subject.slug, subject.topics[0].slug) : subjectPath(lang, subject.slug)}
+        aria-current={subject.slug === current ? "page" : undefined}
+      >
+        <span class="si mr">{subject.symbol}</span>
+        <span>{t(`subjects.${subject.slug}` as UiKey)}</span>
+      </a>
+    ))
+  }
+</nav>
+
+<style>
+  .subjects {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+  }
+
+  a {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font: 600 15px var(--f-body);
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 7px 16px 7px 8px;
+    text-decoration: none;
+    transition:
+      border-color 0.15s,
+      color 0.15s,
+      background 0.15s;
+  }
+
+  a:hover {
+    border-color: var(--muted);
+    color: var(--fg);
+  }
+
+  .si {
+    display: grid;
+    place-items: center;
+    min-width: 30px;
+    height: 30px;
+    padding: 0 6px;
+    border-radius: 8px;
+    background: var(--surface-2);
+    color: var(--fg);
+    font-size: 17px;
+    font-weight: 400;
+  }
+
+  a[aria-current="page"] {
+    color: var(--bg);
+    background: var(--fg);
+    border-color: var(--fg);
+  }
+
+  a[aria-current="page"] .si {
+    background: var(--bg);
+    color: var(--fg);
+  }
+
+  @media (max-width: 600px) {
+    .subjects {
+      flex-wrap: wrap;
+      overflow: visible;
+    }
+
+    a {
+      padding: 5px 12px 5px 6px;
+      font-size: 14px;
+    }
+  }
+</style>

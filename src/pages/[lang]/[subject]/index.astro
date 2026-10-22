@@ -1,0 +1,24 @@
+---
+import type { GetStaticPaths } from "astro";
+import Soon from "../../../components/layout/Soon.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { subjects } from "../../../config/site";
+import { locales, useTranslations, type UiKey } from "../../../i18n";
+import { topicPath } from "../../../lib/paths";
+
+export const getStaticPaths = (() =>
+  locales.flatMap((lang) =>
+    subjects.map((subject) => ({ params: { lang, subject: subject.slug }, props: { lang, subject } })),
+  )) satisfies GetStaticPaths;
+
+const { lang, subject } = Astro.props;
+const t = useTranslations(lang);
+
+// Subjects with topics have no page of their own: go to the first topic.
+const firstTopic = subject.topics[0];
+if (firstTopic) return Astro.redirect(topicPath(lang, subject.slug, firstTopic.slug));
+---
+
+<BaseLayout lang={lang} eyebrow={t("site.title")} heading={t(`subjects.${subject.slug}` as UiKey)} subject={subject}>
+  <Soon lang={lang} subject={subject} />
+</BaseLayout>

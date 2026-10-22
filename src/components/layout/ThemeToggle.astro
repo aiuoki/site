@@ -1,0 +1,112 @@
+---
+import { themeStorageKey } from "../../config/theme";
+import { useTranslations, type Locale } from "../../i18n";
+
+interface Props {
+  lang: Locale;
+}
+
+const t = useTranslations(Astro.props.lang);
+---
+
+<button
+  type="button"
+  class="theme-btn"
+  data-theme-toggle
+  data-storage-key={themeStorageKey}
+  data-label-light={t("layout.toLight")}
+  data-label-dark={t("layout.toDark")}
+  aria-label={t("layout.toLight")}
+  title={t("layout.toLight")}
+>
+  <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4.2"></circle>
+    <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"></path>
+  </svg>
+  <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true">
+    <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path>
+  </svg>
+</button>
+
+<script>
+  const root = document.documentElement;
+  const prefersLight = matchMedia("(prefers-color-scheme: light)");
+  const effective = () => root.dataset.theme ?? (prefersLight.matches ? "light" : "dark");
+
+  function syncLabels() {
+    const toLight = effective() === "dark";
+    for (const btn of document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]")) {
+      const label = (toLight ? btn.dataset.labelLight : btn.dataset.labelDark) ?? "";
+      btn.setAttribute("aria-label", label);
+      btn.title = label;
+    }
+  }
+
+  for (const btn of document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]")) {
+    btn.addEventListener("click", () => {
+      const next = effective() === "dark" ? "light" : "dark";
+      root.dataset.theme = next;
+      try {
+        localStorage.setItem(btn.dataset.storageKey ?? "", next);
+      } catch {}
+      syncLabels();
+    });
+  }
+
+  prefersLight.addEventListener("change", syncLabels);
+  syncLabels();
+</script>
+
+<style>
+  .theme-btn {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--fg);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition:
+      border-color 0.15s,
+      transform 0.3s;
+  }
+
+  .theme-btn:hover {
+    border-color: var(--muted);
+  }
+
+  .theme-btn:active {
+    transform: rotate(25deg);
+  }
+
+  .theme-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Dark shows the sun (switch to light); light shows the moon. */
+  .moon {
+    display: none;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :global(:root:not([data-theme="dark"])) .sun {
+      display: none;
+    }
+
+    :global(:root:not([data-theme="dark"])) .moon {
+      display: block;
+    }
+  }
+
+  :global(:root[data-theme="light"]) .sun {
+    display: none;
+  }
+
+  :global(:root[data-theme="light"]) .moon {
+    display: block;
+  }
+</style>

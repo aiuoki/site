@@ -56,7 +56,8 @@ Web de apuntes interactivos de matemáticas. Astro (salida estática) + islas de
 └─ src/
    ├─ config/
    │  ├─ site.ts              nombre, URL, correo, donación, asignaturas y temas
-   │  └─ theme.ts             los dos temas (claro y oscuro) con todos sus colores y alias
+   │  ├─ theme.ts             los dos temas (claro y oscuro) con todos sus colores y alias
+   │  └─ flags.ts             SVG de las banderas (colores nacionales, no del tema)
    ├─ styles/
    │  ├─ global.css           reset, tipografía y layout base
    │  └─ components/          un CSS por bloque grande si hace falta
@@ -67,9 +68,9 @@ Web de apuntes interactivos de matemáticas. Astro (salida estática) + islas de
    ├─ content.config.ts       esquema de las colecciones (Astro 7 lo exige aquí)
    ├─ content/<asignatura>/<tema>/<lang>.mdx   apuntes de cada tema
    ├─ demos/                  datos de cada demostración: pasos, fórmulas y figura (por tema)
-   ├─ lib/                    lógica pura y probada: trig.ts, complex.ts, format.ts, theme-css.ts
+   ├─ lib/                    lógica pura y probada: trig.ts, complex.ts, format.ts, theme-css.ts, paths.ts
    ├─ components/
-   │  ├─ layout/              Header, Footer, SubjectNav, TopicTabs, LangSwitch, ThemeToggle, Support
+   │  ├─ layout/              Header, Footer, SubjectNav, TopicTabs, LangSwitch, ThemeToggle, Support, DonateButton, Flag, Soon
    │  ├─ ui/                  Card, Chip, Segmented, Field, Formula, DemoDialog
    │  ├─ figures/             figuras SVG de las demostraciones (una por archivo)
    │  ├─ interactive/         islas Svelte: UnitCircle, AngleSum, ComplexPlane, cada una con su panel
@@ -79,7 +80,9 @@ Web de apuntes interactivos de matemáticas. Astro (salida estática) + islas de
       ├─ index.astro          redirige al idioma guardado o a /es/
       └─ [lang]/
          ├─ index.astro       portada con las asignaturas
-         └─ [subject]/[topic].astro   página de cada tema
+         └─ [subject]/
+            ├─ index.astro    «Próximamente», o redirige al primer tema
+            └─ [topic].astro  página de cada tema
 ```
 
 - Los tests (`*.test.ts`, Vitest) van junto al archivo que prueban. `npm test` los ejecuta.

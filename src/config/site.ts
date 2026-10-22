@@ -21,11 +21,13 @@ export interface Subject {
   slug: string;
   symbol: string;
   status: "available" | "soon";
+  // Large symbols shown on the "coming soon" panel.
+  soonSymbol?: string;
   topics: readonly Topic[];
 }
 
 // Labels live in src/i18n/ui/*.json under subjects.<slug> and topics.<slug>.
-export const subjects = [
+export const subjects: readonly Subject[] = [
   {
     slug: "calculo",
     symbol: "∫",
@@ -36,9 +38,6 @@ export const subjects = [
       { slug: "complejos", symbol: "ℂ", locales: ["es", "en"] },
     ],
   },
-  { slug: "estadistica", symbol: "σ", status: "soon", topics: [] },
-  { slug: "algebra-lineal", symbol: "[A]", status: "soon", topics: [] },
-] as const satisfies readonly Subject[];
-
-export type SubjectSlug = (typeof subjects)[number]["slug"];
-export type TopicSlug = (typeof subjects)[number]["topics"][number]["slug"];
+  { slug: "estadistica", symbol: "σ", soonSymbol: "σ  x̄", status: "soon", topics: [] },
+  { slug: "algebra-lineal", symbol: "[A]", soonSymbol: "[A]  λ", status: "soon", topics: [] },
+];

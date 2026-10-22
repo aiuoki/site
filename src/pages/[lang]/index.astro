@@ -1,34 +1,82 @@
 ---
 import type { GetStaticPaths } from "astro";
+import Card from "../../components/ui/Card.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { subjects } from "../../config/site";
-import { locales, useTranslations, type Locale } from "../../i18n";
+import { locales, useTranslations, type UiKey } from "../../i18n";
+import { subjectPath, topicPath } from "../../lib/paths";
 
-export const getStaticPaths = (() => locales.map((lang) => ({ params: { lang } }))) satisfies GetStaticPaths;
+export const getStaticPaths = (() => locales.map((lang) => ({ params: { lang }, props: { lang } }))) satisfies GetStaticPaths;
 
-const lang = Astro.params.lang as Locale;
+const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<BaseLayout lang={lang} title={t("site.title")}>
-  <div class="wrap">
-    <h1>{t("site.title")}</h1>
-    <ul>
-      {
-        subjects.map((s) => (
-          <li>
-            <span class="mr">{s.symbol}</span> {t(`subjects.${s.slug}`)}
-            {s.status === "soon" && <span class="eyebrow"> {t("nav.soonTitle")}</span>}
+<BaseLayout lang={lang} eyebrow={t("site.title")} heading={t("nav.subjects")}>
+  <div class="grid">
+    {
+      subjects.map((subject) => (
+        <Card as="section">
+          <h2>
+            <span class="mr">{subject.symbol}</span> {t(`subjects.${subject.slug}` as UiKey)}
+          </h2>
+          {subject.status === "soon" ? (
+            <a class="soon eyebrow" href={subjectPath(lang, subject.slug)}>
+              {t("nav.soonTitle")}
+            </a>
+          ) : (
             <ul>
-              {s.topics.map((topic) => (
+              {subject.topics.map((topic) => (
                 <li>
-                  <a href={`/${lang}/${s.slug}/${topic.slug}/`}>{t(`topics.${topic.slug}`)}</a>
+                  <a href={topicPath(lang, subject.slug, topic.slug)}>
+                    {t(`topics.${topic.slug}` as UiKey)}
+                    {topic.symbol && <span class="mr"> {topic.symbol}</span>}
+                  </a>
                 </li>
               ))}
             </ul>
-          </li>
-        ))
-      }
-    </ul>
+          )}
+        </Card>
+      ))
+    }
   </div>
 </BaseLayout>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+    gap: 16px;
+  }
+
+  h2 {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  li a {
+    font-weight: 600;
+    border-bottom: 1px solid var(--line);
+  }
+
+  li a:hover {
+    border-bottom-color: currentColor;
+  }
+
+  .soon:hover {
+    color: var(--fg);
+  }
+</style>

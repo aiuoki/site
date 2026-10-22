@@ -2,7 +2,7 @@
 import type { GetStaticPaths } from "astro";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { subjects } from "../../../config/site";
-import { contentLocale, locales, useTranslations } from "../../../i18n";
+import { contentLocale, locales, useTranslations, type UiKey } from "../../../i18n";
 
 export const getStaticPaths = (() =>
   locales.flatMap((lang) =>
@@ -19,10 +19,24 @@ const t = useTranslations(lang);
 const content = contentLocale(lang, topic.locales);
 ---
 
-<BaseLayout lang={lang} title={`${t(`topics.${topic.slug}`)} · ${t(`subjects.${subject.slug}`)}`}>
-  <div class="wrap">
-    <span class="eyebrow">{t(`subjects.${subject.slug}`)}</span>
-    <h1>{t(`topics.${topic.slug}`)}</h1>
-    {content.fallback && <p>{t("nav.contentFallback")}</p>}
-  </div>
+<BaseLayout
+  lang={lang}
+  eyebrow={t(`subjects.${subject.slug}` as UiKey)}
+  heading={t(`topics.${topic.slug}` as UiKey)}
+  subject={subject}
+  topic={topic.slug}
+>
+  {content.fallback && <p class="note">{t("nav.contentFallback")}</p>}
 </BaseLayout>
+
+<style>
+  .note {
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--tan);
+    background: var(--surface);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+</style>
