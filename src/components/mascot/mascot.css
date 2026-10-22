@@ -32,7 +32,7 @@
 .m-shine-dim { fill: var(--mascot-shine-dim); }
 .m-eyes-happy { display: none; }
 .m-raised,
-.m-hammer,
+.m-builder,
 .m-helmet { display: none; }
 .m-hammer-handle { fill: var(--mascot-wood); }
 .m-hammer-head { fill: var(--mascot-metal); }
@@ -57,16 +57,15 @@
 
 /* wave: the right outer arm is raised and waves. */
 .mascot[data-pose="wave"] .m-arm-2,
-.mascot[data-pose="build"] .m-arm-2 { display: none; }
+.mascot[data-pose="build"] .m-arm-1 { display: none; }
 .mascot[data-pose="wave"] .m-raised { display: inline; animation: m-wave 0.9s ease-in-out infinite alternate; }
 
-/* build: hard hat with the Ω, and a hammer going up and down. */
-.mascot[data-pose="build"] .m-raised,
-.mascot[data-pose="build"] .m-hammer,
+/* build: hard hat with the Ω, and the left arm hammering low. */
+.mascot[data-pose="build"] .m-builder,
 .mascot[data-pose="build"] .m-helmet { display: inline; }
 .mascot[data-pose="build"] .m-badge,
 .mascot[data-pose="build"] .m-gloss { display: none; }
-.mascot[data-pose="build"] .m-raised { transform: rotate(8deg); animation: m-hammer 0.9s ease-in infinite; }
+.mascot[data-pose="build"] .m-builder { transform: rotate(-8deg); animation: m-hammer 0.9s ease-in infinite; }
 
 /* think: tilts, looks up and closes the mouth a little. */
 .mascot[data-pose="think"] .m-body,
@@ -108,9 +107,9 @@
 }
 
 @keyframes m-hammer {
-  0%, 100% { transform: rotate(30deg); }
-  45% { transform: rotate(4deg); }
-  55% { transform: rotate(8deg); }
+  0%, 100% { transform: rotate(-24deg); }
+  45% { transform: rotate(-3deg); }
+  55% { transform: rotate(-8deg); }
 }
 
 @keyframes m-blink {

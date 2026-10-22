@@ -2,7 +2,7 @@
 // The site mascot: a purple octopus wearing an Ω badge. Layers (ground,
 // arms, body, badge, face) are separate groups so poses can move them.
 import "./mascot.css";
-import { ARMS, DOME, EYES, HELMET, RAISED_ARM, type MascotPose } from "./poses";
+import { ARMS, BUILD_ARM, DOME, EYES, HAMMER, HELMET, RAISED_ARM, type MascotPose } from "./poses";
 
 interface Props {
   pose?: MascotPose;
@@ -56,11 +56,12 @@ const uid = `mascot-${count}`;
         ))
       }
       <g class="m-raised" style={`transform-origin: ${RAISED_ARM.root[0]}px ${RAISED_ARM.root[1]}px`}>
-        <g class="m-hammer">
-          <rect class="m-hammer-handle" x="958" y="290" width="34" height="250" rx="12"></rect>
-          <rect class="m-hammer-head" x="890" y="232" width="170" height="80" rx="14"></rect>
-        </g>
         <path class="m-limb m-arm-light" d={RAISED_ARM.d}></path>
+      </g>
+      <g class="m-builder" style={`transform-origin: ${BUILD_ARM.root[0]}px ${BUILD_ARM.root[1]}px`}>
+        <rect class="m-hammer-handle" {...HAMMER.handle} rx="12"></rect>
+        <rect class="m-hammer-head" {...HAMMER.head} rx="14"></rect>
+        <path class="m-limb m-arm-light" d={BUILD_ARM.d}></path>
       </g>
     </g>
 

@@ -13,9 +13,17 @@ export const ARMS = [
   { d: "M659 900 C684 1000 704 1120 634 1190", root: [659, 900], tone: "dark" },
 ] as const;
 
-// Raised arm of the wave and build poses. It replaces the right outer
-// tentacle and starts behind the edge of the body so the joint is hidden.
+// Raised arm of the wave pose. It replaces the right outer tentacle and
+// starts behind the edge of the body so the joint is hidden.
 export const RAISED_ARM = { d: "M840 780 C950 720 1010 620 975 520", root: [840, 780] } as const;
+
+// Build pose: the left arm (towards the text of the "coming soon" panel)
+// holds a hammer low, at the height of the cheeks, and swings it down.
+export const BUILD_ARM = { d: "M174 880 C80 890 -10 870 -10 790", root: [174, 880] } as const;
+export const HAMMER = {
+  handle: { x: -27, y: 540, width: 34, height: 260 },
+  head: { x: -95, y: 500, width: 170, height: 80 },
+} as const;
 
 // Hard hat of the build pose: shell, shine and the Ω plate on the front.
 export const HELMET = {
