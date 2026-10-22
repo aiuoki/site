@@ -1,0 +1,28 @@
+---
+import type { GetStaticPaths } from "astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { subjects } from "../../../config/site";
+import { contentLocale, locales, useTranslations } from "../../../i18n";
+
+export const getStaticPaths = (() =>
+  locales.flatMap((lang) =>
+    subjects.flatMap((subject) =>
+      subject.topics.map((topic) => ({
+        params: { lang, subject: subject.slug, topic: topic.slug },
+        props: { lang, subject, topic },
+      })),
+    ),
+  )) satisfies GetStaticPaths;
+
+const { lang, subject, topic } = Astro.props;
+const t = useTranslations(lang);
+const content = contentLocale(lang, topic.locales);
+---
+
+<BaseLayout lang={lang} title={`${t(`topics.${topic.slug}`)} · ${t(`subjects.${subject.slug}`)}`}>
+  <div class="wrap">
+    <span class="eyebrow">{t(`subjects.${subject.slug}`)}</span>
+    <h1>{t(`topics.${topic.slug}`)}</h1>
+    {content.fallback && <p>{t("nav.contentFallback")}</p>}
+  </div>
+</BaseLayout>

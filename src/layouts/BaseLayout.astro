@@ -1,0 +1,55 @@
+---
+import "@fontsource/young-serif/400.css";
+import "@fontsource-variable/figtree/wght.css";
+import "@fontsource-variable/figtree/wght-italic.css";
+import "@fontsource/stix-two-text/400.css";
+import "@fontsource/stix-two-text/400-italic.css";
+import "@fontsource/stix-two-text/600.css";
+import "@fontsource/stix-two-text/600-italic.css";
+import "@fontsource/ibm-plex-mono/400.css";
+import "@fontsource/ibm-plex-mono/500.css";
+import "@fontsource/ibm-plex-mono/600.css";
+import "../styles/global.css";
+import { aliases, themeStorageKey, themes } from "../config/theme";
+import { site } from "../config/site";
+import { localeMeta, type Locale } from "../i18n";
+import { themeCss } from "../lib/theme-css";
+
+interface Props {
+  lang: Locale;
+  title: string;
+  description?: string;
+}
+
+const { lang, title, description } = Astro.props;
+const css = themeCss(themes, aliases);
+const canonical = new URL(Astro.url.pathname, site.url);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:locale" content={localeMeta[lang].bcp47.replace("-", "_")} />
+    <style is:inline set:html={css} />
+    <script is:inline define:vars={{ themeStorageKey }}>
+      // Runs before paint so the stored theme never flashes.
+      try {
+        const saved = localStorage.getItem(themeStorageKey);
+        if (saved === "light" || saved === "dark") document.documentElement.dataset.theme = saved;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <slot name="header" />
+    <main>
+      <slot />
+    </main>
+    <slot name="footer" />
+  </body>
+</html>

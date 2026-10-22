@@ -1,0 +1,44 @@
+import { locales, type Locale } from "../i18n/locales";
+
+export const site = {
+  name: "danielceban.com",
+  url: "https://danielceban.com",
+  author: "Daniel Ceban",
+  email: "hello@danielceban.com",
+  donateUrl: "https://buymeacoffee.com/danielceban",
+  copyrightYear: 2026,
+} as const;
+
+export interface Topic {
+  slug: string;
+  // Math notation shown next to the tab label (not translated).
+  symbol?: string;
+  // Locales with written content; the rest use contentLocale() fallback.
+  locales: readonly Locale[];
+}
+
+export interface Subject {
+  slug: string;
+  symbol: string;
+  status: "available" | "soon";
+  topics: readonly Topic[];
+}
+
+// Labels live in src/i18n/ui/*.json under subjects.<slug> and topics.<slug>.
+export const subjects = [
+  {
+    slug: "calculo",
+    symbol: "∫",
+    status: "available",
+    topics: [
+      { slug: "trigonometria", locales },
+      { slug: "suma-angulos", symbol: "α ± β", locales },
+      { slug: "complejos", symbol: "ℂ", locales: ["es", "en"] },
+    ],
+  },
+  { slug: "estadistica", symbol: "σ", status: "soon", topics: [] },
+  { slug: "algebra-lineal", symbol: "[A]", status: "soon", topics: [] },
+] as const satisfies readonly Subject[];
+
+export type SubjectSlug = (typeof subjects)[number]["slug"];
+export type TopicSlug = (typeof subjects)[number]["topics"][number]["slug"];
