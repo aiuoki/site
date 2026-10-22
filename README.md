@@ -25,7 +25,9 @@ Cloudflare Pages, desde la rama `main`:
 - Preset: Astro
 - Comando de compilación: `npm run build`
 - Carpeta de salida: `dist`
-- Variable de entorno: `NODE_VERSION=24`
+- Node: `.node-version` fija la versión 24 (Cloudflare la lee sola; `NODE_VERSION=24` en las variables de entorno hace lo mismo).
+
+`legacy/` no se publica: Astro solo compila `src/` y copia `public/`. Los enlaces de la web antigua (`/#complejos`, `/#suma`...) redirigen a su página nueva.
 
 ## Tecnologías
 
