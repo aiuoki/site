@@ -14,6 +14,14 @@
     "estadistica": "Statistică",
     "algebra-lineal": "Algebră liniară"
   },
+  "layout": {
+    "language": "Limbă",
+    "toLight": "Treci la modul luminos",
+    "toDark": "Treci la modul întunecat",
+    "donate": "Cumpără-mi o cafea",
+    "supportTitle": "Ți-a fost util?",
+    "supportText": "Acest ghid este gratuit și fără reclame. Dacă te ajută la învățat, poți să-mi cumperi o cafea."
+  },
   "topics": {
     "trigonometria": "Un unghi",
     "suma-angulos": "Suma unghiurilor",

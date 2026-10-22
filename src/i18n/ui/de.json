@@ -14,6 +14,14 @@
     "estadistica": "Statistik",
     "algebra-lineal": "Lineare Algebra"
   },
+  "layout": {
+    "language": "Sprache",
+    "toLight": "Zum hellen Modus wechseln",
+    "toDark": "Zum dunklen Modus wechseln",
+    "donate": "Spendier mir einen Kaffee",
+    "supportTitle": "War das hilfreich?",
+    "supportText": "Dieser Leitfaden ist kostenlos und werbefrei. Wenn er dir beim Lernen hilft, kannst du mir einen Kaffee spendieren."
+  },
   "topics": {
     "trigonometria": "Ein Winkel",
     "suma-angulos": "Winkelsumme",

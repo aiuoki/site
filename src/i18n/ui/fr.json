@@ -14,6 +14,14 @@
     "estadistica": "Statistique",
     "algebra-lineal": "Algèbre linéaire"
   },
+  "layout": {
+    "language": "Langue",
+    "toLight": "Passer en mode clair",
+    "toDark": "Passer en mode sombre",
+    "donate": "Offre-moi un café",
+    "supportTitle": "Ça t'a été utile ?",
+    "supportText": "Ce guide est gratuit et sans publicité. S'il t'aide à réviser, tu peux m'offrir un café."
+  },
   "topics": {
     "trigonometria": "Un angle",
     "suma-angulos": "Somme d'angles",

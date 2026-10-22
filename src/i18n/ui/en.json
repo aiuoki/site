@@ -14,6 +14,14 @@
     "estadistica": "Statistics",
     "algebra-lineal": "Linear algebra"
   },
+  "layout": {
+    "language": "Language",
+    "toLight": "Switch to light mode",
+    "toDark": "Switch to dark mode",
+    "donate": "Buy me a coffee",
+    "supportTitle": "Found this useful?",
+    "supportText": "This guide is free and ad-free. If it helps you study, you can buy me a coffee."
+  },
   "topics": {
     "trigonometria": "One angle",
     "suma-angulos": "Angle sum",

@@ -14,6 +14,14 @@
     "estadistica": "Estadística",
     "algebra-lineal": "Álgebra lineal"
   },
+  "layout": {
+    "language": "Idioma",
+    "toLight": "Cambiar a modo claro",
+    "toDark": "Cambiar a modo oscuro",
+    "donate": "Invítame a un café",
+    "supportTitle": "¿Te ha sido útil?",
+    "supportText": "Esta guía es gratis y sin anuncios. Si te ayuda a estudiar, puedes invitarme a un café."
+  },
   "topics": {
     "trigonometria": "Un ángulo",
     "suma-angulos": "Suma de ángulos",
