@@ -1,7 +1,9 @@
 ---
 import { defaultLocale, langStorageKey, locales } from "../i18n/locales";
+import { LEGACY_HASHES } from "../lib/paths";
 
-// Root: redirect to the stored language, or to the default one.
+// Root: redirect to the stored language, or to the default one. Links to the
+// old single-page site (/#complejos) go straight to their new page.
 const fallback = `/${defaultLocale}/`;
 ---
 
@@ -12,12 +14,14 @@ const fallback = `/${defaultLocale}/`;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
     <title>danielceban.com</title>
-    <script is:inline define:vars={{ locales, langStorageKey, fallback }}>
+    <script is:inline define:vars={{ locales, langStorageKey, fallback, legacy: LEGACY_HASHES }}>
       let target = fallback;
       try {
         const saved = localStorage.getItem(langStorageKey);
         if (locales.includes(saved)) target = "/" + saved + "/";
       } catch (e) {}
+      const old = legacy[location.hash.slice(1)];
+      if (old) target += old + "/";
       location.replace(target);
     </script>
     <noscript><meta http-equiv="refresh" content={`0; url=${fallback}`} /></noscript>

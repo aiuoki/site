@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { homePath, subjectPath, switchLocale, topicPath } from "./paths";
+import { LEGACY_HASHES, homePath, subjectPath, switchLocale, topicPath } from "./paths";
 
 describe("path builders", () => {
   it("builds home, subject and topic paths with a trailing slash", () => {
@@ -22,5 +22,13 @@ describe("switchLocale", () => {
 
   it("always ends with a slash", () => {
     expect(switchLocale("/es/calculo", "pt")).toBe("/pt/calculo/");
+  });
+});
+
+describe("LEGACY_HASHES", () => {
+  it("points every old anchor to an existing subject or topic", async () => {
+    const { subjects } = await import("../config/site");
+    const valid = new Set(subjects.flatMap((s) => [s.slug, ...s.topics.map((t) => `${s.slug}/${t.slug}`)]));
+    for (const [hash, path] of Object.entries(LEGACY_HASHES)) expect(valid.has(path), hash).toBe(true);
   });
 });
