@@ -1,0 +1,28 @@
+---
+// Root: redirect to the saved language, or to the default one.
+const fallback = "/es/";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>danielceban.com</title>
+    <script is:inline>
+      (function () {
+        var langs = ["es", "ca", "en", "fr", "de", "it", "pt", "ro", "ru"];
+        var saved = null;
+        try {
+          saved = localStorage.getItem("trig-lang");
+        } catch (e) {}
+        var lang = langs.indexOf(saved) >= 0 ? saved : "es";
+        location.replace("/" + lang + "/");
+      })();
+    </script>
+    <noscript><meta http-equiv="refresh" content={`0; url=${fallback}`} /></noscript>
+    <link rel="canonical" href={fallback} />
+  </head>
+  <body></body>
+</html>

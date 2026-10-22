@@ -1,0 +1,22 @@
+---
+import type { GetStaticPaths } from "astro";
+
+export const getStaticPaths = (() => {
+  const locales = ["es", "ca", "en", "fr", "de", "it", "pt", "ro", "ru"];
+  return locales.map((lang) => ({ params: { lang } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>danielceban.com</title>
+  </head>
+  <body>
+    <main>{lang}</main>
+  </body>
+</html>
