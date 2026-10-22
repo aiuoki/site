@@ -1,0 +1,37 @@
+---
+import { notationFor, pageLocale } from "../../i18n";
+import { pointOn, round, tint } from "../../lib/figure";
+import CircleFrame from "./parts/CircleFrame.astro";
+import Dot from "./parts/Dot.astro";
+import Label from "./parts/Label.astro";
+import Line from "./parts/Line.astro";
+
+const n = notationFor(pageLocale(Astro.currentLocale));
+const cx = 150;
+const cy = 125;
+const radius = 90;
+// One radian in degrees.
+const a = 180 / Math.PI;
+const [ex, ey] = pointOn(cx, cy, a, radius);
+const [sx, sy] = pointOn(cx, cy, a, 26);
+const [arcX, arcY] = pointOn(cx, cy, a / 2, radius + 20);
+const [wordX, wordY] = pointOn(cx, cy, a / 2, 44);
+---
+
+<CircleFrame cx={cx} cy={cy} radius={radius}>
+  <path
+    d={`M${cx} ${cy} L${cx + 26} ${cy} A26 26 0 0 0 ${round(sx)} ${round(sy)} Z`}
+    fill={tint("g", 15)}
+    stroke="var(--g)"
+    stroke-width="1.5"
+  />
+  <Line x1={cx} y1={cy} x2={cx + radius} y2={cy} color="var(--a)" width={3.5} />
+  <Line x1={cx} y1={cy} x2={ex} y2={ey} color="var(--a)" width={3.5} />
+  <path d={`M${cx + radius} ${cy} A${radius} ${radius} 0 0 0 ${round(ex)} ${round(ey)}`} fill="none" stroke="var(--g)" stroke-width="5" />
+  <Dot x={cx + radius} y={cy} />
+  <Dot x={ex} y={ey} />
+  <Label x={cx + radius / 2} y={cy + 20} color="var(--a)">r</Label>
+  <Label x={cx + radius * 0.32} y={cy - radius * 0.62} color="var(--a)">r</Label>
+  <Label x={arcX} y={arcY + 5} color="var(--g)" anchor="start">⌒ = r</Label>
+  <Label x={wordX + 2} y={wordY + 6} color="var(--g)" anchor="start" italic={false} size={14}>1 {n.rad}</Label>
+</CircleFrame>

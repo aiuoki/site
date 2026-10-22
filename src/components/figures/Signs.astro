@@ -1,0 +1,38 @@
+---
+import { notationFor, pageLocale } from "../../i18n";
+import CircleFrame from "./parts/CircleFrame.astro";
+import Label from "./parts/Label.astro";
+
+const n = notationFor(pageLocale(Astro.currentLocale));
+const cx = 150;
+const cy = 120;
+const functions = [n.sin, n.cos, n.tan];
+
+// Quadrants I to IV: sign of sin, cos, tan, where the signs are written and the numeral.
+const quadrants = [
+  { signs: [true, true, true], at: [238, 30], numeral: "I", nx: cx + 34, ny: cy - 30 },
+  { signs: [true, false, false], at: [62, 30], numeral: "II", nx: cx - 34, ny: cy - 30 },
+  { signs: [false, false, true], at: [62, 168], numeral: "III", nx: cx - 34, ny: cy + 42 },
+  { signs: [false, true, false], at: [238, 168], numeral: "IV", nx: cx + 34, ny: cy + 42 },
+] as const;
+---
+
+<CircleFrame cx={cx} cy={cy} radius={80}>
+  {
+    quadrants.map(({ signs, at, numeral, nx, ny }) => (
+      <>
+        {functions.map((name, i) => (
+          <Label x={at[0]} y={at[1] + i * 19} size={15} halo={false}>
+            {name}
+            <tspan fill={signs[i] ? "var(--csc)" : "var(--sec)"} font-style="normal" font-weight="700">
+              {signs[i] ? " +" : " −"}
+            </tspan>
+          </Label>
+        ))}
+        <Label x={nx} y={ny} color="var(--muted)" italic={false} size={15}>
+          {numeral}
+        </Label>
+      </>
+    ))
+  }
+</CircleFrame>

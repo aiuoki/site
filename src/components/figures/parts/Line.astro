@@ -1,0 +1,31 @@
+---
+import { px, py, round } from "../../../lib/figure";
+
+interface Props {
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  color?: string;
+  width?: number;
+  dash?: string;
+  // Coordinates in the unit plane instead of pixels (round caps, as in the legacy figures).
+  unit?: boolean;
+  round?: boolean;
+}
+
+const { x1, y1, x2, y2, color = "var(--fg)", width = 3, dash, unit = false, round: capped = unit } =
+  Astro.props;
+const [ax, ay, bx, by] = unit ? [px(x1), py(y1), px(x2), py(y2)] : [x1, y1, x2, y2];
+---
+
+<line
+  x1={round(ax)}
+  y1={round(ay)}
+  x2={round(bx)}
+  y2={round(by)}
+  stroke={color}
+  stroke-width={width}
+  stroke-linecap={capped ? "round" : undefined}
+  stroke-dasharray={dash}
+/>

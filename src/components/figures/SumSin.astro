@@ -1,0 +1,35 @@
+---
+import { notationFor, pageLocale } from "../../i18n";
+import { polar, tint } from "../../lib/figure";
+import Arc from "./parts/Arc.astro";
+import Dot from "./parts/Dot.astro";
+import Label from "./parts/Label.astro";
+import Line from "./parts/Line.astro";
+import PolarLabel from "./parts/PolarLabel.astro";
+import RightAngle from "./parts/RightAngle.astro";
+import UnitFrame from "./parts/UnitFrame.astro";
+
+const n = notationFor(pageLocale(Astro.currentLocale));
+const a = 30;
+const b = 25;
+const sum = a + b;
+const [ax, ay] = polar(a);
+const [gx, gy] = polar(sum);
+---
+
+<UnitFrame>
+  <Arc r={0.24} a0={0} a1={a} color="var(--a)" fill={tint("a")} />
+  <Arc r={0.36} a0={a} a1={sum} color="var(--b)" width={3} />
+  <Line unit x1={gx} y1={0} x2={gx} y2={gy} color="var(--sin)" width={4} />
+  <Line unit x1={gx} y1={0} x2={0} y2={0} color="var(--cos)" width={4} />
+  <RightAngle unit x={gx} y={0} dx={-1} dy={1} />
+  <Line unit x1={0} y1={0} x2={ax} y2={ay} color="var(--a)" width={2.5} />
+  <Line unit x1={0} y1={0} x2={gx} y2={gy} color="var(--g)" width={3.5} />
+  <Dot unit x={ax} y={ay} color="var(--a)" />
+  <Dot unit x={gx} y={gy} color="var(--g)" />
+  <PolarLabel deg={a / 2} r={0.32} color="var(--a)">α</PolarLabel>
+  <PolarLabel deg={a + b / 2} r={0.47} color="var(--b)">β</PolarLabel>
+  <PolarLabel deg={sum} r={1.12} color="var(--g)">α + β</PolarLabel>
+  <Label unit x={gx + 0.05} y={gy * 0.8} color="var(--sin)" anchor="start">{n.sin}(α+β)</Label>
+  <Label unit x={gx / 2} y={-0.13} color="var(--cos)">{n.cos}(α+β)</Label>
+</UnitFrame>

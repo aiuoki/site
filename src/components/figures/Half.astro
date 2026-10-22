@@ -1,0 +1,33 @@
+---
+import { notationFor, pageLocale } from "../../i18n";
+import { polar, tint } from "../../lib/figure";
+import Arc from "./parts/Arc.astro";
+import Dot from "./parts/Dot.astro";
+import Label from "./parts/Label.astro";
+import Line from "./parts/Line.astro";
+import PolarLabel from "./parts/PolarLabel.astro";
+import UnitFrame from "./parts/UnitFrame.astro";
+
+const n = notationFor(pageLocale(Astro.currentLocale));
+const a = 70;
+const [ax, ay] = polar(a);
+const [hx, hy] = polar(a / 2);
+---
+
+<UnitFrame>
+  <Arc r={0.25} a0={0} a1={a / 2} color="var(--b)" fill={tint("b")} />
+  <Arc r={0.25} a0={a / 2} a1={a} color="var(--b)" fill={tint("b")} />
+  <Line unit x1={0} y1={0} x2={ax} y2={ay} color="var(--a)" width={2.5} />
+  <Line unit x1={0} y1={0} x2={1} y2={0} width={2} />
+  <Line unit x1={0} y1={0} x2={hx} y2={hy} color="var(--muted)" width={1.5} dash="4 4" />
+  <Line unit x1={ax} y1={0} x2={ax} y2={ay} color="var(--muted)" width={1.2} dash="3 4" />
+  <Line unit x1={ax} y1={0} x2={1} y2={0} color="var(--cos)" width={4.5} />
+  <Line unit x1={ax} y1={ay} x2={1} y2={0} color="var(--g)" width={3.5} />
+  <Dot unit x={ax} y={ay} color="var(--a)" />
+  <Dot unit x={1} y={0} />
+  <PolarLabel deg={a / 4} r={0.36} color="var(--b)">α/2</PolarLabel>
+  <PolarLabel deg={(3 * a) / 4} r={0.38} color="var(--b)">α/2</PolarLabel>
+  <PolarLabel deg={a} r={1.1} color="var(--a)">α</PolarLabel>
+  <Label unit x={(ax + 1) / 2 + 0.05} y={ay / 2 + 0.03} color="var(--g)" anchor="start">2 {n.sin}(α/2)</Label>
+  <Label unit x={(ax + 1) / 2} y={-0.14} color="var(--cos)">1 − {n.cos} α</Label>
+</UnitFrame>

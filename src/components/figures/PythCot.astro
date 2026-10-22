@@ -1,0 +1,20 @@
+---
+import { notationFor, pageLocale } from "../../i18n";
+import { unitAngle } from "../../lib/figure";
+import CotConstruction from "./parts/CotConstruction.astro";
+import Label from "./parts/Label.astro";
+import ThetaArc from "./parts/ThetaArc.astro";
+import UnitFrame from "./parts/UnitFrame.astro";
+
+const n = notationFor(pageLocale(Astro.currentLocale));
+const { ct } = unitAngle(40);
+---
+
+<UnitFrame>
+  <CotConstruction hypotenuse="var(--csc)" cotangent="var(--cot)" />
+  <Label unit x={ct / 2} y={1.07} color="var(--cot)">{n.cot} θ</Label>
+  <Label unit x={-0.05} y={0.5} anchor="end" italic={false}>1</Label>
+  <Label unit x={ct / 2 + 0.08} y={0.44} color="var(--csc)" anchor="start">{n.csc} θ</Label>
+  <Label unit x={ct - 0.2} y={0.9}>θ</Label>
+  <ThetaArc />
+</UnitFrame>

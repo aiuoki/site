@@ -1,0 +1,254 @@
+{
+  "sin": {
+    "title": "Warum sin θ = y",
+    "steps": [
+      "P ist der Punkt, an dem der Schenkel des Winkels den Kreis schneidet. Fällt man von P das Lot auf die x-Achse, entsteht ein rechtwinkliges Dreieck (ein Winkel ist 90°).",
+      "Die Hypotenuse ist die längste Seite, gegenüber dem rechten Winkel. Hier ist es der Radius des Kreises, also 1.",
+      "Definition des Sinus. Die Gegenkathete liegt θ gegenüber, ohne den Winkel zu berühren: die Höhe des Punkts.",
+      "Einsetzen: Die Gegenkathete ist y, die Hypotenuse 1.",
+      "Durch 1 teilen ändert nichts."
+    ],
+    "use": "Den Sinus liest man direkt in der Zeichnung ab: Er ist die Höhe (y-Koordinate) von P."
+  },
+  "cos": {
+    "title": "Warum cos θ = x",
+    "steps": [
+      "Wie beim Sinus bilden P und sein Schatten auf der x-Achse ein rechtwinkliges Dreieck.",
+      "Die Hypotenuse ist der Radius des Kreises.",
+      "Definition des Kosinus. Die Ankathete berührt den Winkel θ (und ist nicht die Hypotenuse): die Grundseite des Dreiecks.",
+      "Die Grundseite ist x, die Hypotenuse 1."
+    ],
+    "use": "Der Kosinus ist die x-Koordinate von P: wie weit sich der Punkt waagrecht bewegt hat."
+  },
+  "tan": {
+    "title": "Warum die gelbe Strecke tan θ ist",
+    "steps": [
+      "Definition des Tangens im rechtwinkligen Dreieck. Im kleinen Dreieck ist die Gegenkathete y und die Ankathete x.",
+      "Wir verlängern den Schenkel bis zur Geraden x = 1: Es entsteht ein großes Dreieck mit Grundseite 1 und Höhe t (die gelbe Strecke). Das Zeichen ∼ bedeutet „ähnlich“.",
+      "Beide Dreiecke haben dieselben Winkel (gemeinsames θ und jeweils 90°). Sie sind ähnlich: gleiche Form, andere Größe, also verhältnisgleiche Seiten.",
+      "Nach t auflösen. Die gelbe Strecke ist genau der Tangens. Der Name kommt daher, dass die Gerade x = 1 den Kreis in nur einem Punkt berührt: Sie ist eine Tangente."
+    ],
+    "use": "Der Tangens ist die Steigung der Winkelgeraden: wie viel sie pro Einheit nach rechts steigt."
+  },
+  "cot": {
+    "title": "Warum die blaue Strecke cot θ ist",
+    "steps": [
+      "Definition: Der Kotangens ist der Kehrwert des Tangens.",
+      "Wir verlängern den Schenkel bis zur waagrechten Geraden y = 1. Es entsteht ein Dreieck mit Höhe 1 und Grundseite c (die blaue Strecke).",
+      "Die Gerade y = 1 ist parallel zur x-Achse, und die Schräge schneidet beide unter demselben Winkel (Wechselwinkel).",
+      "Von dieser Ecke aus ist die Gegenkathete 1 und die Ankathete c: Tangens = Gegenkathete / Ankathete.",
+      "Nach c auflösen."
+    ],
+    "use": "Er ist der Kehrwert der Steigung; er taucht bei fast senkrechten Geraden auf."
+  },
+  "sec": {
+    "title": "Warum die rote Strecke sec θ ist",
+    "steps": [
+      "Es ist dasselbe große Dreieck wie beim Tangens: Grundseite 1, Höhe t. Seine Hypotenuse h ist die rote Strecke vom Ursprung bis zur Geraden x = 1.",
+      "Definition des Kosinus im großen Dreieck: Die Ankathete ist 1, die Hypotenuse h.",
+      "Nach h auflösen. Deshalb ist |sec θ| immer mindestens 1: Die Hypotenuse ist nie kürzer als die Grundseite."
+    ],
+    "use": "Kommt in der Physik (Komponenten schräger Kräfte) und bei Integralen vor."
+  },
+  "csc": {
+    "title": "Warum die grüne Strecke csc θ ist",
+    "steps": [
+      "Es ist das Dreieck des Kotangens: Grundseite c, Höhe 1. Seine Hypotenuse h ist die grüne Strecke vom Ursprung bis zur Geraden y = 1.",
+      "Der Winkel θ liegt an der Ecke (c, 1). Von dort aus ist die Gegenkathete 1.",
+      "Nach h auflösen."
+    ],
+    "use": "Vervollständigt die sechs Funktionen; nützlich zum Vereinfachen von Termen mit 1/sin."
+  },
+  "rad": {
+    "title": "Grad und Bogenmaß",
+    "steps": [
+      "Umfang L eines Kreises mit Radius r.",
+      "Am Einheitskreis ist eine volle Umdrehung 2π lang.",
+      "Ein Radiant ist der Winkel, dessen Bogen (⌒) so lang ist wie der Radius. Deshalb hat eine Umdrehung 2π Radiant.",
+      "Dieselbe Umdrehung auf zwei Arten gemessen. Durch 2 teilen.",
+      "Dreisatz: Mal π/180 ergibt Bogenmaß, mal 180/π wieder Grad."
+    ],
+    "use": "Formeln in Physik und Analysis (z. B. die Ableitungen von sin und cos) gelten nur im Bogenmaß."
+  },
+  "signs": {
+    "title": "Vorzeichen je Quadrant",
+    "steps": [
+      "Der Sinus hat das Vorzeichen von y, der Kosinus das von x.",
+      "Oben rechts: alle positiv.",
+      "Oben links: nur der Sinus (und sein Kehrwert, der Kosekans) ist positiv.",
+      "Unten links: sin und cos negativ, aber tan = y/x ist negativ/negativ = positiv.",
+      "Unten rechts: nur der Kosinus (und der Sekans) ist positiv.",
+      "Eine Funktion und ihr Kehrwert haben immer dasselbe Vorzeichen (∼), denn 1 durch eine Zahl behält deren Vorzeichen."
+    ],
+    "use": "Jeden Winkel über seinen Bezugswinkel berechnen: Tabellenwert + Vorzeichen des Quadranten."
+  },
+  "notables": {
+    "title": "Woher die besonderen Winkel kommen",
+    "steps": [
+      "Ist ein spitzer Winkel 45°, ist es der andere auch (zusammen 90°). Beide Katheten sind gleich lang; wir nennen sie a. Pythagoras mit Hypotenuse 1.",
+      "Nach a auflösen. Rationalisieren heißt, Zähler und Nenner mit √2 zu multiplizieren, um die Wurzel aus dem Nenner zu holen.",
+      "Beide Katheten sind gleich lang.",
+      "Ein gleichseitiges Dreieck (drei gleiche Seiten) hat drei 60°-Winkel. Halbiert ergibt es zwei 30°-60°-90°-Dreiecke mit Hypotenuse 1.",
+      "Die Grundseite b wird halbiert. Die Höhe h folgt aus Pythagoras: h² = 1 − 1/4 = 3/4.",
+      "Gegenüber von 30° liegt die kurze Grundseite, gegenüber von 60° die Höhe."
+    ],
+    "use": "Mit zwei Dreiecken rekonstruierst du die ganze Tabelle, ohne sie auswendig zu lernen."
+  },
+  "rec-sin": {
+    "title": "sin θ · csc θ = 1",
+    "steps": [
+      "Definition des Kosekans: der Kehrwert des Sinus.",
+      "Den Kosekans einsetzen.",
+      "Eine Zahl durch sich selbst ergibt 1. Gilt nur für sin θ ≠ 0 (durch 0 teilt man nicht)."
+    ],
+    "use": "Deshalb heißen sie Kehrwerte: Ihr Produkt ist 1. So wechselt man von einer zur anderen."
+  },
+  "rec-cos": {
+    "title": "cos θ · sec θ = 1",
+    "steps": [
+      "Definition des Sekans: der Kehrwert des Kosinus.",
+      "Den Sekans einsetzen.",
+      "Kürzt sich, solange cos θ ≠ 0."
+    ],
+    "use": "Kennst du den Kosinus, ist der Sekans sein Kehrwert (und umgekehrt)."
+  },
+  "rec-tan": {
+    "title": "tan θ · cot θ = 1",
+    "steps": [
+      "Beide durch Sinus und Kosinus ausdrücken.",
+      "Multiplizieren.",
+      "Brüche multipliziert man Zähler mal Zähler und Nenner mal Nenner. Oben und unten steht dasselbe: 1."
+    ],
+    "use": "Vom Tangens zum Kotangens mit cot θ = 1/tan θ."
+  },
+  "quot-tan": {
+    "title": "tan θ = sin θ / cos θ",
+    "steps": [
+      "Definition des Tangens im rechtwinkligen Dreieck.",
+      "Am Einheitskreis ist die Gegenkathete y und die Ankathete x.",
+      "Weil y = sin θ und x = cos θ."
+    ],
+    "use": "So berechnet man den Tangens, wenn man nur Sinus und Kosinus kennt."
+  },
+  "quot-cot": {
+    "title": "cot θ = cos θ / sin θ",
+    "steps": [
+      "Definition des Kotangens: der umgedrehte Tangens.",
+      "Am Einheitskreis.",
+      "x und y durch Kosinus und Sinus ersetzen."
+    ],
+    "use": "Alles in Sinus und Kosinus zu schreiben ist der erste Schritt, um fast jeden Term zu vereinfachen."
+  },
+  "pyth": {
+    "title": "sin²θ + cos²θ = 1",
+    "steps": [
+      "Satz des Pythagoras: Im rechtwinkligen Dreieck ist das Quadrat der Hypotenuse (c) gleich der Summe der Kathetenquadrate (a und b).",
+      "Am Einheitskreis sind die Katheten x und y, die Hypotenuse ist der Radius.",
+      "Einsetzen.",
+      "x durch cos θ und y durch sin θ ersetzen.",
+      "Man schreibt cos²θ statt (cos θ)²; das ist nur Schreibweise.",
+      "Die Reihenfolge der Summanden ist egal."
+    ],
+    "use": "Kennst du einen Wert, bekommst du den anderen: cos θ = ±√(1 − sin²θ). Grundlage fast aller anderen Identitäten."
+  },
+  "pyth-tan": {
+    "title": "1 + tan²θ = sec²θ",
+    "steps": [
+      "Wir starten mit der pythagoreischen Identität.",
+      "Jeden Term durch cos²θ teilen (erlaubt, wenn cos θ ≠ 0). Macht man auf beiden Seiten dasselbe, bleibt die Gleichung gültig.",
+      "sin/cos ist tan, cos/cos ist 1 und 1/cos ist sec.",
+      "Umstellen. In der Figur ist das Pythagoras im großen Dreieck: Katheten 1 und tan θ, Hypotenuse sec θ."
+    ],
+    "use": "Vom Tangens zum Sekans, ohne den Winkel zu berechnen; kommt oft bei Integralen vor."
+  },
+  "pyth-cot": {
+    "title": "1 + cot²θ = csc²θ",
+    "steps": [
+      "Wir starten mit der pythagoreischen Identität.",
+      "Diesmal durch sin²θ teilen (wenn sin θ ≠ 0).",
+      "sin/sin ist 1, cos/sin ist cot und 1/sin ist csc. Das ist Pythagoras im Dreieck an der Geraden y = 1."
+    ],
+    "use": "Verbindet Kotangens und Kosekans, so wie die vorige Tangens und Sekans verbindet."
+  },
+  "sum-cos": {
+    "title": "Kosinus einer Summe und Differenz",
+    "steps": [
+      "Zwei Punkte auf dem Einheitskreis mit den Winkeln α und β. Der Winkel zwischen ihnen ist α − β. Wir berechnen den Abstand d von A und B auf zwei Arten.",
+      "Abstandsformel für zwei Punkte: (x₂ − x₁)² + (y₂ − y₁)².",
+      "Jedes Quadrat mit (a − b)² = a² − 2ab + b² ausmultiplizieren.",
+      "Die Quadrate jedes Winkels zusammenfassen.",
+      "Jede farbige Klammer ist 1, wegen sin² + cos² = 1.",
+      "Zweiter Weg: Wir drehen die Figur, bis B auf der x-Achse liegt. Drehen ändert keine Abstände, also ist auch A′B′ gleich d.",
+      "Dieselbe Abstandsformel. Beim Ausmultiplizieren ergibt sin² + cos² wieder 1.",
+      "Beide Ausdrücke sind derselbe Abstand, also gleich.",
+      "Auf beiden Seiten 2 abziehen und durch −2 teilen. Das ist die Differenzformel.",
+      "Für die Summe schreiben wir α + β = α − (−β). Ein negativer Winkel spiegelt den Punkt an der x-Achse: cos(−β) = cos β und sin(−β) = −sin β. Daher das Minuszeichen."
+    ],
+    "use": "Die Grundformel: Sinus, Tangens, doppelter und halber Winkel folgen daraus."
+  },
+  "sum-sin": {
+    "title": "Sinus einer Summe und Differenz",
+    "steps": [
+      "Komplementwinkel (Summe 90°): Im rechtwinkligen Dreieck ist die Gegenkathete des einen spitzen Winkels die Ankathete des anderen. Daher ist der Sinus des einen der Kosinus des anderen.",
+      "Das auf α + β anwenden und die Klammer umgruppieren.",
+      "Die Kosinus-Differenzformel mit 90° − α statt α anwenden.",
+      "cos(90° − α) = sin α und sin(90° − α) = cos α (wieder Komplementwinkel).",
+      "Für die Differenz β durch −β ersetzen: cos(−β) = cos β und sin(−β) = −sin β."
+    ],
+    "use": "Exakte Sinuswerte nicht besonderer Winkel (15°, 75°, 105° …) berechnen und Wellen in der Physik addieren."
+  },
+  "sum-tan": {
+    "title": "Tangens einer Summe und Differenz",
+    "steps": [
+      "Der Tangens ist Sinus durch Kosinus.",
+      "Die Formeln für Sinus und Kosinus einsetzen.",
+      "Zähler und Nenner durch cos α cos β teilen. Der Wert bleibt gleich: wie Multiplizieren mit 1.",
+      "Jeden Bruch kürzen: sin α/cos α = tan α, sin β/cos β = tan β, und Gleiches oben und unten ergibt 1."
+    ],
+    "use": "Den Winkel zwischen zwei Geraden aus ihren Steigungen berechnen."
+  },
+  "dbl": {
+    "title": "Doppelter Winkel",
+    "steps": [
+      "Wir starten mit der Summenformel.",
+      "Setze β = α (einen Winkel zu sich selbst addieren).",
+      "Beide Summanden sind gleich.",
+      "Derselbe Trick mit der Kosinusformel.",
+      "Und mit der Tangensformel."
+    ],
+    "use": "Terme vereinfachen und Integrale wie ∫ sin x cos x dx berechnen."
+  },
+  "dbl2": {
+    "title": "Varianten des doppelten Kosinus",
+    "steps": [
+      "Kosinus des doppelten Winkels.",
+      "Umgestellt aus sin²α + cos²α = 1.",
+      "sin²α einsetzen und die cos²α zusammenfassen.",
+      "Jetzt nach dem Kosinus umstellen.",
+      "Einsetzen und die sin²α zusammenfassen."
+    ],
+    "use": "Die Variante wählen, die nur Sinus oder nur Kosinus enthält – je nachdem, was gegeben ist."
+  },
+  "half": {
+    "title": "Halber Winkel",
+    "steps": [
+      "Eine Variante des doppelten Kosinus, gültig für jeden Winkel x.",
+      "Sei x die Hälfte von α. Dann ist 2x = α.",
+      "Terme auf die andere Seite bringen.",
+      "Durch 2 teilen und die Wurzel ziehen. Die Wurzel hat zwei Vorzeichen: Man nimmt das des Quadranten, in dem α/2 liegt.",
+      "Genauso, ausgehend von cos 2x = 2cos²x − 1."
+    ],
+    "use": "Exakte Werte wie sin 15° oder cos 22,5° aus 30° oder 45° berechnen."
+  },
+  "s2p": {
+    "title": "Summe in Produkt",
+    "steps": [
+      "Summenformel.",
+      "Differenzformel.",
+      "Beide addieren: Die Terme cos x sin y heben sich auf.",
+      "Umbenennen. Durch Addieren und Subtrahieren der beiden Gleichungen erhält man x und y.",
+      "Einsetzen. Dasselbe mit den Kosinusformeln ergibt cos α + cos β."
+    ],
+    "use": "Ein Produkt ist 0, wenn ein Faktor 0 ist – das erleichtert das Lösen von Gleichungen. Es erklärt auch die „Schwebung“ zweier Töne."
+  }
+}

@@ -1,0 +1,51 @@
+---
+import { pointOn } from "../../lib/figure";
+import Dot from "./parts/Dot.astro";
+import Label from "./parts/Label.astro";
+import Line from "./parts/Line.astro";
+
+const wide = true;
+const radius = 92;
+const a = 125;
+const b = 25;
+
+const panel = (cx: number, cy: number, da: number, db: number, na: string, nb: string) => ({
+  cx,
+  cy,
+  na,
+  nb,
+  pa: pointOn(cx, cy, da, radius),
+  pb: pointOn(cx, cy, db, radius),
+  la: pointOn(cx, cy, da, radius + 18),
+  lb: pointOn(cx, cy, db, radius + 18),
+});
+const panels = [panel(140, 130, a, b, "A", "B"), panel(420, 130, a - b, 0, "A′", "B′")];
+---
+
+<svg class:list={["mfig", { wide }]} viewBox="0 0 560 250" aria-hidden="true">
+  <defs>
+    <marker id="fig-dist-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--muted)" />
+    </marker>
+  </defs>
+  {
+    panels.map(({ cx, cy, na, nb, pa, pb, la, lb }) => (
+      <>
+        <Line x1={cx - 110} y1={cy} x2={cx + 110} y2={cy} color="var(--axis)" width={1} />
+        <Line x1={cx} y1={cy + 110} x2={cx} y2={cy - 110} color="var(--axis)" width={1} />
+        <circle cx={cx} cy={cy} r={radius} fill="none" stroke="var(--muted)" stroke-width="1.3" opacity=".7" />
+        <Line x1={cx} y1={cy} x2={pa[0]} y2={pa[1]} color="var(--muted)" width={1.5} />
+        <Line x1={cx} y1={cy} x2={pb[0]} y2={pb[1]} color="var(--muted)" width={1.5} />
+        <Line x1={pa[0]} y1={pa[1]} x2={pb[0]} y2={pb[1]} color="var(--g)" width={3.5} />
+        <Dot x={pa[0]} y={pa[1]} color="var(--a)" r={5} />
+        <Dot x={pb[0]} y={pb[1]} color="var(--b)" r={5} />
+        <Label x={la[0]} y={la[1] + 6} color="var(--a)" size={17} halo={false}>{na}</Label>
+        <Label x={lb[0] + 4} y={lb[1] + 6} color="var(--b)" size={17} halo={false}>{nb}</Label>
+      </>
+    ))
+  }
+  <Label x={280} y={38} color="var(--muted)" size={17} halo={false}>−β</Label>
+  <path d="M245 50 Q280 62 315 50" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#fig-dist-arrow)" />
+  <Label x={186} y={154} color="var(--g)" size={17} halo={false}>d</Label>
+  <Label x={456} y={112} color="var(--g)" size={17} halo={false}>d</Label>
+</svg>

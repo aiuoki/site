@@ -1,0 +1,254 @@
+{
+  "sin": {
+    "title": "Why sin θ = y",
+    "steps": [
+      "P is where the angle's side crosses the circle. Dropping a vertical line from P to the x-axis forms a right triangle (one of its angles is 90°).",
+      "The hypotenuse is the longest side, the one opposite the right angle. Here it's the circle's radius, which is 1.",
+      "Definition of sine. The opposite side is the one facing θ, not touching it: the point's height.",
+      "Substitute: the opposite side is y and the hypotenuse is 1.",
+      "Dividing by 1 changes nothing."
+    ],
+    "use": "You can read the sine straight off the drawing: it's the height (y-coordinate) of P."
+  },
+  "cos": {
+    "title": "Why cos θ = x",
+    "steps": [
+      "As with sine, P and its shadow on the x-axis form a right triangle.",
+      "The hypotenuse is the circle's radius.",
+      "Definition of cosine. The adjacent side is the one touching θ (other than the hypotenuse): the triangle's base.",
+      "The base is x and the hypotenuse is 1."
+    ],
+    "use": "Cosine is P's x-coordinate: how far the point has moved horizontally."
+  },
+  "tan": {
+    "title": "Why the yellow segment is tan θ",
+    "steps": [
+      "Definition of tangent in a right triangle. In the small triangle the opposite side is y and the adjacent side is x.",
+      "Extend the angle's side to the line x = 1: a big triangle appears with base 1 and height t (the yellow segment). The symbol ∼ means \"similar\".",
+      "Both triangles have the same angles (they share θ and both have 90°). They are similar: same shape, different size, so their sides are proportional.",
+      "Solve for t. The yellow segment is exactly the tangent. It's named that because the line x = 1 touches the circle at a single point: it's tangent."
+    ],
+    "use": "Tangent is the slope of the angle's line: how much it rises per unit it moves forward."
+  },
+  "cot": {
+    "title": "Why the blue segment is cot θ",
+    "steps": [
+      "Definition: cotangent is the reciprocal of tangent.",
+      "Extend the angle's side to the horizontal line y = 1. This forms a triangle with height 1 and base c (the blue segment).",
+      "The line y = 1 is parallel to the x-axis, and the diagonal crosses both at the same angle (alternate angles).",
+      "From that corner, the opposite side is 1 and the adjacent side is c: tangent = opposite / adjacent.",
+      "Solve for c."
+    ],
+    "use": "It's the reciprocal of the slope; it shows up when studying nearly vertical lines."
+  },
+  "sec": {
+    "title": "Why the red segment is sec θ",
+    "steps": [
+      "It's the same big triangle as for tangent: base 1, height t. Its hypotenuse h is the red segment, from the origin to the line x = 1.",
+      "Definition of cosine applied to the big triangle: the adjacent side is 1 and the hypotenuse is h.",
+      "Solve for h. That's why |sec θ| is always 1 or more: the hypotenuse is never shorter than the base."
+    ],
+    "use": "It appears in physics (components of inclined forces) and in integrals."
+  },
+  "csc": {
+    "title": "Why the green segment is csc θ",
+    "steps": [
+      "It's the cotangent triangle: base c, height 1. Its hypotenuse h is the green segment, from the origin to the line y = 1.",
+      "The angle θ sits at the corner (c, 1). From there, the opposite side is 1.",
+      "Solve for h."
+    ],
+    "use": "Completes the six ratios; useful for simplifying expressions with 1/sin."
+  },
+  "rad": {
+    "title": "Degrees and radians",
+    "steps": [
+      "Length L of a circle of radius r.",
+      "On the unit circle a full turn has length 2π.",
+      "A radian is the angle spanning an arc (⌒) equal to the radius. That's why a full turn has 2π radians.",
+      "The same turn measured two ways. Divide by 2.",
+      "Rule of three: multiply by π/180 to get radians; by 180/π to go back to degrees."
+    ],
+    "use": "Physics and calculus formulas (e.g. the derivatives of sin and cos) only work in radians."
+  },
+  "signs": {
+    "title": "Signs by quadrant",
+    "steps": [
+      "Sine has the sign of y and cosine the sign of x.",
+      "Top right: all positive.",
+      "Top left: only sine (and its reciprocal, cosecant) is positive.",
+      "Bottom left: sin and cos are negative, but tan = y/x is negative/negative = positive.",
+      "Bottom right: only cosine (and secant) is positive.",
+      "A ratio and its reciprocal always share their sign (∼), because 1 divided by a number keeps its sign."
+    ],
+    "use": "Work out any angle with its reference angle: table value + quadrant sign."
+  },
+  "notables": {
+    "title": "Where the key angles come from",
+    "steps": [
+      "If one acute angle is 45°, so is the other (they add up to 90°). Both legs are equal; call them a. Apply Pythagoras with hypotenuse 1.",
+      "Solve for a. Rationalising means multiplying top and bottom by √2 to remove the root from the denominator.",
+      "Both legs have the same length.",
+      "An equilateral triangle (three equal sides) has three 60° angles. Cut in half, it gives two 30°-60°-90° triangles with hypotenuse 1.",
+      "The base b is split into two halves. The height h comes from Pythagoras: h² = 1 − 1/4 = 3/4.",
+      "Opposite 30° is the short base; opposite 60° is the height."
+    ],
+    "use": "With two triangles you can rebuild the whole table without memorising it."
+  },
+  "rec-sin": {
+    "title": "sin θ · csc θ = 1",
+    "steps": [
+      "Definition of cosecant: the reciprocal of sine.",
+      "Substitute the cosecant.",
+      "A number divided by itself is 1. Only valid if sin θ ≠ 0 (you can't divide by 0)."
+    ],
+    "use": "That's why they're called reciprocal ratios: multiplied together they give 1. It lets you switch from one to the other."
+  },
+  "rec-cos": {
+    "title": "cos θ · sec θ = 1",
+    "steps": [
+      "Definition of secant: the reciprocal of cosine.",
+      "Substitute the secant.",
+      "It simplifies, as long as cos θ ≠ 0."
+    ],
+    "use": "If you know the cosine, the secant is its reciprocal (and vice versa)."
+  },
+  "rec-tan": {
+    "title": "tan θ · cot θ = 1",
+    "steps": [
+      "Write both in terms of sine and cosine.",
+      "Multiply.",
+      "To multiply fractions, multiply top by top and bottom by bottom. Top and bottom are the same: 1."
+    ],
+    "use": "Switch from tangent to cotangent with cot θ = 1/tan θ."
+  },
+  "quot-tan": {
+    "title": "tan θ = sin θ / cos θ",
+    "steps": [
+      "Definition of tangent in the right triangle.",
+      "On the unit circle the opposite side is y and the adjacent side is x.",
+      "Because y = sin θ and x = cos θ."
+    ],
+    "use": "It's how you find the tangent when you only know sine and cosine."
+  },
+  "quot-cot": {
+    "title": "cot θ = cos θ / sin θ",
+    "steps": [
+      "Definition of cotangent: the tangent flipped over.",
+      "On the unit circle.",
+      "Replace x and y with cosine and sine."
+    ],
+    "use": "Writing everything in sine and cosine is the first step to simplifying almost any expression."
+  },
+  "pyth": {
+    "title": "sin²θ + cos²θ = 1",
+    "steps": [
+      "Pythagoras' theorem: in a right triangle, the square of the hypotenuse (c) is the sum of the squares of the legs (a and b).",
+      "On the unit circle the legs are x and y, and the hypotenuse is the radius.",
+      "Substitute.",
+      "Replace x with cos θ and y with sin θ.",
+      "We write cos²θ instead of (cos θ)²; it's just notation.",
+      "The order of addition doesn't matter."
+    ],
+    "use": "If you know one ratio you get the other: cos θ = ±√(1 − sin²θ). It's the basis of almost every other identity."
+  },
+  "pyth-tan": {
+    "title": "1 + tan²θ = sec²θ",
+    "steps": [
+      "Start from the Pythagorean identity.",
+      "Divide every term by cos²θ (allowed if cos θ ≠ 0). Doing the same to both sides keeps the equality.",
+      "sin/cos is tan, cos/cos is 1 and 1/cos is sec.",
+      "Reorder. In the figure it's Pythagoras in the big triangle: legs 1 and tan θ, hypotenuse sec θ."
+    ],
+    "use": "Go from tangent to secant without finding the angle; it shows up a lot in integrals."
+  },
+  "pyth-cot": {
+    "title": "1 + cot²θ = csc²θ",
+    "steps": [
+      "Start from the Pythagorean identity.",
+      "Now divide by sin²θ (if sin θ ≠ 0).",
+      "sin/sin is 1, cos/sin is cot and 1/sin is csc. It's Pythagoras in the triangle on the line y = 1."
+    ],
+    "use": "Links cotangent and cosecant just as the previous one links tangent and secant."
+  },
+  "sum-cos": {
+    "title": "Cosine of a sum and a difference",
+    "steps": [
+      "Two points on the unit circle, at angles α and β. The angle between them is α − β. We'll compute the distance d between A and B in two ways.",
+      "Distance formula between two points: (x₂ − x₁)² + (y₂ − y₁)².",
+      "Expand each square with (a − b)² = a² − 2ab + b².",
+      "Group the squares of each angle.",
+      "Each coloured bracket equals 1 because sin² + cos² = 1.",
+      "Second way: rotate the figure until B lies on the x-axis. Rotating doesn't change distances, so A′B′ is also d.",
+      "Same distance formula. Expanding, sin² + cos² gives 1 again.",
+      "Both expressions are the same distance, so they're equal.",
+      "Subtract 2 from both sides and divide by −2. That's the difference formula.",
+      "For the sum write α + β = α − (−β). A negative angle reflects the point in the x-axis: cos(−β) = cos β and sin(−β) = −sin β. That's where the minus sign comes from."
+    ],
+    "use": "It's the base formula: sine, tangent, double angle and half angle all come from it."
+  },
+  "sum-sin": {
+    "title": "Sine of a sum and a difference",
+    "steps": [
+      "Complementary angles (adding up to 90°): in a right triangle, the side opposite one acute angle is adjacent to the other. So the sine of one is the cosine of the other.",
+      "Apply that to α + β and regroup the bracket.",
+      "Use the cosine-of-a-difference formula with 90° − α in place of α.",
+      "cos(90° − α) = sin α and sin(90° − α) = cos α (complementary again).",
+      "For the difference replace β with −β: cos(−β) = cos β and sin(−β) = −sin β."
+    ],
+    "use": "Find exact sines of non-key angles (15°, 75°, 105°…) and add waves in physics."
+  },
+  "sum-tan": {
+    "title": "Tangent of a sum and a difference",
+    "steps": [
+      "Tangent is sine over cosine.",
+      "Substitute the sine and cosine formulas.",
+      "Divide top and bottom by cos α cos β. The value doesn't change: it's like multiplying by 1.",
+      "Simplify each fraction: sin α/cos α = tan α, sin β/cos β = tan β, and anything equal on top and bottom gives 1."
+    ],
+    "use": "Find the angle between two lines from their slopes."
+  },
+  "dbl": {
+    "title": "Double angle",
+    "steps": [
+      "Start from the sum formula.",
+      "Set β = α (add an angle to itself).",
+      "Both terms are equal.",
+      "Same trick with the cosine formula.",
+      "And with the tangent formula."
+    ],
+    "use": "Simplify expressions and compute integrals like ∫ sin x cos x dx."
+  },
+  "dbl2": {
+    "title": "Double-angle cosine variants",
+    "steps": [
+      "Cosine of the double angle.",
+      "Solved from sin²α + cos²α = 1.",
+      "Substitute sin²α and collect the cos²α terms.",
+      "Now solve for the cosine.",
+      "Substitute and collect the sin²α terms."
+    ],
+    "use": "Pick the version with only sine or only cosine, depending on what you're given."
+  },
+  "half": {
+    "title": "Half angle",
+    "steps": [
+      "A variant of the double-angle cosine, valid for any angle x.",
+      "Let x be half of α. Then 2x = α.",
+      "Move terms from one side to the other.",
+      "Divide by 2 and take the square root. The root has two signs: pick the one for the quadrant where α/2 lies.",
+      "Same, starting from cos 2x = 2cos²x − 1."
+    ],
+    "use": "Find exact values like sin 15° or cos 22.5° from 30° or 45°."
+  },
+  "s2p": {
+    "title": "Sum-to-product",
+    "steps": [
+      "Sum formula.",
+      "Difference formula.",
+      "Add them: the cos x sin y terms cancel.",
+      "Rename. Adding and subtracting the two equations gives x and y.",
+      "Substitute. Doing the same with the cosine formulas gives cos α + cos β."
+    ],
+    "use": "A product is 0 if any factor is 0, which makes equations easier to solve. It also explains the \"beats\" when two sounds are added."
+  }
+}

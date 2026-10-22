@@ -1,0 +1,28 @@
+---
+import { notationFor, pageLocale } from "../../i18n";
+import { unitAngle } from "../../lib/figure";
+import Dot from "./parts/Dot.astro";
+import Label from "./parts/Label.astro";
+import Line from "./parts/Line.astro";
+import PolarLabel from "./parts/PolarLabel.astro";
+import UnitFrame from "./parts/UnitFrame.astro";
+
+const n = notationFor(pageLocale(Astro.currentLocale));
+const a = 40;
+const { tn: ta, ct: ca } = unitAngle(a);
+---
+
+<UnitFrame>
+  <Line unit x1={1} y1={-0.25} x2={1} y2={1.3} color="var(--muted)" width={1} dash="3 5" />
+  <Line unit x1={-0.25} y1={1} x2={1.75} y2={1} color="var(--muted)" width={1} dash="3 5" />
+  <Line unit x1={0} y1={0} x2={ca} y2={1} width={2} />
+  <Line unit x1={1} y1={0} x2={1} y2={ta} color="var(--tan)" width={4} />
+  <Line unit x1={0} y1={1} x2={ca} y2={1} color="var(--cot)" width={4} />
+  <Dot unit x={1} y={ta} color="var(--tan)" />
+  <Dot unit x={ca} y={1} color="var(--cot)" />
+  <Label unit x={1.05} y={ta / 2} color="var(--tan)" anchor="start">{n.tan} θ</Label>
+  <Label unit x={ca / 2} y={1.07} color="var(--cot)">{n.cot} θ</Label>
+  <Label unit x={1} y={-0.13} italic={false}>1</Label>
+  <Label unit x={-0.05} y={1} anchor="end" italic={false}>1</Label>
+  <PolarLabel deg={a / 2} r={0.3}>θ</PolarLabel>
+</UnitFrame>

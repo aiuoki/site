@@ -1,0 +1,44 @@
+---
+import DemoDialog from "./DemoDialog.astro";
+import type { DemoFormulas, DemoText } from "../../demos/types";
+
+interface Props {
+  demos: { id: string; formulas: DemoFormulas; text: DemoText }[];
+  labels: { title: string; use: string; close: string };
+}
+
+const { demos, labels } = Astro.props;
+---
+
+{demos.map((demo) => <DemoDialog {...demo} labels={labels} />)}
+
+<script>
+  // Any element with data-demo="<id>" opens dialog#demo-<id>.
+  function open(id: string) {
+    const dialog = document.getElementById(`demo-${id}`);
+    if (!(dialog instanceof HTMLDialogElement)) return;
+    for (const other of document.querySelectorAll<HTMLDialogElement>("dialog.demo-dialog[open]")) other.close();
+    dialog.showModal();
+    dialog.scrollTop = 0;
+  }
+
+  document.addEventListener("click", (event) => {
+    const target = event.target as HTMLElement;
+    const dialog = target.closest("dialog.demo-dialog");
+    if (dialog instanceof HTMLDialogElement) {
+      // Backdrop click (the dialog itself) or the close button.
+      if (target === dialog || target.closest("[data-close]")) dialog.close();
+      return;
+    }
+    const trigger = target.closest<HTMLElement>("[data-demo]");
+    if (trigger?.dataset.demo) open(trigger.dataset.demo);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    const target = event.target as HTMLElement;
+    if (!target.matches('[data-demo][role="button"]')) return;
+    event.preventDefault();
+    open(target.dataset.demo!);
+  });
+</script>

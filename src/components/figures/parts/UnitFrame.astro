@@ -1,0 +1,11 @@
+---
+// Axes and unit circle shared by the unit-circle figures.
+import { px, py } from "../../../lib/figure";
+---
+
+<svg class="mfig" viewBox="0 0 300 230" aria-hidden="true">
+  <line x1="10" y1="190" x2="292" y2="190" stroke="var(--axis)" stroke-width="1.2" />
+  <line x1="50" y1="222" x2="50" y2="8" stroke="var(--axis)" stroke-width="1.2" />
+  <circle cx={px(0)} cy={py(0)} r="140" fill="none" stroke="var(--muted)" stroke-width="1.3" opacity=".7" />
+  <slot />
+</svg>

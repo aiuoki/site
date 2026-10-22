@@ -1,0 +1,53 @@
+---
+import Formula from "./Formula.astro";
+import { figures, type FigureId } from "../figures";
+import type { DemoFormulas, DemoText } from "../../demos/types";
+
+interface Props {
+  id: string;
+  formulas: DemoFormulas;
+  text: DemoText;
+  labels: { title: string; use: string; close: string };
+}
+
+const { id, formulas, text, labels } = Astro.props;
+const figs = formulas.figures.map((f) => figures[f as FigureId]);
+---
+
+<dialog class="demo-dialog" id={`demo-${id}`} aria-labelledby={`demo-${id}-title`}>
+  <div class="dlg">
+    <div class="dlg-head">
+      <div>
+        <span class="eyebrow">{labels.title}</span>
+        <h2 id={`demo-${id}-title`}>{text.title}</h2>
+      </div>
+      <button type="button" class="x" data-close aria-label={labels.close}>×</button>
+    </div>
+    <div class="stmt"><Formula tex={formulas.statement} /></div>
+    {
+      figs.length > 0 && (
+        <div class="figrow">
+          {figs.map((Figure) => (
+            <Figure />
+          ))}
+        </div>
+      )
+    }
+    <ol class="psteps">
+      {
+        formulas.steps.map((tex, i) => (
+          <li>
+            <div class="sf">
+              <Formula tex={tex} />
+            </div>
+            <p>{text.steps[i]}</p>
+          </li>
+        ))
+      }
+    </ol>
+    <div class="usebox">
+      <b>{labels.use}</b>
+      <p>{text.use}</p>
+    </div>
+  </div>
+</dialog>

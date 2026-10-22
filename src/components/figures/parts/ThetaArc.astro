@@ -1,0 +1,16 @@
+---
+// Marks the 40 degree angle at the origin of the unit-circle figures.
+import { polar, px, py, round, unitAngle } from "../../../lib/figure";
+import Label from "./Label.astro";
+
+const { c, s } = unitAngle(40);
+const [lx, ly] = polar(18, 0.3);
+---
+
+<path
+  d={`M${px(0.2)} ${py(0)} A28 28 0 0 0 ${round(px(0.2 * c))} ${round(py(0.2 * s))}`}
+  fill="none"
+  stroke="var(--fg)"
+  stroke-width="1.4"
+/>
+<Label unit x={lx} y={ly - 0.04}>θ</Label>

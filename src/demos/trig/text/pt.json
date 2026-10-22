@@ -1,0 +1,254 @@
+{
+  "sin": {
+    "title": "Porque é que sen θ = y",
+    "steps": [
+      "P é o ponto onde o lado do ângulo corta o círculo. Baixando uma linha vertical de P até ao eixo x forma-se um triângulo retângulo (um dos ângulos mede 90°).",
+      "A hipotenusa é o lado maior, o que está em frente ao ângulo reto. Aqui é o raio do círculo, que mede 1.",
+      "Definição de seno. O cateto oposto é o lado em frente a θ, sem lhe tocar: a altura do ponto.",
+      "Substituímos: o cateto oposto mede y e a hipotenusa mede 1.",
+      "Dividir por 1 não muda nada."
+    ],
+    "use": "O seno lê-se diretamente no desenho: é a altura (coordenada y) do ponto P."
+  },
+  "cos": {
+    "title": "Porque é que cos θ = x",
+    "steps": [
+      "Tal como no seno, P e a sua sombra no eixo x formam um triângulo retângulo.",
+      "A hipotenusa é o raio do círculo.",
+      "Definição de cosseno. O cateto adjacente é o que toca no ângulo θ (sem ser a hipotenusa): a base do triângulo.",
+      "A base mede x e a hipotenusa 1."
+    ],
+    "use": "O cosseno é a coordenada x de P: quanto o ponto se deslocou na horizontal."
+  },
+  "tan": {
+    "title": "Porque é que o segmento amarelo é tg θ",
+    "steps": [
+      "Definição de tangente num triângulo retângulo. No triângulo pequeno o oposto é y e o adjacente é x.",
+      "Prolongamos o lado do ângulo até à reta x = 1: aparece um triângulo grande de base 1 e altura t (o segmento amarelo). O símbolo ∼ significa «semelhante».",
+      "Os dois triângulos têm os mesmos ângulos (partilham θ e ambos têm 90°). São semelhantes: mesma forma, tamanho diferente, por isso os lados são proporcionais.",
+      "Isolamos t. O segmento amarelo mede exatamente a tangente. Chama-se assim porque a reta x = 1 toca o círculo num só ponto: é tangente."
+    ],
+    "use": "A tangente é o declive da reta do ângulo: quanto sobe por cada unidade que avança."
+  },
+  "cot": {
+    "title": "Porque é que o segmento azul é cotg θ",
+    "steps": [
+      "Definição: a cotangente é a inversa da tangente.",
+      "Prolongamos o lado do ângulo até à reta horizontal y = 1. Forma-se um triângulo com altura 1 e base c (o segmento azul).",
+      "A reta y = 1 é paralela ao eixo x, e a diagonal corta ambas com o mesmo ângulo (ângulos alternos internos).",
+      "A partir desse vértice, o lado em frente mede 1 e o lado que lhe toca mede c: tangente = oposto / adjacente.",
+      "Isolamos c."
+    ],
+    "use": "É a inversa do declive; aparece ao estudar retas quase verticais."
+  },
+  "sec": {
+    "title": "Porque é que o segmento vermelho é sec θ",
+    "steps": [
+      "É o mesmo triângulo grande da tangente: base 1, altura t. A sua hipotenusa h é o segmento vermelho, da origem até à reta x = 1.",
+      "Definição de cosseno aplicada ao triângulo grande: o adjacente mede 1 e a hipotenusa mede h.",
+      "Isolamos h. Por isso |sec θ| é sempre 1 ou mais: a hipotenusa nunca é mais curta do que a base."
+    ],
+    "use": "Aparece em física (componentes de forças inclinadas) e em integrais."
+  },
+  "csc": {
+    "title": "Porque é que o segmento verde é cosec θ",
+    "steps": [
+      "É o triângulo da cotangente: base c, altura 1. A sua hipotenusa h é o segmento verde, da origem até à reta y = 1.",
+      "O ângulo θ está no vértice (c, 1). A partir daí, o lado em frente mede 1.",
+      "Isolamos h."
+    ],
+    "use": "Completa as seis razões; útil para simplificar expressões com 1/sen."
+  },
+  "rad": {
+    "title": "Graus e radianos",
+    "steps": [
+      "Perímetro L de uma circunferência de raio r.",
+      "No círculo trigonométrico uma volta completa mede 2π.",
+      "Um radiano é o ângulo que abrange um arco (⌒) igual ao raio. Por isso uma volta tem 2π radianos.",
+      "A mesma volta medida de duas formas. Dividimos por 2.",
+      "Regra de três simples: multiplicar por π/180 passa a radianos; por 180/π volta a graus."
+    ],
+    "use": "As fórmulas de física e de cálculo (por exemplo, as derivadas de sen e cos) só funcionam em radianos."
+  },
+  "signs": {
+    "title": "Sinais por quadrante",
+    "steps": [
+      "O seno tem o sinal de y e o cosseno o de x.",
+      "Em cima à direita: todas positivas.",
+      "Em cima à esquerda: só o seno (e a sua inversa, a cossecante) é positivo.",
+      "Em baixo à esquerda: sen e cos negativos, mas tg = y/x é negativo/negativo = positivo.",
+      "Em baixo à direita: só o cosseno (e a secante) é positivo.",
+      "Uma razão e a sua inversa têm sempre o mesmo sinal (∼), porque 1 a dividir por um número mantém o sinal dele."
+    ],
+    "use": "Calcular qualquer ângulo com o seu ângulo de referência: valor da tabela + sinal do quadrante."
+  },
+  "notables": {
+    "title": "De onde vêm os ângulos notáveis",
+    "steps": [
+      "Se um ângulo agudo mede 45°, o outro também (somam 90°). Os dois catetos são iguais; chamamos-lhes a. Aplicamos Pitágoras com hipotenusa 1.",
+      "Isolamos a. Racionalizar é multiplicar em cima e em baixo por √2 para tirar a raiz do denominador.",
+      "Os dois catetos medem o mesmo.",
+      "Um triângulo equilátero (três lados iguais) tem três ângulos de 60°. Cortado ao meio dá dois triângulos de 30°, 60° e 90° com hipotenusa 1.",
+      "A base b divide-se em duas metades. A altura h sai de Pitágoras: h² = 1 − 1/4 = 3/4.",
+      "Em frente a 30° está a base curta; em frente a 60° está a altura."
+    ],
+    "use": "Com dois triângulos reconstróis a tabela inteira sem a decorar."
+  },
+  "rec-sin": {
+    "title": "sen θ · cosec θ = 1",
+    "steps": [
+      "Definição de cossecante: é a inversa do seno.",
+      "Substituímos a cossecante.",
+      "Um número a dividir por si próprio dá 1. Só vale se sen θ ≠ 0 (não se divide por 0)."
+    ],
+    "use": "Por isso chamam-se razões recíprocas: multiplicadas dão 1. Permite passar de uma para a outra."
+  },
+  "rec-cos": {
+    "title": "cos θ · sec θ = 1",
+    "steps": [
+      "Definição de secante: é a inversa do cosseno.",
+      "Substituímos a secante.",
+      "Simplifica-se, desde que cos θ ≠ 0."
+    ],
+    "use": "Se conheces o cosseno, a secante é a sua inversa (e vice-versa)."
+  },
+  "rec-tan": {
+    "title": "tg θ · cotg θ = 1",
+    "steps": [
+      "Escrevemos as duas em função do seno e do cosseno.",
+      "Multiplicamos.",
+      "Para multiplicar frações multiplica-se numerador por numerador e denominador por denominador. Fica o mesmo em cima e em baixo: 1."
+    ],
+    "use": "Passar da tangente para a cotangente com cotg θ = 1/tg θ."
+  },
+  "quot-tan": {
+    "title": "tg θ = sen θ / cos θ",
+    "steps": [
+      "Definição de tangente no triângulo retângulo.",
+      "No círculo trigonométrico o oposto é y e o adjacente é x.",
+      "Porque y = sen θ e x = cos θ."
+    ],
+    "use": "É a forma de calcular a tangente quando só conheces o seno e o cosseno."
+  },
+  "quot-cot": {
+    "title": "cotg θ = cos θ / sen θ",
+    "steps": [
+      "Definição de cotangente: a tangente invertida.",
+      "No círculo trigonométrico.",
+      "Trocamos x e y por cosseno e seno."
+    ],
+    "use": "Escrever tudo em seno e cosseno é o primeiro passo para simplificar quase qualquer expressão."
+  },
+  "pyth": {
+    "title": "sen²θ + cos²θ = 1",
+    "steps": [
+      "Teorema de Pitágoras: num triângulo retângulo, o quadrado da hipotenusa (c) é a soma dos quadrados dos catetos (a e b).",
+      "No círculo trigonométrico os catetos são x e y, e a hipotenusa é o raio.",
+      "Substituímos.",
+      "Trocamos x por cos θ e y por sen θ.",
+      "Escreve-se cos²θ em vez de (cos θ)²; é só notação.",
+      "A ordem da soma não importa."
+    ],
+    "use": "Se conheces uma razão, obténs a outra: cos θ = ±√(1 − sen²θ). É a base de quase todas as outras identidades."
+  },
+  "pyth-tan": {
+    "title": "1 + tg²θ = sec²θ",
+    "steps": [
+      "Partimos da identidade pitagórica.",
+      "Dividimos todos os termos por cos²θ (pode-se se cos θ ≠ 0). Fazendo o mesmo dos dois lados, a igualdade mantém-se.",
+      "sen/cos é tg, cos/cos é 1 e 1/cos é sec.",
+      "Reordenamos. Na figura é Pitágoras no triângulo grande: catetos 1 e tg θ, hipotenusa sec θ."
+    ],
+    "use": "Passar da tangente para a secante sem calcular o ângulo; aparece muito em integrais."
+  },
+  "pyth-cot": {
+    "title": "1 + cotg²θ = cosec²θ",
+    "steps": [
+      "Partimos da identidade pitagórica.",
+      "Agora dividimos por sen²θ (se sen θ ≠ 0).",
+      "sen/sen é 1, cos/sen é cotg e 1/sen é cosec. É Pitágoras no triângulo da reta y = 1."
+    ],
+    "use": "Relaciona cotangente e cossecante tal como a anterior relaciona tangente e secante."
+  },
+  "sum-cos": {
+    "title": "Cosseno da soma e da diferença",
+    "steps": [
+      "Dois pontos do círculo trigonométrico, com ângulos α e β. O ângulo entre eles é α − β. Vamos calcular a distância d entre A e B de duas formas.",
+      "Fórmula da distância entre dois pontos: (x₂ − x₁)² + (y₂ − y₁)².",
+      "Desenvolvemos cada quadrado com (a − b)² = a² − 2ab + b².",
+      "Agrupamos os quadrados de cada ângulo.",
+      "Cada parêntese colorido vale 1 por sen² + cos² = 1.",
+      "Segunda forma: rodamos a figura até B ficar sobre o eixo x. Rodar não altera distâncias, por isso A′B′ também mede d.",
+      "Mesma fórmula da distância. Ao desenvolver, sen² + cos² volta a dar 1.",
+      "As duas expressões são a mesma distância, logo são iguais.",
+      "Subtraímos 2 aos dois lados e dividimos por −2. Já temos a diferença.",
+      "Para a soma escrevemos α + β = α − (−β). Um ângulo negativo reflete o ponto no eixo x: cos(−β) = cos β e sen(−β) = −sen β. Por isso aparece o sinal menos."
+    ],
+    "use": "É a fórmula base: dela saem a do seno, a da tangente, a do ângulo duplo e a do ângulo metade."
+  },
+  "sum-sin": {
+    "title": "Seno da soma e da diferença",
+    "steps": [
+      "Ângulos complementares (somam 90°): num triângulo retângulo, o cateto oposto a um ângulo agudo é o adjacente do outro. Por isso o seno de um é o cosseno do outro.",
+      "Aplicamos isto a α + β e reagrupamos o parêntese.",
+      "Usamos a fórmula do cosseno da diferença, com 90° − α no lugar de α.",
+      "cos(90° − α) = sen α e sen(90° − α) = cos α (complementares outra vez).",
+      "Para a diferença trocamos β por −β: cos(−β) = cos β e sen(−β) = −sen β."
+    ],
+    "use": "Calcular senos exatos de ângulos não notáveis (15°, 75°, 105°…) e somar ondas em física."
+  },
+  "sum-tan": {
+    "title": "Tangente da soma e da diferença",
+    "steps": [
+      "A tangente é seno a dividir por cosseno.",
+      "Substituímos as fórmulas do seno e do cosseno.",
+      "Dividimos em cima e em baixo por cos α cos β. O valor não muda: é como multiplicar por 1.",
+      "Simplificamos cada fração: sen α/cos α = tg α, sen β/cos β = tg β, e o que é igual em cima e em baixo dá 1."
+    ],
+    "use": "Calcular o ângulo entre duas retas a partir dos seus declives."
+  },
+  "dbl": {
+    "title": "Ângulo duplo",
+    "steps": [
+      "Partimos da fórmula da soma.",
+      "Pomos β = α (somar um ângulo a si próprio).",
+      "As duas parcelas são iguais.",
+      "O mesmo truque com a fórmula do cosseno.",
+      "E com a da tangente."
+    ],
+    "use": "Simplificar expressões e calcular integrais como ∫ sen x cos x dx."
+  },
+  "dbl2": {
+    "title": "Variantes do cosseno duplo",
+    "steps": [
+      "Cosseno do ângulo duplo.",
+      "Isolado de sen²α + cos²α = 1.",
+      "Substituímos sen²α e juntamos os cos²α.",
+      "Agora isolamos o cosseno.",
+      "Substituímos e juntamos os sen²α."
+    ],
+    "use": "Escolher a versão que só tem seno ou só cosseno, conforme o dado que te dão."
+  },
+  "half": {
+    "title": "Ângulo metade",
+    "steps": [
+      "Uma variante do cosseno duplo, válida para qualquer ângulo x.",
+      "Chamamos x à metade de α. Então 2x = α.",
+      "Passamos termos de um lado para o outro.",
+      "Dividimos por 2 e tiramos a raiz quadrada. A raiz tem dois sinais: escolhe-se o do quadrante onde está α/2.",
+      "Igual, partindo de cos 2x = 2cos²x − 1."
+    ],
+    "use": "Calcular valores exatos como sen 15° ou cos 22,5° a partir de 30° ou 45°."
+  },
+  "s2p": {
+    "title": "Fórmulas de transformação",
+    "steps": [
+      "Fórmula da soma.",
+      "Fórmula da diferença.",
+      "Somamos as duas: os termos cos x sen y anulam-se.",
+      "Mudança de nome. Somando e subtraindo as duas equações isolamos x e y.",
+      "Substituímos. Fazendo o mesmo com as fórmulas do cosseno obtém-se cos α + cos β."
+    ],
+    "use": "Um produto vale 0 se algum fator vale 0, por isso resolver equações fica mais fácil. Também explica os «batimentos» ao somar dois sons."
+  }
+}

@@ -1,0 +1,51 @@
+/* Step-by-step demonstration popups. */
+
+dialog.demo-dialog {
+  width: min(720px, calc(100% - 24px)); max-height: calc(100% - 32px); padding: 0;
+  border: 1px solid var(--line); border-radius: 18px; background: var(--surface); color: var(--fg);
+  overflow: auto; scrollbar-width: none; box-shadow: 0 24px 70px var(--shadow);
+}
+dialog.demo-dialog::backdrop { background: var(--backdrop); backdrop-filter: blur(3px); }
+dialog.demo-dialog[open] { animation: demo-pop 0.22s ease-out; }
+@keyframes demo-pop {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+.dlg { display: flex; flex-direction: column; gap: 20px; padding: 22px clamp(16px, 4vw, 30px) 28px; }
+.dlg-head { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; }
+.dlg-head h2 { margin-top: 4px; font-size: clamp(22px, 2.6vw, 28px); line-height: 1.15; }
+.dlg .x {
+  flex: none; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line);
+  background: var(--surface-2); color: var(--fg); font-size: 22px; line-height: 1; cursor: pointer;
+}
+.stmt {
+  font-size: clamp(20px, 3.4vw, 26px); text-align: center; padding: 16px; border-radius: 12px;
+  background: var(--surface-2); border: 1px solid var(--line); overflow-x: auto; scrollbar-width: none;
+}
+.figrow { display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: center; align-items: center; }
+.figrow .mfig { flex: 1 1 250px; max-width: 380px; margin: 0; }
+.figrow .mfig.wide { flex-basis: 100%; max-width: 600px; }
+.mfig { display: block; width: 100%; max-width: 440px; height: auto; margin: 0 auto; }
+.mfig.wide { max-width: 600px; }
+.mfig text { font-family: var(--f-math); }
+ol.psteps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; counter-reset: st; }
+ol.psteps li {
+  counter-increment: st; display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 4px 14px;
+  padding: 14px 0; border-bottom: 1px solid var(--line);
+}
+ol.psteps li:last-child { border-bottom: 0; }
+ol.psteps li::before {
+  content: counter(st); grid-row: 1 / span 2; width: 28px; height: 28px; border-radius: 50%;
+  border: 1px solid var(--line); background: var(--surface-2); display: grid; place-items: center;
+  font: 500 13px var(--f-mono); color: var(--muted); margin-top: 4px;
+}
+.sf { font-size: clamp(18px, 2.8vw, 21px); overflow-x: auto; scrollbar-width: none; padding-block: 4px; line-height: 1.5; }
+ol.psteps p { font-size: 15px; color: var(--muted); max-width: 62ch; }
+.usebox {
+  border-left: 3px solid var(--csc); background: var(--surface-2); border-radius: 0 12px 12px 0;
+  padding: 12px 16px; display: flex; flex-direction: column; gap: 2px;
+}
+.usebox b { font-family: var(--f-display); font-weight: 400; font-size: 17px; }
+.usebox p { font-size: 15px; color: var(--muted); }
+
+dialog.demo-dialog, .stmt, .sf::-webkit-scrollbar { display: none; }

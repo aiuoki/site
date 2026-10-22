@@ -1,0 +1,15 @@
+---
+import { px, py, round } from "../../../lib/figure";
+
+interface Props {
+  x: number;
+  y: number;
+  color?: string;
+  r?: number;
+  unit?: boolean;
+}
+
+const { x, y, color = "var(--fg)", r = 4.5, unit = false } = Astro.props;
+---
+
+<circle cx={round(unit ? px(x) : x)} cy={round(unit ? py(y) : y)} r={r} fill={color} />

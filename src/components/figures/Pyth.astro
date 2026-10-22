@@ -1,0 +1,21 @@
+---
+import { notationFor, pageLocale } from "../../i18n";
+import { unitAngle } from "../../lib/figure";
+import Dot from "./parts/Dot.astro";
+import Label from "./parts/Label.astro";
+import ThetaArc from "./parts/ThetaArc.astro";
+import UnitFrame from "./parts/UnitFrame.astro";
+import UnitTriangle from "./parts/UnitTriangle.astro";
+
+const n = notationFor(pageLocale(Astro.currentLocale));
+const { c, s } = unitAngle(40);
+---
+
+<UnitFrame>
+  <UnitTriangle adjacent="var(--cos)" opposite="var(--sin)" />
+  <Dot unit x={c} y={s} />
+  <Label unit x={c / 2 - 0.07} y={s / 2 + 0.06} anchor="end" italic={false}>1</Label>
+  <Label unit x={c / 2} y={-0.13} color="var(--cos)">{n.cos} θ</Label>
+  <Label unit x={c + 0.05} y={s / 2} color="var(--sin)" anchor="start">{n.sin} θ</Label>
+  <ThetaArc />
+</UnitFrame>

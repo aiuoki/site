@@ -1,0 +1,40 @@
+---
+import { px, py, round } from "../../../lib/figure";
+
+interface Props {
+  x: number;
+  y: number;
+  color?: string;
+  anchor?: "start" | "middle" | "end";
+  italic?: boolean;
+  size?: number;
+  // Background-colored outline that keeps the text readable over lines.
+  halo?: boolean;
+  unit?: boolean;
+}
+
+const {
+  x,
+  y,
+  color = "var(--fg)",
+  anchor = "middle",
+  italic = true,
+  size = 16,
+  halo = true,
+  unit = false,
+} = Astro.props;
+const [tx, ty] = unit ? [px(x), py(y)] : [x, y];
+---
+
+<text
+  x={round(tx)}
+  y={round(ty)}
+  fill={color}
+  text-anchor={anchor}
+  font-size={size}
+  font-style={italic ? "italic" : undefined}
+  paint-order={halo ? "stroke" : undefined}
+  stroke={halo ? "var(--surface)" : undefined}
+  stroke-width={halo ? 4 : undefined}
+  stroke-linejoin={halo ? "round" : undefined}><slot /></text
+>

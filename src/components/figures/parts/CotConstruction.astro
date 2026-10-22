@@ -1,0 +1,22 @@
+---
+// Cotangent line at y = 1 with the right triangle it forms with the radius.
+import { unitAngle } from "../../../lib/figure";
+import Dot from "./Dot.astro";
+import Line from "./Line.astro";
+import RightAngle from "./RightAngle.astro";
+
+interface Props {
+  hypotenuse: string;
+  cotangent: string;
+}
+
+const { hypotenuse, cotangent } = Astro.props;
+const { ct } = unitAngle(40);
+---
+
+<Line unit x1={-0.25} y1={1} x2={1.75} y2={1} color="var(--muted)" width={1} dash="3 5" />
+<Line unit x1={0} y1={0} x2={0} y2={1} color="var(--muted)" width={3} />
+<Line unit x1={0} y1={0} x2={ct} y2={1} color={hypotenuse} width={hypotenuse === "var(--fg)" ? 2 : 4} />
+<Line unit x1={0} y1={1} x2={ct} y2={1} color={cotangent} width={4} />
+<RightAngle unit x={0} y={1} dx={1} dy={-1} />
+<Dot unit x={ct} y={1} color={cotangent} />

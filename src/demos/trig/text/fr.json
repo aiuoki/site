@@ -1,0 +1,254 @@
+{
+  "sin": {
+    "title": "Pourquoi sin θ = y",
+    "steps": [
+      "P est le point où le côté de l'angle coupe le cercle. En abaissant une verticale de P jusqu'à l'axe x, on obtient un triangle rectangle (l'un de ses angles mesure 90°).",
+      "L'hypoténuse est le plus grand côté, celui en face de l'angle droit. Ici, c'est le rayon du cercle, qui vaut 1.",
+      "Définition du sinus. Le côté opposé est celui qui fait face à θ sans le toucher : la hauteur du point.",
+      "On remplace : le côté opposé mesure y et l'hypoténuse 1.",
+      "Diviser par 1 ne change rien."
+    ],
+    "use": "On lit le sinus directement sur le dessin : c'est la hauteur (ordonnée y) du point P."
+  },
+  "cos": {
+    "title": "Pourquoi cos θ = x",
+    "steps": [
+      "Comme pour le sinus, P et son ombre sur l'axe x forment un triangle rectangle.",
+      "L'hypoténuse est le rayon du cercle.",
+      "Définition du cosinus. Le côté adjacent est celui qui touche l'angle θ (sans être l'hypoténuse) : la base du triangle.",
+      "La base mesure x et l'hypoténuse 1."
+    ],
+    "use": "Le cosinus est l'abscisse x de P : de combien le point s'est déplacé horizontalement."
+  },
+  "tan": {
+    "title": "Pourquoi le segment jaune est tan θ",
+    "steps": [
+      "Définition de la tangente dans un triangle rectangle. Dans le petit triangle, l'opposé est y et l'adjacent est x.",
+      "On prolonge le côté de l'angle jusqu'à la droite x = 1 : un grand triangle apparaît, de base 1 et de hauteur t (le segment jaune). Le symbole ∼ signifie « semblable ».",
+      "Les deux triangles ont les mêmes angles (ils partagent θ et ont tous deux un angle de 90°). Ils sont semblables : même forme, taille différente, donc côtés proportionnels.",
+      "On isole t. Le segment jaune mesure exactement la tangente. Elle s'appelle ainsi car la droite x = 1 touche le cercle en un seul point : elle est tangente."
+    ],
+    "use": "La tangente est la pente de la droite de l'angle : de combien elle monte pour chaque unité parcourue."
+  },
+  "cot": {
+    "title": "Pourquoi le segment bleu est cotan θ",
+    "steps": [
+      "Définition : la cotangente est l'inverse de la tangente.",
+      "On prolonge le côté de l'angle jusqu'à la droite horizontale y = 1. On obtient un triangle de hauteur 1 et de base c (le segment bleu).",
+      "La droite y = 1 est parallèle à l'axe x, et la diagonale coupe les deux avec le même angle (angles alternes-internes).",
+      "Depuis ce coin, le côté opposé mesure 1 et le côté adjacent mesure c : tangente = opposé / adjacent.",
+      "On isole c."
+    ],
+    "use": "C'est l'inverse de la pente ; elle apparaît quand on étudie des droites presque verticales."
+  },
+  "sec": {
+    "title": "Pourquoi le segment rouge est sec θ",
+    "steps": [
+      "C'est le même grand triangle que pour la tangente : base 1, hauteur t. Son hypoténuse h est le segment rouge, de l'origine jusqu'à la droite x = 1.",
+      "Définition du cosinus appliquée au grand triangle : l'adjacent mesure 1 et l'hypoténuse h.",
+      "On isole h. C'est pourquoi |sec θ| vaut toujours 1 ou plus : l'hypoténuse n'est jamais plus courte que la base."
+    ],
+    "use": "Elle apparaît en physique (composantes de forces inclinées) et dans les intégrales."
+  },
+  "csc": {
+    "title": "Pourquoi le segment vert est cosec θ",
+    "steps": [
+      "C'est le triangle de la cotangente : base c, hauteur 1. Son hypoténuse h est le segment vert, de l'origine jusqu'à la droite y = 1.",
+      "L'angle θ se trouve au coin (c, 1). De là, le côté opposé mesure 1.",
+      "On isole h."
+    ],
+    "use": "Complète les six rapports ; utile pour simplifier des expressions avec 1/sin."
+  },
+  "rad": {
+    "title": "Degrés et radians",
+    "steps": [
+      "Longueur L d'un cercle de rayon r.",
+      "Sur le cercle trigonométrique, un tour complet mesure 2π.",
+      "Un radian est l'angle qui intercepte un arc (⌒) égal au rayon. Un tour fait donc 2π radians.",
+      "Le même tour mesuré de deux façons. On divise par 2.",
+      "Règle de trois : multiplier par π/180 donne des radians ; par 180/π on revient en degrés."
+    ],
+    "use": "Les formules de physique et d'analyse (par exemple les dérivées de sin et cos) ne marchent qu'en radians."
+  },
+  "signs": {
+    "title": "Signes selon le quadrant",
+    "steps": [
+      "Le sinus a le signe de y et le cosinus celui de x.",
+      "En haut à droite : tous positifs.",
+      "En haut à gauche : seul le sinus (et son inverse, la cosécante) est positif.",
+      "En bas à gauche : sin et cos négatifs, mais tan = y/x est négatif/négatif = positif.",
+      "En bas à droite : seul le cosinus (et la sécante) est positif.",
+      "Un rapport et son inverse ont toujours le même signe (∼), car 1 divisé par un nombre garde son signe."
+    ],
+    "use": "Calculer n'importe quel angle avec son angle de référence : valeur du tableau + signe du quadrant."
+  },
+  "notables": {
+    "title": "D'où viennent les angles remarquables",
+    "steps": [
+      "Si un angle aigu mesure 45°, l'autre aussi (ils font 90° à eux deux). Les deux côtés de l'angle droit sont égaux ; on les appelle a. On applique Pythagore avec une hypoténuse de 1.",
+      "On isole a. Rationaliser, c'est multiplier en haut et en bas par √2 pour enlever la racine du dénominateur.",
+      "Les deux côtés ont la même longueur.",
+      "Un triangle équilatéral (trois côtés égaux) a trois angles de 60°. Coupé en deux, il donne deux triangles 30°-60°-90° d'hypoténuse 1.",
+      "La base b est coupée en deux moitiés. La hauteur h vient de Pythagore : h² = 1 − 1/4 = 3/4.",
+      "En face de 30°, il y a la petite base ; en face de 60°, la hauteur."
+    ],
+    "use": "Avec deux triangles, tu reconstruis tout le tableau sans l'apprendre par cœur."
+  },
+  "rec-sin": {
+    "title": "sin θ · cosec θ = 1",
+    "steps": [
+      "Définition de la cosécante : c'est l'inverse du sinus.",
+      "On remplace la cosécante.",
+      "Un nombre divisé par lui-même donne 1. Valable seulement si sin θ ≠ 0 (on ne divise pas par 0)."
+    ],
+    "use": "D'où le nom de rapports réciproques : leur produit vaut 1. On passe ainsi de l'un à l'autre."
+  },
+  "rec-cos": {
+    "title": "cos θ · sec θ = 1",
+    "steps": [
+      "Définition de la sécante : c'est l'inverse du cosinus.",
+      "On remplace la sécante.",
+      "Ça se simplifie, tant que cos θ ≠ 0."
+    ],
+    "use": "Si tu connais le cosinus, la sécante est son inverse (et réciproquement)."
+  },
+  "rec-tan": {
+    "title": "tan θ · cotan θ = 1",
+    "steps": [
+      "On écrit les deux en fonction du sinus et du cosinus.",
+      "On multiplie.",
+      "Pour multiplier des fractions, on multiplie numérateurs et dénominateurs entre eux. On obtient la même chose en haut et en bas : 1."
+    ],
+    "use": "Passer de la tangente à la cotangente avec cotan θ = 1/tan θ."
+  },
+  "quot-tan": {
+    "title": "tan θ = sin θ / cos θ",
+    "steps": [
+      "Définition de la tangente dans le triangle rectangle.",
+      "Sur le cercle trigonométrique, l'opposé est y et l'adjacent est x.",
+      "Car y = sin θ et x = cos θ."
+    ],
+    "use": "C'est ainsi qu'on calcule la tangente quand on ne connaît que le sinus et le cosinus."
+  },
+  "quot-cot": {
+    "title": "cotan θ = cos θ / sin θ",
+    "steps": [
+      "Définition de la cotangente : la tangente renversée.",
+      "Sur le cercle trigonométrique.",
+      "On remplace x et y par cosinus et sinus."
+    ],
+    "use": "Tout écrire en sinus et cosinus est la première étape pour simplifier presque n'importe quelle expression."
+  },
+  "pyth": {
+    "title": "sin²θ + cos²θ = 1",
+    "steps": [
+      "Théorème de Pythagore : dans un triangle rectangle, le carré de l'hypoténuse (c) est la somme des carrés des deux autres côtés (a et b).",
+      "Sur le cercle trigonométrique, les côtés sont x et y, et l'hypoténuse est le rayon.",
+      "On remplace.",
+      "On remplace x par cos θ et y par sin θ.",
+      "On écrit cos²θ au lieu de (cos θ)² ; c'est juste une notation.",
+      "L'ordre de l'addition n'a pas d'importance."
+    ],
+    "use": "Si tu connais un rapport, tu obtiens l'autre : cos θ = ±√(1 − sin²θ). C'est la base de presque toutes les autres identités."
+  },
+  "pyth-tan": {
+    "title": "1 + tan²θ = sec²θ",
+    "steps": [
+      "On part de l'identité de Pythagore.",
+      "On divise chaque terme par cos²θ (possible si cos θ ≠ 0). Faire la même chose des deux côtés conserve l'égalité.",
+      "sin/cos c'est tan, cos/cos c'est 1 et 1/cos c'est sec.",
+      "On réordonne. Sur la figure, c'est Pythagore dans le grand triangle : côtés 1 et tan θ, hypoténuse sec θ."
+    ],
+    "use": "Passer de la tangente à la sécante sans calculer l'angle ; très fréquent dans les intégrales."
+  },
+  "pyth-cot": {
+    "title": "1 + cotan²θ = cosec²θ",
+    "steps": [
+      "On part de l'identité de Pythagore.",
+      "Cette fois on divise par sin²θ (si sin θ ≠ 0).",
+      "sin/sin c'est 1, cos/sin c'est cotan et 1/sin c'est cosec. C'est Pythagore dans le triangle de la droite y = 1."
+    ],
+    "use": "Relie cotangente et cosécante comme la précédente relie tangente et sécante."
+  },
+  "sum-cos": {
+    "title": "Cosinus d'une somme et d'une différence",
+    "steps": [
+      "Deux points du cercle trigonométrique, d'angles α et β. L'angle entre eux est α − β. On va calculer la distance d entre A et B de deux façons.",
+      "Formule de la distance entre deux points : (x₂ − x₁)² + (y₂ − y₁)².",
+      "On développe chaque carré avec (a − b)² = a² − 2ab + b².",
+      "On regroupe les carrés de chaque angle.",
+      "Chaque parenthèse colorée vaut 1 car sin² + cos² = 1.",
+      "Deuxième façon : on fait tourner la figure jusqu'à ce que B soit sur l'axe x. Une rotation ne change pas les distances, donc A′B′ mesure aussi d.",
+      "Même formule de distance. En développant, sin² + cos² redonne 1.",
+      "Les deux expressions représentent la même distance, elles sont donc égales.",
+      "On retire 2 des deux côtés et on divise par −2. On a la formule de la différence.",
+      "Pour la somme, on écrit α + β = α − (−β). Un angle négatif est le symétrique par rapport à l'axe x : cos(−β) = cos β et sin(−β) = −sin β. D'où le signe moins."
+    ],
+    "use": "C'est la formule de base : celles du sinus, de la tangente, de l'angle double et de l'angle moitié en découlent."
+  },
+  "sum-sin": {
+    "title": "Sinus d'une somme et d'une différence",
+    "steps": [
+      "Angles complémentaires (de somme 90°) : dans un triangle rectangle, le côté opposé à un angle aigu est adjacent à l'autre. Le sinus de l'un est donc le cosinus de l'autre.",
+      "On applique ça à α + β et on regroupe la parenthèse.",
+      "On utilise la formule du cosinus d'une différence, avec 90° − α à la place de α.",
+      "cos(90° − α) = sin α et sin(90° − α) = cos α (encore les complémentaires).",
+      "Pour la différence, on remplace β par −β : cos(−β) = cos β et sin(−β) = −sin β."
+    ],
+    "use": "Calculer les sinus exacts d'angles non remarquables (15°, 75°, 105°…) et additionner des ondes en physique."
+  },
+  "sum-tan": {
+    "title": "Tangente d'une somme et d'une différence",
+    "steps": [
+      "La tangente est le sinus divisé par le cosinus.",
+      "On remplace par les formules du sinus et du cosinus.",
+      "On divise en haut et en bas par cos α cos β. La valeur ne change pas : c'est comme multiplier par 1.",
+      "On simplifie chaque fraction : sin α/cos α = tan α, sin β/cos β = tan β, et ce qui est identique en haut et en bas donne 1."
+    ],
+    "use": "Calculer l'angle entre deux droites à partir de leurs pentes."
+  },
+  "dbl": {
+    "title": "Angle double",
+    "steps": [
+      "On part de la formule de la somme.",
+      "On pose β = α (on ajoute un angle à lui-même).",
+      "Les deux termes sont égaux.",
+      "Même astuce avec la formule du cosinus.",
+      "Et avec celle de la tangente."
+    ],
+    "use": "Simplifier des expressions et calculer des intégrales comme ∫ sin x cos x dx."
+  },
+  "dbl2": {
+    "title": "Variantes du cosinus double",
+    "steps": [
+      "Cosinus de l'angle double.",
+      "Isolé à partir de sin²α + cos²α = 1.",
+      "On remplace sin²α et on regroupe les cos²α.",
+      "Maintenant on isole le cosinus.",
+      "On remplace et on regroupe les sin²α."
+    ],
+    "use": "Choisir la version qui ne contient que le sinus ou que le cosinus, selon la donnée fournie."
+  },
+  "half": {
+    "title": "Angle moitié",
+    "steps": [
+      "Une variante du cosinus double, valable pour tout angle x.",
+      "On appelle x la moitié de α. Alors 2x = α.",
+      "On fait passer des termes d'un côté à l'autre.",
+      "On divise par 2 et on prend la racine carrée. La racine a deux signes : on choisit celui du quadrant où se trouve α/2.",
+      "Pareil, en partant de cos 2x = 2cos²x − 1."
+    ],
+    "use": "Calculer des valeurs exactes comme sin 15° ou cos 22,5° à partir de 30° ou 45°."
+  },
+  "s2p": {
+    "title": "Somme en produit",
+    "steps": [
+      "Formule de la somme.",
+      "Formule de la différence.",
+      "On les additionne : les termes cos x sin y s'annulent.",
+      "Changement de nom. En additionnant et en soustrayant les deux équations, on obtient x et y.",
+      "On remplace. En faisant pareil avec les formules du cosinus, on obtient cos α + cos β."
+    ],
+    "use": "Un produit est nul si l'un de ses facteurs l'est, ce qui facilite la résolution d'équations. Ça explique aussi les « battements » quand on additionne deux sons."
+  }
+}

@@ -1,0 +1,18 @@
+---
+import { arcPath } from "../../../lib/figure";
+
+interface Props {
+  // Radius in the unit plane and angles in degrees.
+  r: number;
+  a0: number;
+  a1: number;
+  color: string;
+  width?: number;
+  // A fill closes the arc into a sector through the origin.
+  fill?: string;
+}
+
+const { r, a0, a1, color, width = 2, fill } = Astro.props;
+---
+
+<path d={arcPath(r, a0, a1, fill !== undefined)} fill={fill ?? "none"} stroke={color} stroke-width={width} />

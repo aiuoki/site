@@ -1,0 +1,254 @@
+{
+  "sin": {
+    "title": "Perché sen θ = y",
+    "steps": [
+      "P è il punto in cui il lato dell'angolo taglia la circonferenza. Abbassando una verticale da P fino all'asse x si forma un triangolo rettangolo (uno dei suoi angoli misura 90°).",
+      "L'ipotenusa è il lato più lungo, quello opposto all'angolo retto. Qui è il raggio della circonferenza, che misura 1.",
+      "Definizione di seno. Il cateto opposto è il lato di fronte a θ, senza toccarlo: l'altezza del punto.",
+      "Sostituiamo: il cateto opposto misura y e l'ipotenusa 1.",
+      "Dividere per 1 non cambia nulla."
+    ],
+    "use": "Il seno si legge direttamente sul disegno: è l'altezza (coordinata y) del punto P."
+  },
+  "cos": {
+    "title": "Perché cos θ = x",
+    "steps": [
+      "Come per il seno, P e la sua ombra sull'asse x formano un triangolo rettangolo.",
+      "L'ipotenusa è il raggio della circonferenza.",
+      "Definizione di coseno. Il cateto adiacente è quello che tocca l'angolo θ (senza essere l'ipotenusa): la base del triangolo.",
+      "La base misura x e l'ipotenusa 1."
+    ],
+    "use": "Il coseno è la coordinata x di P: di quanto il punto si è spostato in orizzontale."
+  },
+  "tan": {
+    "title": "Perché il segmento giallo è tg θ",
+    "steps": [
+      "Definizione di tangente in un triangolo rettangolo. Nel triangolo piccolo l'opposto è y e l'adiacente è x.",
+      "Prolunghiamo il lato dell'angolo fino alla retta x = 1: compare un triangolo grande di base 1 e altezza t (il segmento giallo). Il simbolo ∼ significa «simile».",
+      "I due triangoli hanno gli stessi angoli (condividono θ ed entrambi hanno 90°). Sono simili: stessa forma, dimensioni diverse, quindi lati proporzionali.",
+      "Ricaviamo t. Il segmento giallo misura esattamente la tangente. Si chiama così perché la retta x = 1 tocca la circonferenza in un solo punto: è tangente."
+    ],
+    "use": "La tangente è la pendenza della retta dell'angolo: quanto sale per ogni unità di avanzamento."
+  },
+  "cot": {
+    "title": "Perché il segmento blu è cotg θ",
+    "steps": [
+      "Definizione: la cotangente è la reciproca della tangente.",
+      "Prolunghiamo il lato dell'angolo fino alla retta orizzontale y = 1. Si forma un triangolo di altezza 1 e base c (il segmento blu).",
+      "La retta y = 1 è parallela all'asse x, e la diagonale taglia entrambe con lo stesso angolo (angoli alterni interni).",
+      "Da quel vertice, il lato opposto misura 1 e il lato adiacente misura c: tangente = opposto / adiacente.",
+      "Ricaviamo c."
+    ],
+    "use": "È la reciproca della pendenza; compare quando si studiano rette quasi verticali."
+  },
+  "sec": {
+    "title": "Perché il segmento rosso è sec θ",
+    "steps": [
+      "È lo stesso triangolo grande della tangente: base 1, altezza t. La sua ipotenusa h è il segmento rosso, dall'origine fino alla retta x = 1.",
+      "Definizione di coseno applicata al triangolo grande: l'adiacente misura 1 e l'ipotenusa h.",
+      "Ricaviamo h. Per questo |sec θ| è sempre 1 o più: l'ipotenusa non è mai più corta della base."
+    ],
+    "use": "Compare in fisica (componenti di forze inclinate) e negli integrali."
+  },
+  "csc": {
+    "title": "Perché il segmento verde è cosec θ",
+    "steps": [
+      "È il triangolo della cotangente: base c, altezza 1. La sua ipotenusa h è il segmento verde, dall'origine fino alla retta y = 1.",
+      "L'angolo θ si trova nel vertice (c, 1). Da lì, il lato opposto misura 1.",
+      "Ricaviamo h."
+    ],
+    "use": "Completa le sei funzioni; utile per semplificare espressioni con 1/sen."
+  },
+  "rad": {
+    "title": "Gradi e radianti",
+    "steps": [
+      "Lunghezza L di una circonferenza di raggio r.",
+      "Sulla circonferenza goniometrica un giro completo è lungo 2π.",
+      "Un radiante è l'angolo che sottende un arco (⌒) lungo quanto il raggio. Per questo un giro ha 2π radianti.",
+      "Lo stesso giro misurato in due modi. Dividiamo per 2.",
+      "Proporzione: moltiplicare per π/180 dà i radianti; per 180/π si torna ai gradi."
+    ],
+    "use": "Le formule di fisica e di analisi (per esempio le derivate di sen e cos) funzionano solo in radianti."
+  },
+  "signs": {
+    "title": "Segni per quadrante",
+    "steps": [
+      "Il seno ha il segno di y e il coseno quello di x.",
+      "In alto a destra: tutte positive.",
+      "In alto a sinistra: solo il seno (e la sua reciproca, la cosecante) è positivo.",
+      "In basso a sinistra: sen e cos negativi, ma tg = y/x è negativo/negativo = positivo.",
+      "In basso a destra: solo il coseno (e la secante) è positivo.",
+      "Una funzione e la sua reciproca hanno sempre lo stesso segno (∼), perché 1 diviso un numero ne conserva il segno."
+    ],
+    "use": "Calcolare qualsiasi angolo con il suo angolo di riferimento: valore della tabella + segno del quadrante."
+  },
+  "notables": {
+    "title": "Da dove vengono gli angoli notevoli",
+    "steps": [
+      "Se un angolo acuto misura 45°, anche l'altro (insieme fanno 90°). I due cateti sono uguali; li chiamiamo a. Applichiamo Pitagora con ipotenusa 1.",
+      "Ricaviamo a. Razionalizzare significa moltiplicare sopra e sotto per √2 per togliere la radice dal denominatore.",
+      "I due cateti misurano uguale.",
+      "Un triangolo equilatero (tre lati uguali) ha tre angoli di 60°. Diviso a metà dà due triangoli 30°-60°-90° con ipotenusa 1.",
+      "La base b si divide in due metà. L'altezza h si ricava con Pitagora: h² = 1 − 1/4 = 3/4.",
+      "Di fronte a 30° c'è la base corta; di fronte a 60° c'è l'altezza."
+    ],
+    "use": "Con due triangoli ricostruisci tutta la tabella senza impararla a memoria."
+  },
+  "rec-sin": {
+    "title": "sen θ · cosec θ = 1",
+    "steps": [
+      "Definizione di cosecante: è la reciproca del seno.",
+      "Sostituiamo la cosecante.",
+      "Un numero diviso per sé stesso dà 1. Vale solo se sen θ ≠ 0 (non si divide per 0)."
+    ],
+    "use": "Per questo si chiamano funzioni reciproche: moltiplicate danno 1. Permette di passare dall'una all'altra."
+  },
+  "rec-cos": {
+    "title": "cos θ · sec θ = 1",
+    "steps": [
+      "Definizione di secante: è la reciproca del coseno.",
+      "Sostituiamo la secante.",
+      "Si semplifica, purché cos θ ≠ 0."
+    ],
+    "use": "Se conosci il coseno, la secante è la sua reciproca (e viceversa)."
+  },
+  "rec-tan": {
+    "title": "tg θ · cotg θ = 1",
+    "steps": [
+      "Scriviamo entrambe in funzione di seno e coseno.",
+      "Moltiplichiamo.",
+      "Per moltiplicare frazioni si moltiplicano numeratori e denominatori tra loro. Sopra e sotto c'è la stessa cosa: 1."
+    ],
+    "use": "Passare dalla tangente alla cotangente con cotg θ = 1/tg θ."
+  },
+  "quot-tan": {
+    "title": "tg θ = sen θ / cos θ",
+    "steps": [
+      "Definizione di tangente nel triangolo rettangolo.",
+      "Sulla circonferenza goniometrica l'opposto è y e l'adiacente è x.",
+      "Perché y = sen θ e x = cos θ."
+    ],
+    "use": "È il modo di calcolare la tangente quando conosci solo seno e coseno."
+  },
+  "quot-cot": {
+    "title": "cotg θ = cos θ / sen θ",
+    "steps": [
+      "Definizione di cotangente: la tangente capovolta.",
+      "Sulla circonferenza goniometrica.",
+      "Sostituiamo x e y con coseno e seno."
+    ],
+    "use": "Scrivere tutto in seno e coseno è il primo passo per semplificare quasi qualsiasi espressione."
+  },
+  "pyth": {
+    "title": "sen²θ + cos²θ = 1",
+    "steps": [
+      "Teorema di Pitagora: in un triangolo rettangolo, il quadrato dell'ipotenusa (c) è la somma dei quadrati dei cateti (a e b).",
+      "Sulla circonferenza goniometrica i cateti sono x e y, e l'ipotenusa è il raggio.",
+      "Sostituiamo.",
+      "Sostituiamo x con cos θ e y con sen θ.",
+      "Si scrive cos²θ invece di (cos θ)²; è solo notazione.",
+      "L'ordine della somma non conta."
+    ],
+    "use": "Se conosci una funzione, ricavi l'altra: cos θ = ±√(1 − sen²θ). È la base di quasi tutte le altre identità."
+  },
+  "pyth-tan": {
+    "title": "1 + tg²θ = sec²θ",
+    "steps": [
+      "Partiamo dall'identità pitagorica.",
+      "Dividiamo ogni termine per cos²θ (si può se cos θ ≠ 0). Facendo la stessa cosa a entrambi i membri, l'uguaglianza resta vera.",
+      "sen/cos è tg, cos/cos è 1 e 1/cos è sec.",
+      "Riordiniamo. Nella figura è Pitagora nel triangolo grande: cateti 1 e tg θ, ipotenusa sec θ."
+    ],
+    "use": "Passare dalla tangente alla secante senza calcolare l'angolo; compare spesso negli integrali."
+  },
+  "pyth-cot": {
+    "title": "1 + cotg²θ = cosec²θ",
+    "steps": [
+      "Partiamo dall'identità pitagorica.",
+      "Ora dividiamo per sen²θ (se sen θ ≠ 0).",
+      "sen/sen è 1, cos/sen è cotg e 1/sen è cosec. È Pitagora nel triangolo della retta y = 1."
+    ],
+    "use": "Collega cotangente e cosecante come la precedente collega tangente e secante."
+  },
+  "sum-cos": {
+    "title": "Coseno di una somma e di una differenza",
+    "steps": [
+      "Due punti della circonferenza goniometrica, con angoli α e β. L'angolo tra loro è α − β. Calcoleremo la distanza d tra A e B in due modi.",
+      "Formula della distanza tra due punti: (x₂ − x₁)² + (y₂ − y₁)².",
+      "Sviluppiamo ogni quadrato con (a − b)² = a² − 2ab + b².",
+      "Raggruppiamo i quadrati di ciascun angolo.",
+      "Ogni parentesi colorata vale 1 perché sen² + cos² = 1.",
+      "Secondo modo: ruotiamo la figura finché B finisce sull'asse x. Ruotare non cambia le distanze, quindi anche A′B′ misura d.",
+      "Stessa formula della distanza. Sviluppando, sen² + cos² dà di nuovo 1.",
+      "Le due espressioni sono la stessa distanza, quindi sono uguali.",
+      "Togliamo 2 da entrambi i membri e dividiamo per −2. Ecco la formula della differenza.",
+      "Per la somma scriviamo α + β = α − (−β). Un angolo negativo riflette il punto rispetto all'asse x: cos(−β) = cos β e sen(−β) = −sen β. Per questo compare il segno meno."
+    ],
+    "use": "È la formula base: da essa derivano quelle del seno, della tangente, dell'angolo doppio e dell'angolo metà."
+  },
+  "sum-sin": {
+    "title": "Seno di una somma e di una differenza",
+    "steps": [
+      "Angoli complementari (sommano 90°): in un triangolo rettangolo, il cateto opposto a un angolo acuto è adiacente all'altro. Per questo il seno dell'uno è il coseno dell'altro.",
+      "Applichiamo questo ad α + β e raggruppiamo la parentesi.",
+      "Usiamo la formula del coseno di una differenza, con 90° − α al posto di α.",
+      "cos(90° − α) = sen α e sen(90° − α) = cos α (di nuovo complementari).",
+      "Per la differenza sostituiamo β con −β: cos(−β) = cos β e sen(−β) = −sen β."
+    ],
+    "use": "Calcolare seni esatti di angoli non notevoli (15°, 75°, 105°…) e sommare onde in fisica."
+  },
+  "sum-tan": {
+    "title": "Tangente di una somma e di una differenza",
+    "steps": [
+      "La tangente è seno diviso coseno.",
+      "Sostituiamo le formule del seno e del coseno.",
+      "Dividiamo sopra e sotto per cos α cos β. Il valore non cambia: è come moltiplicare per 1.",
+      "Semplifichiamo ogni frazione: sen α/cos α = tg α, sen β/cos β = tg β, e ciò che è uguale sopra e sotto dà 1."
+    ],
+    "use": "Calcolare l'angolo tra due rette a partire dalle loro pendenze."
+  },
+  "dbl": {
+    "title": "Angolo doppio",
+    "steps": [
+      "Partiamo dalla formula della somma.",
+      "Poniamo β = α (sommare un angolo a sé stesso).",
+      "I due addendi sono uguali.",
+      "Lo stesso trucco con la formula del coseno.",
+      "E con quella della tangente."
+    ],
+    "use": "Semplificare espressioni e calcolare integrali come ∫ sen x cos x dx."
+  },
+  "dbl2": {
+    "title": "Varianti del coseno doppio",
+    "steps": [
+      "Coseno dell'angolo doppio.",
+      "Ricavato da sen²α + cos²α = 1.",
+      "Sostituiamo sen²α e sommiamo i cos²α.",
+      "Ora ricaviamo il coseno.",
+      "Sostituiamo e sommiamo i sen²α."
+    ],
+    "use": "Scegliere la versione con solo seno o solo coseno, a seconda del dato che hai."
+  },
+  "half": {
+    "title": "Angolo metà",
+    "steps": [
+      "Una variante del coseno doppio, valida per qualsiasi angolo x.",
+      "Chiamiamo x la metà di α. Allora 2x = α.",
+      "Portiamo i termini da un membro all'altro.",
+      "Dividiamo per 2 e facciamo la radice quadrata. La radice ha due segni: si sceglie quello del quadrante in cui cade α/2.",
+      "Allo stesso modo, partendo da cos 2x = 2cos²x − 1."
+    ],
+    "use": "Calcolare valori esatti come sen 15° o cos 22,5° a partire da 30° o 45°."
+  },
+  "s2p": {
+    "title": "Prostaferesi",
+    "steps": [
+      "Formula della somma.",
+      "Formula della differenza.",
+      "Le sommiamo: i termini cos x sen y si annullano.",
+      "Cambio di nome. Sommando e sottraendo le due equazioni ricaviamo x e y.",
+      "Sostituiamo. Facendo lo stesso con le formule del coseno si ottiene cos α + cos β."
+    ],
+    "use": "Un prodotto vale 0 se un fattore vale 0, quindi le equazioni diventano più facili. Spiega anche i «battimenti» quando si sommano due suoni."
+  }
+}

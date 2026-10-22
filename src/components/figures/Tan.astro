@@ -1,0 +1,23 @@
+---
+import { unitAngle } from "../../lib/figure";
+import Dot from "./parts/Dot.astro";
+import Label from "./parts/Label.astro";
+import ThetaArc from "./parts/ThetaArc.astro";
+import UnitFrame from "./parts/UnitFrame.astro";
+import Line from "./parts/Line.astro";
+import TanConstruction from "./parts/TanConstruction.astro";
+
+const { c, s, tn } = unitAngle(40);
+---
+
+<UnitFrame>
+  <TanConstruction hypotenuse="var(--fg)" tangent="var(--tan)" />
+  <Line unit x1={0} y1={0} x2={c} y2={0} color="var(--muted)" />
+  <Line unit x1={c} y1={0} x2={c} y2={s} color="var(--muted)" />
+  <Dot unit x={c} y={s} />
+  <Label unit x={1.05} y={tn / 2} color="var(--tan)" anchor="start">t</Label>
+  <Label unit x={c - 0.04} y={s / 2} color="var(--muted)" anchor="end">y</Label>
+  <Label unit x={c / 2} y={-0.13} color="var(--muted)">x</Label>
+  <Label unit x={1} y={-0.13} italic={false}>1</Label>
+  <ThetaArc />
+</UnitFrame>

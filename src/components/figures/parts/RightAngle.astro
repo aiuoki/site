@@ -1,0 +1,23 @@
+---
+import { px, py, round } from "../../../lib/figure";
+
+interface Props {
+  // Corner of the right angle.
+  x: number;
+  y: number;
+  // Direction of each leg: dx -1 is left, dy 1 is up.
+  dx: -1 | 1;
+  dy: -1 | 1;
+  // Leg length in pixels.
+  size?: number;
+  unit?: boolean;
+}
+
+const { x, y, dx, dy, size = 10.5, unit = false } = Astro.props;
+const [cx, cy] = unit ? [px(x), py(y)] : [x, y];
+const ox = cx + dx * size;
+const oy = cy - dy * size;
+const d = `M${round(ox)} ${round(cy)} L${round(ox)} ${round(oy)} L${round(cx)} ${round(oy)}`;
+---
+
+<path d={d} fill="none" stroke="var(--muted)" stroke-width="1.3" />

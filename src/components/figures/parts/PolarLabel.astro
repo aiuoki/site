@@ -1,0 +1,15 @@
+---
+import type { ComponentProps } from "astro/types";
+import { polar } from "../../../lib/figure";
+import Label from "./Label.astro";
+
+interface Props extends Omit<ComponentProps<typeof Label>, "x" | "y" | "unit"> {
+  deg: number;
+  r: number;
+}
+
+const { deg, r, ...rest } = Astro.props;
+const [x, y] = polar(deg, r);
+---
+
+<Label unit x={x} y={y - 0.04} {...rest}><slot /></Label>

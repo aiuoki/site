@@ -1,0 +1,254 @@
+{
+  "sin": {
+    "title": "Per què sin θ = y",
+    "steps": [
+      "P és el punt on el costat de l'angle talla el cercle. Si baixem una línia vertical des de P fins a l'eix x, es forma un triangle rectangle (un dels seus angles mesura 90°).",
+      "La hipotenusa és el costat més llarg, el que està davant de l'angle recte. Aquí és el radi del cercle, que mesura 1.",
+      "Definició de sinus. El catet oposat és el costat que està davant de θ, sense tocar-lo: l'altura del punt.",
+      "Substituïm: el catet oposat mesura y, i la hipotenusa mesura 1.",
+      "Dividir entre 1 no canvia res."
+    ],
+    "use": "El sinus es llegeix directament al dibuix: és l'altura (coordenada y) del punt P."
+  },
+  "cos": {
+    "title": "Per què cos θ = x",
+    "steps": [
+      "Igual que amb el sinus, P i la seva ombra sobre l'eix x formen un triangle rectangle.",
+      "La hipotenusa és el radi del cercle.",
+      "Definició de cosinus. El catet contigu és el que toca l'angle θ (sense ser la hipotenusa): la base del triangle.",
+      "La base mesura x i la hipotenusa 1."
+    ],
+    "use": "El cosinus és la coordenada x de P: quant s'ha desplaçat el punt en horitzontal."
+  },
+  "tan": {
+    "title": "Per què el segment groc és tg θ",
+    "steps": [
+      "Definició de tangent en un triangle rectangle. En el triangle petit l'oposat és y i el contigu és x.",
+      "Allarguem el costat de l'angle fins a la recta x = 1: apareix un triangle gran de base 1 i altura t (el segment groc). El símbol ∼ vol dir «semblant».",
+      "Els dos triangles tenen els mateixos angles (comparteixen θ i tots dos tenen 90°). Són semblants: mateixa forma, diferent mida, i els seus costats són proporcionals.",
+      "Aïllem t. El segment groc mesura justament la tangent. Es diu així perquè la recta x = 1 toca el cercle en un sol punt: és tangent."
+    ],
+    "use": "La tangent és el pendent de la recta de l'angle: quant puja per cada unitat que avança."
+  },
+  "cot": {
+    "title": "Per què el segment blau és cotg θ",
+    "steps": [
+      "Definició: la cotangent és la inversa de la tangent.",
+      "Allarguem el costat de l'angle fins a la recta horitzontal y = 1. Es forma un triangle amb altura 1 i base c (el segment blau).",
+      "La recta y = 1 és paral·lela a l'eix x, i la diagonal talla totes dues amb el mateix angle (angles alterns).",
+      "Des d'aquella cantonada, el costat del davant mesura 1 i el costat que la toca mesura c: tangent = oposat / contigu.",
+      "Aïllem c."
+    ],
+    "use": "És la inversa del pendent; apareix en estudiar rectes gairebé verticals."
+  },
+  "sec": {
+    "title": "Per què el segment vermell és sec θ",
+    "steps": [
+      "És el mateix triangle gran de la tangent: base 1, altura t. La seva hipotenusa h és el segment vermell, des de l'origen fins a la recta x = 1.",
+      "Definició de cosinus aplicada al triangle gran: el contigu mesura 1 i la hipotenusa mesura h.",
+      "Aïllem h. Per això |sec θ| sempre és 1 o més: la hipotenusa mai és més curta que la base."
+    ],
+    "use": "Apareix en física (components de forces inclinades) i en integrals."
+  },
+  "csc": {
+    "title": "Per què el segment verd és cosec θ",
+    "steps": [
+      "És el triangle de la cotangent: base c, altura 1. La seva hipotenusa h és el segment verd, des de l'origen fins a la recta y = 1.",
+      "L'angle θ és a la cantonada (c, 1). Des d'allà, el costat del davant mesura 1.",
+      "Aïllem h."
+    ],
+    "use": "Completa les sis raons; útil per simplificar expressions amb 1/sin."
+  },
+  "rad": {
+    "title": "Graus i radiants",
+    "steps": [
+      "Longitud L d'una circumferència de radi r.",
+      "Al cercle unitari una volta completa mesura 2π.",
+      "Un radiant és l'angle que abasta un arc (⌒) igual al radi. Per això una volta té 2π radiants.",
+      "La mateixa volta mesurada de dues maneres. Dividim entre 2.",
+      "Regla de tres: multiplicar per π/180 passa a radiants; per 180/π torna a graus."
+    ],
+    "use": "Les fórmules de física i de càlcul (per exemple, les derivades de sin i cos) només funcionen en radiants."
+  },
+  "signs": {
+    "title": "Signes per quadrant",
+    "steps": [
+      "El sinus té el signe de y i el cosinus el de x.",
+      "A dalt a la dreta: totes positives.",
+      "A dalt a l'esquerra: només el sinus (i la seva inversa, la cosecant) és positiu.",
+      "A baix a l'esquerra: sin i cos negatius, però tg = y/x és negatiu/negatiu = positiu.",
+      "A baix a la dreta: només el cosinus (i la secant) és positiu.",
+      "Una raó i la seva inversa sempre tenen el mateix signe (∼), perquè 1 entre un nombre conserva el signe."
+    ],
+    "use": "Calcular qualsevol angle amb el seu angle de referència: valor de la taula + signe del quadrant."
+  },
+  "notables": {
+    "title": "D'on surten els angles notables",
+    "steps": [
+      "Si un angle agut mesura 45°, l'altre també (sumen 90°). Els dos catets són iguals; els anomenem a. Apliquem Pitàgores amb hipotenusa 1.",
+      "Aïllem a. Racionalitzar és multiplicar a dalt i a baix per √2 per treure l'arrel del denominador.",
+      "Els dos catets mesuren el mateix.",
+      "Un triangle equilàter (tres costats iguals) té tres angles de 60°. Partit per la meitat dona dos triangles de 30°, 60° i 90° amb hipotenusa 1.",
+      "La base b es parteix en dues meitats. L'altura h surt amb Pitàgores: h² = 1 − 1/4 = 3/4.",
+      "El que hi ha davant de 30° és la base curta; el que hi ha davant de 60° és l'altura."
+    ],
+    "use": "Amb dos triangles reconstrueixes tota la taula sense memoritzar-la."
+  },
+  "rec-sin": {
+    "title": "sin θ · cosec θ = 1",
+    "steps": [
+      "Definició de cosecant: és la inversa del sinus.",
+      "Substituïm la cosecant.",
+      "Un nombre dividit entre si mateix dona 1. Només val si sin θ ≠ 0 (no es pot dividir entre 0)."
+    ],
+    "use": "Per això es diuen raons recíproques: multiplicades donen 1. Permet passar de l'una a l'altra."
+  },
+  "rec-cos": {
+    "title": "cos θ · sec θ = 1",
+    "steps": [
+      "Definició de secant: és la inversa del cosinus.",
+      "Substituïm la secant.",
+      "Se simplifica, sempre que cos θ ≠ 0."
+    ],
+    "use": "Si coneixes el cosinus, la secant és la seva inversa (i al revés)."
+  },
+  "rec-tan": {
+    "title": "tg θ · cotg θ = 1",
+    "steps": [
+      "Escrivim totes dues en funció del sinus i el cosinus.",
+      "Multipliquem.",
+      "Per multiplicar fraccions es multiplica dalt amb dalt i baix amb baix. Queda el mateix a dalt i a baix: 1."
+    ],
+    "use": "Passar de tangent a cotangent amb cotg θ = 1/tg θ."
+  },
+  "quot-tan": {
+    "title": "tg θ = sin θ / cos θ",
+    "steps": [
+      "Definició de tangent en el triangle rectangle.",
+      "Al cercle unitari l'oposat és y i el contigu és x.",
+      "Perquè y = sin θ i x = cos θ."
+    ],
+    "use": "És la manera de calcular la tangent quan només coneixes el sinus i el cosinus."
+  },
+  "quot-cot": {
+    "title": "cotg θ = cos θ / sin θ",
+    "steps": [
+      "Definició de cotangent: la tangent girada.",
+      "Al cercle unitari.",
+      "Canviem x i y per cosinus i sinus."
+    ],
+    "use": "Escriure-ho tot en sinus i cosinus és el primer pas per simplificar gairebé qualsevol expressió."
+  },
+  "pyth": {
+    "title": "sin²θ + cos²θ = 1",
+    "steps": [
+      "Teorema de Pitàgores: en un triangle rectangle, el quadrat de la hipotenusa (c) és la suma dels quadrats dels catets (a i b).",
+      "Al cercle unitari els catets són x i y, i la hipotenusa és el radi.",
+      "Substituïm.",
+      "Canviem x per cos θ i y per sin θ.",
+      "S'escriu cos²θ en lloc de (cos θ)²; és només notació.",
+      "L'ordre de la suma no importa."
+    ],
+    "use": "Si coneixes una raó, en treus l'altra: cos θ = ±√(1 − sin²θ). És la base de gairebé totes les altres identitats."
+  },
+  "pyth-tan": {
+    "title": "1 + tg²θ = sec²θ",
+    "steps": [
+      "Partim de la identitat pitagòrica.",
+      "Dividim tots els termes entre cos²θ (es pot si cos θ ≠ 0). Si es fa el mateix als dos costats, la igualtat es manté.",
+      "sin/cos és tg, cos/cos és 1 i 1/cos és sec.",
+      "Reordenem. A la figura és Pitàgores en el triangle gran: catets 1 i tg θ, hipotenusa sec θ."
+    ],
+    "use": "Passar de tangent a secant sense calcular l'angle; apareix molt en integrals."
+  },
+  "pyth-cot": {
+    "title": "1 + cotg²θ = cosec²θ",
+    "steps": [
+      "Partim de la identitat pitagòrica.",
+      "Ara dividim entre sin²θ (si sin θ ≠ 0).",
+      "sin/sin és 1, cos/sin és cotg i 1/sin és cosec. És Pitàgores en el triangle de la recta y = 1."
+    ],
+    "use": "Relaciona cotangent i cosecant igual que l'anterior relaciona tangent i secant."
+  },
+  "sum-cos": {
+    "title": "Cosinus d'una suma i d'una resta",
+    "steps": [
+      "Dos punts del cercle unitari, amb angles α i β. L'angle entre ells és α − β. Calcularem la distància d entre A i B de dues maneres.",
+      "Fórmula de la distància entre dos punts: (x₂ − x₁)² + (y₂ − y₁)².",
+      "Desenvolupem cada quadrat amb (a − b)² = a² − 2ab + b².",
+      "Agrupem els quadrats de cada angle.",
+      "Cada parèntesi de color val 1 per sin² + cos² = 1.",
+      "Segona manera: girem la figura fins que B quedi sobre l'eix x. Girar no canvia distàncies, així que A′B′ també mesura d.",
+      "Mateixa fórmula de la distància. En desenvolupar, sin² + cos² torna a donar 1.",
+      "Les dues expressions són la mateixa distància, així que són iguals.",
+      "Restem 2 als dos costats i dividim entre −2. Ja tenim la resta.",
+      "Per a la suma escrivim α + β = α − (−β). Un angle negatiu reflecteix el punt sobre l'eix x: cos(−β) = cos β i sin(−β) = −sin β. Per això apareix el signe menys."
+    ],
+    "use": "És la fórmula base: d'ella surten la del sinus, la tangent, l'angle doble i l'angle meitat."
+  },
+  "sum-sin": {
+    "title": "Sinus d'una suma i d'una resta",
+    "steps": [
+      "Angles complementaris (sumen 90°): en un triangle rectangle, el catet oposat a un angle agut és el contigu de l'altre. Per això el sinus d'un és el cosinus de l'altre.",
+      "Apliquem això a α + β i reagrupem el parèntesi.",
+      "Fem servir la fórmula del cosinus d'una resta, posant 90° − α en lloc d'α.",
+      "cos(90° − α) = sin α i sin(90° − α) = cos α (complementaris un altre cop).",
+      "Per a la resta canviem β per −β: cos(−β) = cos β i sin(−β) = −sin β."
+    ],
+    "use": "Calcular sinus exactes d'angles no notables (15°, 75°, 105°…) i sumar ones en física."
+  },
+  "sum-tan": {
+    "title": "Tangent d'una suma i d'una resta",
+    "steps": [
+      "La tangent és sinus entre cosinus.",
+      "Substituïm les fórmules del sinus i del cosinus.",
+      "Dividim a dalt i a baix entre cos α cos β. El valor no canvia: és com multiplicar per 1.",
+      "Simplifiquem cada fracció: sin α/cos α = tg α, sin β/cos β = tg β, i el que és igual a dalt i a baix dona 1."
+    ],
+    "use": "Calcular l'angle entre dues rectes a partir dels seus pendents."
+  },
+  "dbl": {
+    "title": "Angle doble",
+    "steps": [
+      "Partim de la fórmula de la suma.",
+      "Posem β = α (sumar un angle amb si mateix).",
+      "Els dos sumands són iguals.",
+      "El mateix truc amb la fórmula del cosinus.",
+      "I amb la de la tangent."
+    ],
+    "use": "Simplificar expressions i calcular integrals com ∫ sin x cos x dx."
+  },
+  "dbl2": {
+    "title": "Variants del cosinus doble",
+    "steps": [
+      "Cosinus de l'angle doble.",
+      "Aïllat de sin²α + cos²α = 1.",
+      "Substituïm sin²α i ajuntem els cos²α.",
+      "Ara aïllem el cosinus.",
+      "Substituïm i ajuntem els sin²α."
+    ],
+    "use": "Triar la versió que només té sinus o només cosinus, segons la dada que et donin."
+  },
+  "half": {
+    "title": "Angle meitat",
+    "steps": [
+      "Una variant del cosinus doble, vàlida per a qualsevol angle x.",
+      "Anomenem x la meitat d'α. Aleshores 2x = α.",
+      "Passem termes d'un costat a l'altre.",
+      "Dividim entre 2 i fem l'arrel quadrada. L'arrel té dos signes: es tria el del quadrant on cau α/2.",
+      "Igual, partint de cos 2x = 2cos²x − 1."
+    ],
+    "use": "Calcular valors exactes com sin 15° o cos 22,5° a partir de 30° o 45°."
+  },
+  "s2p": {
+    "title": "Sumes a productes",
+    "steps": [
+      "Fórmula de la suma.",
+      "Fórmula de la resta.",
+      "Sumem les dues: els termes cos x sin y s'anul·len.",
+      "Canvi de nom. Sumant i restant les dues equacions aïllem x i y.",
+      "Substituïm. Fent el mateix amb les fórmules del cosinus surt cos α + cos β."
+    ],
+    "use": "Un producte val 0 si algun factor val 0, així que resoldre equacions és més fàcil. També explica els «batecs» en sumar dos sons."
+  }
+}

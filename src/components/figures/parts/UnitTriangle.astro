@@ -1,0 +1,19 @@
+---
+// Right triangle of the 40 degree angle inscribed in the unit circle.
+import { unitAngle } from "../../../lib/figure";
+import Line from "./Line.astro";
+import RightAngle from "./RightAngle.astro";
+
+interface Props {
+  adjacent: string;
+  opposite: string;
+}
+
+const { adjacent, opposite } = Astro.props;
+const { c, s } = unitAngle(40);
+---
+
+<Line unit x1={0} y1={0} x2={c} y2={s} width={2} />
+<Line unit x1={0} y1={0} x2={c} y2={0} color={adjacent} width={4} />
+<Line unit x1={c} y1={0} x2={c} y2={s} color={opposite} width={4} />
+<RightAngle unit x={c} y={0} dx={-1} dy={1} />

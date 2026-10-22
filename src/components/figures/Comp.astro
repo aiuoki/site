@@ -1,0 +1,26 @@
+---
+import { notationFor, pageLocale } from "../../i18n";
+import Label from "./parts/Label.astro";
+import Line from "./parts/Line.astro";
+import RightAngle from "./parts/RightAngle.astro";
+
+const n = notationFor(pageLocale(Astro.currentLocale));
+---
+
+<svg class="mfig" viewBox="0 0 300 230" aria-hidden="true">
+  <path
+    d="M40 180 L250 180 L250 40 Z"
+    fill="color-mix(in srgb, var(--fg) 5%, transparent)"
+    stroke="var(--fg)"
+    stroke-width="2"
+    stroke-linejoin="round"
+  />
+  <Line x1={250} y1={180} x2={250} y2={40} color="var(--sin)" width={4.5} />
+  <RightAngle x={250} y={180} dx={-1} dy={1} size={12} />
+  <path d="M78 180 A38 38 0 0 0 72 159" fill="none" stroke="var(--a)" stroke-width="2" />
+  <path d="M250 74 A34 34 0 0 1 222 59" fill="none" stroke="var(--b)" stroke-width="2" />
+  <Label x={92} y={172} color="var(--a)">x</Label>
+  <Label x={230} y={92} color="var(--b)" anchor="end">90° − x</Label>
+  <Label x={138} y={104} anchor="end" italic={false}>1</Label>
+  <Label x={150} y={214} color="var(--sin)" size={15}>{n.sin} x = {n.cos}(90° − x)</Label>
+</svg>
