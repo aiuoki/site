@@ -48,4 +48,6 @@ ol.psteps p { font-size: 15px; color: var(--muted); max-width: 62ch; }
 .usebox b { font-family: var(--f-display); font-weight: 400; font-size: 17px; }
 .usebox p { font-size: 15px; color: var(--muted); }
 
-dialog.demo-dialog, .stmt, .sf::-webkit-scrollbar { display: none; }
+dialog.demo-dialog::-webkit-scrollbar,
+.stmt::-webkit-scrollbar,
+.sf::-webkit-scrollbar { display: none; }

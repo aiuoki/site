@@ -97,4 +97,6 @@ td.nd { color: var(--muted); font-style: italic; font-size: 15px; }
 }
 .linkbtn:hover { border-color: var(--muted); }
 
-.id .f, .tablewrap, .step .t .f::-webkit-scrollbar { display: none; }
+.id .f::-webkit-scrollbar,
+.tablewrap::-webkit-scrollbar,
+.step .t .f::-webkit-scrollbar { display: none; }
