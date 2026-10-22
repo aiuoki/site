@@ -1,0 +1,27 @@
+---
+import Formula from "../ui/Formula.astro";
+import Live from "./Live.astro";
+import { pageLocale, useTranslations } from "../../i18n";
+import type { CircleCheck, SumCheck } from "../../lib/trig-checks";
+
+interface Props {
+  demo: string;
+  // One formula or several, one per line.
+  tex: string | string[];
+  text: string;
+  title?: string;
+  // Live check with the current angles.
+  live?: CircleCheck | SumCheck;
+}
+
+const { demo, tex, text, title, live } = Astro.props;
+const t = useTranslations(pageLocale(Astro.currentLocale));
+---
+
+<div class="id demo" data-demo={demo} role="button" tabindex="0">
+  {title && <h3 set:html={title} />}
+  {[tex].flat().map((f) => <div class="f"><Formula tex={f} /></div>)}
+  <p set:html={text} />
+  {live && <div class="live"><Live kind={live} /></div>}
+  <span class="more">{t("demo.open")}</span>
+</div>

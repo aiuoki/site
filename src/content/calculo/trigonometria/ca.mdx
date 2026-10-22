@@ -1,0 +1,56 @@
+---
+title: "Cercle Trigonomètric"
+eyebrow: "Guia interactiva · raons trigonomètriques"
+intro: "Arrossega els punts sobre el cercle o escriu els angles. Cada segment de color és una raó trigonomètrica: la seva longitud (amb signe) és el seu valor. Prem qualsevol fórmula de la guia per veure'n la demostració."
+description: "Arrossega els punts sobre el cercle o escriu els angles. Cada segment de color és una raó trigonomètrica: la seva longitud (amb signe) és el seu valor. Prem qualsevol fórmula de la guia per veure'n la demostració."
+---
+
+<Section eyebrow={"1 · Punt de partida"} title={"Què és el cercle unitari"}>
+  <Prose html={"És una circumferència de <b>radi 1</b> centrada a l'origen <span class=\"mr\">(0, 0)</span>. Un angle <span class=\"m\">θ</span> es mesura des de l'eix <span class=\"m\">x</span> positiu, girant en sentit antihorari. On el costat final de l'angle talla el cercle hi ha el punt <span class=\"m\">P</span>, i les seves coordenades són justament <span class=\"mr\"><i>P</i> = (cos <i>θ</i>, sin <i>θ</i>)</span>."} />
+  <Defs>
+    <DefItem title={"Grau"} text={"Una volta completa són 360°."} />
+    <DefItem title={"Radiant"} text={"Angle l'arc del qual mesura el mateix que el radi. Una volta són <span class=\"mr\">2π</span> rad. Per passar-hi: <span class=\"mr\">rad = graus · π / 180</span>."} demo="rad" more="where" />
+    <DefItem title={"Quadrant"} text={"Cadascuna de les 4 zones en què els eixos divideixen el pla, numerades de I a IV en sentit antihorari."} />
+    <DefItem title={"Angle de referència"} text={"L'angle agut entre el costat final i l'eix <span class=\"m\">x</span>. Les seves raons són les mateixes que les de <span class=\"m\">θ</span>, llevat del signe."} />
+  </Defs>
+</Section>
+
+<Section eyebrow={"2 · Les sis raons"} title={"Què mesura cada segment"} lead={"Com que el radi és 1, la hipotenusa del triangle val 1 i cada raó es converteix en una longitud que es pot veure."}>
+  <RatioGrid>
+    <RatioCard ratio="sin" name={"Sinus"} tex={"\\Sin\\theta = y"} text={"<b>Segment taronja vertical</b> des de l'eix <i>x</i> fins a <i>P</i>. És l'altura del punt. Sempre entre −1 i 1."} />
+    <RatioCard ratio="cos" name={"Cosinus"} tex={"\\Cos\\theta = x"} text={"<b>Segment morat horitzontal</b> des de l'origen fins a l'ombra de <i>P</i> sobre l'eix <i>x</i>. Sempre entre −1 i 1."} />
+    <RatioCard ratio="tan" name={"Tangent"} tex={"\\Tan\\theta = \\Sin\\theta \\mathbin{/} \\Cos\\theta"} text={"<b>Segment groc</b> sobre la recta <i>x</i> = 1, que és tangent al cercle (d'aquí el nom). No existeix a 90° i 270°, perquè cos = 0."} />
+    <RatioCard ratio="cot" name={"Cotangent"} tex={"\\Cot\\theta = \\Cos\\theta \\mathbin{/} \\Sin\\theta"} text={"<b>Segment blau</b> sobre la recta <i>y</i> = 1. No existeix a 0° i 180°, perquè sin = 0."} />
+    <RatioCard ratio="sec" name={"Secant"} tex={"\\Sec\\theta = 1 \\mathbin{/} \\Cos\\theta"} text={"<b>Segment vermell</b> des de l'origen fins a l'extrem de la tangent. El seu valor absolut mai baixa d'1."} />
+    <RatioCard ratio="csc" name={"Cosecant"} tex={"\\Csc\\theta = 1 \\mathbin{/} \\Sin\\theta"} text={"<b>Segment verd</b> des de l'origen fins a l'extrem de la cotangent. El seu valor absolut mai baixa d'1."} />
+  </RatioGrid>
+</Section>
+
+<Section eyebrow={"3 · Relacions"} title={"Identitats fonamentals"} lead={"Una identitat és una igualtat que es compleix per a qualsevol angle (sempre que les raons existeixin). Sota cadascuna en veus la comprovació amb l'angle actual; prem-la per veure'n la demostració."}>
+  <IdGroup title={"Recíproques"}>
+    <IdCard demo="rec-sin" tex={"\\Sin\\theta \\cdot \\Csc\\theta = 1"} text={"Sinus i cosecant són inverses."} live="r1" />
+    <IdCard demo="rec-cos" tex={"\\Cos\\theta \\cdot \\Sec\\theta = 1"} text={"Cosinus i secant són inverses."} live="r2" />
+    <IdCard demo="rec-tan" tex={"\\Tan\\theta \\cdot \\Cot\\theta = 1"} text={"Tangent i cotangent són inverses."} live="r3" />
+  </IdGroup>
+  <IdGroup title={"De quocient"}>
+    <IdCard demo="quot-tan" tex={"\\Tan\\theta = \\Sin\\theta \\mathbin{/} \\Cos\\theta"} text={"La tangent és el sinus entre el cosinus."} live="q1" />
+    <IdCard demo="quot-cot" tex={"\\Cot\\theta = \\Cos\\theta \\mathbin{/} \\Sin\\theta"} text={"La cotangent és el cosinus entre el sinus."} live="q2" />
+  </IdGroup>
+  <IdGroup title={"Pitagòriques"}>
+    <IdCard demo="pyth" tex={"\\Sin^2\\theta + \\Cos^2\\theta = 1"} text={"Teorema de Pitàgores en el triangle taronja–morat, amb hipotenusa 1."} live="p1" />
+    <IdCard demo="pyth-tan" tex={"1 + \\Tan^2\\theta = \\Sec^2\\theta"} text={"Pitàgores en el triangle gran de la recta <span class=\"m\">x</span> = 1 (groc i vermell)."} live="p2" />
+    <IdCard demo="pyth-cot" tex={"1 + \\Cot^2\\theta = \\Csc^2\\theta"} text={"Pitàgores en el triangle de la recta <span class=\"m\">y</span> = 1 (blau i verd)."} live="p3" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"4 · Signes"} title={"Signe segons el quadrant"} lead={"El sinus és positiu per sobre de l'eix <span class=\"m\">x</span>; el cosinus, a la dreta de l'eix <span class=\"m\">y</span>. Les altres hereten el signe d'aquestes dues."}>
+  <Quadrants labels={["Positives: totes","Positives: sin, cosec","Positives: tg, cotg","Positives: cos, sec"]} />
+</Section>
+
+<Section eyebrow={"5 · De memòria"} title={"Angles notables"} lead={"Prem una fila per portar el punt a aquell angle. Per a altres quadrants, fes servir l'angle de referència i posa el signe del quadrant."}>
+  <NotableTable />
+</Section>
+
+<Section eyebrow={"6 · Per a què serveix"} title={"On es fan servir"}>
+  <Uses items={[["Resoldre triangles","Calcular costats i angles desconeguts: altures, distàncies, pendents."],["Descompondre vectors","En física, una força <i>F</i> amb angle <i>θ</i> té components <i>F</i> cos <i>θ</i> i <i>F</i> sin <i>θ</i>."],["Moviment circular i ones","Un punt que gira descriu (cos <i>t</i>, sin <i>t</i>); la seva altura en el temps és una ona sinusoïdal (so, corrent altern)."],["Gràfics i rotacions","Rotar un punt en un videojoc o en un gràfic fa servir una matriu amb el cos i el sin de l'angle."]]} />
+</Section>

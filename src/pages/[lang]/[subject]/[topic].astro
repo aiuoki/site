@@ -1,7 +1,15 @@
 ---
 import type { GetStaticPaths } from "astro";
+import { getCollection, render } from "astro:content";
+import "../../../styles/components/katex.css";
+import "../../../styles/components/guide.css";
+import "../../../styles/components/demo-dialog.css";
+import { guideComponents } from "../../../components/guide";
+import TopicApp from "../../../components/interactive/TopicApp.astro";
+import DemoDialogs from "../../../components/ui/DemoDialogs.astro";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { subjects } from "../../../config/site";
+import { demosForTopic } from "../../../demos";
 import { contentLocale, locales, useTranslations, type UiKey } from "../../../i18n";
 
 export const getStaticPaths = (() =>
@@ -17,16 +25,32 @@ export const getStaticPaths = (() =>
 const { lang, subject, topic } = Astro.props;
 const t = useTranslations(lang);
 const content = contentLocale(lang, topic.locales);
+const entryId = `${subject.slug}/${topic.slug}/${content.locale}`;
+// Topics without written notes yet render only their header and canvas.
+const entry = (await getCollection("notes")).find((e) => e.id === entryId);
+const rendered = entry ? await render(entry) : null;
+const demos = demosForTopic(topic.slug, lang);
 ---
 
 <BaseLayout
   lang={lang}
-  eyebrow={t(`subjects.${subject.slug}` as UiKey)}
-  heading={t(`topics.${topic.slug}` as UiKey)}
+  eyebrow={entry?.data.eyebrow ?? t(`subjects.${subject.slug}` as UiKey)}
+  heading={entry?.data.title ?? t(`topics.${topic.slug}` as UiKey)}
+  intro={entry?.data.intro}
+  description={entry?.data.description}
   subject={subject}
   topic={topic.slug}
 >
   {content.fallback && <p class="note">{t("nav.contentFallback")}</p>}
+  <TopicApp lang={lang} topic={topic.slug} />
+  {
+    rendered && (
+      <div class="guide">
+        <rendered.Content components={guideComponents} />
+      </div>
+    )
+  }
+  <DemoDialogs demos={demos} labels={{ title: t("demo.title"), use: t("demo.use"), close: t("demo.close") }} />
 </BaseLayout>
 
 <style>
@@ -38,5 +62,6 @@ const content = contentLocale(lang, topic.locales);
     padding: 10px 14px;
     font-size: 14px;
     color: var(--muted);
+    margin-bottom: 24px;
   }
 </style>

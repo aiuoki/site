@@ -7,7 +7,11 @@ import { z } from "astro/zod";
 const notes = defineCollection({
   loader: glob({ pattern: "**/*.mdx", base: "./src/content" }),
   schema: z.object({
+    // Page header: eyebrow, title and intro (intro may contain inline HTML).
     title: z.string(),
+    eyebrow: z.string(),
+    intro: z.string(),
+    // Plain text for the meta description.
     description: z.string(),
   }),
 });

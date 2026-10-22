@@ -1,0 +1,29 @@
+---
+import { pageLocale, useTranslations } from "../../i18n";
+
+interface Props {
+  title: string;
+  text: string;
+  // Optional demonstration opened by the whole item.
+  demo?: string;
+  more?: "open" | "why" | "where";
+}
+
+const { title, text, demo, more = "open" } = Astro.props;
+const t = useTranslations(pageLocale(Astro.currentLocale));
+---
+
+{
+  demo ? (
+    <div class="def-item demo" data-demo={demo} role="button" tabindex="0">
+      <b set:html={title} />
+      <span set:html={text} />
+      <span class="more">{t(`demo.${more}`)}</span>
+    </div>
+  ) : (
+    <div class="def-item">
+      <b set:html={title} />
+      <span set:html={text} />
+    </div>
+  )
+}

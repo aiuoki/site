@@ -1,0 +1,36 @@
+---
+title: "Suma d'angles"
+eyebrow: "Guia interactiva · Suma d'angles"
+intro: "Arrossega α, β o el resultat sobre el cercle, o escriu els angles. El panell aplica les fórmules de suma i resta i comprova que donen el mateix valor que el càlcul directe. Prem qualsevol fórmula de la guia per veure'n la demostració."
+description: "Arrossega α, β o el resultat sobre el cercle, o escriu els angles. El panell aplica les fórmules de suma i resta i comprova que donen el mateix valor que el càlcul directe. Prem qualsevol fórmula de la guia per veure'n la demostració."
+---
+
+<Section eyebrow={"1 · La idea"} title={"Què és sumar angles"}>
+  <Prose html={"Sumar <span class=\"m\">α</span> (alfa) i <span class=\"m\">β</span> (beta) és girar primer <span class=\"m\">α</span> des de l'eix <span class=\"m\">x</span> i, des d'allà, girar <span class=\"m\">β</span> més. Restar és girar <span class=\"m\">β</span> enrere. Les fórmules de suma calculen sin, cos i tg de l'angle final fent servir només els valors d'<span class=\"m\">α</span> i <span class=\"m\">β</span>."} />
+  <Warn title={"Error típic: el sinus no es reparteix"} text={"sin(<i>α</i> + <i>β</i>) gairebé mai és sin <i>α</i> + sin <i>β</i>. Amb els angles actuals:"} live="wrong" />
+</Section>
+
+<Section eyebrow={"2 · Les fórmules"} title={"Suma i resta"} lead={"Llegeix <span class=\"mr\">±</span> amb el signe de dalt per a la suma i el de baix per a la resta; <span class=\"mr\">∓</span> va al revés. En el cosinus el signe s'inverteix."}>
+  <IdGroup>
+    <IdCard demo="sum-sin" title={"Sinus"} tex={"\\Sin(\\alpha \\pm \\beta) = \\Sin\\alpha\\,\\Cos\\beta \\pm \\Cos\\alpha\\,\\Sin\\beta"} text={"Mateix signe que l'operació. Es barregen sinus i cosinus."} />
+    <IdCard demo="sum-cos" title={"Cosinus"} tex={"\\Cos(\\alpha \\pm \\beta) = \\Cos\\alpha\\,\\Cos\\beta \\mp \\Sin\\alpha\\,\\Sin\\beta"} text={"Signe contrari. S'agrupa cos amb cos i sin amb sin."} />
+    <IdCard demo="sum-tan" title={"Tangent"} tex={"\\Tan(\\alpha \\pm \\beta) = (\\Tan\\alpha \\pm \\Tan\\beta) \\mathbin{/} (1 \\mp \\Tan\\alpha\\,\\Tan\\beta)"} text={"Surt de dividir les dues anteriors. No existeix si el denominador és 0."} />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"3 · Exemple resolt"} title={"sin 75° sense calculadora"} lead={"75° no és un angle notable, però sí que és la suma de dos: 45° + 30°."}>
+  <Steps items={[{"text":"Descompondre en notables","tex":"75\\degree = 45\\degree + 30\\degree"},{"text":"Aplicar la fórmula del sinus","tex":"\\Sin 75\\degree = \\Sin 45\\degree \\cdot \\Cos 30\\degree + \\Cos 45\\degree \\cdot \\Sin 30\\degree"},{"text":"Substituir els valors de la taula","tex":"= \\left(\\tfrac{\\sqrt{2}}{2}\\right)\\left(\\tfrac{\\sqrt{3}}{2}\\right) + \\left(\\tfrac{\\sqrt{2}}{2}\\right)\\left(\\tfrac{1}{2}\\right)"},{"text":"Multiplicar i ajuntar","tex":"= \\tfrac{\\sqrt{6}}{4} + \\tfrac{\\sqrt{2}}{4} = \\tfrac{\\sqrt{6} + \\sqrt{2}}{4} \\approx 0{,}9659"}]} />
+</Section>
+
+<Section eyebrow={"4 · Conseqüències"} title={"Altres identitats importants"} lead={"Totes surten de les fórmules de suma. La comprovació fa servir els angles actuals."}>
+  <IdGroup>
+    <IdCard demo="dbl" title={"Angle doble"} tex={["\\Sin 2\\alpha = 2\\Sin\\alpha\\,\\Cos\\alpha","\\Cos 2\\alpha = \\Cos^2\\alpha - \\Sin^2\\alpha","\\Tan 2\\alpha = 2\\Tan\\alpha \\mathbin{/} (1 - \\Tan^2\\alpha)"]} text={"És la suma amb <i>β</i> = <i>α</i>."} live="dbl" />
+    <IdCard demo="half" title={"Angle meitat"} tex={["\\Sin(\\alpha/2) = \\pm\\sqrt{(1 - \\Cos\\alpha)/2}","\\Cos(\\alpha/2) = \\pm\\sqrt{(1 + \\Cos\\alpha)/2}"]} text={"Aïllant del cosinus del doble. El signe el dona el quadrant d'<i>α</i>/2."} live="half" />
+    <IdCard demo="dbl2" title={"Variants del cosinus doble"} tex={["\\Cos 2\\alpha = 2\\Cos^2\\alpha - 1","\\Cos 2\\alpha = 1 - 2\\Sin^2\\alpha"]} text={"Canviant sin² per 1 − cos² (o al revés)."} live="dbl2" />
+    <IdCard demo="s2p" title={"Sumes a productes"} tex={["\\Sin\\alpha + \\Sin\\beta = 2\\Sin\\tfrac{\\alpha+\\beta}{2}\\,\\Cos\\tfrac{\\alpha-\\beta}{2}","\\Cos\\alpha + \\Cos\\beta = 2\\Cos\\tfrac{\\alpha+\\beta}{2}\\,\\Cos\\tfrac{\\alpha-\\beta}{2}"]} text={"Converteixen una suma en un producte, útil per simplificar."} live="s2p" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"5 · Per a què serveix"} title={"On es fan servir"}>
+  <Uses items={[["Valors exactes","Calcular sin, cos o tg de 15°, 75°, 105°… combinant angles notables."],["Rotacions encadenades","Girar <i>α</i> i després <i>β</i> és girar <i>α</i> + <i>β</i>; així es demostra que les matrius de rotació es multipliquen."],["Ones","Sumar dos sons de freqüències semblants produeix «batecs»: s'explica amb sumes a productes."],["Simplificar i resoldre","Reduir expressions, resoldre equacions trigonomètriques i calcular integrals com ∫ sin²<i>x</i> d<i>x</i> amb l'angle doble."]]} />
+</Section>

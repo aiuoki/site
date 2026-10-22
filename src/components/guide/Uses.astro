@@ -1,0 +1,15 @@
+---
+// "What it is for" grid: pairs of [title, text].
+const { items } = Astro.props as { items: [string, string][] };
+---
+
+<div class="uses">
+  {
+    items.map(([title, text]) => (
+      <div class="use">
+        <b set:html={title} />
+        <span set:html={text} />
+      </div>
+    ))
+  }
+</div>

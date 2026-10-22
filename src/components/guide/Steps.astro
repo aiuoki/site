@@ -1,0 +1,22 @@
+---
+import Formula from "../ui/Formula.astro";
+
+// Worked example: numbered steps, each with its formula below.
+const { items } = Astro.props as { items: { text: string; tex: string }[] };
+---
+
+<ol class="steps">
+  {
+    items.map((step, i) => (
+      <li class="step">
+        <span class="n">{i + 1}</span>
+        <span class="t">
+          <span set:html={step.text} />
+          <span class="f">
+            <Formula tex={step.tex} />
+          </span>
+        </span>
+      </li>
+    ))
+  }
+</ol>

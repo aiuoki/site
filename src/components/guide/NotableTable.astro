@@ -1,0 +1,10 @@
+---
+import Table from "../interactive/trig/NotableTable.svelte";
+import { dictionaries, notationFor, pageLocale, type UiDict } from "../../i18n";
+
+const lang = pageLocale(Astro.currentLocale);
+const trig = (dictionaries[lang] as UiDict).trig;
+---
+
+<Table client:visible notation={notationFor(lang)} degLabel={trig.thDeg} radLabel={trig.thRad} />
+<button type="button" class="linkbtn" data-demo="notables">{trig.whereFrom}</button>

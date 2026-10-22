@@ -1,0 +1,8 @@
+---
+import QuadrantGrid from "../interactive/trig/QuadrantGrid.svelte";
+
+// Sign summary for quadrants I..IV.
+const { labels } = Astro.props as { labels: string[] };
+---
+
+<QuadrantGrid client:visible labels={labels} />

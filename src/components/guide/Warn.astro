@@ -1,0 +1,18 @@
+---
+import Live from "./Live.astro";
+import type { SumCheck } from "../../lib/trig-checks";
+
+interface Props {
+  title: string;
+  text: string;
+  live?: SumCheck;
+}
+
+const { title, text, live } = Astro.props;
+---
+
+<div class="warn">
+  <b set:html={title} />
+  <span class="hint" set:html={text} />
+  {live && <div class="live"><Live kind={live} /></div>}
+</div>

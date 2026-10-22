@@ -1,0 +1,56 @@
+---
+title: "Circonferenza Goniometrica"
+eyebrow: "Guida interattiva · funzioni goniometriche"
+intro: "Trascina i punti sulla circonferenza o scrivi gli angoli. Ogni segmento colorato è una funzione goniometrica: la sua lunghezza (con segno) è il suo valore. Tocca una formula della guida per vederne la dimostrazione."
+description: "Trascina i punti sulla circonferenza o scrivi gli angoli. Ogni segmento colorato è una funzione goniometrica: la sua lunghezza (con segno) è il suo valore. Tocca una formula della guida per vederne la dimostrazione."
+---
+
+<Section eyebrow={"1 · Punto di partenza"} title={"Cos'è la circonferenza goniometrica"}>
+  <Prose html={"È una circonferenza di <b>raggio 1</b> con centro nell'origine <span class=\"mr\">(0, 0)</span>. Un angolo <span class=\"m\">θ</span> si misura a partire dal semiasse <span class=\"m\">x</span> positivo, in senso antiorario. Dove il lato finale dell'angolo taglia la circonferenza c'è il punto <span class=\"m\">P</span>, e le sue coordinate sono proprio <span class=\"mr\"><i>P</i> = (cos <i>θ</i>, sen <i>θ</i>)</span>."} />
+  <Defs>
+    <DefItem title={"Grado"} text={"Un giro completo sono 360°."} />
+    <DefItem title={"Radiante"} text={"Angolo il cui arco è lungo quanto il raggio. Un giro sono <span class=\"mr\">2π</span> rad. Per convertire: <span class=\"mr\">rad = gradi · π / 180</span>."} demo="rad" more="where" />
+    <DefItem title={"Quadrante"} text={"Ciascuna delle 4 zone in cui gli assi dividono il piano, numerate da I a IV in senso antiorario."} />
+    <DefItem title={"Angolo di riferimento"} text={"L'angolo acuto tra il lato finale e l'asse <span class=\"m\">x</span>. Le sue funzioni sono quelle di <span class=\"m\">θ</span>, a meno del segno."} />
+  </Defs>
+</Section>
+
+<Section eyebrow={"2 · Le sei funzioni"} title={"Cosa misura ogni segmento"} lead={"Poiché il raggio è 1, l'ipotenusa del triangolo vale 1 e ogni funzione diventa una lunghezza visibile."}>
+  <RatioGrid>
+    <RatioCard ratio="sin" name={"Seno"} tex={"\\Sin\\theta = y"} text={"<b>Segmento arancione verticale</b> dall'asse <i>x</i> fino a <i>P</i>. È l'altezza del punto. Sempre tra −1 e 1."} />
+    <RatioCard ratio="cos" name={"Coseno"} tex={"\\Cos\\theta = x"} text={"<b>Segmento viola orizzontale</b> dall'origine fino all'ombra di <i>P</i> sull'asse <i>x</i>. Sempre tra −1 e 1."} />
+    <RatioCard ratio="tan" name={"Tangente"} tex={"\\Tan\\theta = \\Sin\\theta \\mathbin{/} \\Cos\\theta"} text={"<b>Segmento giallo</b> sulla retta <i>x</i> = 1, tangente alla circonferenza (da qui il nome). Non esiste a 90° e 270°, perché cos = 0."} />
+    <RatioCard ratio="cot" name={"Cotangente"} tex={"\\Cot\\theta = \\Cos\\theta \\mathbin{/} \\Sin\\theta"} text={"<b>Segmento blu</b> sulla retta <i>y</i> = 1. Non esiste a 0° e 180°, perché sen = 0."} />
+    <RatioCard ratio="sec" name={"Secante"} tex={"\\Sec\\theta = 1 \\mathbin{/} \\Cos\\theta"} text={"<b>Segmento rosso</b> dall'origine fino all'estremo della tangente. Il suo valore assoluto non scende mai sotto 1."} />
+    <RatioCard ratio="csc" name={"Cosecante"} tex={"\\Csc\\theta = 1 \\mathbin{/} \\Sin\\theta"} text={"<b>Segmento verde</b> dall'origine fino all'estremo della cotangente. Il suo valore assoluto non scende mai sotto 1."} />
+  </RatioGrid>
+</Section>
+
+<Section eyebrow={"3 · Relazioni"} title={"Identità fondamentali"} lead={"Un'identità è un'uguaglianza vera per qualsiasi angolo (dove le funzioni esistono). Sotto ognuna vedi la verifica con l'angolo attuale; toccala per vedere la dimostrazione."}>
+  <IdGroup title={"Reciproche"}>
+    <IdCard demo="rec-sin" tex={"\\Sin\\theta \\cdot \\Csc\\theta = 1"} text={"Seno e cosecante sono reciproche."} live="r1" />
+    <IdCard demo="rec-cos" tex={"\\Cos\\theta \\cdot \\Sec\\theta = 1"} text={"Coseno e secante sono reciproche."} live="r2" />
+    <IdCard demo="rec-tan" tex={"\\Tan\\theta \\cdot \\Cot\\theta = 1"} text={"Tangente e cotangente sono reciproche."} live="r3" />
+  </IdGroup>
+  <IdGroup title={"Di quoziente"}>
+    <IdCard demo="quot-tan" tex={"\\Tan\\theta = \\Sin\\theta \\mathbin{/} \\Cos\\theta"} text={"La tangente è il seno diviso il coseno."} live="q1" />
+    <IdCard demo="quot-cot" tex={"\\Cot\\theta = \\Cos\\theta \\mathbin{/} \\Sin\\theta"} text={"La cotangente è il coseno diviso il seno."} live="q2" />
+  </IdGroup>
+  <IdGroup title={"Pitagoriche"}>
+    <IdCard demo="pyth" tex={"\\Sin^2\\theta + \\Cos^2\\theta = 1"} text={"Teorema di Pitagora nel triangolo arancione–viola, con ipotenusa 1."} live="p1" />
+    <IdCard demo="pyth-tan" tex={"1 + \\Tan^2\\theta = \\Sec^2\\theta"} text={"Pitagora nel triangolo grande della retta <span class=\"m\">x</span> = 1 (giallo e rosso)."} live="p2" />
+    <IdCard demo="pyth-cot" tex={"1 + \\Cot^2\\theta = \\Csc^2\\theta"} text={"Pitagora nel triangolo della retta <span class=\"m\">y</span> = 1 (blu e verde)."} live="p3" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"4 · Segni"} title={"Segno in base al quadrante"} lead={"Il seno è positivo sopra l'asse <span class=\"m\">x</span>; il coseno, a destra dell'asse <span class=\"m\">y</span>. Le altre ereditano il segno da queste due."}>
+  <Quadrants labels={["Positive: tutte","Positive: sen, cosec","Positive: tg, cotg","Positive: cos, sec"]} />
+</Section>
+
+<Section eyebrow={"5 · Da ricordare"} title={"Angoli notevoli"} lead={"Tocca una riga per portare il punto su quell'angolo. Per gli altri quadranti, usa l'angolo di riferimento e aggiungi il segno del quadrante."}>
+  <NotableTable />
+</Section>
+
+<Section eyebrow={"6 · A cosa serve"} title={"Dove si usano"}>
+  <Uses items={[["Risolvere triangoli","Calcolare lati e angoli sconosciuti: altezze, distanze, pendenze."],["Scomporre vettori","In fisica, una forza <i>F</i> con angolo <i>θ</i> ha componenti <i>F</i> cos <i>θ</i> e <i>F</i> sen <i>θ</i>."],["Moto circolare e onde","Un punto che ruota descrive (cos <i>t</i>, sen <i>t</i>); la sua altezza nel tempo è un'onda sinusoidale (suono, corrente alternata)."],["Grafica e rotazioni","Ruotare un punto in un videogioco o in un grafico usa una matrice con cos e sen dell'angolo."]]} />
+</Section>

@@ -1,0 +1,6 @@
+---
+// A paragraph of trusted HTML coming from the topic MDX.
+const { html } = Astro.props as { html: string };
+---
+
+<p set:html={html} />

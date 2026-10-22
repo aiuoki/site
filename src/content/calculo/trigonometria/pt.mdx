@@ -1,0 +1,56 @@
+---
+title: "Círculo Trigonométrico"
+eyebrow: "Guia interativo · razões trigonométricas"
+intro: "Arrasta os pontos sobre o círculo ou escreve os ângulos. Cada segmento colorido é uma razão trigonométrica: o seu comprimento (com sinal) é o seu valor. Toca em qualquer fórmula do guia para ver a demonstração."
+description: "Arrasta os pontos sobre o círculo ou escreve os ângulos. Cada segmento colorido é uma razão trigonométrica: o seu comprimento (com sinal) é o seu valor. Toca em qualquer fórmula do guia para ver a demonstração."
+---
+
+<Section eyebrow={"1 · Ponto de partida"} title={"O que é o círculo trigonométrico"}>
+  <Prose html={"É uma circunferência de <b>raio 1</b> centrada na origem <span class=\"mr\">(0, 0)</span>. Um ângulo <span class=\"m\">θ</span> mede-se a partir do semieixo <span class=\"m\">x</span> positivo, rodando no sentido anti-horário. Onde o lado final do ângulo corta o círculo está o ponto <span class=\"m\">P</span>, e as suas coordenadas são exatamente <span class=\"mr\"><i>P</i> = (cos <i>θ</i>, sen <i>θ</i>)</span>."} />
+  <Defs>
+    <DefItem title={"Grau"} text={"Uma volta completa são 360°."} />
+    <DefItem title={"Radiano"} text={"Ângulo cujo arco mede o mesmo que o raio. Uma volta são <span class=\"mr\">2π</span> rad. Para converter: <span class=\"mr\">rad = graus · π / 180</span>."} demo="rad" more="where" />
+    <DefItem title={"Quadrante"} text={"Cada uma das 4 zonas em que os eixos dividem o plano, numeradas de I a IV no sentido anti-horário."} />
+    <DefItem title={"Ângulo de referência"} text={"O ângulo agudo entre o lado final e o eixo <span class=\"m\">x</span>. As suas razões são as mesmas de <span class=\"m\">θ</span>, exceto o sinal."} />
+  </Defs>
+</Section>
+
+<Section eyebrow={"2 · As seis razões"} title={"O que mede cada segmento"} lead={"Como o raio é 1, a hipotenusa do triângulo vale 1 e cada razão transforma-se num comprimento que se pode ver."}>
+  <RatioGrid>
+    <RatioCard ratio="sin" name={"Seno"} tex={"\\Sin\\theta = y"} text={"<b>Segmento laranja vertical</b> do eixo <i>x</i> até <i>P</i>. É a altura do ponto. Sempre entre −1 e 1."} />
+    <RatioCard ratio="cos" name={"Cosseno"} tex={"\\Cos\\theta = x"} text={"<b>Segmento roxo horizontal</b> da origem até à sombra de <i>P</i> no eixo <i>x</i>. Sempre entre −1 e 1."} />
+    <RatioCard ratio="tan" name={"Tangente"} tex={"\\Tan\\theta = \\Sin\\theta \\mathbin{/} \\Cos\\theta"} text={"<b>Segmento amarelo</b> sobre a reta <i>x</i> = 1, que é tangente ao círculo (daí o nome). Não existe em 90° e 270°, porque cos = 0."} />
+    <RatioCard ratio="cot" name={"Cotangente"} tex={"\\Cot\\theta = \\Cos\\theta \\mathbin{/} \\Sin\\theta"} text={"<b>Segmento azul</b> sobre a reta <i>y</i> = 1. Não existe em 0° e 180°, porque sen = 0."} />
+    <RatioCard ratio="sec" name={"Secante"} tex={"\\Sec\\theta = 1 \\mathbin{/} \\Cos\\theta"} text={"<b>Segmento vermelho</b> da origem até à extremidade da tangente. O seu valor absoluto nunca é menor que 1."} />
+    <RatioCard ratio="csc" name={"Cossecante"} tex={"\\Csc\\theta = 1 \\mathbin{/} \\Sin\\theta"} text={"<b>Segmento verde</b> da origem até à extremidade da cotangente. O seu valor absoluto nunca é menor que 1."} />
+  </RatioGrid>
+</Section>
+
+<Section eyebrow={"3 · Relações"} title={"Identidades fundamentais"} lead={"Uma identidade é uma igualdade verdadeira para qualquer ângulo (desde que as razões existam). Por baixo de cada uma vês a verificação com o ângulo atual; toca para ver a demonstração."}>
+  <IdGroup title={"Recíprocas"}>
+    <IdCard demo="rec-sin" tex={"\\Sin\\theta \\cdot \\Csc\\theta = 1"} text={"Seno e cossecante são inversas."} live="r1" />
+    <IdCard demo="rec-cos" tex={"\\Cos\\theta \\cdot \\Sec\\theta = 1"} text={"Cosseno e secante são inversas."} live="r2" />
+    <IdCard demo="rec-tan" tex={"\\Tan\\theta \\cdot \\Cot\\theta = 1"} text={"Tangente e cotangente são inversas."} live="r3" />
+  </IdGroup>
+  <IdGroup title={"De quociente"}>
+    <IdCard demo="quot-tan" tex={"\\Tan\\theta = \\Sin\\theta \\mathbin{/} \\Cos\\theta"} text={"A tangente é o seno a dividir pelo cosseno."} live="q1" />
+    <IdCard demo="quot-cot" tex={"\\Cot\\theta = \\Cos\\theta \\mathbin{/} \\Sin\\theta"} text={"A cotangente é o cosseno a dividir pelo seno."} live="q2" />
+  </IdGroup>
+  <IdGroup title={"Pitagóricas"}>
+    <IdCard demo="pyth" tex={"\\Sin^2\\theta + \\Cos^2\\theta = 1"} text={"Teorema de Pitágoras no triângulo laranja–roxo, com hipotenusa 1."} live="p1" />
+    <IdCard demo="pyth-tan" tex={"1 + \\Tan^2\\theta = \\Sec^2\\theta"} text={"Pitágoras no triângulo grande da reta <span class=\"m\">x</span> = 1 (amarelo e vermelho)."} live="p2" />
+    <IdCard demo="pyth-cot" tex={"1 + \\Cot^2\\theta = \\Csc^2\\theta"} text={"Pitágoras no triângulo da reta <span class=\"m\">y</span> = 1 (azul e verde)."} live="p3" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"4 · Sinais"} title={"Sinal conforme o quadrante"} lead={"O seno é positivo acima do eixo <span class=\"m\">x</span>; o cosseno, à direita do eixo <span class=\"m\">y</span>. As outras herdam o sinal destas duas."}>
+  <Quadrants labels={["Positivas: todas","Positivas: sen, cosec","Positivas: tg, cotg","Positivas: cos, sec"]} />
+</Section>
+
+<Section eyebrow={"5 · De cor"} title={"Ângulos notáveis"} lead={"Toca numa linha para levar o ponto a esse ângulo. Para outros quadrantes, usa o ângulo de referência e põe o sinal do quadrante."}>
+  <NotableTable />
+</Section>
+
+<Section eyebrow={"6 · Para que serve"} title={"Onde se usam"}>
+  <Uses items={[["Resolver triângulos","Calcular lados e ângulos desconhecidos: alturas, distâncias, declives."],["Decompor vetores","Em física, uma força <i>F</i> com ângulo <i>θ</i> tem componentes <i>F</i> cos <i>θ</i> e <i>F</i> sen <i>θ</i>."],["Movimento circular e ondas","Um ponto que roda descreve (cos <i>t</i>, sen <i>t</i>); a sua altura ao longo do tempo é uma onda sinusoidal (som, corrente alternada)."],["Gráficos e rotações","Rodar um ponto num videojogo ou num gráfico usa uma matriz com o cos e o sen do ângulo."]]} />
+</Section>

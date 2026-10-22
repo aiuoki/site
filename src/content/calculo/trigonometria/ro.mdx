@@ -1,0 +1,56 @@
+---
+title: "Cercul Trigonometric"
+eyebrow: "Ghid interactiv · funcții trigonometrice"
+intro: "Trage punctele pe cerc sau scrie unghiurile. Fiecare segment colorat este o funcție trigonometrică: lungimea lui (cu semn) este valoarea ei. Atinge orice formulă din ghid ca să vezi demonstrația."
+description: "Trage punctele pe cerc sau scrie unghiurile. Fiecare segment colorat este o funcție trigonometrică: lungimea lui (cu semn) este valoarea ei. Atinge orice formulă din ghid ca să vezi demonstrația."
+---
+
+<Section eyebrow={"1 · Punctul de plecare"} title={"Ce este cercul trigonometric"}>
+  <Prose html={"Este un cerc cu <b>raza 1</b> cu centrul în origine <span class=\"mr\">(0, 0)</span>. Un unghi <span class=\"m\">θ</span> se măsoară de la semiaxa <span class=\"m\">x</span> pozitivă, în sens trigonometric (invers acelor de ceasornic). Acolo unde latura finală a unghiului taie cercul se află punctul <span class=\"m\">P</span>, iar coordonatele lui sunt exact <span class=\"mr\"><i>P</i> = (cos <i>θ</i>, sin <i>θ</i>)</span>."} />
+  <Defs>
+    <DefItem title={"Grad"} text={"O rotație completă are 360°."} />
+    <DefItem title={"Radian"} text={"Unghiul al cărui arc are aceeași lungime ca raza. O rotație are <span class=\"mr\">2π</span> rad. Conversie: <span class=\"mr\">rad = grade · π / 180</span>."} demo="rad" more="where" />
+    <DefItem title={"Cadran"} text={"Fiecare dintre cele 4 zone în care axele împart planul, numerotate de la I la IV în sens trigonometric."} />
+    <DefItem title={"Unghi de referință"} text={"Unghiul ascuțit dintre latura finală și axa <span class=\"m\">x</span>. Funcțiile lui sunt aceleași ca ale lui <span class=\"m\">θ</span>, mai puțin semnul."} />
+  </Defs>
+</Section>
+
+<Section eyebrow={"2 · Cele șase funcții"} title={"Ce măsoară fiecare segment"} lead={"Pentru că raza este 1, ipotenuza triunghiului este 1 și fiecare funcție devine o lungime pe care o poți vedea."}>
+  <RatioGrid>
+    <RatioCard ratio="sin" name={"Sinus"} tex={"\\Sin\\theta = y"} text={"<b>Segmentul portocaliu vertical</b> de la axa <i>x</i> până la <i>P</i>. Este înălțimea punctului. Mereu între −1 și 1."} />
+    <RatioCard ratio="cos" name={"Cosinus"} tex={"\\Cos\\theta = x"} text={"<b>Segmentul mov orizontal</b> de la origine până la umbra lui <i>P</i> pe axa <i>x</i>. Mereu între −1 și 1."} />
+    <RatioCard ratio="tan" name={"Tangentă"} tex={"\\Tan\\theta = \\Sin\\theta \\mathbin{/} \\Cos\\theta"} text={"<b>Segmentul galben</b> pe dreapta <i>x</i> = 1, tangentă la cerc (de aici numele). Nu există la 90° și 270°, pentru că cos = 0."} />
+    <RatioCard ratio="cot" name={"Cotangentă"} tex={"\\Cot\\theta = \\Cos\\theta \\mathbin{/} \\Sin\\theta"} text={"<b>Segmentul albastru</b> pe dreapta <i>y</i> = 1. Nu există la 0° și 180°, pentru că sin = 0."} />
+    <RatioCard ratio="sec" name={"Secantă"} tex={"\\Sec\\theta = 1 \\mathbin{/} \\Cos\\theta"} text={"<b>Segmentul roșu</b> de la origine până la capătul tangentei. Valoarea lui absolută nu scade niciodată sub 1."} />
+    <RatioCard ratio="csc" name={"Cosecantă"} tex={"\\Csc\\theta = 1 \\mathbin{/} \\Sin\\theta"} text={"<b>Segmentul verde</b> de la origine până la capătul cotangentei. Valoarea lui absolută nu scade niciodată sub 1."} />
+  </RatioGrid>
+</Section>
+
+<Section eyebrow={"3 · Relații"} title={"Identități fundamentale"} lead={"O identitate este o egalitate adevărată pentru orice unghi (acolo unde funcțiile există). Sub fiecare vezi verificarea cu unghiul curent; atinge-o ca să vezi demonstrația."}>
+  <IdGroup title={"Reciproce"}>
+    <IdCard demo="rec-sin" tex={"\\Sin\\theta \\cdot \\Csc\\theta = 1"} text={"Sinusul și cosecanta sunt inverse."} live="r1" />
+    <IdCard demo="rec-cos" tex={"\\Cos\\theta \\cdot \\Sec\\theta = 1"} text={"Cosinusul și secanta sunt inverse."} live="r2" />
+    <IdCard demo="rec-tan" tex={"\\Tan\\theta \\cdot \\Cot\\theta = 1"} text={"Tangenta și cotangenta sunt inverse."} live="r3" />
+  </IdGroup>
+  <IdGroup title={"De cât"}>
+    <IdCard demo="quot-tan" tex={"\\Tan\\theta = \\Sin\\theta \\mathbin{/} \\Cos\\theta"} text={"Tangenta este sinusul împărțit la cosinus."} live="q1" />
+    <IdCard demo="quot-cot" tex={"\\Cot\\theta = \\Cos\\theta \\mathbin{/} \\Sin\\theta"} text={"Cotangenta este cosinusul împărțit la sinus."} live="q2" />
+  </IdGroup>
+  <IdGroup title={"Pitagoreice"}>
+    <IdCard demo="pyth" tex={"\\Sin^2\\theta + \\Cos^2\\theta = 1"} text={"Teorema lui Pitagora în triunghiul portocaliu–mov, cu ipotenuza 1."} live="p1" />
+    <IdCard demo="pyth-tan" tex={"1 + \\Tan^2\\theta = \\Sec^2\\theta"} text={"Pitagora în triunghiul mare de pe dreapta <span class=\"m\">x</span> = 1 (galben și roșu)."} live="p2" />
+    <IdCard demo="pyth-cot" tex={"1 + \\Cot^2\\theta = \\Csc^2\\theta"} text={"Pitagora în triunghiul de pe dreapta <span class=\"m\">y</span> = 1 (albastru și verde)."} live="p3" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"4 · Semne"} title={"Semnul în funcție de cadran"} lead={"Sinusul este pozitiv deasupra axei <span class=\"m\">x</span>; cosinusul, la dreapta axei <span class=\"m\">y</span>. Celelalte moștenesc semnul de la acestea două."}>
+  <Quadrants labels={["Pozitive: toate","Pozitive: sin, cosec","Pozitive: tg, ctg","Pozitive: cos, sec"]} />
+</Section>
+
+<Section eyebrow={"5 · De reținut"} title={"Unghiuri remarcabile"} lead={"Atinge un rând ca să muți punctul la acel unghi. Pentru alte cadrane, folosește unghiul de referință și pune semnul cadranului."}>
+  <NotableTable />
+</Section>
+
+<Section eyebrow={"6 · La ce folosește"} title={"Unde se folosesc"}>
+  <Uses items={[["Rezolvarea triunghiurilor","Calcularea laturilor și unghiurilor necunoscute: înălțimi, distanțe, pante."],["Descompunerea vectorilor","În fizică, o forță <i>F</i> la unghiul <i>θ</i> are componentele <i>F</i> cos <i>θ</i> și <i>F</i> sin <i>θ</i>."],["Mișcare circulară și unde","Un punct care se rotește descrie (cos <i>t</i>, sin <i>t</i>); înălțimea lui în timp este o undă sinusoidală (sunet, curent alternativ)."],["Grafică și rotații","Rotirea unui punct într-un joc sau într-un grafic folosește o matrice cu cos și sin ale unghiului."]]} />
+</Section>

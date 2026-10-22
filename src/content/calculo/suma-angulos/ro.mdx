@@ -1,0 +1,36 @@
+---
+title: "Suma unghiurilor"
+eyebrow: "Ghid interactiv · Suma unghiurilor"
+intro: "Trage α, β sau rezultatul pe cerc ori scrie unghiurile. Panoul aplică formulele de adunare și scădere și verifică dacă dau aceeași valoare ca și calculul direct. Atinge orice formulă din ghid ca să vezi demonstrația."
+description: "Trage α, β sau rezultatul pe cerc ori scrie unghiurile. Panoul aplică formulele de adunare și scădere și verifică dacă dau aceeași valoare ca și calculul direct. Atinge orice formulă din ghid ca să vezi demonstrația."
+---
+
+<Section eyebrow={"1 · Ideea"} title={"Ce înseamnă să aduni unghiuri"}>
+  <Prose html={"A aduna <span class=\"m\">α</span> (alfa) și <span class=\"m\">β</span> (beta) înseamnă să rotești întâi cu <span class=\"m\">α</span> de la axa <span class=\"m\">x</span> și apoi încă cu <span class=\"m\">β</span>. A scădea înseamnă să rotești cu <span class=\"m\">β</span> înapoi. Formulele de adunare dau sin, cos și tg ale unghiului final folosind doar valorile lui <span class=\"m\">α</span> și <span class=\"m\">β</span>."} />
+  <Warn title={"Greșeală tipică: sinusul nu se distribuie"} text={"sin(<i>α</i> + <i>β</i>) aproape niciodată nu este sin <i>α</i> + sin <i>β</i>. Cu unghiurile curente:"} live="wrong" />
+</Section>
+
+<Section eyebrow={"2 · Formulele"} title={"Suma și diferența"} lead={"Citește <span class=\"mr\">±</span> cu semnul de sus pentru sumă și cu cel de jos pentru diferență; la <span class=\"mr\">∓</span> e invers. La cosinus semnul se inversează."}>
+  <IdGroup>
+    <IdCard demo="sum-sin" title={"Sinus"} tex={"\\Sin(\\alpha \\pm \\beta) = \\Sin\\alpha\\,\\Cos\\beta \\pm \\Cos\\alpha\\,\\Sin\\beta"} text={"Același semn ca operația. Se amestecă sinusul și cosinusul."} />
+    <IdCard demo="sum-cos" title={"Cosinus"} tex={"\\Cos(\\alpha \\pm \\beta) = \\Cos\\alpha\\,\\Cos\\beta \\mp \\Sin\\alpha\\,\\Sin\\beta"} text={"Semn opus. cos cu cos și sin cu sin."} />
+    <IdCard demo="sum-tan" title={"Tangentă"} tex={"\\Tan(\\alpha \\pm \\beta) = (\\Tan\\alpha \\pm \\Tan\\beta) \\mathbin{/} (1 \\mp \\Tan\\alpha\\,\\Tan\\beta)"} text={"Se obține împărțind cele două de mai sus. Nu există dacă numitorul este 0."} />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"3 · Exemplu rezolvat"} title={"sin 75° fără calculator"} lead={"75° nu este un unghi remarcabil, dar este suma a două: 45° + 30°."}>
+  <Steps items={[{"text":"Descompune în unghiuri remarcabile","tex":"75\\degree = 45\\degree + 30\\degree"},{"text":"Aplică formula sinusului","tex":"\\Sin 75\\degree = \\Sin 45\\degree \\cdot \\Cos 30\\degree + \\Cos 45\\degree \\cdot \\Sin 30\\degree"},{"text":"Înlocuiește valorile din tabel","tex":"= \\left(\\tfrac{\\sqrt{2}}{2}\\right)\\left(\\tfrac{\\sqrt{3}}{2}\\right) + \\left(\\tfrac{\\sqrt{2}}{2}\\right)\\left(\\tfrac{1}{2}\\right)"},{"text":"Înmulțește și adună","tex":"= \\tfrac{\\sqrt{6}}{4} + \\tfrac{\\sqrt{2}}{4} = \\tfrac{\\sqrt{6} + \\sqrt{2}}{4} \\approx 0{,}9659"}]} />
+</Section>
+
+<Section eyebrow={"4 · Consecințe"} title={"Alte identități importante"} lead={"Toate decurg din formulele de adunare. Verificarea folosește unghiurile curente."}>
+  <IdGroup>
+    <IdCard demo="dbl" title={"Unghiul dublu"} tex={["\\Sin 2\\alpha = 2\\Sin\\alpha\\,\\Cos\\alpha","\\Cos 2\\alpha = \\Cos^2\\alpha - \\Sin^2\\alpha","\\Tan 2\\alpha = 2\\Tan\\alpha \\mathbin{/} (1 - \\Tan^2\\alpha)"]} text={"Este suma cu <i>β</i> = <i>α</i>."} live="dbl" />
+    <IdCard demo="half" title={"Unghiul pe jumătate"} tex={["\\Sin(\\alpha/2) = \\pm\\sqrt{(1 - \\Cos\\alpha)/2}","\\Cos(\\alpha/2) = \\pm\\sqrt{(1 + \\Cos\\alpha)/2}"]} text={"Se scoate din cosinusul unghiului dublu. Semnul depinde de cadranul lui <i>α</i>/2."} live="half" />
+    <IdCard demo="dbl2" title={"Variante ale cosinusului dublu"} tex={["\\Cos 2\\alpha = 2\\Cos^2\\alpha - 1","\\Cos 2\\alpha = 1 - 2\\Sin^2\\alpha"]} text={"Înlocuind sin² cu 1 − cos² (sau invers)."} live="dbl2" />
+    <IdCard demo="s2p" title={"Transformarea sumelor în produse"} tex={["\\Sin\\alpha + \\Sin\\beta = 2\\Sin\\tfrac{\\alpha+\\beta}{2}\\,\\Cos\\tfrac{\\alpha-\\beta}{2}","\\Cos\\alpha + \\Cos\\beta = 2\\Cos\\tfrac{\\alpha+\\beta}{2}\\,\\Cos\\tfrac{\\alpha-\\beta}{2}"]} text={"Transformă o sumă într-un produs, util la simplificări."} live="s2p" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"5 · La ce folosește"} title={"Unde se folosesc"}>
+  <Uses items={[["Valori exacte","Calcularea sin, cos sau tg pentru 15°, 75°, 105°… combinând unghiuri remarcabile."],["Rotații succesive","A roti cu <i>α</i> și apoi cu <i>β</i> înseamnă a roti cu <i>α</i> + <i>β</i>; așa se arată că matricele de rotație se înmulțesc."],["Unde","Două sunete cu frecvențe apropiate produc „bătăi”: formulele sumă–produs le explică."],["Simplificare și rezolvare","Simplificarea expresiilor, rezolvarea ecuațiilor trigonometrice și calculul integralelor precum ∫ sin²<i>x</i> d<i>x</i> cu unghiul dublu."]]} />
+</Section>

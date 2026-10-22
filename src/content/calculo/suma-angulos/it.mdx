@@ -1,0 +1,36 @@
+---
+title: "Somma di angoli"
+eyebrow: "Guida interattiva · Somma di angoli"
+intro: "Trascina α, β o il risultato sulla circonferenza, oppure scrivi gli angoli. Il pannello applica le formule di addizione e sottrazione e verifica che diano lo stesso valore del calcolo diretto. Tocca una formula della guida per vederne la dimostrazione."
+description: "Trascina α, β o il risultato sulla circonferenza, oppure scrivi gli angoli. Il pannello applica le formule di addizione e sottrazione e verifica che diano lo stesso valore del calcolo diretto. Tocca una formula della guida per vederne la dimostrazione."
+---
+
+<Section eyebrow={"1 · L'idea"} title={"Cosa significa sommare angoli"}>
+  <Prose html={"Sommare <span class=\"m\">α</span> (alfa) e <span class=\"m\">β</span> (beta) significa ruotare prima di <span class=\"m\">α</span> dall'asse <span class=\"m\">x</span> e poi ancora di <span class=\"m\">β</span>. Sottrarre significa ruotare di <span class=\"m\">β</span> all'indietro. Le formule di addizione danno sen, cos e tg dell'angolo finale usando solo i valori di <span class=\"m\">α</span> e <span class=\"m\">β</span>."} />
+  <Warn title={"Errore tipico: il seno non si distribuisce"} text={"sen(<i>α</i> + <i>β</i>) non è quasi mai sen <i>α</i> + sen <i>β</i>. Con gli angoli attuali:"} live="wrong" />
+</Section>
+
+<Section eyebrow={"2 · Le formule"} title={"Addizione e sottrazione"} lead={"Leggi <span class=\"mr\">±</span> con il segno di sopra per la somma e quello di sotto per la differenza; <span class=\"mr\">∓</span> è il contrario. Nel coseno il segno si inverte."}>
+  <IdGroup>
+    <IdCard demo="sum-sin" title={"Seno"} tex={"\\Sin(\\alpha \\pm \\beta) = \\Sin\\alpha\\,\\Cos\\beta \\pm \\Cos\\alpha\\,\\Sin\\beta"} text={"Stesso segno dell'operazione. Seno e coseno si mescolano."} />
+    <IdCard demo="sum-cos" title={"Coseno"} tex={"\\Cos(\\alpha \\pm \\beta) = \\Cos\\alpha\\,\\Cos\\beta \\mp \\Sin\\alpha\\,\\Sin\\beta"} text={"Segno opposto. cos con cos e sen con sen."} />
+    <IdCard demo="sum-tan" title={"Tangente"} tex={"\\Tan(\\alpha \\pm \\beta) = (\\Tan\\alpha \\pm \\Tan\\beta) \\mathbin{/} (1 \\mp \\Tan\\alpha\\,\\Tan\\beta)"} text={"Si ottiene dividendo le due precedenti. Non esiste se il denominatore è 0."} />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"3 · Esempio svolto"} title={"sen 75° senza calcolatrice"} lead={"75° non è un angolo notevole, ma è la somma di due: 45° + 30°."}>
+  <Steps items={[{"text":"Scomporre in angoli notevoli","tex":"75\\degree = 45\\degree + 30\\degree"},{"text":"Applicare la formula del seno","tex":"\\Sin 75\\degree = \\Sin 45\\degree \\cdot \\Cos 30\\degree + \\Cos 45\\degree \\cdot \\Sin 30\\degree"},{"text":"Sostituire i valori della tabella","tex":"= \\left(\\tfrac{\\sqrt{2}}{2}\\right)\\left(\\tfrac{\\sqrt{3}}{2}\\right) + \\left(\\tfrac{\\sqrt{2}}{2}\\right)\\left(\\tfrac{1}{2}\\right)"},{"text":"Moltiplicare e sommare","tex":"= \\tfrac{\\sqrt{6}}{4} + \\tfrac{\\sqrt{2}}{4} = \\tfrac{\\sqrt{6} + \\sqrt{2}}{4} \\approx 0{,}9659"}]} />
+</Section>
+
+<Section eyebrow={"4 · Conseguenze"} title={"Altre identità importanti"} lead={"Derivano tutte dalle formule di addizione. La verifica usa gli angoli attuali."}>
+  <IdGroup>
+    <IdCard demo="dbl" title={"Angolo doppio"} tex={["\\Sin 2\\alpha = 2\\Sin\\alpha\\,\\Cos\\alpha","\\Cos 2\\alpha = \\Cos^2\\alpha - \\Sin^2\\alpha","\\Tan 2\\alpha = 2\\Tan\\alpha \\mathbin{/} (1 - \\Tan^2\\alpha)"]} text={"È la somma con <i>β</i> = <i>α</i>."} live="dbl" />
+    <IdCard demo="half" title={"Angolo metà (bisezione)"} tex={["\\Sin(\\alpha/2) = \\pm\\sqrt{(1 - \\Cos\\alpha)/2}","\\Cos(\\alpha/2) = \\pm\\sqrt{(1 + \\Cos\\alpha)/2}"]} text={"Si ricava dal coseno dell'angolo doppio. Il segno dipende dal quadrante di <i>α</i>/2."} live="half" />
+    <IdCard demo="dbl2" title={"Varianti del coseno doppio"} tex={["\\Cos 2\\alpha = 2\\Cos^2\\alpha - 1","\\Cos 2\\alpha = 1 - 2\\Sin^2\\alpha"]} text={"Sostituendo sen² con 1 − cos² (o viceversa)."} live="dbl2" />
+    <IdCard demo="s2p" title={"Prostaferesi"} tex={["\\Sin\\alpha + \\Sin\\beta = 2\\Sin\\tfrac{\\alpha+\\beta}{2}\\,\\Cos\\tfrac{\\alpha-\\beta}{2}","\\Cos\\alpha + \\Cos\\beta = 2\\Cos\\tfrac{\\alpha+\\beta}{2}\\,\\Cos\\tfrac{\\alpha-\\beta}{2}"]} text={"Trasformano una somma in un prodotto, utile per semplificare."} live="s2p" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"5 · A cosa serve"} title={"Dove si usano"}>
+  <Uses items={[["Valori esatti","Calcolare sen, cos o tg di 15°, 75°, 105°… combinando angoli notevoli."],["Rotazioni in sequenza","Ruotare di <i>α</i> e poi di <i>β</i> equivale a ruotare di <i>α</i> + <i>β</i>; così si dimostra che le matrici di rotazione si moltiplicano."],["Onde","Sommare due suoni di frequenze vicine produce dei «battimenti»: le formule di prostaferesi li spiegano."],["Semplificare e risolvere","Ridurre espressioni, risolvere equazioni goniometriche e calcolare integrali come ∫ sen²<i>x</i> d<i>x</i> con l'angolo doppio."]]} />
+</Section>

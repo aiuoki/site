@@ -1,0 +1,23 @@
+---
+import Formula from "../ui/Formula.astro";
+import { notationFor, pageLocale, useTranslations } from "../../i18n";
+import type { Ratio } from "../../lib/trig";
+
+interface Props {
+  ratio: Ratio;
+  name: string;
+  tex: string;
+  text: string;
+}
+
+const { ratio, name, tex, text } = Astro.props;
+const lang = pageLocale(Astro.currentLocale);
+const t = useTranslations(lang);
+---
+
+<article class="ratio demo" data-demo={ratio} role="button" tabindex="0" style={`--col: var(--${ratio})`}>
+  <h3><span class="mr">{notationFor(lang)[ratio]}</span> {name}</h3>
+  <div class="f"><Formula tex={tex} /></div>
+  <p set:html={text} />
+  <span class="more">{t("demo.why")}</span>
+</article>

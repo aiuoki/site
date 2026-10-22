@@ -1,0 +1,56 @@
+---
+title: "Trigonometric Circle"
+eyebrow: "Interactive guide · trigonometric ratios"
+intro: "Drag the points around the circle or type the angles. Each coloured segment is a trigonometric ratio: its (signed) length is its value. Tap any formula in the guide to see its proof."
+description: "Drag the points around the circle or type the angles. Each coloured segment is a trigonometric ratio: its (signed) length is its value. Tap any formula in the guide to see its proof."
+---
+
+<Section eyebrow={"1 · Starting point"} title={"What the unit circle is"}>
+  <Prose html={"A circle with <b>radius 1</b> centred at the origin <span class=\"mr\">(0, 0)</span>. An angle <span class=\"m\">θ</span> is measured from the positive <span class=\"m\">x</span>-axis, turning anticlockwise. Where the angle's terminal side crosses the circle lies the point <span class=\"m\">P</span>, and its coordinates are exactly <span class=\"mr\"><i>P</i> = (cos <i>θ</i>, sin <i>θ</i>)</span>."} />
+  <Defs>
+    <DefItem title={"Degree"} text={"A full turn is 360°."} />
+    <DefItem title={"Radian"} text={"The angle whose arc is as long as the radius. A full turn is <span class=\"mr\">2π</span> rad. To convert: <span class=\"mr\">rad = degrees · π / 180</span>."} demo="rad" more="where" />
+    <DefItem title={"Quadrant"} text={"Each of the 4 regions the axes split the plane into, numbered I to IV anticlockwise."} />
+    <DefItem title={"Reference angle"} text={"The acute angle between the terminal side and the <span class=\"m\">x</span>-axis. Its ratios equal those of <span class=\"m\">θ</span>, except for the sign."} />
+  </Defs>
+</Section>
+
+<Section eyebrow={"2 · The six ratios"} title={"What each segment measures"} lead={"Since the radius is 1, the triangle's hypotenuse is 1 and every ratio becomes a length you can see."}>
+  <RatioGrid>
+    <RatioCard ratio="sin" name={"Sine"} tex={"\\Sin\\theta = y"} text={"<b>Vertical orange segment</b> from the <i>x</i>-axis to <i>P</i>. It's the point's height. Always between −1 and 1."} />
+    <RatioCard ratio="cos" name={"Cosine"} tex={"\\Cos\\theta = x"} text={"<b>Horizontal purple segment</b> from the origin to <i>P</i>'s shadow on the <i>x</i>-axis. Always between −1 and 1."} />
+    <RatioCard ratio="tan" name={"Tangent"} tex={"\\Tan\\theta = \\Sin\\theta \\mathbin{/} \\Cos\\theta"} text={"<b>Yellow segment</b> on the line <i>x</i> = 1, which is tangent to the circle (hence the name). Undefined at 90° and 270°, because cos = 0."} />
+    <RatioCard ratio="cot" name={"Cotangent"} tex={"\\Cot\\theta = \\Cos\\theta \\mathbin{/} \\Sin\\theta"} text={"<b>Blue segment</b> on the line <i>y</i> = 1. Undefined at 0° and 180°, because sin = 0."} />
+    <RatioCard ratio="sec" name={"Secant"} tex={"\\Sec\\theta = 1 \\mathbin{/} \\Cos\\theta"} text={"<b>Red segment</b> from the origin to the end of the tangent. Its absolute value is never below 1."} />
+    <RatioCard ratio="csc" name={"Cosecant"} tex={"\\Csc\\theta = 1 \\mathbin{/} \\Sin\\theta"} text={"<b>Green segment</b> from the origin to the end of the cotangent. Its absolute value is never below 1."} />
+  </RatioGrid>
+</Section>
+
+<Section eyebrow={"3 · Relationships"} title={"Fundamental identities"} lead={"An identity is an equality that holds for every angle (wherever the ratios exist). Under each one you'll see it checked with the current angle; tap it to see the proof."}>
+  <IdGroup title={"Reciprocal"}>
+    <IdCard demo="rec-sin" tex={"\\Sin\\theta \\cdot \\Csc\\theta = 1"} text={"Sine and cosecant are reciprocals."} live="r1" />
+    <IdCard demo="rec-cos" tex={"\\Cos\\theta \\cdot \\Sec\\theta = 1"} text={"Cosine and secant are reciprocals."} live="r2" />
+    <IdCard demo="rec-tan" tex={"\\Tan\\theta \\cdot \\Cot\\theta = 1"} text={"Tangent and cotangent are reciprocals."} live="r3" />
+  </IdGroup>
+  <IdGroup title={"Quotient"}>
+    <IdCard demo="quot-tan" tex={"\\Tan\\theta = \\Sin\\theta \\mathbin{/} \\Cos\\theta"} text={"Tangent is sine divided by cosine."} live="q1" />
+    <IdCard demo="quot-cot" tex={"\\Cot\\theta = \\Cos\\theta \\mathbin{/} \\Sin\\theta"} text={"Cotangent is cosine divided by sine."} live="q2" />
+  </IdGroup>
+  <IdGroup title={"Pythagorean"}>
+    <IdCard demo="pyth" tex={"\\Sin^2\\theta + \\Cos^2\\theta = 1"} text={"Pythagoras' theorem in the orange–purple triangle, with hypotenuse 1."} live="p1" />
+    <IdCard demo="pyth-tan" tex={"1 + \\Tan^2\\theta = \\Sec^2\\theta"} text={"Pythagoras in the big triangle on the line <span class=\"m\">x</span> = 1 (yellow and red)."} live="p2" />
+    <IdCard demo="pyth-cot" tex={"1 + \\Cot^2\\theta = \\Csc^2\\theta"} text={"Pythagoras in the triangle on the line <span class=\"m\">y</span> = 1 (blue and green)."} live="p3" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"4 · Signs"} title={"Sign by quadrant"} lead={"Sine is positive above the <span class=\"m\">x</span>-axis; cosine, to the right of the <span class=\"m\">y</span>-axis. The others inherit their sign from these two."}>
+  <Quadrants labels={["Positive: all","Positive: sin, csc","Positive: tan, cot","Positive: cos, sec"]} />
+</Section>
+
+<Section eyebrow={"5 · Worth memorising"} title={"Key angles"} lead={"Tap a row to move the point to that angle. For other quadrants, use the reference angle and add the quadrant's sign."}>
+  <NotableTable />
+</Section>
+
+<Section eyebrow={"6 · What it's for"} title={"Where they're used"}>
+  <Uses items={[["Solving triangles","Finding unknown sides and angles: heights, distances, slopes."],["Resolving vectors","In physics, a force <i>F</i> at angle <i>θ</i> has components <i>F</i> cos <i>θ</i> and <i>F</i> sin <i>θ</i>."],["Circular motion and waves","A rotating point traces (cos <i>t</i>, sin <i>t</i>); its height over time is a sine wave (sound, alternating current)."],["Graphics and rotations","Rotating a point in a game or a chart uses a matrix with the cos and sin of the angle."]]} />
+</Section>

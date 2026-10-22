@@ -1,0 +1,36 @@
+---
+title: "Somme d'angles"
+eyebrow: "Guide interactif · Somme d'angles"
+intro: "Fais glisser α, β ou le résultat sur le cercle, ou saisis les angles. Le panneau applique les formules d'addition et de soustraction et vérifie qu'elles donnent la même valeur que le calcul direct. Touche n'importe quelle formule du guide pour voir sa démonstration."
+description: "Fais glisser α, β ou le résultat sur le cercle, ou saisis les angles. Le panneau applique les formules d'addition et de soustraction et vérifie qu'elles donnent la même valeur que le calcul direct. Touche n'importe quelle formule du guide pour voir sa démonstration."
+---
+
+<Section eyebrow={"1 · L'idée"} title={"Ce que veut dire additionner des angles"}>
+  <Prose html={"Additionner <span class=\"m\">α</span> (alpha) et <span class=\"m\">β</span> (bêta), c'est tourner d'abord de <span class=\"m\">α</span> depuis l'axe <span class=\"m\">x</span>, puis encore de <span class=\"m\">β</span>. Soustraire, c'est tourner de <span class=\"m\">β</span> en arrière. Les formules d'addition donnent sin, cos et tan de l'angle final à partir des seules valeurs de <span class=\"m\">α</span> et <span class=\"m\">β</span>."} />
+  <Warn title={"Erreur classique : le sinus ne se distribue pas"} text={"sin(<i>α</i> + <i>β</i>) n'est presque jamais sin <i>α</i> + sin <i>β</i>. Avec les angles actuels :"} live="wrong" />
+</Section>
+
+<Section eyebrow={"2 · Les formules"} title={"Somme et différence"} lead={"Lis <span class=\"mr\">±</span> avec le signe du haut pour la somme et celui du bas pour la différence ; <span class=\"mr\">∓</span> c'est l'inverse. Dans le cosinus, le signe s'inverse."}>
+  <IdGroup>
+    <IdCard demo="sum-sin" title={"Sinus"} tex={"\\Sin(\\alpha \\pm \\beta) = \\Sin\\alpha\\,\\Cos\\beta \\pm \\Cos\\alpha\\,\\Sin\\beta"} text={"Même signe que l'opération. Sinus et cosinus se mélangent."} />
+    <IdCard demo="sum-cos" title={"Cosinus"} tex={"\\Cos(\\alpha \\pm \\beta) = \\Cos\\alpha\\,\\Cos\\beta \\mp \\Sin\\alpha\\,\\Sin\\beta"} text={"Signe contraire. cos va avec cos et sin avec sin."} />
+    <IdCard demo="sum-tan" title={"Tangente"} tex={"\\Tan(\\alpha \\pm \\beta) = (\\Tan\\alpha \\pm \\Tan\\beta) \\mathbin{/} (1 \\mp \\Tan\\alpha\\,\\Tan\\beta)"} text={"Vient de la division des deux précédentes. N'existe pas si le dénominateur vaut 0."} />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"3 · Exemple résolu"} title={"sin 75° sans calculatrice"} lead={"75° n'est pas un angle remarquable, mais c'est la somme de deux : 45° + 30°."}>
+  <Steps items={[{"text":"Décomposer en angles remarquables","tex":"75\\degree = 45\\degree + 30\\degree"},{"text":"Appliquer la formule du sinus","tex":"\\Sin 75\\degree = \\Sin 45\\degree \\cdot \\Cos 30\\degree + \\Cos 45\\degree \\cdot \\Sin 30\\degree"},{"text":"Remplacer par les valeurs du tableau","tex":"= \\left(\\tfrac{\\sqrt{2}}{2}\\right)\\left(\\tfrac{\\sqrt{3}}{2}\\right) + \\left(\\tfrac{\\sqrt{2}}{2}\\right)\\left(\\tfrac{1}{2}\\right)"},{"text":"Multiplier et regrouper","tex":"= \\tfrac{\\sqrt{6}}{4} + \\tfrac{\\sqrt{2}}{4} = \\tfrac{\\sqrt{6} + \\sqrt{2}}{4} \\approx 0{,}9659"}]} />
+</Section>
+
+<Section eyebrow={"4 · Conséquences"} title={"Autres identités importantes"} lead={"Elles découlent toutes des formules d'addition. La vérification utilise les angles actuels."}>
+  <IdGroup>
+    <IdCard demo="dbl" title={"Angle double"} tex={["\\Sin 2\\alpha = 2\\Sin\\alpha\\,\\Cos\\alpha","\\Cos 2\\alpha = \\Cos^2\\alpha - \\Sin^2\\alpha","\\Tan 2\\alpha = 2\\Tan\\alpha \\mathbin{/} (1 - \\Tan^2\\alpha)"]} text={"C'est la somme avec <i>β</i> = <i>α</i>."} live="dbl" />
+    <IdCard demo="half" title={"Angle moitié"} tex={["\\Sin(\\alpha/2) = \\pm\\sqrt{(1 - \\Cos\\alpha)/2}","\\Cos(\\alpha/2) = \\pm\\sqrt{(1 + \\Cos\\alpha)/2}"]} text={"On l'isole à partir du cosinus de l'angle double. Le signe dépend du quadrant de <i>α</i>/2."} live="half" />
+    <IdCard demo="dbl2" title={"Variantes du cosinus double"} tex={["\\Cos 2\\alpha = 2\\Cos^2\\alpha - 1","\\Cos 2\\alpha = 1 - 2\\Sin^2\\alpha"]} text={"En remplaçant sin² par 1 − cos² (ou l'inverse)."} live="dbl2" />
+    <IdCard demo="s2p" title={"Somme en produit"} tex={["\\Sin\\alpha + \\Sin\\beta = 2\\Sin\\tfrac{\\alpha+\\beta}{2}\\,\\Cos\\tfrac{\\alpha-\\beta}{2}","\\Cos\\alpha + \\Cos\\beta = 2\\Cos\\tfrac{\\alpha+\\beta}{2}\\,\\Cos\\tfrac{\\alpha-\\beta}{2}"]} text={"Transforment une somme en produit, pratique pour simplifier."} live="s2p" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"5 · À quoi ça sert"} title={"Où on les utilise"}>
+  <Uses items={[["Valeurs exactes","Calculer sin, cos ou tan de 15°, 75°, 105°… en combinant des angles remarquables."],["Rotations successives","Tourner de <i>α</i> puis de <i>β</i>, c'est tourner de <i>α</i> + <i>β</i> ; c'est ainsi qu'on montre que les matrices de rotation se multiplient."],["Ondes","Additionner deux sons de fréquences proches produit des « battements » : les formules somme-produit l'expliquent."],["Simplifier et résoudre","Réduire des expressions, résoudre des équations trigonométriques et calculer des intégrales comme ∫ sin²<i>x</i> d<i>x</i> avec l'angle double."]]} />
+</Section>

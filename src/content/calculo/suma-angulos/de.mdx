@@ -1,0 +1,36 @@
+---
+title: "Winkelsumme"
+eyebrow: "Interaktiver Leitfaden · Winkelsumme"
+intro: "Ziehe α, β oder das Ergebnis über den Kreis oder gib die Winkel ein. Das Panel wendet die Additionstheoreme an und prüft, dass sie denselben Wert liefern wie die direkte Rechnung. Tippe auf eine Formel im Leitfaden, um ihren Beweis zu sehen."
+description: "Ziehe α, β oder das Ergebnis über den Kreis oder gib die Winkel ein. Das Panel wendet die Additionstheoreme an und prüft, dass sie denselben Wert liefern wie die direkte Rechnung. Tippe auf eine Formel im Leitfaden, um ihren Beweis zu sehen."
+---
+
+<Section eyebrow={"1 · Die Idee"} title={"Was Winkeladdition bedeutet"}>
+  <Prose html={"<span class=\"m\">α</span> (Alpha) und <span class=\"m\">β</span> (Beta) zu addieren heißt, zuerst um <span class=\"m\">α</span> von der <span class=\"m\">x</span>-Achse aus und dann noch um <span class=\"m\">β</span> weiterzudrehen. Subtrahieren heißt, um <span class=\"m\">β</span> zurückzudrehen. Die Additionstheoreme liefern sin, cos und tan des Endwinkels nur aus den Werten von <span class=\"m\">α</span> und <span class=\"m\">β</span>."} />
+  <Warn title={"Typischer Fehler: der Sinus lässt sich nicht aufteilen"} text={"sin(<i>α</i> + <i>β</i>) ist fast nie sin <i>α</i> + sin <i>β</i>. Mit den aktuellen Winkeln:"} live="wrong" />
+</Section>
+
+<Section eyebrow={"2 · Die Formeln"} title={"Summe und Differenz"} lead={"Lies <span class=\"mr\">±</span> mit dem oberen Zeichen für die Summe und dem unteren für die Differenz; bei <span class=\"mr\">∓</span> umgekehrt. Beim Kosinus kehrt sich das Vorzeichen um."}>
+  <IdGroup>
+    <IdCard demo="sum-sin" title={"Sinus"} tex={"\\Sin(\\alpha \\pm \\beta) = \\Sin\\alpha\\,\\Cos\\beta \\pm \\Cos\\alpha\\,\\Sin\\beta"} text={"Gleiches Vorzeichen wie die Rechenart. Sinus und Kosinus werden gemischt."} />
+    <IdCard demo="sum-cos" title={"Kosinus"} tex={"\\Cos(\\alpha \\pm \\beta) = \\Cos\\alpha\\,\\Cos\\beta \\mp \\Sin\\alpha\\,\\Sin\\beta"} text={"Umgekehrtes Vorzeichen. cos mit cos und sin mit sin."} />
+    <IdCard demo="sum-tan" title={"Tangens"} tex={"\\Tan(\\alpha \\pm \\beta) = (\\Tan\\alpha \\pm \\Tan\\beta) \\mathbin{/} (1 \\mp \\Tan\\alpha\\,\\Tan\\beta)"} text={"Entsteht durch Division der beiden oberen. Nicht definiert, wenn der Nenner 0 ist."} />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"3 · Rechenbeispiel"} title={"sin 75° ohne Taschenrechner"} lead={"75° ist kein besonderer Winkel, aber die Summe von zweien: 45° + 30°."}>
+  <Steps items={[{"text":"In besondere Winkel zerlegen","tex":"75\\degree = 45\\degree + 30\\degree"},{"text":"Sinusformel anwenden","tex":"\\Sin 75\\degree = \\Sin 45\\degree \\cdot \\Cos 30\\degree + \\Cos 45\\degree \\cdot \\Sin 30\\degree"},{"text":"Werte aus der Tabelle einsetzen","tex":"= \\left(\\tfrac{\\sqrt{2}}{2}\\right)\\left(\\tfrac{\\sqrt{3}}{2}\\right) + \\left(\\tfrac{\\sqrt{2}}{2}\\right)\\left(\\tfrac{1}{2}\\right)"},{"text":"Ausmultiplizieren und zusammenfassen","tex":"= \\tfrac{\\sqrt{6}}{4} + \\tfrac{\\sqrt{2}}{4} = \\tfrac{\\sqrt{6} + \\sqrt{2}}{4} \\approx 0{,}9659"}]} />
+</Section>
+
+<Section eyebrow={"4 · Folgerungen"} title={"Weitere wichtige Identitäten"} lead={"Alle folgen aus den Additionstheoremen. Die Probe nutzt die aktuellen Winkel."}>
+  <IdGroup>
+    <IdCard demo="dbl" title={"Doppelter Winkel"} tex={["\\Sin 2\\alpha = 2\\Sin\\alpha\\,\\Cos\\alpha","\\Cos 2\\alpha = \\Cos^2\\alpha - \\Sin^2\\alpha","\\Tan 2\\alpha = 2\\Tan\\alpha \\mathbin{/} (1 - \\Tan^2\\alpha)"]} text={"Die Summe mit <i>β</i> = <i>α</i>."} live="dbl" />
+    <IdCard demo="half" title={"Halber Winkel"} tex={["\\Sin(\\alpha/2) = \\pm\\sqrt{(1 - \\Cos\\alpha)/2}","\\Cos(\\alpha/2) = \\pm\\sqrt{(1 + \\Cos\\alpha)/2}"]} text={"Aus dem Kosinus des doppelten Winkels umgestellt. Das Vorzeichen hängt vom Quadranten von <i>α</i>/2 ab."} live="half" />
+    <IdCard demo="dbl2" title={"Varianten des doppelten Kosinus"} tex={["\\Cos 2\\alpha = 2\\Cos^2\\alpha - 1","\\Cos 2\\alpha = 1 - 2\\Sin^2\\alpha"]} text={"sin² durch 1 − cos² ersetzen (oder umgekehrt)."} live="dbl2" />
+    <IdCard demo="s2p" title={"Summe in Produkt"} tex={["\\Sin\\alpha + \\Sin\\beta = 2\\Sin\\tfrac{\\alpha+\\beta}{2}\\,\\Cos\\tfrac{\\alpha-\\beta}{2}","\\Cos\\alpha + \\Cos\\beta = 2\\Cos\\tfrac{\\alpha+\\beta}{2}\\,\\Cos\\tfrac{\\alpha-\\beta}{2}"]} text={"Verwandeln eine Summe in ein Produkt, praktisch zum Vereinfachen."} live="s2p" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"5 · Wofür man es braucht"} title={"Wo sie vorkommen"}>
+  <Uses items={[["Exakte Werte","sin, cos oder tan von 15°, 75°, 105° … durch Kombination besonderer Winkel berechnen."],["Hintereinander drehen","Erst um <i>α</i> und dann um <i>β</i> drehen ist eine Drehung um <i>α</i> + <i>β</i>; so zeigt man, dass sich Drehmatrizen multiplizieren."],["Wellen","Zwei Töne ähnlicher Frequenz ergeben zusammen eine „Schwebung“: Summe-in-Produkt erklärt sie."],["Vereinfachen und lösen","Terme vereinfachen, trigonometrische Gleichungen lösen und Integrale wie ∫ sin²<i>x</i> d<i>x</i> mit dem doppelten Winkel berechnen."]]} />
+</Section>

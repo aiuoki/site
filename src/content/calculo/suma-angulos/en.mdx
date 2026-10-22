@@ -1,0 +1,36 @@
+---
+title: "Angle sum"
+eyebrow: "Interactive guide · Angle sum"
+intro: "Drag α, β or the result around the circle, or type the angles. The panel applies the sum and difference formulas and checks that they give the same value as the direct calculation. Tap any formula in the guide to see its proof."
+description: "Drag α, β or the result around the circle, or type the angles. The panel applies the sum and difference formulas and checks that they give the same value as the direct calculation. Tap any formula in the guide to see its proof."
+---
+
+<Section eyebrow={"1 · The idea"} title={"What adding angles means"}>
+  <Prose html={"Adding <span class=\"m\">α</span> (alpha) and <span class=\"m\">β</span> (beta) means turning <span class=\"m\">α</span> from the <span class=\"m\">x</span>-axis first and then turning <span class=\"m\">β</span> further. Subtracting means turning <span class=\"m\">β</span> back. The sum formulas give sin, cos and tan of the final angle using only the values of <span class=\"m\">α</span> and <span class=\"m\">β</span>."} />
+  <Warn title={"Common mistake: sine doesn't distribute"} text={"sin(<i>α</i> + <i>β</i>) is almost never sin <i>α</i> + sin <i>β</i>. With the current angles:"} live="wrong" />
+</Section>
+
+<Section eyebrow={"2 · The formulas"} title={"Sum and difference"} lead={"Read <span class=\"mr\">±</span> with the top sign for a sum and the bottom one for a difference; <span class=\"mr\">∓</span> is the other way round. In the cosine the sign flips."}>
+  <IdGroup>
+    <IdCard demo="sum-sin" title={"Sine"} tex={"\\Sin(\\alpha \\pm \\beta) = \\Sin\\alpha\\,\\Cos\\beta \\pm \\Cos\\alpha\\,\\Sin\\beta"} text={"Same sign as the operation. Sine and cosine are mixed."} />
+    <IdCard demo="sum-cos" title={"Cosine"} tex={"\\Cos(\\alpha \\pm \\beta) = \\Cos\\alpha\\,\\Cos\\beta \\mp \\Sin\\alpha\\,\\Sin\\beta"} text={"Opposite sign. cos goes with cos and sin with sin."} />
+    <IdCard demo="sum-tan" title={"Tangent"} tex={"\\Tan(\\alpha \\pm \\beta) = (\\Tan\\alpha \\pm \\Tan\\beta) \\mathbin{/} (1 \\mp \\Tan\\alpha\\,\\Tan\\beta)"} text={"Comes from dividing the two above. Undefined if the denominator is 0."} />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"3 · Worked example"} title={"sin 75° without a calculator"} lead={"75° isn't a key angle, but it is the sum of two: 45° + 30°."}>
+  <Steps items={[{"text":"Split into key angles","tex":"75\\degree = 45\\degree + 30\\degree"},{"text":"Apply the sine formula","tex":"\\Sin 75\\degree = \\Sin 45\\degree \\cdot \\Cos 30\\degree + \\Cos 45\\degree \\cdot \\Sin 30\\degree"},{"text":"Substitute the table values","tex":"= \\left(\\tfrac{\\sqrt{2}}{2}\\right)\\left(\\tfrac{\\sqrt{3}}{2}\\right) + \\left(\\tfrac{\\sqrt{2}}{2}\\right)\\left(\\tfrac{1}{2}\\right)"},{"text":"Multiply and combine","tex":"= \\tfrac{\\sqrt{6}}{4} + \\tfrac{\\sqrt{2}}{4} = \\tfrac{\\sqrt{6} + \\sqrt{2}}{4} \\approx 0.9659"}]} />
+</Section>
+
+<Section eyebrow={"4 · Consequences"} title={"Other important identities"} lead={"They all come from the sum formulas. The check uses the current angles."}>
+  <IdGroup>
+    <IdCard demo="dbl" title={"Double angle"} tex={["\\Sin 2\\alpha = 2\\Sin\\alpha\\,\\Cos\\alpha","\\Cos 2\\alpha = \\Cos^2\\alpha - \\Sin^2\\alpha","\\Tan 2\\alpha = 2\\Tan\\alpha \\mathbin{/} (1 - \\Tan^2\\alpha)"]} text={"It's the sum with <i>β</i> = <i>α</i>."} live="dbl" />
+    <IdCard demo="half" title={"Half angle"} tex={["\\Sin(\\alpha/2) = \\pm\\sqrt{(1 - \\Cos\\alpha)/2}","\\Cos(\\alpha/2) = \\pm\\sqrt{(1 + \\Cos\\alpha)/2}"]} text={"Solved from the double-angle cosine. The sign depends on the quadrant of <i>α</i>/2."} live="half" />
+    <IdCard demo="dbl2" title={"Double-angle cosine variants"} tex={["\\Cos 2\\alpha = 2\\Cos^2\\alpha - 1","\\Cos 2\\alpha = 1 - 2\\Sin^2\\alpha"]} text={"Replacing sin² with 1 − cos² (or vice versa)."} live="dbl2" />
+    <IdCard demo="s2p" title={"Sum-to-product"} tex={["\\Sin\\alpha + \\Sin\\beta = 2\\Sin\\tfrac{\\alpha+\\beta}{2}\\,\\Cos\\tfrac{\\alpha-\\beta}{2}","\\Cos\\alpha + \\Cos\\beta = 2\\Cos\\tfrac{\\alpha+\\beta}{2}\\,\\Cos\\tfrac{\\alpha-\\beta}{2}"]} text={"Turn a sum into a product, handy for simplifying."} live="s2p" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"5 · What it's for"} title={"Where they're used"}>
+  <Uses items={[["Exact values","Find sin, cos or tan of 15°, 75°, 105°… by combining key angles."],["Chained rotations","Turning <i>α</i> and then <i>β</i> is turning <i>α</i> + <i>β</i>; this is how you show rotation matrices multiply."],["Waves","Adding two sounds of similar frequency produces \"beats\": sum-to-product explains them."],["Simplifying and solving","Reducing expressions, solving trig equations and computing integrals like ∫ sin²<i>x</i> d<i>x</i> with the double angle."]]} />
+</Section>

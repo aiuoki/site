@@ -1,0 +1,6 @@
+---
+const { title } = Astro.props as { title?: string };
+---
+
+{title && <h3 class="grp" set:html={title} />}
+<div class="ids"><slot /></div>

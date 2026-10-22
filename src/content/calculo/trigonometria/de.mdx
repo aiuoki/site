@@ -1,0 +1,56 @@
+---
+title: "Einheitskreis"
+eyebrow: "Interaktiver Leitfaden · Winkelfunktionen"
+intro: "Ziehe die Punkte über den Kreis oder gib die Winkel ein. Jede farbige Strecke ist eine Winkelfunktion: Ihre Länge (mit Vorzeichen) ist ihr Wert. Tippe auf eine Formel im Leitfaden, um ihren Beweis zu sehen."
+description: "Ziehe die Punkte über den Kreis oder gib die Winkel ein. Jede farbige Strecke ist eine Winkelfunktion: Ihre Länge (mit Vorzeichen) ist ihr Wert. Tippe auf eine Formel im Leitfaden, um ihren Beweis zu sehen."
+---
+
+<Section eyebrow={"1 · Ausgangspunkt"} title={"Was der Einheitskreis ist"}>
+  <Prose html={"Ein Kreis mit <b>Radius 1</b> um den Ursprung <span class=\"mr\">(0, 0)</span>. Ein Winkel <span class=\"m\">θ</span> wird von der positiven <span class=\"m\">x</span>-Achse aus gegen den Uhrzeigersinn gemessen. Wo der freie Schenkel des Winkels den Kreis schneidet, liegt der Punkt <span class=\"m\">P</span>, und seine Koordinaten sind genau <span class=\"mr\"><i>P</i> = (cos <i>θ</i>, sin <i>θ</i>)</span>."} />
+  <Defs>
+    <DefItem title={"Grad"} text={"Eine volle Umdrehung sind 360°."} />
+    <DefItem title={"Bogenmaß (Radiant)"} text={"Der Winkel, dessen Bogen so lang ist wie der Radius. Eine Umdrehung sind <span class=\"mr\">2π</span> rad. Umrechnung: <span class=\"mr\">rad = Grad · π / 180</span>."} demo="rad" more="where" />
+    <DefItem title={"Quadrant"} text={"Jeder der 4 Bereiche, in die die Achsen die Ebene teilen, gegen den Uhrzeigersinn von I bis IV nummeriert."} />
+    <DefItem title={"Bezugswinkel"} text={"Der spitze Winkel zwischen dem freien Schenkel und der <span class=\"m\">x</span>-Achse. Seine Funktionswerte sind die von <span class=\"m\">θ</span>, bis aufs Vorzeichen."} />
+  </Defs>
+</Section>
+
+<Section eyebrow={"2 · Die sechs Funktionen"} title={"Was jede Strecke misst"} lead={"Da der Radius 1 ist, hat die Hypotenuse des Dreiecks die Länge 1, und jede Funktion wird zu einer sichtbaren Länge."}>
+  <RatioGrid>
+    <RatioCard ratio="sin" name={"Sinus"} tex={"\\Sin\\theta = y"} text={"<b>Senkrechte orange Strecke</b> von der <i>x</i>-Achse bis <i>P</i>. Sie ist die Höhe des Punkts. Immer zwischen −1 und 1."} />
+    <RatioCard ratio="cos" name={"Kosinus"} tex={"\\Cos\\theta = x"} text={"<b>Waagrechte violette Strecke</b> vom Ursprung bis zum Schatten von <i>P</i> auf der <i>x</i>-Achse. Immer zwischen −1 und 1."} />
+    <RatioCard ratio="tan" name={"Tangens"} tex={"\\Tan\\theta = \\Sin\\theta \\mathbin{/} \\Cos\\theta"} text={"<b>Gelbe Strecke</b> auf der Geraden <i>x</i> = 1, die den Kreis berührt (daher der Name). Bei 90° und 270° nicht definiert, weil cos = 0."} />
+    <RatioCard ratio="cot" name={"Kotangens"} tex={"\\Cot\\theta = \\Cos\\theta \\mathbin{/} \\Sin\\theta"} text={"<b>Blaue Strecke</b> auf der Geraden <i>y</i> = 1. Bei 0° und 180° nicht definiert, weil sin = 0."} />
+    <RatioCard ratio="sec" name={"Sekans"} tex={"\\Sec\\theta = 1 \\mathbin{/} \\Cos\\theta"} text={"<b>Rote Strecke</b> vom Ursprung bis zum Ende des Tangens. Ihr Betrag ist nie kleiner als 1."} />
+    <RatioCard ratio="csc" name={"Kosekans"} tex={"\\Csc\\theta = 1 \\mathbin{/} \\Sin\\theta"} text={"<b>Grüne Strecke</b> vom Ursprung bis zum Ende des Kotangens. Ihr Betrag ist nie kleiner als 1."} />
+  </RatioGrid>
+</Section>
+
+<Section eyebrow={"3 · Zusammenhänge"} title={"Grundlegende Identitäten"} lead={"Eine Identität ist eine Gleichung, die für jeden Winkel gilt (sofern die Funktionen definiert sind). Darunter siehst du jeweils die Probe mit dem aktuellen Winkel; tippe darauf für den Beweis."}>
+  <IdGroup title={"Kehrwerte"}>
+    <IdCard demo="rec-sin" tex={"\\Sin\\theta \\cdot \\Csc\\theta = 1"} text={"Sinus und Kosekans sind Kehrwerte."} live="r1" />
+    <IdCard demo="rec-cos" tex={"\\Cos\\theta \\cdot \\Sec\\theta = 1"} text={"Kosinus und Sekans sind Kehrwerte."} live="r2" />
+    <IdCard demo="rec-tan" tex={"\\Tan\\theta \\cdot \\Cot\\theta = 1"} text={"Tangens und Kotangens sind Kehrwerte."} live="r3" />
+  </IdGroup>
+  <IdGroup title={"Quotienten"}>
+    <IdCard demo="quot-tan" tex={"\\Tan\\theta = \\Sin\\theta \\mathbin{/} \\Cos\\theta"} text={"Der Tangens ist Sinus durch Kosinus."} live="q1" />
+    <IdCard demo="quot-cot" tex={"\\Cot\\theta = \\Cos\\theta \\mathbin{/} \\Sin\\theta"} text={"Der Kotangens ist Kosinus durch Sinus."} live="q2" />
+  </IdGroup>
+  <IdGroup title={"Pythagoreisch"}>
+    <IdCard demo="pyth" tex={"\\Sin^2\\theta + \\Cos^2\\theta = 1"} text={"Satz des Pythagoras im orange–violetten Dreieck mit Hypotenuse 1."} live="p1" />
+    <IdCard demo="pyth-tan" tex={"1 + \\Tan^2\\theta = \\Sec^2\\theta"} text={"Pythagoras im großen Dreieck an der Geraden <span class=\"m\">x</span> = 1 (gelb und rot)."} live="p2" />
+    <IdCard demo="pyth-cot" tex={"1 + \\Cot^2\\theta = \\Csc^2\\theta"} text={"Pythagoras im Dreieck an der Geraden <span class=\"m\">y</span> = 1 (blau und grün)."} live="p3" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"4 · Vorzeichen"} title={"Vorzeichen je Quadrant"} lead={"Der Sinus ist oberhalb der <span class=\"m\">x</span>-Achse positiv, der Kosinus rechts der <span class=\"m\">y</span>-Achse. Die anderen erben ihr Vorzeichen von diesen beiden."}>
+  <Quadrants labels={["Positiv: alle","Positiv: sin, csc","Positiv: tan, cot","Positiv: cos, sec"]} />
+</Section>
+
+<Section eyebrow={"5 · Zum Merken"} title={"Besondere Winkel"} lead={"Tippe auf eine Zeile, um den Punkt auf diesen Winkel zu setzen. Für andere Quadranten nimm den Bezugswinkel und das Vorzeichen des Quadranten."}>
+  <NotableTable />
+</Section>
+
+<Section eyebrow={"6 · Wofür man es braucht"} title={"Wo sie vorkommen"}>
+  <Uses items={[["Dreiecke berechnen","Unbekannte Seiten und Winkel bestimmen: Höhen, Entfernungen, Steigungen."],["Vektoren zerlegen","In der Physik hat eine Kraft <i>F</i> unter dem Winkel <i>θ</i> die Komponenten <i>F</i> cos <i>θ</i> und <i>F</i> sin <i>θ</i>."],["Kreisbewegung und Wellen","Ein rotierender Punkt beschreibt (cos <i>t</i>, sin <i>t</i>); seine Höhe über die Zeit ist eine Sinuswelle (Schall, Wechselstrom)."],["Grafik und Drehungen","Einen Punkt in einem Spiel oder Diagramm zu drehen nutzt eine Matrix mit cos und sin des Winkels."]]} />
+</Section>

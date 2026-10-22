@@ -1,0 +1,56 @@
+---
+title: "Cercle Trigonométrique"
+eyebrow: "Guide interactif · rapports trigonométriques"
+intro: "Fais glisser les points sur le cercle ou saisis les angles. Chaque segment coloré est un rapport trigonométrique : sa longueur (avec son signe) est sa valeur. Touche n'importe quelle formule du guide pour voir sa démonstration."
+description: "Fais glisser les points sur le cercle ou saisis les angles. Chaque segment coloré est un rapport trigonométrique : sa longueur (avec son signe) est sa valeur. Touche n'importe quelle formule du guide pour voir sa démonstration."
+---
+
+<Section eyebrow={"1 · Point de départ"} title={"Qu'est-ce que le cercle trigonométrique"}>
+  <Prose html={"C'est un cercle de <b>rayon 1</b> centré à l'origine <span class=\"mr\">(0, 0)</span>. Un angle <span class=\"m\">θ</span> se mesure à partir de l'axe <span class=\"m\">x</span> positif, dans le sens inverse des aiguilles d'une montre. Là où le côté final de l'angle coupe le cercle se trouve le point <span class=\"m\">P</span>, dont les coordonnées sont exactement <span class=\"mr\"><i>P</i> = (cos <i>θ</i>, sin <i>θ</i>)</span>."} />
+  <Defs>
+    <DefItem title={"Degré"} text={"Un tour complet fait 360°."} />
+    <DefItem title={"Radian"} text={"Angle dont l'arc a la même longueur que le rayon. Un tour fait <span class=\"mr\">2π</span> rad. Conversion : <span class=\"mr\">rad = degrés · π / 180</span>."} demo="rad" more="where" />
+    <DefItem title={"Quadrant"} text={"Chacune des 4 zones que les axes découpent dans le plan, numérotées de I à IV dans le sens antihoraire."} />
+    <DefItem title={"Angle de référence"} text={"L'angle aigu entre le côté final et l'axe <span class=\"m\">x</span>. Ses rapports sont ceux de <span class=\"m\">θ</span>, au signe près."} />
+  </Defs>
+</Section>
+
+<Section eyebrow={"2 · Les six rapports"} title={"Ce que mesure chaque segment"} lead={"Comme le rayon vaut 1, l'hypoténuse du triangle vaut 1 et chaque rapport devient une longueur visible."}>
+  <RatioGrid>
+    <RatioCard ratio="sin" name={"Sinus"} tex={"\\Sin\\theta = y"} text={"<b>Segment orange vertical</b> de l'axe <i>x</i> jusqu'à <i>P</i>. C'est la hauteur du point. Toujours entre −1 et 1."} />
+    <RatioCard ratio="cos" name={"Cosinus"} tex={"\\Cos\\theta = x"} text={"<b>Segment violet horizontal</b> de l'origine jusqu'à l'ombre de <i>P</i> sur l'axe <i>x</i>. Toujours entre −1 et 1."} />
+    <RatioCard ratio="tan" name={"Tangente"} tex={"\\Tan\\theta = \\Sin\\theta \\mathbin{/} \\Cos\\theta"} text={"<b>Segment jaune</b> sur la droite <i>x</i> = 1, tangente au cercle (d'où son nom). N'existe pas à 90° et 270°, car cos = 0."} />
+    <RatioCard ratio="cot" name={"Cotangente"} tex={"\\Cot\\theta = \\Cos\\theta \\mathbin{/} \\Sin\\theta"} text={"<b>Segment bleu</b> sur la droite <i>y</i> = 1. N'existe pas à 0° et 180°, car sin = 0."} />
+    <RatioCard ratio="sec" name={"Sécante"} tex={"\\Sec\\theta = 1 \\mathbin{/} \\Cos\\theta"} text={"<b>Segment rouge</b> de l'origine jusqu'à l'extrémité de la tangente. Sa valeur absolue n'est jamais inférieure à 1."} />
+    <RatioCard ratio="csc" name={"Cosécante"} tex={"\\Csc\\theta = 1 \\mathbin{/} \\Sin\\theta"} text={"<b>Segment vert</b> de l'origine jusqu'à l'extrémité de la cotangente. Sa valeur absolue n'est jamais inférieure à 1."} />
+  </RatioGrid>
+</Section>
+
+<Section eyebrow={"3 · Relations"} title={"Identités fondamentales"} lead={"Une identité est une égalité vraie pour tout angle (là où les rapports existent). Sous chacune, tu vois la vérification avec l'angle actuel ; touche-la pour voir la démonstration."}>
+  <IdGroup title={"Réciproques"}>
+    <IdCard demo="rec-sin" tex={"\\Sin\\theta \\cdot \\Csc\\theta = 1"} text={"Sinus et cosécante sont inverses."} live="r1" />
+    <IdCard demo="rec-cos" tex={"\\Cos\\theta \\cdot \\Sec\\theta = 1"} text={"Cosinus et sécante sont inverses."} live="r2" />
+    <IdCard demo="rec-tan" tex={"\\Tan\\theta \\cdot \\Cot\\theta = 1"} text={"Tangente et cotangente sont inverses."} live="r3" />
+  </IdGroup>
+  <IdGroup title={"De quotient"}>
+    <IdCard demo="quot-tan" tex={"\\Tan\\theta = \\Sin\\theta \\mathbin{/} \\Cos\\theta"} text={"La tangente est le sinus divisé par le cosinus."} live="q1" />
+    <IdCard demo="quot-cot" tex={"\\Cot\\theta = \\Cos\\theta \\mathbin{/} \\Sin\\theta"} text={"La cotangente est le cosinus divisé par le sinus."} live="q2" />
+  </IdGroup>
+  <IdGroup title={"Pythagoriciennes"}>
+    <IdCard demo="pyth" tex={"\\Sin^2\\theta + \\Cos^2\\theta = 1"} text={"Théorème de Pythagore dans le triangle orange–violet, d'hypoténuse 1."} live="p1" />
+    <IdCard demo="pyth-tan" tex={"1 + \\Tan^2\\theta = \\Sec^2\\theta"} text={"Pythagore dans le grand triangle de la droite <span class=\"m\">x</span> = 1 (jaune et rouge)."} live="p2" />
+    <IdCard demo="pyth-cot" tex={"1 + \\Cot^2\\theta = \\Csc^2\\theta"} text={"Pythagore dans le triangle de la droite <span class=\"m\">y</span> = 1 (bleu et vert)."} live="p3" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"4 · Signes"} title={"Signe selon le quadrant"} lead={"Le sinus est positif au-dessus de l'axe <span class=\"m\">x</span> ; le cosinus, à droite de l'axe <span class=\"m\">y</span>. Les autres héritent du signe de ces deux-là."}>
+  <Quadrants labels={["Positifs : tous","Positifs : sin, cosec","Positifs : tan, cotan","Positifs : cos, sec"]} />
+</Section>
+
+<Section eyebrow={"5 · À retenir"} title={"Angles remarquables"} lead={"Touche une ligne pour amener le point à cet angle. Pour les autres quadrants, utilise l'angle de référence et ajoute le signe du quadrant."}>
+  <NotableTable />
+</Section>
+
+<Section eyebrow={"6 · À quoi ça sert"} title={"Où on les utilise"}>
+  <Uses items={[["Résoudre des triangles","Calculer des côtés et des angles inconnus : hauteurs, distances, pentes."],["Décomposer des vecteurs","En physique, une force <i>F</i> d'angle <i>θ</i> a pour composantes <i>F</i> cos <i>θ</i> et <i>F</i> sin <i>θ</i>."],["Mouvement circulaire et ondes","Un point qui tourne décrit (cos <i>t</i>, sin <i>t</i>) ; sa hauteur au cours du temps est une sinusoïde (son, courant alternatif)."],["Graphisme et rotations","Faire tourner un point dans un jeu vidéo ou un graphique utilise une matrice avec le cos et le sin de l'angle."]]} />
+</Section>
