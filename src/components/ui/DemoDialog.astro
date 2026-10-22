@@ -2,6 +2,7 @@
 import Formula from "./Formula.astro";
 import { figures, type FigureId } from "../figures";
 import type { DemoFormulas, DemoText } from "../../demos/types";
+import { withLeftSide } from "../../lib/chain";
 import type { Words } from "../../lib/notation";
 
 interface Props {
@@ -13,6 +14,7 @@ interface Props {
 }
 
 const { id, formulas, text, words, labels } = Astro.props;
+const steps = withLeftSide(formulas.steps);
 const figs = formulas.figures.map((f) => figures[f as FigureId]);
 ---
 
@@ -37,7 +39,7 @@ const figs = formulas.figures.map((f) => figures[f as FigureId]);
     }
     <ol class="psteps">
       {
-        formulas.steps.map((tex, i) => (
+        steps.map((tex, i) => (
           <li>
             <div class="sf">
               <Formula tex={tex} words={words} />

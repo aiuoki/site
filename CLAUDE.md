@@ -78,7 +78,7 @@ Web de apuntes interactivos de matemáticas. Astro (salida estática) + islas de
    │                          notation.ts + katex.ts (fórmulas por idioma), remark-localized-math.ts,
    │                          expr.ts (parser seguro de números con π y √), complex.ts (aritmética),
    │                          complex-format.ts (formas exactas), complex-panel.ts, complex-checks.ts, complex-plot.ts,
-   │                          figure.ts, complex-figure.ts, theme-css.ts, paths.ts, text.ts
+   │                          chain.ts (pasos que empiezan por «=» llevan delante el lado izquierdo), figure.ts, complex-figure.ts, theme-css.ts, paths.ts, text.ts
    ├─ components/
    │  ├─ layout/              Header, Footer, SubjectNav, TopicTabs, LangSwitch, ThemeToggle, Support, DonateButton, Flag, Soon
    │  ├─ ui/                  Card, Formula, DemoDialog(s) (Astro); Chip, Segmented (Svelte)
