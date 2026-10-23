@@ -1,0 +1,18 @@
+---
+import MatrixRow from "./MatrixRow.astro";
+import { cellsOf } from "./grid";
+
+const up = [0, 1, 2, 3].map((i) => [0, 1, 2, 3].map((j) => (j >= i ? "∗" : "0")));
+const lo = [0, 1, 2, 3].map((i) => [0, 1, 2, 3].map((j) => (j <= i ? "∗" : "0")));
+const star = (m: string[][], token: string) => cellsOf(m, (i, j) => (m[i]![j] === "∗" ? token : null));
+const zeros = (m: string[][]) => cellsOf(m, (i, j) => (m[i]![j] === "0" ? "muted" : null));
+---
+
+<MatrixRow
+  cell={30}
+  rows={[[
+    { data: up, fills: star(up, "a"), inks: zeros(up) },
+    { op: "" },
+    { data: lo, fills: star(lo, "b"), inks: zeros(lo) },
+  ]]}
+/>

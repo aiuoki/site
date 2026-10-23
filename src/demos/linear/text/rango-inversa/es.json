@@ -1,0 +1,151 @@
+{
+  "la-elem-matrix": {
+    "title": "Operación elemental = multiplicar por una matriz elemental",
+    "summary": "Hacer una operación por filas a A es lo mismo que multiplicar A por la izquierda por una matriz E.",
+    "steps": [
+      "Una matriz elemental E es la identidad a la que se le ha hecho UNA operación elemental. Aquí hacemos F₂ ← F₂ − 3·F₁ a la identidad 2×2: la fila 1 queda igual y a la fila 2 le restamos 3 veces la fila 1, así que su primer elemento pasa de 0 a −3.",
+      "¿Qué hace E al multiplicar? La fila i de EA es una combinación de las filas de A: cada fila k de A (la llamamos A<sub>k•</sub>) se multiplica por el número e<sub>ik</sub> de la fila i de E y se suma todo.",
+      "La fila 1 de E es (1, 0): 1 vez la fila 1 de A y 0 veces la fila 2. Resultado: la fila 1 no cambia.",
+      "La fila 2 de E es (−3, 1): −3 veces la fila 1 de A más 1 vez la fila 2. Es exactamente F₂ − 3·F₁.",
+      "Juntando las dos filas, EA es A con la operación ya hecha. Por eso hacer una operación elemental equivale a multiplicar por la izquierda por una matriz elemental.",
+      "Intercambiar filas (F₁ ↔ F₂): la matriz elemental es la identidad con sus filas intercambiadas, y al multiplicar intercambia las filas de cualquier matriz.",
+      "Multiplicar una fila por k (F₂ ← k·F₂, con k ≠ 0): la matriz elemental es la identidad con k en lugar del 1 de esa fila."
+    ],
+    "use": "Convierte el método de Gauss, que haces a mano fila a fila, en álgebra de matrices: una cadena de operaciones es un producto de matrices, y así se puede razonar sobre ella (demostrar que B = PA, calcular inversas, entender el rango)."
+  },
+  "la-elem-inverse": {
+    "title": "Cada operación elemental se puede deshacer",
+    "summary": "Las matrices elementales siempre tienen inversa, y es otra matriz elemental.",
+    "steps": [
+      "F₂ ← F₂ − 3·F₁ se deshace con F₂ ← F₂ + 3·F₁: lo que restaste, lo vuelves a sumar. Llamamos E a la matriz que resta y E′ a la que suma.",
+      "Multiplicamos E′E. En la posición (2, 1) sale 3·1 + 1·(−3) = 0 y en la (2, 2) sale 1. Queda la identidad, así que E′ = E⁻¹.",
+      "Intercambiar dos filas se deshace intercambiándolas otra vez: S·S = I. Una matriz de intercambio es su propia inversa.",
+      "Multiplicar una fila por k se deshace multiplicándola por 1/k. Por eso la operación exige k ≠ 0: multiplicar por 0 destruye la fila y ya no se puede recuperar.",
+      "Si hacemos varias operaciones seguidas, P = E<sub>k</sub>⋯E₂E₁, se deshacen en orden contrario: P⁻¹ = E₁⁻¹E₂⁻¹⋯E<sub>k</sub>⁻¹. Así, todo producto de matrices elementales es invertible."
+    ],
+    "use": "Garantiza que operar por filas no pierde información: siempre se puede volver atrás. Por eso la relación A ~ B es simétrica y por eso Gauss-Jordan acaba dando la inversa."
+  },
+  "la-equiv-rows": {
+    "title": "[I | A] ~ [P | B] implica B = PA",
+    "summary": "Si haces a [I | A] las mismas operaciones que llevan A a B, a la izquierda queda la matriz P con B = PA.",
+    "steps": [
+      "Hacer una operación elemental a [I | A] equivale a multiplicar toda la matriz por E (por bloques): E·I = E y E·A = EA. Tras la operación, el bloque de la izquierda ya no es I, es E.",
+      "Hacemos una segunda operación E₂ sobre el resultado: el bloque izquierdo pasa a ser E₂E₁ y el derecho E₂E₁A.",
+      "Tras k operaciones, la izquierda es P = E<sub>k</sub>⋯E₁ y la derecha es PA. Si llamamos B a la matriz de la derecha, queda probado que B = PA: P guarda anotadas todas las operaciones que le hemos hecho a A.",
+      "Ejemplo con A = (1 2; 3 4). Primero F₂ ← F₂ − 3·F₁ y luego F₁ ← F₁ + F₂. Empezamos con I a la izquierda de la barra y A a la derecha.",
+      "Comprobamos: P·A da exactamente la matriz B que quedó a la derecha.",
+      "Como P es un producto de matrices elementales, es invertible. De B = PA se despeja A = P⁻¹B: si B sale de A, también A sale de B. Por eso se escribe A ~ B (equivalentes por filas)."
+    ],
+    "use": "Es la forma práctica de saber qué matriz P resume todas las operaciones que hiciste. Es la base para calcular inversas con [A | I] y para entender el rango."
+  },
+  "la-rank-2x2": {
+    "title": "Rango de una matriz 2×2 con el determinante",
+    "summary": "Si det ≠ 0 el rango es 2; si det = 0 el rango es 1 (o 0 si todos los elementos son 0). Aquí r = rg(A).",
+    "steps": [
+      "Supón a ≠ 0. Para hacer un cero debajo de a restamos (c/a) veces la fila 1 a la fila 2: F₂ ← F₂ − (c/a)·F₁. Debajo queda (0, d − bc/a).",
+      "Ponemos ese número con denominador común: d − bc/a = (ad − bc)/a. Es el determinante dividido entre a.",
+      "La forma escalonada ya tiene un primer pivote a ≠ 0. El segundo pivote es det/a, que es distinto de 0 justo cuando det ≠ 0. Entonces hay 2 filas no nulas y r = 2. Si det = 0, la segunda fila se anula y r = 1.",
+      "Si a = 0, intercambiamos las filas: queda (c d; 0 b) y el determinante es −bc. Si c ≠ 0 hay dos pivotes (c y b) cuando b ≠ 0, es decir, cuando bc ≠ 0. Si c = 0, la primera columna es nula, det = 0 y r ≤ 1.",
+      "Ejemplo: (1 2; 3 4) tiene det = 1·4 − 2·3 = −2 ≠ 0, así que r = 2.",
+      "Ejemplo: (1 2; 2 4) tiene det = 4 − 4 = 0, así que r = 1: la fila 2 es el doble de la fila 1. El rango es 0 solo si los cuatro números son 0."
+    ],
+    "use": "En una matriz 2×2 el rango se lee de un solo número, el determinante. Y es el criterio para saber si la matriz es regular (tiene inversa): det ≠ 0."
+  },
+  "la-rank-3x3": {
+    "title": "Rango de una matriz 3×3: Sarrus, menores y Gauss",
+    "summary": "Tres caminos al mismo rango: el determinante de Sarrus, un menor 2×2 distinto de 0 y la forma escalonada. Aquí r = rg(A).",
+    "steps": [
+      "Regla de Sarrus: se suman los tres productos de las diagonales que bajan (aei + bfg + cdh) y se restan los tres de las que suben (ceg + bdi + afh). Aquí (a, b, c) = (0, 1, 2), (d, e, f) = (1, 1, 1) y (g, h, i) = (2, 3, 4).",
+      "Resulta det A = 0, así que el rango NO es 3: r < 3.",
+      "Si det = 0, buscamos un menor 2×2 distinto de 0 (un menor es el determinante de una submatriz cuadrada). Con las filas 2 y 3 y las columnas 1 y 2: 1·3 − 1·2 = 1 ≠ 0. Entonces r ≥ 2 y, como r < 3, r = 2.",
+      "Lo comprobamos con Gauss: F₁ ↔ F₂; después F₃ ← F₃ − 2·F₁ (queda (0, 1, 2)) y F₃ ← F₃ − F₂ (queda 0). Quedan 2 filas no nulas: r = 2.",
+      "Si todos los menores 2×2 valen 0 y la matriz no es nula, el rango es 1. Ejemplo: B tiene todas las filas proporcionales a (1, 2, 3). Si todos los números fueran 0, el rango sería 0."
+    ],
+    "use": "Con 3×3 conviene Sarrus y los menores; con 4×4 o más, con matrices no cuadradas o con muchos ceros, conviene Gauss. Los tres métodos dan el mismo rango."
+  },
+  "la-rank-triangular": {
+    "title": "Rango de una matriz triangular",
+    "summary": "El determinante es el producto de la diagonal: si no hay ceros en ella, el rango es completo. Aquí r = rg(A).",
+    "steps": [
+      "Una triangular superior tiene ceros bajo la diagonal. Desarrollando por la primera columna (solo su primer elemento no es 0), det = t₁₁ por el determinante de lo que queda; repitiendo, det = producto de la diagonal. Aquí 2·(−1)·5 = −10.",
+      "Ningún elemento de la diagonal es 0, así que la matriz ya es escalonada con 3 pivotes (2, −1 y 5): rango completo, r = 3 = n.",
+      "Si el segundo elemento de la diagonal es 0 (matriz T′), det = 2·0·5 = 0. Con Gauss, F₃ ← F₃ − (5/4)·F₂ anula la tercera fila y queda r = 2 < 3.",
+      "¿Por qué pasa siempre? Si t<sub>kk</sub> = 0, la fila k y las de debajo tienen ceros en las columnas 1, …, k. Su primer pivote posible está en la columna k + 1 o más a la derecha.",
+      "Hay n − k + 1 filas (de la k a la n) para solo n − k columnas (de la k + 1 a la n), y cada columna admite un único pivote. Como n − k + 1 > n − k, al menos una de esas filas se anula: r < n."
+    ],
+    "use": "Basta mirar la diagonal: sin ceros hay rango completo y la matriz tiene inversa; con algún cero, el rango baja. Es útil porque muchas matrices que salen de Gauss son triangulares."
+  },
+  "la-gauss-jordan": {
+    "title": "Por qué [A | I] ~ [I | A⁻¹] calcula la inversa",
+    "summary": "Las mismas operaciones que llevan A a I, aplicadas a la identidad, la convierten en A⁻¹.",
+    "steps": [
+      "Si A es n×n y su rango es n, tiene un pivote en cada fila y en cada columna, y operando por filas se llega a la identidad I. Cada operación es una matriz elemental; llamamos P al producto de todas, y queda PA = I.",
+      "Hacemos exactamente esas mismas operaciones sobre [A | I]. Por bloques, cada una multiplica por E las dos mitades: al final [PA | PI] = [I | P].",
+      "PA = I solo dice que P deshace a A por un lado. Pero P es un producto de matrices elementales, así que es invertible: multiplicando PA = I por P⁻¹ sale A = P⁻¹, y entonces AP = P⁻¹P = I. P funciona por los dos lados.",
+      "PA = AP = I es justo la definición de inversa: P = A⁻¹. Y P es la mitad derecha de la matriz final."
+    ],
+    "use": "Es el método práctico para calcular inversas, a mano o con un programa. Además avisa cuando no existe: si a la izquierda se anula una fila, no se llega a I."
+  },
+  "la-inverse-example": {
+    "title": "Ejemplo: calcular una inversa con Gauss-Jordan",
+    "summary": "De [A | I] a [I | A⁻¹] paso a paso con A = (1 2; 2 5), y comprobación.",
+    "steps": [
+      "Escribimos A a la izquierda y la identidad a la derecha, separadas por una barra.",
+      "F₂ ← F₂ − 2·F₁ hace 0 el 2 de abajo a la izquierda. A la derecha, la identidad cambia: (0, 1) − 2·(1, 0) = (−2, 1).",
+      "F₁ ← F₁ − 2·F₂ hace 0 el 2 de arriba. A la derecha: (1, 0) − 2·(−2, 1) = (5, −2). La izquierda ya es I y la derecha es A⁻¹.",
+      "Comprobamos: A·A⁻¹ = I. (Y también A⁻¹·A = I, porque en matrices cuadradas la inversa funciona por los dos lados.)",
+      "Para 2×2 hay un atajo: A⁻¹ = (1/det)·(d −b; −c a). Aquí det = 1·5 − 2·2 = 1 y sale la misma matriz."
+    ],
+    "use": "Una vez que tienes A⁻¹ puedes resolver AX = b para cualquier b con una multiplicación, sin repetir el método de Gauss."
+  },
+  "la-inv-rank": {
+    "title": "Tiene inversa si y solo si el rango es n",
+    "summary": "Una matriz cuadrada n×n es invertible exactamente cuando su rango es n. Aquí r = rg(A).",
+    "steps": [
+      "Si r = n, la forma reducida de A es I. Es el caso de la demostración de Gauss-Jordan: se construye P con PA = I y P = A⁻¹. Así, rango n implica que existe inversa.",
+      "Al revés: supón que A tiene inversa pero r < n. Al escalonar, PA = E tiene una fila de ceros (la última): E<sub>n•</sub> = (0, …, 0).",
+      "Multiplicamos por A⁻¹ por la derecha: P = P(AA⁻¹) = (PA)A⁻¹ = EA⁻¹.",
+      "La fila n de EA⁻¹ es (la fila n de E)·A⁻¹, que son ceros. Luego P tiene una fila de ceros.",
+      "Pero P tiene inversa (es producto de matrices elementales) y PP⁻¹ = I. La fila n de PP⁻¹ sería P<sub>n•</sub>P⁻¹ = (0, …, 0), mientras que la fila n de I no es cero. Contradicción: r < n es imposible.",
+      "Ejemplo: A = (1 2; 2 4) tiene rango 1. Tras F₂ ← F₂ − 2·F₁, la parte izquierda de [A | I] se queda con una fila de ceros: no se puede llegar a I y no existe A⁻¹."
+    ],
+    "use": "Dice cuándo merece la pena buscar la inversa: rango n (det ≠ 0) sí, rango menor no. Y en sistemas, una A cuadrada de rango n tiene solución única para cualquier b."
+  },
+  "la-inv-product": {
+    "title": "La inversa de un producto: (AB)⁻¹ = B⁻¹A⁻¹",
+    "summary": "Para invertir un producto se invierten los factores y se cambia el orden.",
+    "steps": [
+      "Para ver que B⁻¹A⁻¹ es la inversa de AB la multiplicamos por AB. Con la propiedad asociativa agrupamos: A(BB⁻¹)A⁻¹.",
+      "BB⁻¹ = I, y I no cambia nada: queda AA⁻¹ = I.",
+      "Por el otro lado: (B⁻¹A⁻¹)(AB) = B⁻¹(A⁻¹A)B = B⁻¹B = I. Funciona por los dos lados, que es la definición de inversa.",
+      "Ejemplo: A = (1 2; 0 1) y B = (1 0; 3 1). Su producto es AB = (7 2; 3 1).",
+      "B⁻¹ = (1 0; −3 1) y A⁻¹ = (1 −2; 0 1). Su producto B⁻¹A⁻¹ = (1 −2; −3 7) es la inversa de AB (con el atajo 2×2: det(AB) = 7 − 6 = 1).",
+      "Si se multiplicaran en el mismo orden, A⁻¹B⁻¹ = (7 −2; −3 1), que NO es la inversa de AB. El orden se invierte."
+    ],
+    "use": "Es como los calcetines y los zapatos: si te pones primero los calcetines y luego los zapatos, para deshacerlo quitas primero los zapatos. Se usa, por ejemplo, para demostrar que R = L = A⁻¹ cuando la matriz es cuadrada."
+  },
+  "la-inv-transpose": {
+    "title": "La inversa de la transpuesta: (Aᵗ)⁻¹ = (A⁻¹)ᵗ",
+    "summary": "Invertir y transponer se pueden hacer en cualquier orden.",
+    "steps": [
+      "Usamos dos hechos: la transpuesta de un producto invierte el orden, (XY)ᵗ = YᵗXᵗ, y Iᵗ = I.",
+      "Aᵗ(A⁻¹)ᵗ = (A⁻¹A)ᵗ, porque al transponer el producto se invierte el orden; y (A⁻¹A)ᵗ = Iᵗ = I.",
+      "Por el otro lado, (A⁻¹)ᵗAᵗ = (AA⁻¹)ᵗ = Iᵗ = I. Así (A⁻¹)ᵗ es la inversa de Aᵗ.",
+      "Ejemplo: A = (1 2; 3 5), con det = −1 y A⁻¹ = (−5 2; 3 −1). Transponemos A⁻¹: (A⁻¹)ᵗ = (−5 3; 2 −1).",
+      "Por otro camino: Aᵗ = (1 3; 2 5), con det = 5 − 6 = −1, y (Aᵗ)⁻¹ = (−5 3; 2 −1). Coincide."
+    ],
+    "use": "Permite invertir y transponer en el orden que resulte más cómodo. Por ejemplo, prueba que la inversa de una matriz simétrica (A = Aᵗ) también es simétrica."
+  },
+  "la-solve-inverse": {
+    "title": "Resolver AX = b con la inversa: X = A⁻¹b",
+    "summary": "Si A es cuadrada con inversa, el sistema tiene una única solución: A⁻¹b.",
+    "steps": [
+      "Partimos de AX = b, con A cuadrada con inversa. Multiplicamos los dos lados por A⁻¹ por la IZQUIERDA (en matrices el orden importa).",
+      "Con la propiedad asociativa agrupamos: (A⁻¹A)X.",
+      "A⁻¹A = I e IX = X. Queda X = A⁻¹b.",
+      "Comprobamos que es solución: A(A⁻¹b) = (AA⁻¹)b = Ib = b. Por tanto existe solución y, como no hemos elegido nada, es la única.",
+      "Ejemplo: 2x + y = 3 y x + y = 2. Con A⁻¹ = (1 −1; −1 2), X = A⁻¹(3, 2) = (3 − 2, −3 + 4) = (1, 1)."
+    ],
+    "use": "Resuelve el sistema sin repetir Gauss: si cambia b, solo multiplicas otra vez. Solo vale con A cuadrada con inversa; los demás casos (más incógnitas que ecuaciones, o al revés) son el tema de la pseudoinversa."
+  }
+}

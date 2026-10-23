@@ -1,0 +1,17 @@
+---
+import MatrixRow from "../tipos-matrices/MatrixRow.astro";
+import { cellsOf, mat } from "../tipos-matrices/grid";
+
+const A = mat([[1, 2, 1, 0], [3, 4, 0, 1], [0, 0, 2, 0], [0, 0, 0, 2]]);
+const B = mat([[1, 1, 0, 1], [0, 1, 1, 0], [1, 0, 1, 2], [2, 1, 0, 1]]);
+const blocks = (m: string[][]) => cellsOf(m, (i, j) => (i < 2 ? (j < 2 ? "a" : "b") : j < 2 ? "cos" : "cot"));
+---
+
+<MatrixRow
+  cell={24}
+  rows={[[
+    { data: A, fills: blocks(A), splitRows: [2], splitCols: [2], label: "A" },
+    { op: "·" },
+    { data: B, fills: blocks(B), splitRows: [2], splitCols: [2], label: "B" },
+  ]]}
+/>

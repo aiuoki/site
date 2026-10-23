@@ -1,0 +1,126 @@
+---
+title: "Sistemas y pseudoinversa"
+eyebrow: "Guía interactiva · álgebra lineal"
+intro: "El sistema AX = b, el espacio nulo, el teorema rango-nulidad y las pseudoinversas por la derecha y por la izquierda. Cada propiedad tiene su demostración paso a paso: pulsa cualquier tarjeta para verla."
+description: "Sistemas AX = b, espacio nulo, rango-nulidad y pseudoinversas por la derecha e izquierda, con ejemplos resueltos y demostraciones paso a paso."
+---
+
+<Section eyebrow={"01 · El sistema AX = b"} title={"Un sistema de ecuaciones como producto de matrices"} lead={"Un sistema de ecuaciones lineales se puede escribir con una sola igualdad entre matrices. Así todo lo que sabemos de matrices sirve para resolverlo."}>
+  <Defs>
+    <DefItem title={"Matriz de coeficientes A"} text={"Tiene una fila por ecuación y una columna por incógnita: es de tamaño <span class=\"mr\">m × n</span> (m ecuaciones, n incógnitas)."} />
+    <DefItem title={"Vector de incógnitas X"} text={"La columna <span class=\"mr\">(x<sub>1</sub>, …, x<sub>n</sub>)</span> con lo que buscamos."} />
+    <DefItem title={"Términos independientes b"} text={"La columna de los números a la derecha del igual, de tamaño <span class=\"mr\">m × 1</span>."} />
+    <DefItem title={"Solución"} text={"Un vector X que cumple <span class=\"mr\">AX = b</span>. Puede haber ninguno, uno o infinitos."} />
+    <DefItem title={"Sistema homogéneo"} text={"El que tiene <span class=\"mr\">b = 0</span>, es decir, <span class=\"mr\">AX = 0</span>. Siempre tiene la solución X = 0."} />
+  </Defs>
+  <Steps items={[
+    {text: "Ejemplo resuelto (el de los apuntes). Dos ecuaciones y tres incógnitas:", tex: "\\begin{cases} x_1 + x_2 = 3 \\\\ x_2 + x_3 = 3 \\end{cases}"},
+    {text: "Cada fila de A son los coeficientes de una ecuación. Multiplicar fila por columna reproduce el lado izquierdo:", tex: "\\begin{pmatrix} 1 & 1 & 0 \\\\ 0 & 1 & 1 \\end{pmatrix}\\begin{pmatrix} x_1 \\\\ x_2 \\\\ x_3 \\end{pmatrix} = \\begin{pmatrix} x_1 + x_2 \\\\ x_2 + x_3 \\end{pmatrix}"},
+    {text: "Igualando al lado derecho queda el sistema en forma matricial, AX = b:", tex: "\\begin{pmatrix} 1 & 1 & 0 \\\\ 0 & 1 & 1 \\end{pmatrix}\\begin{pmatrix} x_1 \\\\ x_2 \\\\ x_3 \\end{pmatrix} = \\begin{pmatrix} 3 \\\\ 3 \\end{pmatrix}"},
+    {text: "Comprobamos con X = (1, 2, 1): 1 + 2 = 3 y 2 + 1 = 3. Es una solución, pero veremos que no es la única.", tex: "\\begin{pmatrix} 1 & 1 & 0 \\\\ 0 & 1 & 1 \\end{pmatrix}\\begin{pmatrix} 1 \\\\ 2 \\\\ 1 \\end{pmatrix} = \\begin{pmatrix} 3 \\\\ 3 \\end{pmatrix}"}
+  ]} />
+  <Prose html={"<b>Para qué sirve.</b> Escribir <span class=\"mr\">AX = b</span> permite hablar de todos los sistemas a la vez y usar rango, inversas y pseudoinversas para decidir cuántas soluciones tienen y calcularlas."} />
+</Section>
+
+<Section eyebrow={"02 · Espacio nulo"} title={"El espacio nulo Nul(A)"} lead={"Son todos los vectores que A convierte en el vector cero. También se llama núcleo."}>
+  <Defs>
+    <DefItem title={"Nul(A)"} text={"<span class=\"mr\">Nul(A) = {X : AX = 0}</span>: todas las soluciones del sistema homogéneo."} demo={"la-nul-example"} more={"open"} />
+  </Defs>
+  <Steps items={[
+    {text: "Ejemplo de los apuntes. AX = 0 son dos ecuaciones con tres incógnitas:", tex: "\\begin{cases} x_1 + x_2 = 0 \\\\ x_2 + x_3 = 0 \\end{cases}"},
+    {text: "Una incógnita queda libre: x₂ = t. Despejamos x₁ = −t y x₃ = −t.", tex: "x_2 = t, \\quad x_1 = -t, \\quad x_3 = -t"},
+    {text: "Sacamos t como factor común:", tex: "\\operatorname{Nul}(A) = t\\,(-1,\\ 1,\\ -1)"},
+    {text: "Comprobamos: A·(−1, 1, −1) = (0, 0).", tex: "\\begin{pmatrix} 1 & 1 & 0 \\\\ 0 & 1 & 1 \\end{pmatrix}\\begin{pmatrix} -1 \\\\ 1 \\\\ -1 \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}"}
+  ]} />
+  <Prose html={"Es una recta que pasa por el origen. El vector (1, −1, 1) que usa la herramienta de arriba describe la misma recta: basta tomar t = −1."} />
+  <Prose html={"<b>Para qué sirve.</b> El núcleo recoge «lo que sobra» de un sistema: los vectores que se pueden sumar a una solución sin cambiarla. Por eso explica por qué hay infinitas soluciones."} />
+  <IdGroup>
+    <DemoCard demo="la-nul-example" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"03 · Dimensión"} title={"Dimensión y teorema rango-nulidad"} lead={"La dimensión mide el «tamaño» de un conjunto de vectores: en cuántas direcciones te puedes mover dentro de él."}>
+  <Defs>
+    <DefItem title={"Dimensión"} text={"Número de letras libres (t, s, …) que hacen falta para escribir todos los vectores del conjunto."} />
+    <DefItem title={"Un punto"} text={"Dimensión 0: no hay letras, no puedes moverte."} />
+    <DefItem title={"Una recta"} text={"Dimensión 1: una letra, <span class=\"mr\">X = t·v</span>."} />
+    <DefItem title={"Un plano"} text={"Dimensión 2: dos letras, <span class=\"mr\">X = s·v + t·w</span>."} />
+    <DefItem title={"Teorema rango-nulidad"} text={"<span class=\"mr\">dim Nul(A) = n − rg(A)</span>: las incógnitas que quedan libres son las incógnitas menos las ecuaciones útiles."} demo={"la-rank-nullity"} more={"why"} />
+  </Defs>
+  <Steps items={[
+    {text: "Ejemplo con la A de los apuntes: n = 3 incógnitas y rango 2 (las dos filas son independientes).", tex: "n = 3,\\quad r = 2"},
+    {text: "Por el teorema, queda una incógnita libre.", tex: "\\dim\\operatorname{Nul}(A) = n - r = 3 - 2 = 1"},
+    {text: "Coincide con lo que vimos: Nul(A) = t(−1, 1, −1), una recta, dimensión 1.", tex: "\\operatorname{Nul}(A) = t\\,(-1,\\ 1,\\ -1)"}
+  ]} />
+  <Prose html={"Si el rango es igual al número de filas (m) y hay más columnas que filas, entonces <span class=\"mr\">dim Nul(A) = n − m &gt; 0</span>: sobran incógnitas, el núcleo tiene letras libres y el sistema tiene infinitas soluciones. <b>Para qué sirve.</b> Dice de antemano cuántas direcciones libres tiene el conjunto de soluciones, sin resolver nada."} />
+  <IdGroup>
+    <DemoCard demo="la-dimension" />
+    <DemoCard demo="la-rank-nullity" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"04 · Pseudoinversa por la derecha"} title={"Más incógnitas que ecuaciones: R"} lead={"Una pseudoinversa es una matriz que hace de inversa por un solo lado, útil cuando A no es cuadrada y no tiene inversa de verdad. Para A de tamaño m × n con elementos reales:"}>
+  <Defs>
+    <DefItem title={"Por la derecha"} text={"<span class=\"mr\">AR = I<sub>m</sub></span>. Existe solo si el rango es completo por filas: <span class=\"mr\">rg(A) = m</span>."} />
+    <DefItem title={"Fórmula"} text={"<span class=\"mr\">R = Aᵗ(AAᵗ)⁻¹</span>. Es de tamaño <span class=\"mr\">n × m</span>."} demo={"la-right-pseudo"} more={"where"} />
+    <DefItem title={"Solución particular X<sub>p</sub>"} text={"<span class=\"mr\">X<sub>p</sub> = Rb</span>: una solución concreta de AX = b."} demo={"la-particular"} more={"why"} />
+    <DefItem title={"Solución homogénea X<sub>h</sub>"} text={"Cualquier vector del núcleo: <span class=\"mr\">A·X<sub>h</sub> = 0</span>. Es lo que «sobra» de una solución: <span class=\"mr\">X<sub>h</sub> = X − Rb</span>."} demo={"la-homogeneous"} more={"why"} />
+    <DefItem title={"Todas las soluciones"} text={"<span class=\"mr\">X = X<sub>p</sub> + X<sub>h</sub> = Rb + Nul(A)</span>."} demo={"la-general-solution"} more={"why"} />
+  </Defs>
+  <Steps items={[
+    {text: "Ejemplo resuelto con la A de los apuntes y b = (3, 3). Primero AAᵗ, que es 2×2 e invertible porque el rango es 2:", tex: "AA^t = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix},\\quad (AA^t)^{-1} = \\dfrac{1}{3}\\begin{pmatrix} 2 & -1 \\\\ -1 & 2 \\end{pmatrix}"},
+    {text: "La pseudoinversa por la derecha:", tex: "R = A^t(AA^t)^{-1} = \\dfrac{1}{3}\\begin{pmatrix} 2 & -1 \\\\ 1 & 1 \\\\ -1 & 2 \\end{pmatrix}"},
+    {text: "Comprobamos AR = I:", tex: "AR = \\dfrac{1}{3}\\begin{pmatrix} 3 & 0 \\\\ 0 & 3 \\end{pmatrix} = \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}"},
+    {text: "Solución particular: X<sub>p</sub> = Rb (tamaños 3×2 por 2×1 = 3×1).", tex: "X_p = Rb = \\dfrac{1}{3}\\begin{pmatrix} 2 & -1 \\\\ 1 & 1 \\\\ -1 & 2 \\end{pmatrix}\\begin{pmatrix} 3 \\\\ 3 \\end{pmatrix} = \\begin{pmatrix} 1 \\\\ 2 \\\\ 1 \\end{pmatrix}"},
+    {text: "Otra solución cualquiera, por ejemplo X = (0, 3, 0) (comprueba que AX = (3, 3)). Lo que sobra respecto de X<sub>p</sub> está en el núcleo:", tex: "X_h = X - Rb = (0, 3, 0) - (1, 2, 1) = (-1, 1, -1) \\in \\operatorname{Nul}(A)"},
+    {text: "Todas las soluciones: la recta que pasa por X<sub>p</sub> con la dirección del núcleo. Con t = 0, 1, 2 salen (1, 2, 1), (0, 3, 0) y (−1, 4, −1).", tex: "X = (1, 2, 1) + t\\,(-1, 1, -1)"}
+  ]} />
+  <Prose html={"<b>Para qué sirve.</b> Resuelve los sistemas con más incógnitas que ecuaciones y rango completo, que siempre tienen solución, y las describe todas con una sola fórmula. Se puede demostrar además que Rb es la más corta de todas las soluciones."} />
+  <IdGroup>
+    <DemoCard demo="la-aat-invertible" />
+    <DemoCard demo="la-right-pseudo" />
+    <DemoCard demo="la-particular" />
+    <DemoCard demo="la-homogeneous" />
+    <DemoCard demo="la-general-solution" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"05 · Pseudoinversa por la izquierda"} title={"Más ecuaciones que incógnitas: L"} lead={"Ahora el rango completo es por columnas: las n columnas de A son independientes. Es el caso contrario al anterior."}>
+  <Defs>
+    <DefItem title={"Por la izquierda"} text={"<span class=\"mr\">LA = I<sub>n</sub></span>. Existe solo si <span class=\"mr\">rg(A) = n</span>. Se dice que A es <i>inyectiva</i> (uno a uno): dos vectores distintos nunca dan el mismo resultado."} />
+    <DefItem title={"Fórmula"} text={"<span class=\"mr\">L = (AᵗA)⁻¹Aᵗ</span>. Es de tamaño <span class=\"mr\">n × m</span>."} demo={"la-left-pseudo"} more={"where"} />
+    <DefItem title={"Solución X = Lb"} text={"Si el sistema tiene solución, es única y vale Lb: el núcleo es <span class=\"mr\">Nul(A) = {0}</span>."} demo={"la-left-unique"} more={"why"} />
+    <DefItem title={"Col(A)"} text={"El espacio columna (o imagen): todos los vectores que se pueden formar combinando las columnas de A."} />
+    <DefItem title={"¿Cuándo vale Lb?"} text={"Solo si <span class=\"mr\">b ∈ Col(A)</span>. Si no, Lb no resuelve nada y el sistema no tiene solución."} demo={"la-left-colspace"} more={"why"} />
+  </Defs>
+  <Steps items={[
+    {text: "Ejemplo resuelto: A es 3×2 con columnas independientes (rango 2 = n).", tex: "A = \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\\\ 1 & 1 \\end{pmatrix},\\quad A^tA = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix},\\quad (A^tA)^{-1} = \\dfrac{1}{3}\\begin{pmatrix} 2 & -1 \\\\ -1 & 2 \\end{pmatrix}"},
+    {text: "La pseudoinversa por la izquierda (tamaño 2×3):", tex: "L = (A^tA)^{-1}A^t = \\dfrac{1}{3}\\begin{pmatrix} 2 & -1 & 1 \\\\ -1 & 2 & 1 \\end{pmatrix}"},
+    {text: "Comprobamos LA = I:", tex: "LA = \\dfrac{1}{3}\\begin{pmatrix} 3 & 0 \\\\ 0 & 3 \\end{pmatrix} = \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}"},
+    {text: "Con b = (1, 2, 3), que sí está en Col(A) (3 = 1 + 2), sale la solución única:", tex: "X = Lb = \\dfrac{1}{3}\\begin{pmatrix} 2 & -1 & 1 \\\\ -1 & 2 & 1 \\end{pmatrix}\\begin{pmatrix} 1 \\\\ 2 \\\\ 3 \\end{pmatrix} = \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix}"},
+    {text: "Con b′ = (1, 2, 0), que NO está en Col(A), Lb′ = (0, 1) no es solución: A(Lb′) = (0, 1, 1) ≠ b′.", tex: "A(Lb') = \\begin{pmatrix} 0 \\\\ 1 \\\\ 1 \\end{pmatrix} \\neq \\begin{pmatrix} 1 \\\\ 2 \\\\ 0 \\end{pmatrix} = b'"}
+  ]} />
+  <Prose html={"<b>Para qué sirve.</b> Con más ecuaciones que incógnitas (por ejemplo, muchas medidas para pocos parámetros), L encuentra la única solución candidata, y la comprobación A(Lb) = b dice si de verdad lo es. Cuando no lo es, el siguiente paso son los mínimos cuadrados."} />
+  <IdGroup>
+    <DemoCard demo="la-left-pseudo" />
+    <DemoCard demo="la-left-unique" />
+    <DemoCard demo="la-left-colspace" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"06 · Resumen"} title={"Los cuatro casos"} lead={"Según el rango de A, el sistema AX = b cae en uno de estos casos. Pulsa los que tienen demostración."}>
+  <Defs>
+    <DefItem title={"Izquierda · LA = I"} text={"<span class=\"mr\">rg(A) = n</span> (columnas completas, A inyectiva). Solución <span class=\"mr\">X = Lb</span>, única, y solo si b está en Col(A): a lo sumo una solución."} demo={"la-left-unique"} more={"why"} />
+    <DefItem title={"Derecha · AR = I"} text={"<span class=\"mr\">rg(A) = m</span> (filas completas, A sobreyectiva). Solución <span class=\"mr\">X = Rb + Nul(A)</span>: siempre hay al menos una, e infinitas si hay más columnas que filas."} demo={"la-general-solution"} more={"why"} />
+    <DefItem title={"Ambos · L = R = A⁻¹"} text={"A cuadrada y regular (<span class=\"mr\">rg(A) = m = n</span>). Solución <span class=\"mr\">X = A⁻¹b</span>, única y siempre existe."} demo={"la-both-cases"} more={"why"} />
+    <DefItem title={"Ninguno · A⁺"} text={"El rango es menor que m y que n. Se busca la solución que minimiza el error ‖AX − b‖ (mínimos cuadrados, con la pseudoinversa de Moore-Penrose A⁺). Queda fuera de estos apuntes."} />
+  </Defs>
+  <IdGroup>
+    <DemoCard demo="la-both-cases" />
+  </IdGroup>
+  <Prose html={"<b>Para qué sirve.</b> Es el mapa para no perderse: calcula el rango de A, mira si coincide con m, con n o con ambos, y eso te dice qué fórmula usar y cuántas soluciones esperar."} />
+</Section>
+
+<Section eyebrow={"07 · Aplicaciones"} title={"¿Para qué sirve la pseudoinversa?"}>
+  <Uses items={[["Ajustar datos", "Muchas medidas y pocos parámetros: más ecuaciones que incógnitas. Es el caso de L, y el paso previo a los mínimos cuadrados."], ["Robótica", "Un brazo con más articulaciones que coordenadas a alcanzar tiene infinitas soluciones; Rb elige una (la de menor movimiento)."], ["Redes y flujos", "Repartir un flujo entre muchos caminos: hay una solución particular más una familia de ajustes que no cambian el total (el núcleo)."], ["Compresión y señales", "Reconstruir una señal con menos datos que valores: hay infinitas posibilidades y se elige una con la pseudoinversa."], ["Saber si un sistema es compatible", "Comprobar si b está en Col(A) responde a la pregunta «¿tiene solución?» sin resolver el sistema entero."]]} />
+</Section>

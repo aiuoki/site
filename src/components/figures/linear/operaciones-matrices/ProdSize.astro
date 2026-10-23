@@ -1,0 +1,16 @@
+---
+import BoxRow from "../tipos-matrices/BoxRow.astro";
+---
+
+<BoxRow
+  unit={18}
+  rows={[{
+    items: [
+      { cols: 3, rows: 2, name: "A", dims: "n × p", token: "a", top: ["p", "csc"] },
+      { op: "·" },
+      { cols: 4, rows: 3, name: "B", dims: "p × m", token: "b", left: ["p", "csc"] },
+      { op: "=" },
+      { cols: 4, rows: 2, name: "AB", dims: "n × m", token: "g" },
+    ],
+  }]}
+/>

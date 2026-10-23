@@ -1,0 +1,31 @@
+---
+// Two spaces drawn as ovals with a point each, an arrow forward on top and
+// one back below: the shape of "A and its pseudoinverse undo each other".
+import Arr from "../rango-inversa/Arr.astro";
+
+interface Props {
+  left: { space: string; point: string; color: string };
+  right: { space: string; point: string; color: string };
+  forward: { name: string; color: string };
+  back: { name: string; color: string };
+  note: string;
+}
+
+const { left, right, forward, back, note } = Astro.props;
+---
+
+<svg class="mfig" viewBox="0 0 340 190" fill="var(--fg)" aria-hidden="true">
+  <ellipse cx="62" cy="92" rx="54" ry="64" fill={left.color} fill-opacity="0.12" stroke={left.color} stroke-width="1.5" />
+  <ellipse cx="278" cy="92" rx="54" ry="64" fill={right.color} fill-opacity="0.12" stroke={right.color} stroke-width="1.5" />
+  <text x="62" y="52" text-anchor="middle" font-size="17" fill={left.color}>{left.space}</text>
+  <text x="278" y="52" text-anchor="middle" font-size="17" fill={right.color}>{right.space}</text>
+  <circle cx="62" cy="92" r="4.5" fill={left.color} />
+  <circle cx="278" cy="92" r="4.5" fill={right.color} />
+  <text x="62" y="114" text-anchor="middle" font-size="12">{left.point}</text>
+  <text x="278" y="114" text-anchor="middle" font-size="12">{right.point}</text>
+  <Arr x1={122} y1={80} x2={218} y2={80} color={forward.color} width={2.4} />
+  <text x="170" y="70" text-anchor="middle" font-size="15" fill={forward.color}>{forward.name}</text>
+  <Arr x1={218} y1={106} x2={122} y2={106} color={back.color} width={2.4} />
+  <text x="170" y="128" text-anchor="middle" font-size="15" fill={back.color}>{back.name}</text>
+  <text x="170" y="176" text-anchor="middle" font-size="14" fill="var(--g)">{note}</text>
+</svg>

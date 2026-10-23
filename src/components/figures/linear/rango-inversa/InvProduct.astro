@@ -1,0 +1,29 @@
+---
+import { contentLang } from "../../../../i18n";
+import Arr from "./Arr.astro";
+
+const es = contentLang(Astro) === "es";
+const nodes = [
+  { x: 50, t: "x" },
+  { x: 170, t: "Bx" },
+  { x: 290, t: "ABx" },
+];
+---
+
+<svg class="mfig" viewBox="0 0 340 160" fill="var(--fg)" aria-hidden="true">
+  <Arr x1={50} y1={22} x2={290} y2={22} color="var(--a)" width={1.6} />
+  <text x="170" y="14" text-anchor="middle" font-size="13" fill="var(--a)">AB</text>
+  {nodes.map((n) => <text x={n.x} y="84" text-anchor="middle" font-size="20" font-style="italic">{n.t}</text>)}
+  <Arr x1={78} y1={64} x2={140} y2={64} color="var(--b)" />
+  <Arr x1={196} y1={64} x2={262} y2={64} color="var(--b)" />
+  <text x="109" y="56" text-anchor="middle" font-size="14" fill="var(--b)">B</text>
+  <text x="229" y="56" text-anchor="middle" font-size="14" fill="var(--b)">A</text>
+  <Arr x1={262} y1={100} x2={196} y2={100} color="var(--g)" />
+  <Arr x1={140} y1={100} x2={78} y2={100} color="var(--g)" />
+  <text x="229" y="118" text-anchor="middle" font-size="14" fill="var(--g)">A⁻¹</text>
+  <text x="109" y="118" text-anchor="middle" font-size="14" fill="var(--g)">B⁻¹</text>
+  <Arr x1={290} y1={140} x2={50} y2={140} color="var(--g)" width={1.6} />
+  <text x="170" y="156" text-anchor="middle" font-size="13" fill="var(--g)">(AB)⁻¹ = B⁻¹A⁻¹</text>
+  <text x="326" y="68" text-anchor="end" font-size="11" fill="var(--muted)">{es ? "ida" : "forward"}</text>
+  <text x="326" y="104" text-anchor="end" font-size="11" fill="var(--muted)">{es ? "vuelta" : "back"}</text>
+</svg>

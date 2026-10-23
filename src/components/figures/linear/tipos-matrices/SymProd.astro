@@ -1,0 +1,29 @@
+---
+import MatrixRow from "./MatrixRow.astro";
+import { all, mat, offDiag } from "./grid";
+
+const A = mat([[1, 0], [0, 2]]);
+const B = mat([[0, 1], [1, 0]]);
+const AB = mat([[0, 1], [2, 0]]);
+const BA = mat([[0, 2], [1, 0]]);
+---
+
+<MatrixRow
+  cell={32}
+  rows={[
+    [
+      { data: A, fills: all(A, "a"), label: "A" },
+      { op: "·" },
+      { data: B, fills: all(B, "b"), label: "B" },
+      { op: "=" },
+      { data: AB, fills: offDiag(AB, "sec"), label: "AB" },
+    ],
+    [
+      { data: B, fills: all(B, "b"), label: "B" },
+      { op: "·" },
+      { data: A, fills: all(A, "a"), label: "A" },
+      { op: "=" },
+      { data: BA, fills: offDiag(BA, "sec"), label: "BA" },
+    ],
+  ]}
+/>

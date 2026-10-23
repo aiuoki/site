@@ -5,6 +5,9 @@ import { defaultLocale, locales } from "../../i18n";
 import { figures, type FigureId } from "./index";
 
 const ids = Object.keys(figures) as FigureId[];
+// Ported from the legacy site, whose wide figures are known. Linear algebra
+// figures (la-*) are new and choose their own width.
+const legacyIds = ids.filter((id) => !id.startsWith("la-"));
 const wideIds: FigureId[] = ["dist", "notables", "cx-exp", "cx-log"];
 
 // The container only knows the page language through the manifest.
@@ -22,7 +25,7 @@ const render = (id: FigureId, url = "http://localhost/es/calculo") =>
 
 describe("figures", () => {
   it("registers the 21 trigonometry and 22 complex-number figures", () => {
-    expect(ids).toHaveLength(43);
+    expect(legacyIds).toHaveLength(43);
     expect(ids.filter((id) => id.startsWith("cx-"))).toHaveLength(22);
   });
 
@@ -37,7 +40,7 @@ describe("figures", () => {
     expect(html).not.toContain("--c-");
   });
 
-  it.each(ids)("%s has the wide class only when legacy did", async (id) => {
+  it.each(legacyIds)("%s has the wide class only when legacy did", async (id) => {
     const html = await render(id);
     expect(/class="mfig wide"/.test(html)).toBe(wideIds.includes(id));
   });

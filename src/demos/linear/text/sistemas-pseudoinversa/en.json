@@ -1,0 +1,163 @@
+{
+  "la-nul-example": {
+    "title": "The null space Nul(A): an example",
+    "summary": "All the X with AX = 0. For A = (1 1 0; 0 1 1) they are the multiples of (−1, 1, −1).",
+    "steps": [
+      "The null space Nul(A) is the set of all X with AX = 0. For A = (1 1 0; 0 1 1) and X = (x₁, x₂, x₃), AX = 0 is two equations: x₁ + x₂ = 0 and x₂ + x₃ = 0.",
+      "There are 3 unknowns and only 2 equations, so one is left free. We choose x₂ = t, where t is any real number.",
+      "We solve for the other two: x₁ = −x₂ = −t and x₃ = −x₂ = −t.",
+      "We take t out as a common factor: every vector of the null space is a multiple of (−1, 1, −1). That is, Nul(A) = t(−1, 1, −1). (If you prefer the vector (1, −1, 1), it describes the same line: just take t = −1.)",
+      "We check with the vector (−1, 1, −1): A·(−1, 1, −1) = (−1 + 1 + 0, 0 + 1 − 1) = (0, 0).",
+      "Why it is a “space”: if Av = 0, then A(tv) = t·Av = 0 for any t; and if u and v satisfy Au = Av = 0, then A(u + v) = 0 too. Here it is a line through the origin."
+    ],
+    "use": "The null space collects “what is left over”: the vectors that A turns into 0. Adding them to a solution does not change the result, which is why they explain how a system can have infinitely many solutions."
+  },
+  "la-dimension": {
+    "title": "Dimension: how many free letters you need",
+    "summary": "A point has dimension 0, a line 1 and a plane 2: they are the free letters (t, s, …) of their vectors.",
+    "steps": [
+      "The dimension is the number of free letters (t, s, …) you need to write all the vectors of a set; that is, in how many directions you can move. A point, the vector 0: no letters, dimension 0. You cannot move.",
+      "A line through the origin: X = t·v. One letter, dimension 1: you can only go forwards or backwards in one direction.",
+      "A plane through the origin: X = s·v + t·w with v and w not parallel (if they were, there would be only one direction). Two letters, dimension 2.",
+      "The Nul(A) of the previous demonstration is t(−1, 1, −1): one letter, dimension 1. It is a line.",
+      "Another example: x₁ + x₂ + x₃ = 0 (a single equation and 3 unknowns). We leave x₂ = s and x₃ = t free; then x₁ = −s − t.",
+      "X = s(−1, 1, 0) + t(−1, 0, 1): two letters, dimension 2, a plane. Check: (−1, 1, 0) and (−1, 0, 1) add up to −1 + 1 + 0 = 0 and −1 + 0 + 1 = 0."
+    ],
+    "use": "It measures the “size” of a set of solutions: dimension 0 is a single solution, 1 a line of solutions, 2 a plane of solutions."
+  },
+  "la-rank-nullity": {
+    "title": "Rank-nullity theorem: dim Nul(A) = n − r",
+    "summary": "The free unknowns are the unknowns minus the useful equations (the rank). Here r = rank(A).",
+    "steps": [
+      "We take a 3×4 matrix A (3 equations and 4 unknowns) and reduce it: R₃ ← R₃ − R₁ and then R₃ ← R₃ − R₂ make the third row vanish.",
+      "2 non-zero rows are left: the rank is r = 2. The pivots are in columns 1 and 3.",
+      "The unknowns without a pivot (x₂ and x₄) stay free: n − r = 4 − 2 = 2. We call them s and t.",
+      "The remaining equations are x₁ + 2x₂ + x₄ = 0 and x₃ + x₄ = 0. Solving for the unknowns with a pivot: x₁ = −2s − t and x₃ = −t.",
+      "X = s(−2, 1, 0, 0) + t(−1, 0, −1, 1): two free letters, so dim Nul(A) = 2. Check: A·(−2, 1, 0, 0) = (−2 + 2, 0, −2 + 2) = (0, 0, 0).",
+      "In general, dim Nul(A) = n − r: unknowns minus useful equations. The rank counts the equations that are not redundant."
+    ],
+    "use": "It tells you, before solving anything, how many free directions the set of solutions has. If r = m and there are more columns than rows, n − m > 0 and the system has infinitely many solutions."
+  },
+  "la-aat-invertible": {
+    "title": "When AAᵗ and AᵗA have an inverse",
+    "summary": "If the rank is m, AAᵗ (m×m) has an inverse; if it is n, AᵗA (n×n) has one. Here r = rank(A).",
+    "steps": [
+      "If A is m×n, Aᵗ is n×m, so AAᵗ is square of size m×m. Being square is necessary to have an inverse; we still have to see when it has one.",
+      "Suppose (AAᵗ)x = 0 and we want to show that x = 0. We multiply by xᵗ on the left.",
+      "Since (Aᵗx)ᵗ = xᵗA, we get xᵗAAᵗx = (Aᵗx)ᵗ(Aᵗx) = ‖Aᵗx‖², the sum of the squares of the entries of the vector Aᵗx.",
+      "A sum of squares of real numbers is 0 only if every term is 0 (this uses that A is real): Aᵗx = 0.",
+      "Aᵗ is n×m and its rank is r = m (rank(A) = rank(Aᵗ)). By the rank-nullity theorem, dim Nul(Aᵗ) = m − m = 0: Aᵗx = 0 only happens for x = 0.",
+      "We have seen that AAᵗx = 0 forces x = 0, that is, Nul(AAᵗ) = {0}. By rank-nullity, its rank rank(AAᵗ) is m and, being square, it has an inverse. (If r < m it does not: the rank of a product does not exceed that of its factors.)",
+      "The same goes for AᵗA, of size n×n, when r = n: just apply the above to Aᵗ instead of A."
+    ],
+    "use": "It is the reason why the pseudoinverse formulas work: without full rank neither AAᵗ nor AᵗA can be inverted. All of this is for matrices of real numbers."
+  },
+  "la-right-pseudo": {
+    "title": "Right pseudoinverse: R = Aᵗ(AAᵗ)⁻¹",
+    "summary": "If the rank is m, there is an R with AR = I<sub>m</sub>, computed as Aᵗ(AAᵗ)⁻¹. Here r = rank(A).",
+    "steps": [
+      "We look for R (of size n×m) with AR = I<sub>m</sub>. Idea: build R from Aᵗ, because then a square product appears that we do know how to invert. We write R = AᵗC, with C an m×m matrix to be determined.",
+      "We substitute: AR = A·AᵗC = (AAᵗ)C, and we want it to equal I.",
+      "AAᵗ is m×m and, since the rank of A is m, it has an inverse (previous demonstration). Multiplying by it: C = (AAᵗ)⁻¹.",
+      "Back to R = AᵗC, substituting C: R = Aᵗ(AAᵗ)⁻¹.",
+      "Check: AR = AAᵗ(AAᵗ)⁻¹ = I.",
+      "Example with A = (1 1 0; 0 1 1): AAᵗ = (2 1; 1 2), with det = 3, and its inverse is (1/3)(2 −1; −1 2).",
+      "R = Aᵗ(AAᵗ)⁻¹ = (1/3)(2 −1; 1 1; −1 2). It is a 3×2 matrix: n×m.",
+      "We check that AR = I₂ by multiplying A by R."
+    ],
+    "use": "It gives a matrix R that “undoes” A on the right, and it is used for systems with more unknowns than equations (rank = number of rows). R is not unique (other matrices satisfy AR = I too); this is the one the formula gives."
+  },
+  "la-particular": {
+    "title": "Particular solution: X<sub>p</sub> = Rb",
+    "summary": "If AR = I, the vector Rb always solves AX = b.",
+    "steps": [
+      "We start from AR = I<sub>m</sub> (R exists because the rank is m).",
+      "We prove that X<sub>p</sub> = Rb is a solution. We compute A(Rb) and, by the associative property, it is (AR)b.",
+      "Since AR = I<sub>m</sub>, we get I<sub>m</sub>b = b. That is, A·X<sub>p</sub> = b.",
+      "Example with b = (3, 3): Rb = (1, 2, 1). The sizes: R is 3×2 and b is 2×1, so Rb is 3×1, a vector with the 3 unknowns.",
+      "Check: A·(1, 2, 1) = (1 + 2 + 0, 0 + 2 + 1) = (3, 3) = b."
+    ],
+    "use": "It always gives a concrete (particular) solution when the rank equals the number of rows: the system is never inconsistent. It is not the only one; the others come from adding the null space to it."
+  },
+  "la-homogeneous": {
+    "title": "Homogeneous solution: X<sub>h</sub> = X − Rb is in the null space",
+    "summary": "The difference between any solution and Rb satisfies A·X<sub>h</sub> = 0.",
+    "steps": [
+      "Let X be any solution of AX = b. We add and subtract Rb: X = Rb + (X − Rb). It is a trivial identity, like 5 = 3 + (5 − 3).",
+      "Let us see what A does to the part X − Rb. By the distributive property, A(X − Rb) = AX − A(Rb).",
+      "AX = b because X is a solution, and A(Rb) = (AR)b = Ib = b. We get b − b = 0.",
+      "Since A·X<sub>h</sub> = 0, the vector X<sub>h</sub> = X − Rb is in the null space of A. It is called a homogeneous solution because it solves AX = 0.",
+      "Example: X = (0, 3, 0) is another solution, because A·X = (0 + 3 + 0, 0 + 3 + 0) = (3, 3).",
+      "X<sub>h</sub> = X − Rb = (0, 3, 0) − (1, 2, 1) = (−1, 1, −1), which is in Nul(A): it is the vector t = 1 we saw earlier."
+    ],
+    "use": "It says that the difference between any two solutions of AX = b always lives in the null space. So, once you know the null space, you control all the solutions."
+  },
+  "la-general-solution": {
+    "title": "All the solutions: X = Rb + Nul(A)",
+    "summary": "The solutions of AX = b are a particular solution plus any vector of the null space.",
+    "steps": [
+      "We already know that every solution X can be written X = X<sub>p</sub> + X<sub>h</sub>, with X<sub>p</sub> = Rb and X<sub>h</sub> = X − Rb in the null space.",
+      "Conversely, any X<sub>p</sub> + X<sub>h</sub> with X<sub>h</sub> in the null space is a solution: A(X<sub>p</sub> + X<sub>h</sub>) = AX<sub>p</sub> + AX<sub>h</sub> = b + 0 = b.",
+      "Conclusion: the set of all solutions is X<sub>p</sub> plus the null space, X = Rb + Nul(A).",
+      "In the example, Nul(A) = t(−1, 1, −1), so X = (1, 2, 1) + t(−1, 1, −1).",
+      "Each value of t gives a solution: t = 0 gives (1, 2, 1); t = 1, (0, 3, 0); t = 2, (−1, 4, −1). There are infinitely many.",
+      "We check t = 2: A·(−1, 4, −1) = (−1 + 4 + 0, 0 + 4 − 1) = (3, 3)."
+    ],
+    "use": "It describes ALL the solutions with a single formula. Geometrically it is a line (or a plane, depending on the dimension of the null space) parallel to the null space and passing through X<sub>p</sub>."
+  },
+  "la-left-pseudo": {
+    "title": "Left pseudoinverse: L = (AᵗA)⁻¹Aᵗ",
+    "summary": "If the rank is n, there is an L with LA = I<sub>n</sub>, computed as (AᵗA)⁻¹Aᵗ. Here r = rank(A).",
+    "steps": [
+      "Now we look for L (of size n×m) with LA = I<sub>n</sub>. As before, we build it from Aᵗ, but on the other side: L = CAᵗ, with C an n×n matrix to be determined.",
+      "We substitute: LA = C·AᵗA = C(AᵗA), and we want it to equal I.",
+      "AᵗA is n×m times m×n = n×n and, since the rank of A is n, it has an inverse (same proof with Aᵗ instead of A). Then C = (AᵗA)⁻¹.",
+      "Back to L = CAᵗ, substituting C: L = (AᵗA)⁻¹Aᵗ.",
+      "Check: LA = (AᵗA)⁻¹AᵗA = (AᵗA)⁻¹(AᵗA) = I.",
+      "Example with A = (1 0; 0 1; 1 1), 3×2 with independent columns (rank 2 = n): AᵗA = (2 1; 1 2) and its inverse is (1/3)(2 −1; −1 2).",
+      "L = (AᵗA)⁻¹Aᵗ = (1/3)(2 −1 1; −1 2 1). It is a 2×3 matrix: n×m.",
+      "We check that LA = I₂ by multiplying L by A."
+    ],
+    "use": "It gives a matrix L that “undoes” A on the left, and it is used for systems with more equations than unknowns (rank = number of columns)."
+  },
+  "la-left-unique": {
+    "title": "With L the solution is unique: X = Lb",
+    "summary": "If LA = I and the system has a solution, it can only be Lb: the null space is {0}. Here r = rank(A).",
+    "steps": [
+      "We start from AX = b and multiply both sides by L on the left.",
+      "With the associative property we group: (LA)X = Lb.",
+      "Since LA = I, we get X = Lb: if the system has a solution, it has to be this one.",
+      "Uniqueness: if X<sub>h</sub> is in the null space (AX<sub>h</sub> = 0), then X<sub>h</sub> = (LA)X<sub>h</sub> = L(AX<sub>h</sub>) = L·0 = 0. The only vector in the null space is 0.",
+      "It agrees with the rank-nullity theorem: dim Nul(A) = n − r = 0 when r = n.",
+      "Example with A = (1 0; 0 1; 1 1) and b = (1, 2, 3): Lb = (1/3)(2 − 2 + 3, −1 + 4 + 3) = (1, 2).",
+      "We check: A·(1, 2) = (1, 2, 1 + 2) = (1, 2, 3) = b."
+    ],
+    "use": "With more equations than unknowns and full column rank, there is at most one solution and L finds it. But Lb is only the candidate: you must check that it really solves the system (next demonstration)."
+  },
+  "la-left-colspace": {
+    "title": "Lb is a solution if and only if b is in Col(A)",
+    "summary": "Col(A) is the set of combinations of the columns of A. If b is not there, the system has no solution.",
+    "steps": [
+      "Col(A) (the column space, or image) is the set of all vectors you can form by combining the columns of A: AX = x₁a₁ + ⋯ + x<sub>n</sub>a<sub>n</sub>, where a₁, …, a<sub>n</sub> are the columns.",
+      "If Lb is a solution, then b = A(Lb) has the form AX, so b is in Col(A).",
+      "Conversely, if b is in Col(A), b = AX₀ for some X₀. Then Lb = LAX₀ = X₀, and A(Lb) = AX₀ = b: Lb is indeed a solution.",
+      "For A = (1 0; 0 1; 1 1) the columns are (1, 0, 1) and (0, 1, 1). Combining them gives (x₁, x₂, x₁ + x₂): the vectors whose third entry is the sum of the first two (a plane in ℝ³).",
+      "b = (1, 2, 3): 1 + 2 = 3, so b is in Col(A), and A(Lb) = A(1, 2) = b. There is a solution, and it is unique.",
+      "b′ = (1, 2, 0): 1 + 2 ≠ 0, it is not in Col(A). Lb′ = (0, 1), but A(Lb′) = (0, 1, 1) ≠ b′: Lb′ is NOT a solution. The equations x₁ = 1, x₂ = 2 and x₁ + x₂ = 0 contradict each other."
+    ],
+    "use": "It is the practical test: compute Lb and check that A(Lb) = b. If it holds, that is the only solution; if not, the system has none (least squares, later on, looks for the best approximation)."
+  },
+  "la-both-cases": {
+    "title": "If A is square and regular, R = L = A⁻¹",
+    "summary": "When m = n = r, both pseudoinverses coincide with the usual inverse. Here r = rank(A).",
+    "steps": [
+      "If A is square of rank n, R and L exist, and A and Aᵗ have an inverse. We use (AB)⁻¹ = B⁻¹A⁻¹ on AAᵗ: (AAᵗ)⁻¹ = (Aᵗ)⁻¹A⁻¹.",
+      "We substitute into R: R = Aᵗ(Aᵗ)⁻¹A⁻¹ = I·A⁻¹ = A⁻¹.",
+      "For L: (AᵗA)⁻¹ = A⁻¹(Aᵗ)⁻¹, with the same reasoning.",
+      "L = A⁻¹(Aᵗ)⁻¹Aᵗ = A⁻¹·I = A⁻¹.",
+      "Example with A = (2 1; 1 1): AAᵗ = (5 3; 3 2), with det = 10 − 9 = 1, and (AAᵗ)⁻¹ = (2 −3; −3 5).",
+      "R = Aᵗ(AAᵗ)⁻¹ = (2 1; 1 1)(2 −3; −3 5) = (1 −1; −1 2), which is exactly A⁻¹."
+    ],
+    "use": "It ties the cases together: the everyday inverse is the case where R and L coincide. With A square and regular, the solution X = A⁻¹b is unique and always exists."
+  }
+}

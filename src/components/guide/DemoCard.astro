@@ -4,7 +4,7 @@
 import Formula from "../ui/Formula.astro";
 import ComplexLive from "../interactive/complex/ComplexLive.svelte";
 import { findDemo } from "../../demos";
-import { contentLang, localeMeta } from "../../i18n";
+import { contentLang, localeMeta, useTranslations } from "../../i18n";
 import { complexDict } from "../../i18n/topics/complejos";
 import { COMPLEX_CHECKS, type ComplexCheck } from "../../lib/complex-checks";
 
@@ -19,6 +19,7 @@ const found = findDemo(demo, lang);
 if (!found) throw new Error(`Unknown demonstration: ${demo}`);
 if (live && !(COMPLEX_CHECKS as readonly string[]).includes(demo)) throw new Error(`No live check for ${demo}`);
 const ui = complexDict(lang).ui;
+const t = useTranslations(lang);
 ---
 
 <div class="id demo" data-demo={demo} role="button" tabindex="0">
@@ -37,5 +38,5 @@ const ui = complexDict(lang).ui;
       </div>
     )
   }
-  <span class="more">{ui.seeDemo}</span>
+  <span class="more">{t("demo.open")}</span>
 </div>

@@ -1,0 +1,142 @@
+{
+  "la-add-laws": {
+    "title": "Propiedades de la suma: conmutativa, asociativa, elemento neutro y opuesta",
+    "summary": "Como se suma elemento a elemento, la suma de matrices hereda las propiedades de la suma de números.",
+    "steps": [
+      "Para sumar dos matrices del mismo tamaño se suman los elementos que ocupan la misma posición: el elemento (i, j) de A + B es a_ij + b_ij.",
+      "Conmutativa: en cada posición a_ij + b_ij = b_ij + a_ij, porque son números. Todas las posiciones coinciden, así que A + B = B + A.",
+      "Asociativa: en cada posición (a_ij + b_ij) + c_ij = a_ij + (b_ij + c_ij). Por eso (A + B) + C = A + (B + C) y se puede escribir A + B + C sin paréntesis.",
+      "Elemento neutro: la matriz cero 0 (todo ceros, del mismo tamaño) no cambia nada, porque a_ij + 0 = a_ij.",
+      "Opuesta: la matriz −A tiene todos los elementos cambiados de signo, y a_ij + (−a_ij) = 0. Así A + (−A) = 0, y restar A − B significa sumar la opuesta A + (−B).",
+      "Ejemplo con matrices de 2 × 3. En el dibujo, la posición marcada suma 4 + 2 = 6; las demás se suman igual, cada una con la de su misma posición."
+    ],
+    "use": "Garantizan que se puede operar con sumas de matrices como con sumas de números: reordenar, agrupar y despejar. Por ejemplo, de A + X = B se obtiene X = B − A."
+  },
+  "la-scalar-laws": {
+    "title": "Propiedades del producto por un escalar",
+    "summary": "Un número multiplica cada elemento, y se distribuye sobre sumas de matrices y sumas de números.",
+    "steps": [
+      "Multiplicar una matriz por un número (escalar) λ es multiplicar cada elemento por λ: el elemento (i, j) de λA es λ·a_ij.",
+      "λ(A + B) = λA + λB: en cada posición λ(a_ij + b_ij) = λa_ij + λb_ij, que es la propiedad distributiva de los números.",
+      "(λ + μ)A = λA + μA: en cada posición (λ + μ)a_ij = λa_ij + μa_ij.",
+      "(λμ)A = λ(μA): en cada posición (λμ)a_ij = λ(μ·a_ij). Multiplicar por μ y luego por λ es lo mismo que multiplicar por λμ.",
+      "Ejemplo: multiplicar por 3 cada elemento de la matriz. En el dibujo, cada casilla de 3A es el triple de la casilla correspondiente de A.",
+      "Comprobación de la segunda propiedad con λ = 2 y μ = 3: 5A es igual a 2A + 3A."
+    ],
+    "use": "Permiten sacar factores comunes y distribuir números en expresiones con matrices, igual que en álgebra normal. Junto con las de la suma, dicen que las matrices se pueden tratar como vectores: sumarlas y multiplicarlas por números."
+  },
+  "la-prod-entry": {
+    "title": "El producto de matrices: fila por columna",
+    "summary": "Cada elemento de AB es la fila de A por la columna de B: suma de productos.",
+    "steps": [
+      "Una fila por una columna (con el mismo número de elementos, p) da un número: se multiplican los elementos de dos en dos, a₁b₁, a₂b₂, … y se suman.",
+      "Para multiplicar, el número de columnas de A debe ser igual al número de filas de B. Si A es n × p y B es p × m, el producto C = AB es n × m.",
+      "El elemento c_ij de C es el producto de la fila i de A por la columna j de B.",
+      "Escrito con los elementos y con el símbolo de suma, c_ij = a_i1·b_1j + a_i2·b_2j + … + a_ip·b_pj. El índice k de la suma recorre los p términos (los apuntes usan la misma letra p para el índice y para el tamaño; aquí se distingue k).",
+      "Ejemplo: c₂₁ usa la fila 2 de A, (4, 5, 6), y la columna 1 de B, (7, 9, 11). En el dibujo, la fila está en naranja, la columna en azul verdoso y el resultado en rosa: 4·7 + 5·9 + 6·11 = 139.",
+      "Repitiendo con cada fila y cada columna se obtiene la matriz completa AB de 2 × 2."
+    ],
+    "use": "El producto es la forma de combinar información: aplicar una transformación tras otra, calcular totales como precio por cantidad, o expresar un sistema de ecuaciones como AX = b."
+  },
+  "la-prod-size": {
+    "title": "Tamaño del producto: (n × p)(p × m) = n × m",
+    "summary": "Para multiplicar, las columnas de A deben coincidir con las filas de B; el resultado toma las filas de A y las columnas de B.",
+    "steps": [
+      "Sean A de n × p y B de q × m (aún no sabemos si q es igual a p).",
+      "Cada elemento c_ij exige multiplicar la fila i de A (con p elementos) por la columna j de B (con q elementos), de dos en dos. Eso solo es posible si p = q: las columnas de A deben ser tantas como las filas de B.",
+      "Hay un c_ij para cada fila i de A (n filas) y cada columna j de B (m columnas), así que AB es de tamaño n × m.",
+      "Ejemplo: (2 × 3)·(3 × 4) = (2 × 4). Los dos 3 del medio coinciden (verdes en el dibujo) y desaparecen; quedan 2 y 4.",
+      "Al revés, (3 × 4)·(2 × 3) no se puede calcular, porque 4 ≠ 2. Que exista AB no garantiza que exista BA."
+    ],
+    "use": "Es la primera comprobación antes de multiplicar matrices: si los tamaños no encajan, el producto no está definido. También dice el tamaño del resultado sin hacer ninguna cuenta."
+  },
+  "la-prod-assoc": {
+    "title": "Propiedad asociativa: (AB)C = A(BC)",
+    "summary": "Se pueden agrupar los productos como se quiera; el resultado es el mismo.",
+    "steps": [
+      "Con A de n × p, B de p × q y C de q × m, tanto (AB)C como A(BC) se pueden calcular y son de n × m. En el dibujo, el paréntesis de arriba agrupa AB y el de abajo agrupa BC.",
+      "El elemento (i, l) de (AB)C es la suma sobre k de (AB)_ik · c_kl, y cada (AB)_ik es a su vez una suma sobre j de a_ij · b_jk.",
+      "El elemento (i, l) de A(BC) es la suma sobre j de a_ij · (BC)_jl, y cada (BC)_jl es una suma sobre k de b_jk · c_kl.",
+      "En los dos casos sale la misma suma doble de los términos a_ij · b_jk · c_kl, solo que sumados en distinto orden. Como la suma de números no depende del orden, coinciden.",
+      "Por eso se puede escribir ABC sin paréntesis. El símbolo =: significa «se define como».",
+      "Ejemplo: AB = ((6, 3), (3, 1)) y (AB)C = ((12, 3), (5, 1)). Por el otro camino, BC = ((2, 1), (5, 1)) y A(BC) = ((12, 3), (5, 1)): coinciden."
+    ],
+    "use": "Permite elegir el orden de cálculo que sea más barato (por ejemplo, multiplicar primero por un vector) y encadenar transformaciones: aplicar B y luego A equivale a aplicar una única matriz AB."
+  },
+  "la-prod-dist": {
+    "title": "Propiedad distributiva: (A + B)C = AC + BC",
+    "summary": "El producto se distribuye sobre la suma, tanto por la derecha como por la izquierda.",
+    "steps": [
+      "Para que se puedan sumar, A y B deben tener el mismo tamaño, n × p; C es p × m, así que los tres productos están definidos.",
+      "El elemento (i, j) de (A + B)C es la suma sobre k de (a_ik + b_ik) · c_kj.",
+      "Se reparte cada término con la propiedad distributiva de los números y se separa en dos sumas: la primera es el elemento (i, j) de AC y la segunda el de BC. Por tanto (A + B)C = AC + BC.",
+      "Con C a la izquierda se razona igual: c_ik · (a_kj + b_kj) da C(A + B) = CA + CB. Hay que mantener C a la izquierda en los dos términos, porque el orden importa.",
+      "Ejemplo: A + B = ((1, 3), (3, 2)) y (A + B)C = ((7, 3), (7, 2)). Por separado, AC = ((5, 2), (2, 1)) y BC = ((2, 1), (5, 1)), que suman lo mismo."
+    ],
+    "use": "Permite desarrollar y factorizar expresiones con matrices, siempre cuidando el orden de los factores. Por ejemplo, (A + B)² = A² + AB + BA + B²."
+  },
+  "la-prod-identity": {
+    "title": "La matriz identidad es el elemento neutro: IA = AI = A",
+    "summary": "Multiplicar por la identidad (a un lado o a otro) deja la matriz igual.",
+    "steps": [
+      "La identidad I tiene unos en la diagonal y ceros fuera. Se escribe con la delta de Kronecker: δ_ij vale 1 si i = j y 0 si i ≠ j.",
+      "En el elemento (i, j) de IA, la suma de δ_ik · a_kj solo tiene un término no nulo, el de k = i, que vale a_ij. Así IA = A.",
+      "Igual por el otro lado: en la suma de a_ik · δ_kj solo sobrevive k = j y queda a_ij. Así AI = A.",
+      "Si A es n × m, a la izquierda se usa la identidad de orden n y a la derecha la de orden m. Son identidades distintas, pero el resultado es el mismo A.",
+      "Ejemplo con A de 2 × 3: por la izquierda, la identidad de 2 × 2; por la derecha, la de 3 × 3. En el dibujo, la identidad lleva la diagonal marcada."
+    ],
+    "use": "La identidad hace el papel del número 1: no cambia nada al multiplicar. Es imprescindible para definir la matriz inversa, que es aquella que multiplicada por A da I."
+  },
+  "la-prod-noncomm": {
+    "title": "El producto no es conmutativo: AB ≠ BA",
+    "summary": "En general, el orden de los factores sí altera el producto.",
+    "steps": [
+      "Aunque AB y BA se puedan calcular, pueden tener tamaños distintos: con A de n × p y B de p × n, AB es n × n y BA es p × p. Si n ≠ p no pueden ser iguales.",
+      "Ejemplo con A de 2 × 3 y B de 3 × 2: AB es 2 × 2 y BA es 3 × 3.",
+      "Incluso con matrices cuadradas del mismo tamaño sale distinto. Aquí B intercambia: AB intercambia las columnas de A y BA intercambia sus filas.",
+      "Un solo elemento basta: (AB)₁₁ = 1·0 + 2·1 = 2, pero (BA)₁₁ = 0·1 + 1·3 = 3. En el dibujo, esas casillas están marcadas.",
+      "Hay parejas que sí conmutan: la identidad con cualquier matriz, una matriz con sus propias potencias, o una matriz con un múltiplo de la identidad."
+    ],
+    "use": "Es el error más frecuente al operar con matrices. Por ejemplo, (A + B)² no es A² + 2AB + B², porque AB y BA son distintas. Al resolver ecuaciones matriciales hay que multiplicar siempre por el mismo lado en los dos miembros."
+  },
+  "la-block": {
+    "title": "Multiplicación por bloques",
+    "summary": "Si se parten las matrices en bloques compatibles, los bloques se multiplican como si fueran números.",
+    "steps": [
+      "Se parte A en bloques A_ik y B en bloques B_kj de modo que las particiones de columnas de A coincidan con las de filas de B. Entonces cada producto A_ik·B_kj está definido. En el dibujo, las líneas discontinuas marcan los cortes.",
+      "Por qué funciona: en la suma c_ij = Σ a_ik·b_kj se separan los primeros p₁ términos (los que usan las columnas del primer bloque de A y las filas del primer bloque de B) y los p − p₁ restantes (los del segundo bloque).",
+      "Cada bloque del resultado es la suma de los productos de los bloques de la fila i de A por los de la columna j de B: C_ij = A_i1·B_1j + A_i2·B_2j. Es la regla de «fila por columna» con bloques en lugar de números; el enunciado muestra el resultado completo.",
+      "Ejemplo con matrices de 4 × 4 partidas en bloques de 2 × 2. En A, el bloque inferior izquierdo es 0 y el inferior derecho es 2I; el superior derecho es I.",
+      "C₁₁ = A₁₁B₁₁ + A₁₂B₂₁. Se calculan los dos productos de 2 × 2 y se suman.",
+      "C₁₂ = A₁₁B₁₂ + A₁₂B₂₂, calculado de la misma forma.",
+      "En la fila de abajo A₂₁ = 0, así que solo queda el segundo sumando: C₂₁ = 2B₂₁ y C₂₂ = 2B₂₂.",
+      "Al juntar los cuatro bloques se obtiene AB. Es exactamente la matriz que sale multiplicando las dos matrices de 4 × 4 de la forma normal."
+    ],
+    "use": "Reduce matrices grandes a operaciones con matrices pequeñas, y los bloques de ceros ahorran muchísimo cálculo. Se usa en ordenadores (repartiendo el trabajo en trozos) y en demostraciones sobre matrices con estructura."
+  },
+  "la-trace-lin": {
+    "title": "La traza es lineal: tr(A + B) = tr A + tr B y tr(λA) = λ tr A",
+    "summary": "La traza de una suma es la suma de las trazas, y los escalares salen fuera.",
+    "steps": [
+      "La traza de una matriz cuadrada es la suma de los elementos de su diagonal principal: tr A = a₁₁ + a₂₂ + … + a_nn.",
+      "La diagonal de A + B tiene los elementos a_ii + b_ii. Sumándolos, se separan en la suma de los a_ii y la suma de los b_ii.",
+      "Es decir, tr(A + B) = tr A + tr B.",
+      "Con un escalar, cada elemento de la diagonal queda multiplicado por λ, y λ sale como factor común de la suma: tr(λA) = λ·tr A.",
+      "Ejemplo: A y B tienen trazas 1 + 4 = 5 y 5 + 2 = 7. A + B tiene diagonal 6 y 6, con traza 12 = 5 + 7. En el dibujo, la diagonal está marcada."
+    ],
+    "use": "Permite calcular trazas de expresiones complejas sumando las trazas de cada trozo. La traza resume una matriz cuadrada en un solo número."
+  },
+  "la-trace-prod": {
+    "title": "tr(AB) = tr(BA)",
+    "summary": "La traza de un producto no depende del orden de los dos factores, aunque AB y BA sean distintas.",
+    "steps": [
+      "Con A de n × p y B de p × n, AB es n × n y BA es p × p. Las dos son cuadradas, así que las dos tienen traza, aunque no tengan el mismo tamaño.",
+      "La traza de AB suma los elementos de la diagonal (AB)_ii, y cada uno es a su vez la suma de los productos a_ik·b_ki. Resulta una suma doble de todos los a_ik·b_ki.",
+      "La traza de BA suma los (BA)_kk, y cada uno es la suma de b_ki·a_ik. Es otra suma doble, con los mismos productos.",
+      "Los términos son los mismos (b_ki·a_ik = a_ik·b_ki) y solo cambia el orden de sumarlos, que no importa. Por tanto tr(AB) = tr(BA).",
+      "Ejemplo con A de 2 × 3 y B de 3 × 2: AB (2 × 2) tiene traza 5 + 7 = 12 y BA (3 × 3) tiene traza 1 + 5 + 6 = 12, aunque son matrices de distinto tamaño y no se parecen.",
+      "Con tres factores solo se pueden mover en ciclo: tr(ABC) = tr(BCA) = tr(CAB). En general, tr(ACB) puede ser distinta."
+    ],
+    "use": "Es una herramienta muy usada para simplificar expresiones con matrices y demostrar propiedades. Aparece en estadística, mecánica cuántica y aprendizaje automático."
+  }
+}

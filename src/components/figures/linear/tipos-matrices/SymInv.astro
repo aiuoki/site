@@ -1,0 +1,19 @@
+---
+import MatrixRow from "./MatrixRow.astro";
+import { diag, mat, offDiag } from "./grid";
+
+const A = mat([[2, 1], [1, 1]]);
+const Ai = mat([[1, -1], [-1, 2]]);
+const I = mat([[1, 0], [0, 1]]);
+---
+
+<MatrixRow
+  cell={32}
+  rows={[[
+    { data: A, fills: offDiag(A, "g"), label: "A" },
+    { op: "·" },
+    { data: Ai, fills: offDiag(Ai, "g"), label: "A⁻¹" },
+    { op: "=" },
+    { data: I, fills: diag(I, "cos"), label: "I" },
+  ]]}
+/>

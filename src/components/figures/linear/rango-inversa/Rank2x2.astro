@@ -1,0 +1,19 @@
+---
+import { contentLang } from "../../../../i18n";
+import Arr from "./Arr.astro";
+import MGrid from "./MGrid.astro";
+
+const es = contentLang(Astro) === "es";
+const r = es ? "F" : "R";
+const rg = es ? "rg" : "rank";
+---
+
+<svg class="mfig" viewBox="0 0 360 170" fill="var(--fg)" aria-hidden="true">
+  <MGrid x={12} y={24} cells={[["a", "b"], ["c", "d"]]} fills={{ "0,0": "var(--a)" }} />
+  <Arr x1={92} y1={50} x2={150} y2={50} color="var(--muted)" />
+  <text x="121" y="42" text-anchor="middle" font-size="11" fill="var(--muted)">{`${r}₂ − (c/a)·${r}₁`}</text>
+  <MGrid x={162} y={24} cw={64} cells={[["a", "b"], ["0", "d − bc/a"]]} fills={{ "0,0": "var(--a)", "1,1": "var(--b)" }} />
+  <text x="194" y="94" text-anchor="middle" font-size="13" fill="var(--b)">d − bc/a = det / a</text>
+  <text x="180" y="124" text-anchor="middle" font-size="15">{`det ≠ 0  →  ${rg} = 2`}</text>
+  <text x="180" y="148" text-anchor="middle" font-size="15">{`det = 0  →  ${rg} = 1`}</text>
+</svg>

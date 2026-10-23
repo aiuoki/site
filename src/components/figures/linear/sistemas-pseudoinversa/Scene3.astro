@@ -1,0 +1,55 @@
+---
+// The solutions of AX = b for the example of the notes drawn in perspective:
+// the line X = (1, 2, 1) + t(-1, 1, -1) and Nul(A) = t(-1, 1, -1) through the origin.
+import Arr from "../rango-inversa/Arr.astro";
+import Axes3 from "./Axes3.astro";
+import { linePath, projector } from "./proj";
+
+interface Props {
+  // Values of t whose solution is marked on the line.
+  marks?: number[];
+  // Draw X_h = X - Rb as an arrow from Xp to the solution X (t = 1).
+  homogeneous?: boolean;
+  // Draw only the arrow v = (-1, 1, -1) from the origin (null space example).
+  nulVector?: boolean;
+  // Draw the line of solutions (off for the null space alone).
+  solution?: boolean;
+  labels: { nul: string; solution: string };
+}
+
+const { marks = [0], homogeneous = false, nulVector = false, solution = true, labels } = Astro.props;
+const p = projector({ s: 40, ox: 112, oy: 142 });
+const xp: [number, number, number] = [1, 2, 1];
+const v: [number, number, number] = [-1, 1, -1];
+const at = (t: number): [number, number] => p.pt(xp[0] + t * v[0], xp[1] + t * v[1], xp[2] + t * v[2]);
+const sub = (t: number) => `t = ${t}`;
+const o = p.pt(0, 0, 0);
+const tip = p.pt(...v);
+const end = p.pt(-1.7, 1.7, -1.7);
+---
+
+<svg class="mfig" viewBox="0 0 340 270" fill="var(--fg)" aria-hidden="true">
+  <Axes3 p={p} ext={{ x: [-2.4, 2.6], y: [-1, 4.2], z: [-2.4, 2.6] }} />
+  <path d={linePath(p, [0, 0, 0], v, -1.6, 1.9)} stroke={nulVector ? "var(--a)" : "var(--cot)"} stroke-width="2" stroke-dasharray="5 4" fill="none" />
+  {solution && <path d={linePath(p, xp, v, -1.1, 2.2)} stroke="var(--b)" stroke-width="2.6" fill="none" stroke-linecap="round" />}
+  {
+    homogeneous && (
+      <>
+        <Arr x1={at(0)[0]} y1={at(0)[1]} x2={at(1)[0]} y2={at(1)[1]} color="var(--cot)" width={2.6} />
+        <Arr x1={o[0]} y1={o[1]} x2={tip[0]} y2={tip[1]} color="var(--cot)" width={2.6} />
+      </>
+    )
+  }
+  {nulVector && <Arr x1={o[0]} y1={o[1]} x2={tip[0]} y2={tip[1]} color="var(--a)" width={3} />}
+  <circle cx={o[0]} cy={o[1]} r="3.5" fill="var(--fg)" />
+  {marks.map((t) => <circle cx={at(t)[0]} cy={at(t)[1]} r={t === 0 ? 5 : 4} fill={t === 0 ? "var(--csc)" : "var(--b)"} />)}
+  <g paint-order="stroke" stroke="var(--surface)" stroke-width="3" stroke-linejoin="round">
+    <text x={o[0] + 8} y={o[1] + 14} font-size="12" fill="var(--muted)">0</text>
+    {marks.map((t) => <text x={at(t)[0] + 9} y={at(t)[1] - 6} font-size="12" fill={t === 0 ? "var(--csc)" : "var(--b)"}>{t === 0 ? "Xp" : sub(t)}</text>)}
+    {homogeneous && <text x={at(1)[0] + 8} y={at(1)[1] + 14} font-size="13" fill="var(--b)">X</text>}
+    {homogeneous && <text x={tip[0] - 8} y={tip[1] + 14} text-anchor="end" font-size="13" fill="var(--cot)">Xh</text>}
+    <text x={end[0] - 10} y={end[1] + 18} text-anchor="end" font-size="12" fill={nulVector ? "var(--a)" : "var(--cot)"}>{labels.nul}</text>
+    {solution && <text x="332" y="22" text-anchor="end" font-size="12" fill="var(--b)">{labels.solution}</text>}
+    {nulVector && <text x={tip[0] + 10} y={tip[1] + 2} font-size="13" fill="var(--a)">v = (−1, 1, −1)</text>}
+  </g>
+</svg>

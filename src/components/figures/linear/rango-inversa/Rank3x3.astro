@@ -1,0 +1,21 @@
+---
+import { contentLang } from "../../../../i18n";
+import Arr from "./Arr.astro";
+import MGrid from "./MGrid.astro";
+
+const es = contentLang(Astro) === "es";
+const rg = es ? "rg" : "rank";
+const minor = { "1,0": "var(--b)", "1,1": "var(--b)", "2,0": "var(--b)", "2,1": "var(--b)" };
+const pivots = { "0,0": "var(--a)", "1,1": "var(--a)", r2: "var(--sec)" };
+---
+
+<svg class="mfig wide" viewBox="0 0 480 150" fill="var(--fg)" aria-hidden="true">
+  <MGrid x={20} y={26} cells={[["0", "1", "2"], ["1", "1", "1"], ["2", "3", "4"]]} fills={minor} />
+  <text x="72" y="124" text-anchor="middle" font-size="12" fill="var(--b)">{es ? "menor 2×2 = 1 ≠ 0" : "2×2 minor = 1 ≠ 0"}</text>
+  <text x="72" y="142" text-anchor="middle" font-size="12" fill="var(--muted)">det = 0</text>
+  <Arr x1={142} y1={65} x2={238} y2={65} color="var(--muted)" />
+  <text x="190" y="55" text-anchor="middle" font-size="12" fill="var(--muted)">Gauss</text>
+  <MGrid x={262} y={26} cells={[["1", "1", "1"], ["0", "1", "2"], ["0", "0", "0"]]} fills={pivots} />
+  <text x="314" y="124" text-anchor="middle" font-size="12" fill="var(--sec)">{es ? "fila nula" : "zero row"}</text>
+  <text x="420" y="60" text-anchor="middle" font-size="22" fill="var(--g)">{`${rg} = 2`}</text>
+</svg>

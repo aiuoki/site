@@ -1,0 +1,126 @@
+---
+title: "Systems and pseudoinverse"
+eyebrow: "Interactive guide · linear algebra"
+intro: "The system AX = b, the null space, the rank-nullity theorem and the right and left pseudoinverses. Every property has its step-by-step proof: click any card to see it."
+description: "Systems AX = b, null space, rank-nullity and right and left pseudoinverses, with worked examples and step-by-step proofs."
+---
+
+<Section eyebrow={"01 · The system AX = b"} title={"A system of equations as a matrix product"} lead={"A system of linear equations can be written as a single equality between matrices. That way everything we know about matrices helps to solve it."}>
+  <Defs>
+    <DefItem title={"Coefficient matrix A"} text={"It has one row per equation and one column per unknown: its size is <span class=\"mr\">m × n</span> (m equations, n unknowns)."} />
+    <DefItem title={"Vector of unknowns X"} text={"The column <span class=\"mr\">(x<sub>1</sub>, …, x<sub>n</sub>)</span> with what we are looking for."} />
+    <DefItem title={"Constant terms b"} text={"The column of numbers to the right of the equals sign, of size <span class=\"mr\">m × 1</span>."} />
+    <DefItem title={"Solution"} text={"A vector X with <span class=\"mr\">AX = b</span>. There may be none, one or infinitely many."} />
+    <DefItem title={"Homogeneous system"} text={"The one with <span class=\"mr\">b = 0</span>, that is, <span class=\"mr\">AX = 0</span>. It always has the solution X = 0."} />
+  </Defs>
+  <Steps items={[
+    {text: "Worked example (the one in the notes). Two equations and three unknowns:", tex: "\\begin{cases} x_1 + x_2 = 3 \\\\ x_2 + x_3 = 3 \\end{cases}"},
+    {text: "Each row of A holds the coefficients of one equation. Multiplying row by column reproduces the left side:", tex: "\\begin{pmatrix} 1 & 1 & 0 \\\\ 0 & 1 & 1 \\end{pmatrix}\\begin{pmatrix} x_1 \\\\ x_2 \\\\ x_3 \\end{pmatrix} = \\begin{pmatrix} x_1 + x_2 \\\\ x_2 + x_3 \\end{pmatrix}"},
+    {text: "Setting it equal to the right side gives the system in matrix form, AX = b:", tex: "\\begin{pmatrix} 1 & 1 & 0 \\\\ 0 & 1 & 1 \\end{pmatrix}\\begin{pmatrix} x_1 \\\\ x_2 \\\\ x_3 \\end{pmatrix} = \\begin{pmatrix} 3 \\\\ 3 \\end{pmatrix}"},
+    {text: "We check with X = (1, 2, 1): 1 + 2 = 3 and 2 + 1 = 3. It is a solution, but we will see that it is not the only one.", tex: "\\begin{pmatrix} 1 & 1 & 0 \\\\ 0 & 1 & 1 \\end{pmatrix}\\begin{pmatrix} 1 \\\\ 2 \\\\ 1 \\end{pmatrix} = \\begin{pmatrix} 3 \\\\ 3 \\end{pmatrix}"}
+  ]} />
+  <Prose html={"<b>What it is for.</b> Writing <span class=\"mr\">AX = b</span> lets us talk about all systems at once and use rank, inverses and pseudoinverses to decide how many solutions they have and to compute them."} />
+</Section>
+
+<Section eyebrow={"02 · Null space"} title={"The null space Nul(A)"} lead={"It is the set of all vectors that A turns into the zero vector. It is also called the kernel."}>
+  <Defs>
+    <DefItem title={"Nul(A)"} text={"<span class=\"mr\">Nul(A) = {X : AX = 0}</span>: all the solutions of the homogeneous system."} demo={"la-nul-example"} more={"open"} />
+  </Defs>
+  <Steps items={[
+    {text: "Example from the notes. AX = 0 is two equations in three unknowns:", tex: "\\begin{cases} x_1 + x_2 = 0 \\\\ x_2 + x_3 = 0 \\end{cases}"},
+    {text: "One unknown is left free: x₂ = t. We solve x₁ = −t and x₃ = −t.", tex: "x_2 = t, \\quad x_1 = -t, \\quad x_3 = -t"},
+    {text: "We take t out as a common factor:", tex: "\\operatorname{Nul}(A) = t\\,(-1,\\ 1,\\ -1)"},
+    {text: "We check: A·(−1, 1, −1) = (0, 0).", tex: "\\begin{pmatrix} 1 & 1 & 0 \\\\ 0 & 1 & 1 \\end{pmatrix}\\begin{pmatrix} -1 \\\\ 1 \\\\ -1 \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}"}
+  ]} />
+  <Prose html={"It is a line through the origin. The vector (1, −1, 1) used by the tool above describes the same line: just take t = −1."} />
+  <Prose html={"<b>What it is for.</b> The null space collects «what is left over» in a system: the vectors that can be added to a solution without changing it. That is why it explains why there are infinitely many solutions."} />
+  <IdGroup>
+    <DemoCard demo="la-nul-example" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"03 · Dimension"} title={"Dimension and the rank-nullity theorem"} lead={"The dimension measures the «size» of a set of vectors: in how many directions you can move inside it."}>
+  <Defs>
+    <DefItem title={"Dimension"} text={"Number of free letters (t, s, …) needed to write all the vectors of the set."} />
+    <DefItem title={"A point"} text={"Dimension 0: no letters, you cannot move."} />
+    <DefItem title={"A line"} text={"Dimension 1: one letter, <span class=\"mr\">X = t·v</span>."} />
+    <DefItem title={"A plane"} text={"Dimension 2: two letters, <span class=\"mr\">X = s·v + t·w</span>."} />
+    <DefItem title={"Rank-nullity theorem"} text={"<span class=\"mr\">dim Nul(A) = n − rank(A)</span>: the unknowns left free are the unknowns minus the useful equations."} demo={"la-rank-nullity"} more={"why"} />
+  </Defs>
+  <Steps items={[
+    {text: "Example with the A of the notes: n = 3 unknowns and rank 2 (the two rows are independent).", tex: "n = 3,\\quad r = 2"},
+    {text: "By the theorem, one unknown is left free.", tex: "\\dim\\operatorname{Nul}(A) = n - r = 3 - 2 = 1"},
+    {text: "It matches what we saw: Nul(A) = t(−1, 1, −1), a line, dimension 1.", tex: "\\operatorname{Nul}(A) = t\\,(-1,\\ 1,\\ -1)"}
+  ]} />
+  <Prose html={"If the rank equals the number of rows (m) and there are more columns than rows, then <span class=\"mr\">dim Nul(A) = n − m &gt; 0</span>: there are spare unknowns, the null space has free letters and the system has infinitely many solutions. <b>What it is for.</b> It tells you beforehand how many free directions the set of solutions has, without solving anything."} />
+  <IdGroup>
+    <DemoCard demo="la-dimension" />
+    <DemoCard demo="la-rank-nullity" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"04 · Right pseudoinverse"} title={"More unknowns than equations: R"} lead={"A pseudoinverse is a matrix that acts as an inverse on one side only, useful when A is not square and has no true inverse. For an m × n matrix A with real entries:"}>
+  <Defs>
+    <DefItem title={"On the right"} text={"<span class=\"mr\">AR = I<sub>m</sub></span>. It exists only if the rank is full by rows: <span class=\"mr\">rank(A) = m</span>."} />
+    <DefItem title={"Formula"} text={"<span class=\"mr\">R = Aᵗ(AAᵗ)⁻¹</span>. Its size is <span class=\"mr\">n × m</span>."} demo={"la-right-pseudo"} more={"where"} />
+    <DefItem title={"Particular solution X<sub>p</sub>"} text={"<span class=\"mr\">X<sub>p</sub> = Rb</span>: one concrete solution of AX = b."} demo={"la-particular"} more={"why"} />
+    <DefItem title={"Homogeneous solution X<sub>h</sub>"} text={"Any vector of the null space: <span class=\"mr\">A·X<sub>h</sub> = 0</span>. It is what is «left over» from a solution: <span class=\"mr\">X<sub>h</sub> = X − Rb</span>."} demo={"la-homogeneous"} more={"why"} />
+    <DefItem title={"All the solutions"} text={"<span class=\"mr\">X = X<sub>p</sub> + X<sub>h</sub> = Rb + Nul(A)</span>."} demo={"la-general-solution"} more={"why"} />
+  </Defs>
+  <Steps items={[
+    {text: "Worked example with the A of the notes and b = (3, 3). First AAᵗ, which is 2×2 and invertible because the rank is 2:", tex: "AA^t = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix},\\quad (AA^t)^{-1} = \\dfrac{1}{3}\\begin{pmatrix} 2 & -1 \\\\ -1 & 2 \\end{pmatrix}"},
+    {text: "The right pseudoinverse:", tex: "R = A^t(AA^t)^{-1} = \\dfrac{1}{3}\\begin{pmatrix} 2 & -1 \\\\ 1 & 1 \\\\ -1 & 2 \\end{pmatrix}"},
+    {text: "We check AR = I:", tex: "AR = \\dfrac{1}{3}\\begin{pmatrix} 3 & 0 \\\\ 0 & 3 \\end{pmatrix} = \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}"},
+    {text: "Particular solution: X<sub>p</sub> = Rb (sizes 3×2 times 2×1 = 3×1).", tex: "X_p = Rb = \\dfrac{1}{3}\\begin{pmatrix} 2 & -1 \\\\ 1 & 1 \\\\ -1 & 2 \\end{pmatrix}\\begin{pmatrix} 3 \\\\ 3 \\end{pmatrix} = \\begin{pmatrix} 1 \\\\ 2 \\\\ 1 \\end{pmatrix}"},
+    {text: "Any other solution, for example X = (0, 3, 0) (check that AX = (3, 3)). What is left over compared to X<sub>p</sub> lies in the null space:", tex: "X_h = X - Rb = (0, 3, 0) - (1, 2, 1) = (-1, 1, -1) \\in \\operatorname{Nul}(A)"},
+    {text: "All the solutions: the line through X<sub>p</sub> in the direction of the null space. With t = 0, 1, 2 we get (1, 2, 1), (0, 3, 0) and (−1, 4, −1).", tex: "X = (1, 2, 1) + t\\,(-1, 1, -1)"}
+  ]} />
+  <Prose html={"<b>What it is for.</b> It solves systems with more unknowns than equations and full rank, which always have a solution, and describes all of them with a single formula. It can also be proved that Rb is the shortest of all the solutions."} />
+  <IdGroup>
+    <DemoCard demo="la-aat-invertible" />
+    <DemoCard demo="la-right-pseudo" />
+    <DemoCard demo="la-particular" />
+    <DemoCard demo="la-homogeneous" />
+    <DemoCard demo="la-general-solution" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"05 · Left pseudoinverse"} title={"More equations than unknowns: L"} lead={"Now the full rank is by columns: the n columns of A are independent. It is the opposite case to the previous one."}>
+  <Defs>
+    <DefItem title={"On the left"} text={"<span class=\"mr\">LA = I<sub>n</sub></span>. It exists only if <span class=\"mr\">rank(A) = n</span>. We say that A is <i>injective</i> (one to one): two different vectors never give the same result."} />
+    <DefItem title={"Formula"} text={"<span class=\"mr\">L = (AᵗA)⁻¹Aᵗ</span>. Its size is <span class=\"mr\">n × m</span>."} demo={"la-left-pseudo"} more={"where"} />
+    <DefItem title={"Solution X = Lb"} text={"If the system has a solution, it is unique and equals Lb: the null space is <span class=\"mr\">Nul(A) = {0}</span>."} demo={"la-left-unique"} more={"why"} />
+    <DefItem title={"Col(A)"} text={"The column space (or image): all the vectors that can be formed by combining the columns of A."} />
+    <DefItem title={"When is Lb valid?"} text={"Only if <span class=\"mr\">b ∈ Col(A)</span>. Otherwise Lb solves nothing and the system has no solution."} demo={"la-left-colspace"} more={"why"} />
+  </Defs>
+  <Steps items={[
+    {text: "Worked example: A is 3×2 with independent columns (rank 2 = n).", tex: "A = \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\\\ 1 & 1 \\end{pmatrix},\\quad A^tA = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix},\\quad (A^tA)^{-1} = \\dfrac{1}{3}\\begin{pmatrix} 2 & -1 \\\\ -1 & 2 \\end{pmatrix}"},
+    {text: "The left pseudoinverse (size 2×3):", tex: "L = (A^tA)^{-1}A^t = \\dfrac{1}{3}\\begin{pmatrix} 2 & -1 & 1 \\\\ -1 & 2 & 1 \\end{pmatrix}"},
+    {text: "We check LA = I:", tex: "LA = \\dfrac{1}{3}\\begin{pmatrix} 3 & 0 \\\\ 0 & 3 \\end{pmatrix} = \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}"},
+    {text: "With b = (1, 2, 3), which is in Col(A) (3 = 1 + 2), we get the unique solution:", tex: "X = Lb = \\dfrac{1}{3}\\begin{pmatrix} 2 & -1 & 1 \\\\ -1 & 2 & 1 \\end{pmatrix}\\begin{pmatrix} 1 \\\\ 2 \\\\ 3 \\end{pmatrix} = \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix}"},
+    {text: "With b′ = (1, 2, 0), which is NOT in Col(A), Lb′ = (0, 1) is not a solution: A(Lb′) = (0, 1, 1) ≠ b′.", tex: "A(Lb') = \\begin{pmatrix} 0 \\\\ 1 \\\\ 1 \\end{pmatrix} \\neq \\begin{pmatrix} 1 \\\\ 2 \\\\ 0 \\end{pmatrix} = b'"}
+  ]} />
+  <Prose html={"<b>What it is for.</b> With more equations than unknowns (for example, many measurements for few parameters), L finds the only candidate solution, and the check A(Lb) = b tells whether it really is one. When it is not, the next step is least squares."} />
+  <IdGroup>
+    <DemoCard demo="la-left-pseudo" />
+    <DemoCard demo="la-left-unique" />
+    <DemoCard demo="la-left-colspace" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"06 · Summary"} title={"The four cases"} lead={"Depending on the rank of A, the system AX = b falls into one of these cases. Click the ones with a proof."}>
+  <Defs>
+    <DefItem title={"Left · LA = I"} text={"<span class=\"mr\">rank(A) = n</span> (full columns, A injective). Solution <span class=\"mr\">X = Lb</span>, unique, and only if b is in Col(A): at most one solution."} demo={"la-left-unique"} more={"why"} />
+    <DefItem title={"Right · AR = I"} text={"<span class=\"mr\">rank(A) = m</span> (full rows, A surjective). Solution <span class=\"mr\">X = Rb + Nul(A)</span>: there is always at least one, and infinitely many if there are more columns than rows."} demo={"la-general-solution"} more={"why"} />
+    <DefItem title={"Both · L = R = A⁻¹"} text={"A square and regular (<span class=\"mr\">rank(A) = m = n</span>). Solution <span class=\"mr\">X = A⁻¹b</span>, unique and always exists."} demo={"la-both-cases"} more={"why"} />
+    <DefItem title={"Neither · A⁺"} text={"The rank is below both m and n. We look for the solution that minimises the error ‖AX − b‖ (least squares, with the Moore-Penrose pseudoinverse A⁺). It is outside these notes."} />
+  </Defs>
+  <IdGroup>
+    <DemoCard demo="la-both-cases" />
+  </IdGroup>
+  <Prose html={"<b>What it is for.</b> It is the map so you do not get lost: compute the rank of A, check whether it equals m, n or both, and that tells you which formula to use and how many solutions to expect."} />
+</Section>
+
+<Section eyebrow={"07 · Applications"} title={"What is the pseudoinverse for?"}>
+  <Uses items={[["Fitting data", "Many measurements and few parameters: more equations than unknowns. It is the case of L, and the step before least squares."], ["Robotics", "An arm with more joints than coordinates to reach has infinitely many solutions; Rb picks one (the one with the least movement)."], ["Networks and flows", "Distributing a flow among many paths: there is a particular solution plus a family of adjustments that do not change the total (the null space)."], ["Compression and signals", "Reconstructing a signal with fewer data than values: there are infinitely many possibilities and one is chosen with the pseudoinverse."], ["Knowing whether a system is consistent", "Checking whether b is in Col(A) answers the question «does it have a solution?» without solving the whole system."]]} />
+</Section>

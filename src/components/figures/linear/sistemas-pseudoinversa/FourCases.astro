@@ -1,0 +1,27 @@
+---
+import { contentLang } from "../../../../i18n";
+
+const es = contentLang(Astro) === "es";
+const rg = es ? "rg" : "rank";
+const cases = [
+  { x: 10, w: 90, h: 50, color: "var(--b)", name: es ? "Derecha" : "Right", rule: "AR = I", sol: "X = Rb + Nul(A)", cond: `${rg} = m` },
+  { x: 140, w: 50, h: 90, color: "var(--a)", name: es ? "Izquierda" : "Left", rule: "LA = I", sol: "X = Lb", cond: `${rg} = n` },
+  { x: 250, w: 70, h: 70, color: "var(--g)", name: es ? "Ambos" : "Both", rule: "L = R = A⁻¹", sol: "X = A⁻¹b", cond: `${rg} = m = n` },
+  { x: 380, w: 90, h: 50, color: "var(--muted)", name: es ? "Ninguno" : "Neither", rule: "A⁺", sol: es ? "mín. cuadrados" : "least squares", cond: `${rg} < min(m, n)` },
+];
+---
+
+<svg class="mfig wide" viewBox="0 0 480 190" fill="var(--fg)" aria-hidden="true">
+  {
+    cases.map((c) => (
+      <>
+        <rect x={c.x + (100 - c.w) / 2} y={20 + (90 - c.h) / 2} width={c.w} height={c.h} rx="4" fill={c.color} fill-opacity="0.2" stroke={c.color} stroke-width="1.5" />
+        <text x={c.x + 50} y={20 + 45 + 5} text-anchor="middle" font-size="16" font-style="italic" fill={c.color}>A</text>
+        <text x={c.x + 50} y="132" text-anchor="middle" font-size="14" fill={c.color}>{c.name}</text>
+        <text x={c.x + 50} y="150" text-anchor="middle" font-size="12" fill="var(--muted)">{c.cond}</text>
+        <text x={c.x + 50} y="168" text-anchor="middle" font-size="12">{c.rule}</text>
+        <text x={c.x + 50} y="184" text-anchor="middle" font-size="11" fill="var(--muted)">{c.sol}</text>
+      </>
+    ))
+  }
+</svg>

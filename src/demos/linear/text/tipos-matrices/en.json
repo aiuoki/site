@@ -1,0 +1,149 @@
+{
+  "la-transp-twice": {
+    "title": "Transposing twice: (Aᵗ)ᵗ = A",
+    "summary": "Swapping rows and columns twice gives back the original matrix.",
+    "steps": [
+      "The transpose Aᵗ is formed by swapping rows and columns: the entry in row j and column i of Aᵗ is a_ji. If A has m rows and n columns, Aᵗ has n rows and m columns. This also holds for rectangular matrices.",
+      "Example: A has 2 rows and 3 columns. Its first row (1, 2, 3) becomes the first column of Aᵗ, and its second row (4, 5, 6) becomes the second column. In the drawing, each colour follows a row of A to its column in Aᵗ.",
+      "Now transpose Aᵗ. Its entry in row i, column j is the entry of Aᵗ in row j, column i, which in turn is a_ij. In other words, the two swaps of indices cancel each other.",
+      "Both matrices have the same size (m × n) and the same entry in every position, so they are equal: (Aᵗ)ᵗ = A."
+    ],
+    "use": "This is the rule that lets you simplify any expression with transposes: two transpositions in a row disappear. It also shows that transposing is reversible: no information is ever lost."
+  },
+  "la-transp-prod": {
+    "title": "Transpose of a product: (AB)ᵗ = BᵗAᵗ",
+    "summary": "Transposing a product transposes each factor and reverses their order.",
+    "steps": [
+      "To multiply, the columns of A must match the rows of B: A is n × p and B is p × m. The product AB is n × m, so (AB)ᵗ is m × n.",
+      "Bᵗ is m × p and Aᵗ is p × n: now the columns of Bᵗ (p) match the rows of Aᵗ (p), so BᵗAᵗ can be computed and is m × n. It has the same size as (AB)ᵗ; in the order AᵗBᵗ the product would not even be defined in general. In the drawing, the size p that cancels out is in green.",
+      "Entry (i, j) of (AB)ᵗ is entry (j, i) of AB: row j of A times column i of B, that is, the sum of the products a_jk · b_ki.",
+      "Entry (i, j) of BᵗAᵗ is row i of Bᵗ times column j of Aᵗ. Row i of Bᵗ is column i of B (entries b_ki) and column j of Aᵗ is row j of A (entries a_jk).",
+      "The two sums are equal term by term (multiplication of real numbers is commutative), so (AB)ᵗ = BᵗAᵗ.",
+      "Numerical check with rectangular matrices: AB = ((5, 2), (5, 7)), so (AB)ᵗ = ((5, 5), (2, 7)). Computing BᵗAᵗ separately gives exactly the same matrix."
+    ],
+    "use": "You use it whenever a transpose sits in front of a product: it is the key to proving that AAᵗ is symmetric, that the inverse of a symmetric matrix is symmetric, and many more properties. The order reversal is the same as when you put on socks and shoes and then take them off."
+  },
+  "la-sym-gram": {
+    "title": "AAᵗ and AᵗA are always symmetric",
+    "summary": "Multiplying a matrix by its transpose, in either order, gives a symmetric matrix.",
+    "steps": [
+      "If A is m × n (it need not be square), AAᵗ is m × m and AᵗA is n × n. Both are square, and only square matrices can be symmetric.",
+      "Transpose AAᵗ with the product rule, (XY)ᵗ = YᵗXᵗ, taking X = A and Y = Aᵗ. The order is reversed and we get (Aᵗ)ᵗ Aᵗ.",
+      "Since (Aᵗ)ᵗ = A, the result is AAᵗ. The matrix equals its transpose: it is symmetric.",
+      "The same happens with AᵗA: (AᵗA)ᵗ = Aᵗ(Aᵗ)ᵗ = AᵗA.",
+      "Example with a 2 × 3 matrix A. AAᵗ is 2 × 2 and its entry (i, j) is row i of A times row j of A; that is why it equals entry (j, i). AᵗA is 3 × 3 and its entries are products of columns of A. In both cases the entries that mirror each other across the diagonal (same colour in the drawing) are equal."
+    ],
+    "use": "It is the quickest way to build symmetric matrices from any matrix, which is why they appear all the time: in least squares (AᵗA), in statistics (covariance matrices) and in the pseudoinverse."
+  },
+  "la-sym-inv": {
+    "title": "The inverse of a symmetric matrix is symmetric",
+    "summary": "If A = Aᵗ and A has an inverse, then A⁻¹ is symmetric too.",
+    "steps": [
+      "We start from A being invertible, that is, there is an A⁻¹ with A⁻¹A = I. Transpose that equality with the product rule: (A⁻¹A)ᵗ = Aᵗ(A⁻¹)ᵗ.",
+      "The transpose of the identity is the identity itself (I is symmetric). Therefore Aᵗ(A⁻¹)ᵗ = I.",
+      "Since A is symmetric, Aᵗ = A. Substituting gives A(A⁻¹)ᵗ = I.",
+      "Multiply on the left by A⁻¹ on both sides: A⁻¹A(A⁻¹)ᵗ = A⁻¹I. On the left A⁻¹A = I, and on the right A⁻¹I = A⁻¹. Result: (A⁻¹)ᵗ = A⁻¹.",
+      "Example: A = ((2, 1), (1, 1)) is symmetric and its inverse is ((1, −1), (−1, 2)). Multiplying checks that AA⁻¹ = I, and the inverse is symmetric too: the two −1 entries match."
+    ],
+    "use": "It lets you solve systems with symmetric matrices knowing the inverse keeps that structure, which saves memory and work in numerical methods."
+  },
+  "la-sym-prod": {
+    "title": "The product of symmetric matrices is symmetric only if AB = BA",
+    "summary": "Two symmetric matrices do not always give a symmetric product: it depends on whether they commute.",
+    "steps": [
+      "Apply the rule for the transpose of a product: (AB)ᵗ = BᵗAᵗ.",
+      "Since A and B are symmetric, Bᵗ = B and Aᵗ = A. Then (AB)ᵗ = BA.",
+      "AB is symmetric when (AB)ᵗ = AB. Using the previous step, that is equivalent to BA = AB: the product is symmetric exactly when A and B commute (they can be multiplied in either order).",
+      "Counterexample: A and B are symmetric, but AB = ((0, 1), (2, 0)) is not (a 1 against a 2) and BA = ((0, 2), (1, 0)) is different from AB. In the drawing, the red cells should be equal and are not.",
+      "An example where it does work: with these A and B we get AB = BA = ((11, 10), (10, 11)), which is symmetric."
+    ],
+    "use": "It warns about a very common mistake: you cannot assume that the product of symmetric matrices is symmetric. It is symmetric in important cases, such as powers of the same matrix (A · A = A²) or two diagonal matrices."
+  },
+  "la-sum-types": {
+    "title": "Sum of symmetric and sum of antisymmetric matrices",
+    "summary": "Adding two symmetric matrices gives a symmetric one; adding two antisymmetric matrices gives an antisymmetric one.",
+    "steps": [
+      "The transpose of a sum is the sum of the transposes: entry (i, j) of (A + B)ᵗ is entry (j, i) of A + B, that is, a_ji + b_ji, which is entry (i, j) of Aᵗ + Bᵗ.",
+      "If A and B are symmetric (Aᵗ = A and Bᵗ = B), then (A + B)ᵗ = A + B: the sum is symmetric.",
+      "If A and B are antisymmetric (Aᵗ = −A and Bᵗ = −B), then (A + B)ᵗ = −A − B = −(A + B): the sum is antisymmetric.",
+      "Example with symmetric matrices: the entries that mirror each other across the diagonal (2 and 2, 5 and 5) are added to each other and give 7 and 7.",
+      "Example with antisymmetric matrices: the diagonal is still 0 and the opposite entries 1 and −1, 2 and −2 give 3 and −3."
+    ],
+    "use": "It means the symmetric matrices form a set closed under addition (and under multiplication by a number), and so do the antisymmetric ones. You can add and combine them without losing the structure."
+  },
+  "la-anti-diag": {
+    "title": "An antisymmetric matrix has a diagonal of zeros",
+    "summary": "If Aᵗ = −A, then A is square and all its entries a_ii are 0.",
+    "steps": [
+      "Aᵗ = −A means, entry by entry, that a_ji = −a_ij for all i and j: entries that mirror each other across the diagonal are equal in size but of opposite sign.",
+      "If A is m × n, Aᵗ is n × m. For Aᵗ = −A to hold they must have the same size, so m = n. An antisymmetric matrix is always square (the notes say \"not always square\", but the condition forces it).",
+      "On the diagonal i = j, the relation of the first step says a_ii = −a_ii: each entry equals its own opposite.",
+      "Moving the term to the other side, 2a_ii = 0 and, since 2 ≠ 0, a_ii = 0.",
+      "Example: in the drawing, the diagonal (pink) is 0 and each entry has its opposite across from it in the same colour: 1 and −1, 2 and −2, 3 and −3."
+    ],
+    "use": "It lets you recognise an antisymmetric matrix at a glance: a diagonal of zeros and mirrored opposite entries. You only need the entries above the diagonal, because the rest follow from them."
+  },
+  "la-anti-odd": {
+    "title": "Antisymmetric of odd order: determinant 0",
+    "summary": "An n × n antisymmetric matrix with n odd never has an inverse.",
+    "steps": [
+      "The determinant does not change when transposing: det(Aᵗ) = det(A). (A well-known property of determinants.)",
+      "Multiplying the whole matrix by −1 takes a factor −1 out of each of the n rows: det(−A) = (−1)ⁿ det(A).",
+      "Since Aᵗ = −A, the two determinants above are equal: det(A) = det(Aᵗ) = det(−A) = (−1)ⁿ det(A).",
+      "If n is odd (n = 2k + 1), (−1)ⁿ = −1 and we get det(A) = −det(A).",
+      "Then 2 det(A) = 0 and det(A) = 0. A square matrix has an inverse only if its determinant is not 0, so this one has none.",
+      "Example: expanding the 3 × 3 antisymmetric matrix of the drawing along the first row gives 0 · 9 − 1 · 6 + 2 · 3 = 0 − 6 + 6 = 0."
+    ],
+    "use": "A very useful shortcut: an antisymmetric 3 × 3, 5 × 5, etc. is singular without computing anything. With even order it can have an inverse; for example ((0, 1), (−1, 0)) has determinant 1."
+  },
+  "la-anti-square": {
+    "title": "The square of an antisymmetric matrix is symmetric",
+    "summary": "If Aᵗ = −A, then A² is symmetric (and the powers alternate: symmetric, antisymmetric...).",
+    "steps": [
+      "Transpose A² = AA with the product rule: (AA)ᵗ = AᵗAᵗ.",
+      "Since Aᵗ = −A, we get (−A)(−A). The two minus signs cancel and the result is A². So (A²)ᵗ = A²: it is symmetric.",
+      "Example with the 3 × 3 antisymmetric matrix: although A has zeros on its diagonal, A² has −5, −10 and −13, and the mirrored entries (−6 and −6, 3 and 3, −2 and −2) coincide.",
+      "More generally, (Aᵏ)ᵗ = (Aᵗ)ᵏ = (−A)ᵏ = (−1)ᵏAᵏ. Even powers are symmetric and odd powers are antisymmetric."
+    ],
+    "use": "It shows that \"antisymmetric\" is not preserved by multiplication: only odd powers are. It appears, for example, in the cross product and in infinitesimal rotations in physics."
+  },
+  "la-tri-prod": {
+    "title": "Product of upper triangular matrices",
+    "summary": "The product of two upper triangular matrices is upper triangular and its diagonal is the product of the diagonals.",
+    "steps": [
+      "Upper triangular means everything below the diagonal is 0: a_ik = 0 if i > k, and b_kj = 0 if k > j.",
+      "Entry (i, j) of C = AB is row i of A times column j of B: c_ij is the sum of the products a_ik · b_kj, with k from 1 to n.",
+      "Take an entry of C below the diagonal (i > j) and look at each term. If k < i, then a_ik = 0. If k ≥ i, since i > j we have k > j and then b_kj = 0. Every term has a zero factor.",
+      "Therefore c_ij = 0 for i > j: AB has zeros below the diagonal, so it is upper triangular.",
+      "On the diagonal (i = j), the term a_ik · b_ki can only be non-zero if k ≥ i (because of A) and k ≤ i (because of B), that is, for k = i. So c_ii = a_ii · b_ii.",
+      "Example: the diagonals 1, 4, 6 and 2, 3, 5 give 1·2 = 2, 4·3 = 12 and 6·5 = 30, exactly the diagonal of the product. The zeros stay below.",
+      "For lower triangular matrices use the transpose: Aᵗ and Bᵗ are upper, so (AB)ᵗ = BᵗAᵗ is upper and, therefore, AB is lower."
+    ],
+    "use": "It lets you compute powers and determinants of triangular matrices with no effort: the diagonal of Aⁿ is the diagonal of A raised to the n."
+  },
+  "la-tri-inv": {
+    "title": "The inverse of an upper triangular matrix is upper triangular",
+    "summary": "An upper triangular matrix that has an inverse has an inverse that is still upper triangular.",
+    "steps": [
+      "Column j of A⁻¹, which we call x, satisfies A·x = e_j, where e_j is column j of the identity (a 1 in position j and zeros elsewhere). This comes from AA⁻¹ = I read column by column.",
+      "Since A is upper triangular, its last equation has a single unknown: a_nn · x_n = (e_j)_n. Moreover a_nn ≠ 0, because the determinant is the product of the diagonal and A has an inverse.",
+      "If j < n, the right-hand side is 0 and x_n = 0. Going up the equations: the previous one is a_(n−1,n−1)·x_(n−1) + a_(n−1,n)·x_n = 0 and, with x_n = 0, we get x_(n−1) = 0. Keep going in the same way until x_(j+1) = 0.",
+      "So the entries of column j of A⁻¹ below the diagonal (row i > j) are 0: the inverse is upper triangular.",
+      "Example: A⁻¹ = ((1, −2, 5), (0, 1, −4), (0, 0, 1)) multiplied by A gives the identity. The zeros below the diagonal stay in the inverse."
+    ],
+    "use": "Inverting a triangular matrix is much cheaper than a general one: back substitution is enough. It is the basis of how systems are solved in practice, after reducing them to triangular form. For lower triangular matrices the same argument works with the transpose."
+  },
+  "la-split": {
+    "title": "Every square matrix = symmetric + antisymmetric",
+    "summary": "Any square matrix can be written in exactly one way as the sum of a symmetric and an antisymmetric matrix.",
+    "steps": [
+      "Call S = (A + Aᵗ)/2. Its transpose is (Aᵗ + (Aᵗ)ᵗ)/2 = (Aᵗ + A)/2 = S, so S is symmetric.",
+      "Call K = (A − Aᵗ)/2. Its transpose is (Aᵗ − A)/2, which is the opposite of K, so K is antisymmetric.",
+      "Adding them, the Aᵗ terms cancel: S + K = (2A)/2 = A. This proves the decomposition.",
+      "Example with A = ((1, 4), (2, 3)): A + Aᵗ = ((2, 6), (6, 6)) and A − Aᵗ = ((0, 2), (−2, 0)).",
+      "Dividing by 2: S = ((1, 3), (3, 3)) and K = ((0, 1), (−1, 0)). In the drawing, the 4 and the 2 of A are shared out: their average 3 goes to S and half their difference (±1) goes to K. S + K gives A again.",
+      "The decomposition is unique: if A = S' + K' with S' symmetric and K' antisymmetric, transposing gives Aᵗ = S' − K'. Adding and subtracting with A produces exactly the formulas for S and K."
+    ],
+    "use": "It lets you study any matrix by separating its \"mirror\" part (symmetric) from its \"twist\" part (antisymmetric). It is used, for example, in solid mechanics, where strain is the symmetric part and rotation the antisymmetric one."
+  }
+}

@@ -1,0 +1,17 @@
+---
+import { contentLang } from "../../../../i18n";
+import MGrid from "./MGrid.astro";
+
+const es = contentLang(Astro) === "es";
+const rg = es ? "rg" : "rank";
+---
+
+<svg class="mfig wide" viewBox="0 0 480 160" fill="var(--fg)" aria-hidden="true">
+  <MGrid x={30} y={26} cells={[["1", "0", "0"], ["0", "1", "0"], ["0", "0", "1"]]} fills={{ "0,0": "var(--a)", "1,1": "var(--a)", "2,2": "var(--a)" }} dimZeros />
+  <text x="82" y="124" text-anchor="middle" font-size="14" fill="var(--b)">{`${rg} = n`}</text>
+  <text x="82" y="144" text-anchor="middle" font-size="13" fill="var(--b)">{es ? "se llega a I: existe A⁻¹" : "you reach I: A⁻¹ exists"}</text>
+  <line x1="240" y1="20" x2="240" y2="148" stroke="var(--line)" stroke-width="1.5" />
+  <MGrid x={290} y={26} cells={[["1", "∗", "∗"], ["0", "1", "∗"], ["0", "0", "0"]]} fills={{ "0,0": "var(--a)", "1,1": "var(--a)", r2: "var(--sec)" }} />
+  <text x="342" y="124" text-anchor="middle" font-size="14" fill="var(--sec)">{`${rg} < n`}</text>
+  <text x="342" y="144" text-anchor="middle" font-size="13" fill="var(--sec)">{es ? "fila de ceros: no existe A⁻¹" : "zero row: no A⁻¹"}</text>
+</svg>

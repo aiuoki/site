@@ -1,0 +1,129 @@
+---
+title: "Rango e inversa"
+eyebrow: "Guía interactiva · álgebra lineal"
+intro: "Operaciones elementales, forma escalonada, rango e inversa de una matriz con el método de Gauss-Jordan. Cada propiedad tiene su demostración paso a paso: pulsa cualquier tarjeta para verla."
+description: "Operaciones elementales, forma escalonada, rango e inversa de una matriz con Gauss-Jordan, con ejemplos resueltos y demostraciones paso a paso."
+---
+
+<Section eyebrow={"01 · Operaciones elementales"} title={"Operaciones elementales por filas"} lead={"Para estudiar una matriz (resolverla, medirla, invertirla) se le hacen operaciones por filas que no cambian lo esencial. Hay tres, y cada una se puede deshacer."}>
+  <Defs>
+    <DefItem title={"Intercambiar dos filas"} text={"<span class=\"mr\">F<sub>i</sub> ↔ F<sub>j</sub></span>. Cambia el orden de las filas, sin tocar sus números."} />
+    <DefItem title={"Multiplicar una fila por k ≠ 0"} text={"<span class=\"mr\">F<sub>i</sub> ← k·F<sub>i</sub></span>. Todos los elementos de la fila se multiplican por <i>k</i>. Con k = 0 se destruiría la fila, por eso no se permite."} />
+    <DefItem title={"Sumar a una fila un múltiplo de otra"} text={"<span class=\"mr\">F<sub>i</sub> ← F<sub>i</sub> + k·F<sub>j</sub></span>. A cada elemento de la fila <i>i</i> se le suma <i>k</i> veces el de la fila <i>j</i>. Es la operación que hace ceros."} />
+    <DefItem title={"Matriz elemental E"} text={"La identidad a la que se le ha hecho UNA operación elemental. Multiplicar <span class=\"mr\">EA</span> hace esa operación sobre <i>A</i>."} demo={"la-elem-matrix"} more={"open"} />
+    <DefItem title={"Todas se deshacen"} text={"Cada operación se anula con otra del mismo tipo, así que toda matriz elemental tiene inversa."} demo={"la-elem-inverse"} more={"why"} />
+  </Defs>
+  <Steps items={[
+    {text: "Ejemplo resuelto. Queremos un 0 debajo del 1 de la primera columna de A. Hacemos F₂ ← F₂ − 3·F₁: a la fila 2 le restamos 3 veces la fila 1.", tex: "A = \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}"},
+    {text: "Calculamos la fila nueva: (3, 4) − 3·(1, 2) = (0, −2).", tex: "\\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix} \\sim \\begin{pmatrix} 1 & 2 \\\\ 0 & -2 \\end{pmatrix}"},
+    {text: "La misma operación hecha con la matriz elemental E (la identidad con esa operación ya hecha):", tex: "E A = \\begin{pmatrix} 1 & 0 \\\\ -3 & 1 \\end{pmatrix}\\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix} = \\begin{pmatrix} 1 & 2 \\\\ 0 & -2 \\end{pmatrix}"},
+    {text: "Para intercambiar F₁ ↔ F₂ se usa la identidad con las filas intercambiadas:", tex: "\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}\\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix} = \\begin{pmatrix} 3 & 4 \\\\ 1 & 2 \\end{pmatrix}"}
+  ]} />
+  <Prose html={"<b>Para qué sirve.</b> Son las únicas jugadas permitidas del método de Gauss. Como cada una equivale a multiplicar por una matriz, una cadena de operaciones es un producto de matrices, y eso permite demostrar cosas sobre rango e inversas."} />
+  <IdGroup>
+    <DemoCard demo="la-elem-matrix" />
+    <DemoCard demo="la-elem-inverse" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"02 · Equivalencia por filas"} title={"Matrices equivalentes por filas"} lead={"Dos matrices del mismo tamaño son equivalentes por filas cuando una sale de la otra con operaciones elementales. Se escribe A ~ B."}>
+  <Defs>
+    <DefItem title={"A ~ B"} text={"Existe una matriz <span class=\"mr\">F ∈ M<sub>m</sub>(K)</span>, producto de matrices elementales, con <span class=\"mr\">B = FA</span>. Si se opera por columnas, <span class=\"mr\">B = AC</span> con <span class=\"mr\">C ∈ M<sub>n</sub>(K)</span>."} />
+    <DefItem title={"[ I<sub>m</sub> | A ] ~ [ P | B ]"} text={"Si a <span class=\"mr\">[I | A]</span> se le hacen las mismas operaciones que llevan A a B, a la izquierda queda <i>P</i> y se cumple <span class=\"mr\">B = PA</span>. P guarda anotado todo lo que se hizo."} demo={"la-equiv-rows"} more={"why"} />
+  </Defs>
+  <Steps items={[
+    {text: "Ejemplo resuelto con A = (1 2; 3 4). Escribimos [I | A].", tex: "\\left(\\begin{array}{cc|cc} 1 & 0 & 1 & 2 \\\\ 0 & 1 & 3 & 4 \\end{array}\\right)"},
+    {text: "Hacemos F₂ ← F₂ − 3·F₁ y después F₁ ← F₁ + F₂.", tex: "\\left(\\begin{array}{cc|cc} 1 & 0 & 1 & 2 \\\\ -3 & 1 & 0 & -2 \\end{array}\\right) \\sim \\left(\\begin{array}{cc|cc} -2 & 1 & 1 & 0 \\\\ -3 & 1 & 0 & -2 \\end{array}\\right)"},
+    {text: "A la izquierda queda P y a la derecha B. Comprobamos que B = PA:", tex: "PA = \\begin{pmatrix} -2 & 1 \\\\ -3 & 1 \\end{pmatrix}\\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix} = \\begin{pmatrix} 1 & 0 \\\\ 0 & -2 \\end{pmatrix} = B"}
+  ]} />
+  <Prose html={"<b>Nota.</b> En los apuntes a esto se le llama «semejanza», pero el nombre habitual es <b>equivalencia por filas</b>: en álgebra lineal, «semejantes» significa otra cosa (<span class=\"mr\">B = P⁻¹AP</span>). <b>Para qué sirve.</b> P resume todas las operaciones en una sola matriz: es la base para calcular inversas y para entender el rango."} />
+  <IdGroup>
+    <DemoCard demo="la-equiv-rows" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"03 · Forma escalonada"} title={"Matriz escalonada y forma reducida"} lead={"Escalonar es usar operaciones por filas para que la matriz tenga forma de escalera. Así se ve de un vistazo cuántas filas «de verdad» tiene."}>
+  <Defs>
+    <DefItem title={"Matriz escalonada"} text={"Cumple dos condiciones: (1) todas las filas de ceros están en la parte inferior; (2) el primer elemento distinto de cero de cada fila está a la derecha del primer elemento distinto de cero de la fila anterior."} />
+    <DefItem title={"Pivote"} text={"El primer elemento distinto de cero de una fila de la matriz escalonada."} />
+    <DefItem title={"Dado A existe P con PA = E"} text={"Siempre se puede llegar a una escalonada <i>E</i> con operaciones elementales: <span class=\"mr\">PA = E</span>, y P se obtiene con <span class=\"mr\">[I | A] ~ [P | E]</span>."} />
+    <DefItem title={"Forma reducida"} text={"La escalonada con todos los pivotes iguales a 1 y ceros también encima de cada pivote. Con los pivotes en las primeras columnas queda <span class=\"mr\">[I X; 0 0]</span> o <span class=\"mr\">[I X]</span>; el tamaño de <i>I</i> es el rango."} />
+  </Defs>
+  <Steps items={[
+    {text: "Ejemplo resuelto. El primer elemento de A es 0, así que no sirve de pivote.", tex: "A = \\begin{pmatrix} 0 & 1 & 2 \\\\ 1 & 1 & 1 \\\\ 2 & 3 & 4 \\end{pmatrix}"},
+    {text: "Intercambiamos F₁ ↔ F₂ para tener un 1 arriba a la izquierda.", tex: "\\begin{pmatrix} 1 & 1 & 1 \\\\ 0 & 1 & 2 \\\\ 2 & 3 & 4 \\end{pmatrix}"},
+    {text: "Hacemos ceros bajo el primer pivote: F₃ ← F₃ − 2·F₁ deja la fila (0, 1, 2).", tex: "\\begin{pmatrix} 1 & 1 & 1 \\\\ 0 & 1 & 2 \\\\ 0 & 1 & 2 \\end{pmatrix}"},
+    {text: "F₃ ← F₃ − F₂ anula la fila 3. Ya es escalonada: dos pivotes (1 y 1).", tex: "\\begin{pmatrix} 1 & 1 & 1 \\\\ 0 & 1 & 2 \\\\ 0 & 0 & 0 \\end{pmatrix}"},
+    {text: "Para la forma reducida ponemos un 0 encima del segundo pivote: F₁ ← F₁ − F₂.", tex: "\\left(\\begin{array}{cc|c} 1 & 0 & -1 \\\\ 0 & 1 & 2 \\\\ 0 & 0 & 0 \\end{array}\\right)"},
+    {text: "A la izquierda de la barra queda la identidad 2×2 (más una fila de ceros): el rango es 2.", tex: "\\begin{pmatrix} I_2 & X \\\\ 0 & 0 \\end{pmatrix}, \\quad X = \\begin{pmatrix} -1 \\\\ 2 \\end{pmatrix}"}
+  ]} />
+  <Warn title={"Cuidado con la posición de los pivotes"} text={"Solo con operaciones por filas, a veces los pivotes no caen en las primeras columnas. Por ejemplo, (1 2 0; 0 0 1) tiene pivotes en las columnas 1 y 3: la identidad queda «repartida» y haría falta además intercambiar columnas para ver <span class=\"mr\">[I X]</span>. El número de pivotes sigue siendo el rango."} />
+  <Prose html={"<b>Para qué sirve.</b> La forma escalonada convierte una matriz complicada en otra con la misma información pero fácil de leer: rango, soluciones de un sistema, inversa."} />
+</Section>
+
+<Section eyebrow={"04 · Rango"} title={"Rango de una matriz"} lead={"El rango cuenta cuántas filas «independientes» tiene una matriz: cuántas sobreviven cuando se escalona. Una fila que es combinación de otras no aporta nada nuevo."}>
+  <Defs>
+    <DefItem title={"Rango rg(A)"} text={"Número de filas distintas de cero de una matriz escalonada equivalente por filas a A. Es lo mismo que el número de pivotes."} />
+    <DefItem title={"rg(A) = rg(Aᵗ)"} text={"Contar por filas o por columnas da el mismo número."} />
+    <DefItem title={"Límite: rg(A) ≤ mín(m, n)"} text={"Hay a lo sumo un pivote por fila y por columna. En una matriz 4×5, el rango es como mucho 4."} />
+    <DefItem title={"Rango completo"} text={"Cuando el rango alcanza el máximo posible: <span class=\"mr\">rg(A) = mín(m, n)</span>."} />
+  </Defs>
+  <Prose html={"Para calcular el rango hay cuatro caminos. Los dos primeros usan el <b>determinante</b>, un número que se calcula de una matriz cuadrada: en una 2×2, <span class=\"mr\">det = ad − bc</span> (diagonal principal menos la otra); en una 3×3 se usa la <b>regla de Sarrus</b>: <span class=\"mr\">det = aei + bfg + cdh − ceg − bdi − afh</span>, donde las letras son los elementos fila a fila. Un <b>menor</b> 2×2 es el determinante de una submatriz 2×2 (se eligen dos filas y dos columnas)."} />
+  <Defs>
+    <DefItem title={"2 × 2"} text={"<span class=\"mr\">det ≠ 0</span> → rango 2. <span class=\"mr\">det = 0</span> → rango 1 (o 0 si todos los elementos son 0)."} demo={"la-rank-2x2"} more={"why"} />
+    <DefItem title={"3 × 3"} text={"Con Sarrus: <span class=\"mr\">det ≠ 0</span> → rango 3. Si <span class=\"mr\">det = 0</span>, se busca un menor 2×2 distinto de 0: si lo hay, rango 2; si todos valen 0, rango 1 (o 0 si la matriz es nula)."} demo={"la-rank-3x3"} more={"open"} />
+    <DefItem title={"Gauss"} text={"Se escalona y se cuentan las filas no nulas. Conviene cuando la matriz es 4×4 o mayor, cuando no es cuadrada o cuando tiene muchos ceros."} />
+    <DefItem title={"Triangular"} text={"El determinante es el producto de la diagonal. Si no hay ceros en la diagonal, el rango es completo (n)."} demo={"la-rank-triangular"} more={"why"} />
+  </Defs>
+  <Steps items={[
+    {text: "Ejemplo resuelto con Gauss en una matriz no cuadrada, 3×4:", tex: "A = \\begin{pmatrix} 1 & 2 & 1 & 3 \\\\ 2 & 4 & 0 & 2 \\\\ 3 & 6 & 1 & 5 \\end{pmatrix}"},
+    {text: "F₂ ← F₂ − 2·F₁ y F₃ ← F₃ − 3·F₁ hacen ceros bajo el primer pivote.", tex: "\\begin{pmatrix} 1 & 2 & 1 & 3 \\\\ 0 & 0 & -2 & -4 \\\\ 0 & 0 & -2 & -4 \\end{pmatrix}"},
+    {text: "La columna 2 ya no tiene pivote posible. El segundo pivote está en la columna 3: F₃ ← F₃ − F₂.", tex: "\\begin{pmatrix} 1 & 2 & 1 & 3 \\\\ 0 & 0 & -2 & -4 \\\\ 0 & 0 & 0 & 0 \\end{pmatrix}"},
+    {text: "Hay dos filas distintas de cero: el rango es 2, menor que el máximo posible, mín(3, 4) = 3.", tex: "r = 2 < \\min(3,\\,4)"}
+  ]} />
+  <Prose html={"<b>Para qué sirve.</b> El rango mide cuánta información independiente hay en una matriz. Dice si un sistema tiene solución única, si una matriz cuadrada tiene inversa (rango n) y cuántas incógnitas quedan libres."} />
+  <IdGroup>
+    <DemoCard demo="la-rank-2x2" />
+    <DemoCard demo="la-rank-3x3" />
+    <DemoCard demo="la-rank-triangular" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"05 · Inversa"} title={"Inversa de una matriz"} lead={"La inversa de una matriz es la que la «deshace», igual que dividir deshace multiplicar. Solo puede existir si la matriz es cuadrada."}>
+  <Defs>
+    <DefItem title={"Inversa A⁻¹"} text={"Para <span class=\"mr\">A ∈ M<sub>n</sub>(ℝ o ℂ)</span>, la matriz <i>B</i> de M<sub>n</sub> con <span class=\"mr\">AB = BA = I<sub>n</sub></span>. Se escribe <span class=\"mr\">A⁻¹</span>."} />
+    <DefItem title={"Regular y singular"} text={"Una matriz con inversa se llama <i>regular</i>; sin inversa, <i>singular</i>."} />
+    <DefItem title={"¿Cuándo existe?"} text={"Si y solo si <span class=\"mr\">det A ≠ 0</span>, o lo que es lo mismo, <span class=\"mr\">rg(A) = n</span>."} demo={"la-inv-rank"} more={"why"} />
+    <DefItem title={"¿Cómo se calcula? Gauss-Jordan"} text={"Se escribe <span class=\"mr\">[A | I<sub>n</sub>]</span> y se opera por filas hasta <span class=\"mr\">[I<sub>n</sub> | B]</span>. Entonces <i>B</i> es <span class=\"mr\">A⁻¹</span>."} demo={"la-gauss-jordan"} more={"why"} />
+  </Defs>
+  <Steps items={[
+    {text: "Ejemplo resuelto 3×3: escribimos [A | I].", tex: "\\left(\\begin{array}{ccc|ccc} 1 & 2 & 3 & 1 & 0 & 0 \\\\ 0 & 1 & 4 & 0 & 1 & 0 \\\\ 5 & 6 & 0 & 0 & 0 & 1 \\end{array}\\right)"},
+    {text: "F₃ ← F₃ − 5·F₁: hacemos 0 el 5 de la primera columna.", tex: "\\left(\\begin{array}{ccc|ccc} 1 & 2 & 3 & 1 & 0 & 0 \\\\ 0 & 1 & 4 & 0 & 1 & 0 \\\\ 0 & -4 & -15 & -5 & 0 & 1 \\end{array}\\right)"},
+    {text: "F₁ ← F₁ − 2·F₂ y F₃ ← F₃ + 4·F₂: ceros en la segunda columna (menos el pivote).", tex: "\\left(\\begin{array}{ccc|ccc} 1 & 0 & -5 & 1 & -2 & 0 \\\\ 0 & 1 & 4 & 0 & 1 & 0 \\\\ 0 & 0 & 1 & -5 & 4 & 1 \\end{array}\\right)"},
+    {text: "F₁ ← F₁ + 5·F₃ y F₂ ← F₂ − 4·F₃: ceros en la tercera columna.", tex: "\\left(\\begin{array}{ccc|ccc} 1 & 0 & 0 & -24 & 18 & 5 \\\\ 0 & 1 & 0 & 20 & -15 & -4 \\\\ 0 & 0 & 1 & -5 & 4 & 1 \\end{array}\\right)"},
+    {text: "A la izquierda ya está I; a la derecha, la inversa.", tex: "A^{-1} = \\begin{pmatrix} -24 & 18 & 5 \\\\ 20 & -15 & -4 \\\\ -5 & 4 & 1 \\end{pmatrix}"},
+    {text: "Comprobación de la primera fila de A·A⁻¹ (el resto se comprueba igual): (1, 2, 3) por cada columna de A⁻¹ da 1, 0, 0.", tex: "\\begin{aligned} 1(-24) + 2\\cdot 20 + 3(-5) &= 1 \\\\ 1\\cdot 18 + 2(-15) + 3\\cdot 4 &= 0 \\\\ 1\\cdot 5 + 2(-4) + 3\\cdot 1 &= 0 \\end{aligned}"}
+  ]} />
+  <Steps items={[
+    {text: "Si no existe: A = (1 2; 2 4) tiene rango 1. Al escalonar [A | I], a la izquierda se anula una fila entera y no se llega a I.", tex: "\\left(\\begin{array}{cc|cc} 1 & 2 & 1 & 0 \\\\ 2 & 4 & 0 & 1 \\end{array}\\right) \\sim \\left(\\begin{array}{cc|cc} 1 & 2 & 1 & 0 \\\\ 0 & 0 & -2 & 1 \\end{array}\\right)"}
+  ]} />
+  <Prose html={"Para matrices 2×2 hay un atajo: <span class=\"mr\">A⁻¹ = (1/det)·(d −b; −c a)</span>, es decir, se intercambian los elementos de la diagonal principal, se cambia el signo de los otros dos y se divide entre el determinante. <b>Para qué sirve.</b> Con la inversa se «divide» entre una matriz: resolver sistemas, deshacer una transformación o despejar una matriz de una ecuación."} />
+  <IdGroup>
+    <DemoCard demo="la-gauss-jordan" />
+    <DemoCard demo="la-inverse-example" />
+    <DemoCard demo="la-inv-rank" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"06 · Propiedades"} title={"Propiedades de la inversa y sistemas"} lead={"Dadas dos matrices cuadradas regulares A y B del mismo orden:"}>
+  <IdGroup>
+    <IdCard demo="la-inv-transpose" title={"Inversa de la transpuesta"} tex={"(A^t)^{-1} = (A^{-1})^t"} text={"La inversa de la transpuesta es la transpuesta de la inversa. Ejemplo: A = (1 2; 3 5) tiene A⁻¹ = (−5 2; 3 −1), y (Aᵗ)⁻¹ = (−5 3; 2 −1) = (A⁻¹)ᵗ."} />
+    <IdCard demo="la-inv-product" title={"Inversa de un producto"} tex={"(AB)^{-1} = B^{-1}A^{-1}"} text={"La inversa de un producto es el producto de las inversas EN ORDEN CONTRARIO, como al quitarte zapatos y calcetines. Ejemplo con A = (1 2; 0 1) y B = (1 0; 3 1): (AB)⁻¹ = (1 −2; −3 7)."} />
+    <IdCard demo="la-solve-inverse" title={"Resolver un sistema"} tex={["AX = b", "X = A^{-1}b"]} text={"Para resolver un sistema con A regular, se multiplica a la izquierda por A⁻¹: (A⁻¹A)X = A⁻¹b. Ejemplo: 2x + y = 3, x + y = 2 da X = (1, 1)."} />
+  </IdGroup>
+  <Prose html={"<b>Para qué sirve.</b> Estas reglas permiten invertir, transponer y multiplicar en el orden que más convenga sin recalcular desde cero. Y el último caso es el más usado: si A es cuadrada con inversa, el sistema tiene siempre una única solución. Cuando A no es cuadrada (más ecuaciones que incógnitas o al revés) hace falta la <b>pseudoinversa</b>, que es el tema siguiente."} />
+</Section>
+
+<Section eyebrow={"07 · Aplicaciones"} title={"¿Para qué sirven el rango y la inversa?"}>
+  <Uses items={[["Resolver sistemas", "Circuitos, estructuras o precios: muchas ecuaciones a la vez. Con A⁻¹, la solución es X = A⁻¹b para cualquier b."], ["Saber si hay solución única", "Si el rango de A es igual al número de incógnitas, no hay libertad: la solución, si existe, es única."], ["Gráficos y animación", "Girar o escalar un objeto es multiplicar por una matriz; la inversa deshace el movimiento, por ejemplo para pasar de la pantalla al mundo 3D."], ["Criptografía", "En el cifrado de Hill, un mensaje se cifra multiplicando por una matriz; se descifra con su inversa (que debe existir)."], ["Economía", "En el modelo de Leontief, la producción necesaria para cubrir una demanda d se obtiene con (I − C)⁻¹d."], ["Datos y estadística", "El rango dice cuántas variables independientes hay de verdad en una tabla de datos, y cuántas son redundantes."]]} />
+</Section>

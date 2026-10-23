@@ -1,0 +1,17 @@
+---
+import MatrixRow from "./MatrixRow.astro";
+import { cellsOf, mat, upper } from "./grid";
+
+const U = mat([[1, 2, 3], [0, 1, 4], [0, 0, 1]]);
+const Ui = mat([[1, -2, 5], [0, 1, -4], [0, 0, 1]]);
+const zeros = (m: string[][]) => cellsOf(m, (i, j) => (j < i ? "muted" : null));
+---
+
+<MatrixRow
+  cell={32}
+  rows={[[
+    { data: U, fills: upper(U, "a"), inks: zeros(U), label: "A" },
+    { op: "→" },
+    { data: Ui, fills: upper(Ui, "b"), inks: zeros(Ui), label: "A⁻¹" },
+  ]]}
+/>

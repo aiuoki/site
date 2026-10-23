@@ -1,0 +1,98 @@
+---
+// Generic matrix figure: rows of matrices and operators laid out and centred
+// automatically. Figures are just data: <MatrixRow cell={28} rows={[[A, {op: "+"}, B]]} />.
+import { round, tint } from "../../../../lib/figure";
+import { isOp, type Item, type MatrixItem } from "./grid";
+
+interface Props {
+  rows: Item[][];
+  cell?: number;
+}
+
+const { rows, cell = 30 } = Astro.props;
+const font = Math.round(cell * 0.52);
+const margin = 8; // room for the brackets on each side of a matrix
+const opWidth = 28;
+const labelRoom = rows.flat().some((i) => !isOp(i) && i.note) ? 38 : 24;
+const pad = 10;
+const rowGap = 14;
+
+const bodyH = (m: MatrixItem) => m.data.length * cell;
+const widthOf = (item: Item) => (isOp(item) ? opWidth : (item.data[0]?.length ?? 0) * cell + 2 * margin);
+
+const widths = rows.map((row) => row.reduce((sum, item) => sum + widthOf(item), 0));
+const W = Math.max(...widths) + 2 * pad;
+const heights = rows.map((row) => Math.max(...row.filter((i): i is MatrixItem => !isOp(i)).map(bodyH)) + labelRoom);
+const H = heights.reduce((a, b) => a + b, 0) + rowGap * (rows.length - 1) + 2 * pad;
+
+let top = pad;
+const placed = rows.map((row, r) => {
+  const bodyMax = heights[r]! - labelRoom;
+  let x = (W - widths[r]!) / 2;
+  const y0 = top;
+  top += heights[r]! + rowGap;
+  return row.map((item) => {
+    const left = x;
+    x += widthOf(item);
+    if (isOp(item)) return { item, x: left + opWidth / 2, y: y0 + bodyMax / 2 };
+    return { item, x: left + margin, y: y0 + (bodyMax - bodyH(item)) / 2, bodyMax, y0 };
+  });
+});
+
+const fillOf = (token: string, pct = 30) => tint(token, pct);
+---
+
+<svg class="mfig" viewBox={`0 0 ${round(W)} ${round(H)}`} aria-hidden="true">
+  {
+    placed.flat().map((p) => {
+      if (isOp(p.item)) {
+        return (
+          <text x={round(p.x)} y={round(p.y + font * 0.35)} text-anchor="middle" font-size={Math.round(font * 1.25)} fill={`var(--${p.item.ink ?? "muted"})`}>{p.item.op}</text>
+        );
+      }
+      const m = p.item;
+      const cols = m.data[0]?.length ?? 0;
+      const w = cols * cell;
+      const h = m.data.length * cell;
+      const x = p.x;
+      const y = p.y;
+      return (
+        <g>
+          {m.rowBand && (
+            <rect x={round(x - 2)} y={round(y + m.rowBand[0] * cell + 1)} width={w + 4} height={cell - 2} rx="6" fill={fillOf(m.rowBand[1], 14)} stroke={`var(--${m.rowBand[1]})`} stroke-width="1.6" />
+          )}
+          {m.colBand && (
+            <rect x={round(x + m.colBand[0] * cell + 1)} y={round(y - 2)} width={cell - 2} height={h + 4} rx="6" fill={fillOf(m.colBand[1], 14)} stroke={`var(--${m.colBand[1]})`} stroke-width="1.6" />
+          )}
+          {m.fills?.flatMap((row, i) =>
+            row.map((token, j) =>
+              token ? <rect x={round(x + j * cell + 2)} y={round(y + i * cell + 2)} width={cell - 4} height={cell - 4} rx="5" fill={fillOf(token)} /> : null,
+            ),
+          )}
+          {(m.marks ?? []).map(([i, j]) => (
+            <rect x={round(x + j * cell + 1.5)} y={round(y + i * cell + 1.5)} width={cell - 3} height={cell - 3} rx="5" fill="none" stroke="var(--fg)" stroke-width="2" />
+          ))}
+          <path d={`M${round(x - 3)} ${round(y - 3)} h-5 v${h + 6} h5`} fill="none" stroke="var(--fg)" stroke-width="1.8" />
+          <path d={`M${round(x + w + 3)} ${round(y - 3)} h5 v${h + 6} h-5`} fill="none" stroke="var(--fg)" stroke-width="1.8" />
+          {(m.splitCols ?? []).map((c) => (
+            <line x1={round(x + c * cell)} y1={round(y - 2)} x2={round(x + c * cell)} y2={round(y + h + 2)} stroke="var(--muted)" stroke-width="1.4" stroke-dasharray="4 3" />
+          ))}
+          {(m.splitRows ?? []).map((r) => (
+            <line x1={round(x - 2)} y1={round(y + r * cell)} x2={round(x + w + 2)} y2={round(y + r * cell)} stroke="var(--muted)" stroke-width="1.4" stroke-dasharray="4 3" />
+          ))}
+          {m.data.flatMap((row, i) =>
+            row.map((value, j) => (
+              <text x={round(x + j * cell + cell / 2)} y={round(y + i * cell + cell / 2 + font * 0.35)} text-anchor="middle" font-size={font} fill={`var(--${m.inks?.[i]?.[j] ?? "fg"})`}>{value}</text>
+            )),
+          )}
+          {m.label && (
+            <text x={round(x + w / 2)} y={round(p.y0! + p.bodyMax! + 17)} text-anchor="middle" font-size="15" font-style="italic" fill={`var(--${m.labelInk ?? "fg"})`}>{m.label}</text>
+          )}
+          {m.note && (
+            <text x={round(x + w / 2)} y={round(p.y0! + p.bodyMax! + 31)} text-anchor="middle" font-size="11" fill="var(--muted)">{m.note}</text>
+          )}
+        </g>
+      );
+    })
+  }
+</svg>

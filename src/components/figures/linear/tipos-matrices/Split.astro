@@ -1,0 +1,19 @@
+---
+import MatrixRow from "./MatrixRow.astro";
+import { cellsOf, mat, offDiag } from "./grid";
+
+const A = mat([[1, 4], [2, 3]]);
+const S = mat([[1, 3], [3, 3]]);
+const K = mat([[0, 1], [-1, 0]]);
+---
+
+<MatrixRow
+  cell={32}
+  rows={[[
+    { data: A, fills: cellsOf(A, (i, j) => (i === j ? null : i < j ? "a" : "b")), label: "A" },
+    { op: "=" },
+    { data: S, fills: offDiag(S, "g"), label: "S" },
+    { op: "+" },
+    { data: K, fills: offDiag(K, "cot"), label: "K" },
+  ]]}
+/>

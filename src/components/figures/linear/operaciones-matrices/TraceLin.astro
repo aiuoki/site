@@ -1,0 +1,19 @@
+---
+import MatrixRow from "../tipos-matrices/MatrixRow.astro";
+import { diag, mat } from "../tipos-matrices/grid";
+
+const A = mat([[1, 2], [3, 4]]);
+const B = mat([[5, 0], [1, 2]]);
+const S = mat([[6, 2], [4, 6]]);
+---
+
+<MatrixRow
+  cell={32}
+  rows={[[
+    { data: A, fills: diag(A, "g"), label: "A", note: "tr = 5" },
+    { op: "+" },
+    { data: B, fills: diag(B, "g"), label: "B", note: "tr = 7" },
+    { op: "=" },
+    { data: S, fills: diag(S, "g"), label: "A + B", note: "tr = 12" },
+  ]]}
+/>

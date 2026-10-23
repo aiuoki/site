@@ -1,0 +1,28 @@
+---
+import Arr from "../rango-inversa/Arr.astro";
+import Axes3 from "./Axes3.astro";
+import { projector } from "./proj";
+
+// Col(A) for A = (1 0; 0 1; 1 1) is the plane x3 = x1 + x2 of the space R^3.
+const p = projector({ s: 28, ox: 112, oy: 172 });
+const corners = [[-1.5, -1.5], [1.5, -1.5], [1.5, 2.5], [-1.5, 2.5]].map(([a, b]) => p.pt(a!, b!, a! + b!));
+const plane = corners.map(([x, y], i) => `${i === 0 ? "M" : "L"}${x} ${y}`).join(" ") + " Z";
+const b = p.pt(1, 2, 3);
+const off = p.pt(1, 2, 0);
+const proj = p.pt(0, 1, 1);
+---
+
+<svg class="mfig" viewBox="0 0 320 320" fill="var(--fg)" aria-hidden="true">
+  <path d={plane} fill="var(--a)" fill-opacity="0.16" stroke="var(--a)" stroke-width="1.4" />
+  <Axes3 p={p} ext={{ x: [-2, 2.2], y: [-2, 3], z: [-3.4, 4.2] }} />
+  <g paint-order="stroke" stroke="var(--surface)" stroke-width="3" stroke-linejoin="round">
+    <text x={corners[1]![0] - 6} y={corners[1]![1] + 14} text-anchor="end" font-size="13" fill="var(--a)">Col(A)</text>
+    <text x={b[0] + 9} y={b[1] + 4} font-size="12" fill="var(--b)">b = (1, 2, 3)</text>
+    <text x={off[0] + 9} y={off[1] + 14} font-size="12" fill="var(--sec)">b′ = (1, 2, 0)</text>
+    <text x={proj[0] - 9} y={proj[1] + 4} text-anchor="end" font-size="12" fill="var(--g)">A(Lb′) = (0, 1, 1)</text>
+  </g>
+  <circle cx={b[0]} cy={b[1]} r="4.5" fill="var(--b)" />
+  <circle cx={off[0]} cy={off[1]} r="4.5" fill="var(--sec)" />
+  <circle cx={proj[0]} cy={proj[1]} r="4" fill="var(--g)" />
+  <Arr x1={off[0]} y1={off[1]} x2={proj[0]} y2={proj[1]} color="var(--g)" width={1.6} dash="4 3" />
+</svg>

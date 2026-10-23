@@ -1,0 +1,102 @@
+---
+title: "Operations with matrices"
+eyebrow: "Interactive guide · linear algebra"
+intro: "How matrices are added and multiplied: sum, product by a number, matrix product (row times column), block product and the trace. Click any card to see the step-by-step proof."
+description: "Sum, scalar product, row-by-column matrix product, block multiplication and trace, with their properties, worked examples and step-by-step proofs."
+---
+
+<Section eyebrow={"01 · Sum"} title={"Sum of matrices"} lead={"Two matrices are added by adding the entries in the same position. That is why only matrices of the same size can be added."}>
+  <Defs>
+    <DefItem title={"Sum"} text={"If <span class='mr'><i>A</i> = [<i>a</i><sub><i>ij</i></sub>]<sub><i>n</i>×<i>m</i></sub></span> and <span class='mr'><i>B</i> = [<i>b</i><sub><i>ij</i></sub>]<sub><i>n</i>×<i>m</i></sub></span>, then <span class='mr'><i>A</i> + <i>B</i> = [<i>a</i><sub><i>ij</i></sub> + <i>b</i><sub><i>ij</i></sub>]<sub><i>n</i>×<i>m</i></sub></span>."} />
+  </Defs>
+  <Steps items={[
+    {text: "Worked example. Both matrices are 2 × 3, so they can be added.", tex: "\\begin{pmatrix} 1 & 2 & 0 \\\\ 3 & -1 & 4 \\end{pmatrix} + \\begin{pmatrix} 2 & 0 & 5 \\\\ -1 & 1 & 2 \\end{pmatrix}"},
+    {text: "Add each entry to the one in the same position: 1 + 2, 2 + 0, 0 + 5 in the first row and 3 + (−1), (−1) + 1, 4 + 2 in the second.", tex: "\\begin{pmatrix} 1 + 2 & 2 + 0 & 0 + 5 \\\\ 3 - 1 & -1 + 1 & 4 + 2 \\end{pmatrix} = \\begin{pmatrix} 3 & 2 & 5 \\\\ 2 & 0 & 6 \\end{pmatrix}"}
+  ]} />
+  <Prose html={"<b>What it is for.</b> Adding matrices is adding tables of data position by position: the sales of two shops, two images (grids of pixels) or two linear transformations at once."} />
+</Section>
+
+<Section eyebrow={"02 · Scalar product"} title={"Product by a scalar"} lead={"A scalar is a number (here λ ∈ K). Multiplying a matrix by a scalar means multiplying all its entries by that number."}>
+  <Defs>
+    <DefItem title={"Product by a scalar"} text={"<span class='mr'>λ<i>A</i> = [λ<i>a</i><sub><i>ij</i></sub>]<sub><i>n</i>×<i>m</i></sub></span>. The size does not change."} />
+  </Defs>
+  <Steps items={[
+    {text: "Worked example: multiply the matrix A by 3.", tex: "3 \\begin{pmatrix} 1 & -2 \\\\ 0 & 4 \\end{pmatrix}"},
+    {text: "Each entry is multiplied by 3.", tex: "\\begin{pmatrix} 3 \\cdot 1 & 3 \\cdot (-2) \\\\ 3 \\cdot 0 & 3 \\cdot 4 \\end{pmatrix} = \\begin{pmatrix} 3 & -6 \\\\ 0 & 12 \\end{pmatrix}"}
+  ]} />
+  <Prose html={"<b>What it is for.</b> It is used to change scale (raise every price by 10 %, brighten an image) and, together with the sum, to combine matrices: 2<i>A</i> − 3<i>B</i> is a combination of two matrices."} />
+</Section>
+
+<Section eyebrow={"03 · Properties"} title={"Properties of the sum and of the product by a scalar"} lead={"Let λ, μ ∈ K be numbers and A, B, C matrices of the same size n × m. Since everything is done entry by entry, the same rules as for numbers hold."}>
+  <Defs>
+    <DefItem title={"Associative"} text={"<span class='mr'>(<i>A</i> + <i>B</i>) + <i>C</i> = <i>A</i> + (<i>B</i> + <i>C</i>)</span>"} demo="la-add-laws" more="why" />
+    <DefItem title={"Commutative"} text={"<span class='mr'><i>A</i> + <i>B</i> = <i>B</i> + <i>A</i></span>"} demo="la-add-laws" more="why" />
+    <DefItem title={"Zero element"} text={"<span class='mr'><i>A</i> + 0 = 0 + <i>A</i> = <i>A</i></span>, where 0 is the matrix with every entry 0."} demo="la-add-laws" more="why" />
+    <DefItem title={"Opposite"} text={"There is a <i>B</i> with <span class='mr'><i>A</i> + <i>B</i> = <i>B</i> + <i>A</i> = 0</span>: it is the opposite, <span class='mr'>−<i>A</i></span> (the same entries with the sign changed)."} demo="la-add-laws" more="why" />
+    <DefItem title={"Distributive over the sum of matrices"} text={"<span class='mr'>λ(<i>A</i> + <i>B</i>) = λ<i>A</i> + λ<i>B</i></span>"} demo="la-scalar-laws" more="why" />
+    <DefItem title={"Distributive over the sum of scalars"} text={"<span class='mr'>(λ + μ)<i>A</i> = λ<i>A</i> + μ<i>A</i></span>"} demo="la-scalar-laws" more="why" />
+    <DefItem title={"Mixed associative"} text={"<span class='mr'>(λμ)<i>A</i> = λ(μ<i>A</i>)</span>"} demo="la-scalar-laws" more="why" />
+  </Defs>
+  <Prose html={"<b>What it is for.</b> They guarantee that you can reorder, group and solve with matrices just as with numbers, as long as you only add and multiply by scalars. For example, from <i>A</i> + <i>X</i> = <i>B</i> you get <i>X</i> = <i>B</i> − <i>A</i>."} />
+</Section>
+
+<Section eyebrow={"04 · Matrix product"} title={"Multiplying matrices: row times column"} lead={"Multiplying matrices is trickier than adding them. The basic piece is multiplying a row by a column with the same number of entries."}>
+  <Defs>
+    <DefItem title={"Row times column"} text={"Multiply the entries in pairs and add: <span class='mr'>(<i>a</i><sub>1</sub> <i>a</i><sub>2</sub> … <i>a</i><sub><i>p</i></sub>) · (<i>b</i><sub>1</sub>, <i>b</i><sub>2</sub>, …, <i>b</i><sub><i>p</i></sub>)<sup><i>t</i></sup> = <i>a</i><sub>1</sub><i>b</i><sub>1</sub> + <i>a</i><sub>2</sub><i>b</i><sub>2</sub> + … + <i>a</i><sub><i>p</i></sub><i>b</i><sub><i>p</i></sub></span>. The result is a number."} demo="la-prod-entry" more="why" />
+    <DefItem title={"Condition"} text={"To be able to multiply <i>AB</i>, the number of columns of <i>A</i> must equal the number of rows of <i>B</i>."} demo="la-prod-size" more="why" />
+    <DefItem title={"Size"} text={"<span class='mr'><i>A</i> = [<i>a</i><sub><i>ij</i></sub>]<sub><i>n</i>×<i>p</i></sub></span>, <span class='mr'><i>B</i> = [<i>b</i><sub><i>ij</i></sub>]<sub><i>p</i>×<i>m</i></sub></span> give <span class='mr'><i>C</i> = <i>AB</i></span> of size <span class='mr'><i>n</i> × <i>m</i></span>: the rows of <i>A</i> and the columns of <i>B</i>."} />
+    <DefItem title={"Each entry of C"} text={"<span class='mr'><i>c</i><sub><i>ij</i></sub></span> is row <i>i</i> of <i>A</i> times column <i>j</i> of <i>B</i>, that is, <span class='mr'><i>c</i><sub><i>ij</i></sub> = Σ<sub><i>k</i>=1</sub><sup><i>p</i></sup> <i>a</i><sub><i>ik</i></sub><i>b</i><sub><i>kj</i></sub></span>. (The sum index is <i>k</i>, so it is not confused with the size <i>p</i>.)"} demo="la-prod-entry" more="why" />
+  </Defs>
+  <Steps items={[
+    {text: "Worked example. A is 2 × 3 and B is 3 × 2: the columns of A (3) match the rows of B (3), so they can be multiplied and the result is 2 × 2.", tex: "\\begin{pmatrix} 1 & 2 & 3 \\\\ 4 & 5 & 6 \\end{pmatrix} \\begin{pmatrix} 7 & 8 \\\\ 9 & 10 \\\\ 11 & 12 \\end{pmatrix}"},
+    {text: "c₁₁: row 1 of A times column 1 of B.", tex: "c_{11} = 1 \\cdot 7 + 2 \\cdot 9 + 3 \\cdot 11 = 7 + 18 + 33 = 58"},
+    {text: "c₁₂: row 1 of A times column 2 of B.", tex: "c_{12} = 1 \\cdot 8 + 2 \\cdot 10 + 3 \\cdot 12 = 8 + 20 + 36 = 64"},
+    {text: "c₂₁: row 2 of A times column 1 of B.", tex: "c_{21} = 4 \\cdot 7 + 5 \\cdot 9 + 6 \\cdot 11 = 28 + 45 + 66 = 139"},
+    {text: "c₂₂: row 2 of A times column 2 of B.", tex: "c_{22} = 4 \\cdot 8 + 5 \\cdot 10 + 6 \\cdot 12 = 32 + 50 + 72 = 154"},
+    {text: "Everything is put together in the product matrix.", tex: "AB = \\begin{pmatrix} 58 & 64 \\\\ 139 & 154 \\end{pmatrix}"}
+  ]} />
+  <IdGroup>
+    <DemoCard demo="la-prod-size" />
+    <DemoCard demo="la-prod-entry" />
+  </IdGroup>
+  <Prose html={"<b>What it is for.</b> The matrix product composes transformations (apply one and then another), computes totals (prices times quantities) and lets you write a system of equations as <i>AX</i> = <i>b</i>. That is why it is defined in such a particular way."} />
+</Section>
+
+<Section eyebrow={"05 · Product properties"} title={"Properties of the matrix product"} lead={"The product satisfies almost all the rules for numbers, with one very important exception: the order of the factors does matter."}>
+  <IdGroup>
+    <DemoCard demo="la-prod-assoc" />
+    <DemoCard demo="la-prod-dist" />
+    <DemoCard demo="la-prod-identity" />
+    <DemoCard demo="la-prod-noncomm" />
+  </IdGroup>
+  <Warn title={"Mind the order"} text={"In general <i>AB</i> ≠ <i>BA</i>. So you cannot \"simplify\" or swap the order of factors: (<i>A</i> + <i>B</i>)² is not <i>A</i>² + 2<i>AB</i> + <i>B</i>², but <i>A</i>² + <i>AB</i> + <i>BA</i> + <i>B</i>²."} />
+  <Prose html={"<b>What it is for.</b> With these rules you expand and factor expressions, and change the grouping to save computations. Knowing what does not hold (commutativity) avoids the most typical mistakes."} />
+</Section>
+
+<Section eyebrow={"06 · By blocks"} title={"Block multiplication"} lead={"A big matrix can be split into rectangular pieces called blocks. If the partitions are compatible (the columns of A are cut in the same way as the rows of B), the blocks multiply as if they were numbers."}>
+  <DemoCard demo="la-block" />
+  <Steps items={[
+    {text: "The matrices A and B are split into 2 × 2 blocks, with the columns of A cut in the same way as the rows of B.", tex: "A = \\begin{pmatrix} A_{11} & A_{12} \\\\ A_{21} & A_{22} \\end{pmatrix},\\qquad B = \\begin{pmatrix} B_{11} & B_{12} \\\\ B_{21} & B_{22} \\end{pmatrix}"},
+    {text: "Apply row times column, but with blocks. Each product of blocks is computed as an ordinary matrix product.", tex: "AB = \\begin{pmatrix} A_{11}B_{11} + A_{12}B_{21} & A_{11}B_{12} + A_{12}B_{22} \\\\ A_{21}B_{11} + A_{22}B_{21} & A_{21}B_{12} + A_{22}B_{22} \\end{pmatrix}"}
+  ]} />
+  <Prose html={"<b>What it is for.</b> It splits an enormous product into several small ones (computers do it to share out the work) and takes advantage of blocks of zeros or identities to save computations."} />
+</Section>
+
+<Section eyebrow={"07 · Trace"} title={"The trace"} lead={"The trace of a square matrix is the sum of the entries on its main diagonal."}>
+  <Defs>
+    <DefItem title={"Trace"} text={"<span class='mr'>tr(<i>A</i>) = <i>a</i><sub>11</sub> + <i>a</i><sub>22</sub> + … + <i>a</i><sub><i>nn</i></sub> = Σ<sub><i>i</i>=1</sub><sup><i>n</i></sup> <i>a</i><sub><i>ii</i></sub></span>."} />
+  </Defs>
+  <Steps items={[
+    {text: "Worked example. The diagonal of A is 1, 5, 9.", tex: "A = \\begin{pmatrix} 1 & 2 & 3 \\\\ 4 & 5 & 6 \\\\ 7 & 8 & 9 \\end{pmatrix}"},
+    {text: "The trace is the sum of the diagonal.", tex: "\\operatorname{tr}(A) = 1 + 5 + 9 = 15"}
+  ]} />
+  <IdGroup title={"Properties"}>
+    <DemoCard demo="la-trace-lin" />
+    <DemoCard demo="la-trace-prod" />
+  </IdGroup>
+  <Prose html={"<b>What it is for.</b> It summarises a square matrix in a single number and has very handy properties for simplifying. It is used in statistics, physics and machine learning."} />
+</Section>
+
+<Section eyebrow={"08 · Applications"} title={"What are operations with matrices for?"}>
+  <Uses items={[["Graphics and games","Rotating, scaling and moving a 3D object is multiplying its points by matrices. Chaining transformations is multiplying matrices."],["Economics and logistics","If one matrix stores quantities and another prices, their product gives the total costs at once."],["Neural networks","Each layer of a neural network multiplies a matrix of weights by the input data: it is all products and sums of matrices."],["Systems of equations","A system is written as AX = b, and the whole solving method uses operations with matrices."],["Images and sound","A black and white image is a matrix of brightness values. Adding matrices blends images and multiplying by a scalar changes the brightness."],["Probability","Markov chains use the matrix product to predict the state of a system step by step."]]} />
+</Section>

@@ -1,0 +1,129 @@
+---
+title: "Rank and inverse"
+eyebrow: "Interactive guide · linear algebra"
+intro: "Elementary operations, echelon form, rank and inverse of a matrix with the Gauss-Jordan method. Every property has its step-by-step proof: click any card to see it."
+description: "Elementary operations, echelon form, rank and inverse of a matrix with Gauss-Jordan, with worked examples and step-by-step proofs."
+---
+
+<Section eyebrow={"01 · Elementary operations"} title={"Elementary row operations"} lead={"To study a matrix (solve it, measure it, invert it) we do row operations that do not change what matters. There are three, and each one can be undone."}>
+  <Defs>
+    <DefItem title={"Swap two rows"} text={"<span class=\"mr\">R<sub>i</sub> ↔ R<sub>j</sub></span>. It changes the order of the rows without touching their numbers."} />
+    <DefItem title={"Multiply a row by k ≠ 0"} text={"<span class=\"mr\">R<sub>i</sub> ← k·R<sub>i</sub></span>. Every entry of the row is multiplied by <i>k</i>. With k = 0 the row would be destroyed, so it is not allowed."} />
+    <DefItem title={"Add a multiple of another row"} text={"<span class=\"mr\">R<sub>i</sub> ← R<sub>i</sub> + k·R<sub>j</sub></span>. To every entry of row <i>i</i> we add <i>k</i> times the entry of row <i>j</i>. It is the operation that makes zeros."} />
+    <DefItem title={"Elementary matrix E"} text={"The identity after doing ONE elementary operation to it. Multiplying <span class=\"mr\">EA</span> does that operation to <i>A</i>."} demo={"la-elem-matrix"} more={"open"} />
+    <DefItem title={"All of them can be undone"} text={"Each operation is cancelled by another of the same type, so every elementary matrix has an inverse."} demo={"la-elem-inverse"} more={"why"} />
+  </Defs>
+  <Steps items={[
+    {text: "Worked example. We want a 0 below the 1 in the first column of A. We do R₂ ← R₂ − 3·R₁: from row 2 we subtract 3 times row 1.", tex: "A = \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}"},
+    {text: "We compute the new row: (3, 4) − 3·(1, 2) = (0, −2).", tex: "\\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix} \\sim \\begin{pmatrix} 1 & 2 \\\\ 0 & -2 \\end{pmatrix}"},
+    {text: "The same operation done with the elementary matrix E (the identity with that operation already done):", tex: "E A = \\begin{pmatrix} 1 & 0 \\\\ -3 & 1 \\end{pmatrix}\\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix} = \\begin{pmatrix} 1 & 2 \\\\ 0 & -2 \\end{pmatrix}"},
+    {text: "To swap R₁ ↔ R₂ we use the identity with its rows swapped:", tex: "\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}\\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix} = \\begin{pmatrix} 3 & 4 \\\\ 1 & 2 \\end{pmatrix}"}
+  ]} />
+  <Prose html={"<b>What it is for.</b> They are the only moves allowed in Gauss's method. Since each one is the same as multiplying by a matrix, a chain of operations is a product of matrices, and that lets us prove things about rank and inverses."} />
+  <IdGroup>
+    <DemoCard demo="la-elem-matrix" />
+    <DemoCard demo="la-elem-inverse" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"02 · Row equivalence"} title={"Row-equivalent matrices"} lead={"Two matrices of the same size are row equivalent when one comes from the other by elementary operations. We write A ~ B."}>
+  <Defs>
+    <DefItem title={"A ~ B"} text={"There is a matrix <span class=\"mr\">F ∈ M<sub>m</sub>(K)</span>, a product of elementary matrices, with <span class=\"mr\">B = FA</span>. If we work on columns, <span class=\"mr\">B = AC</span> with <span class=\"mr\">C ∈ M<sub>n</sub>(K)</span>."} />
+    <DefItem title={"[ I<sub>m</sub> | A ] ~ [ P | B ]"} text={"If we do to <span class=\"mr\">[I | A]</span> the same operations that take A to B, <i>P</i> is left on the left and <span class=\"mr\">B = PA</span>. P keeps a record of everything that was done."} demo={"la-equiv-rows"} more={"why"} />
+  </Defs>
+  <Steps items={[
+    {text: "Worked example with A = (1 2; 3 4). We write [I | A].", tex: "\\left(\\begin{array}{cc|cc} 1 & 0 & 1 & 2 \\\\ 0 & 1 & 3 & 4 \\end{array}\\right)"},
+    {text: "We do R₂ ← R₂ − 3·R₁ and then R₁ ← R₁ + R₂.", tex: "\\left(\\begin{array}{cc|cc} 1 & 0 & 1 & 2 \\\\ -3 & 1 & 0 & -2 \\end{array}\\right) \\sim \\left(\\begin{array}{cc|cc} -2 & 1 & 1 & 0 \\\\ -3 & 1 & 0 & -2 \\end{array}\\right)"},
+    {text: "P is left on the left and B on the right. We check that B = PA:", tex: "PA = \\begin{pmatrix} -2 & 1 \\\\ -3 & 1 \\end{pmatrix}\\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix} = \\begin{pmatrix} 1 & 0 \\\\ 0 & -2 \\end{pmatrix} = B"}
+  ]} />
+  <Prose html={"<b>Note.</b> The notes call this «similarity», but the usual name is <b>row equivalence</b>: in linear algebra, «similar» means something else (<span class=\"mr\">B = P⁻¹AP</span>). <b>What it is for.</b> P sums up all the operations in a single matrix: it is the basis for computing inverses and for understanding the rank."} />
+  <IdGroup>
+    <DemoCard demo="la-equiv-rows" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"03 · Echelon form"} title={"Echelon matrix and reduced form"} lead={"Reducing to echelon form means using row operations to give the matrix a staircase shape. That shows at a glance how many «real» rows it has."}>
+  <Defs>
+    <DefItem title={"Echelon matrix"} text={"It meets two conditions: (1) all rows of zeros are at the bottom; (2) the first non-zero entry of each row is to the right of the first non-zero entry of the row above."} />
+    <DefItem title={"Pivot"} text={"The first non-zero entry of a row of the echelon matrix."} />
+    <DefItem title={"For every A there is a P with PA = E"} text={"We can always reach an echelon matrix <i>E</i> with elementary operations: <span class=\"mr\">PA = E</span>, and P comes from <span class=\"mr\">[I | A] ~ [P | E]</span>."} />
+    <DefItem title={"Reduced form"} text={"The echelon matrix with every pivot equal to 1 and zeros above each pivot too. With the pivots in the first columns it looks like <span class=\"mr\">[I X; 0 0]</span> or <span class=\"mr\">[I X]</span>; the size of <i>I</i> is the rank."} />
+  </Defs>
+  <Steps items={[
+    {text: "Worked example. The first entry of A is 0, so it cannot be a pivot.", tex: "A = \\begin{pmatrix} 0 & 1 & 2 \\\\ 1 & 1 & 1 \\\\ 2 & 3 & 4 \\end{pmatrix}"},
+    {text: "We swap R₁ ↔ R₂ to get a 1 at the top left.", tex: "\\begin{pmatrix} 1 & 1 & 1 \\\\ 0 & 1 & 2 \\\\ 2 & 3 & 4 \\end{pmatrix}"},
+    {text: "We make zeros below the first pivot: R₃ ← R₃ − 2·R₁ leaves the row (0, 1, 2).", tex: "\\begin{pmatrix} 1 & 1 & 1 \\\\ 0 & 1 & 2 \\\\ 0 & 1 & 2 \\end{pmatrix}"},
+    {text: "R₃ ← R₃ − R₂ cancels row 3. It is now in echelon form: two pivots (1 and 1).", tex: "\\begin{pmatrix} 1 & 1 & 1 \\\\ 0 & 1 & 2 \\\\ 0 & 0 & 0 \\end{pmatrix}"},
+    {text: "For the reduced form we put a 0 above the second pivot: R₁ ← R₁ − R₂.", tex: "\\left(\\begin{array}{cc|c} 1 & 0 & -1 \\\\ 0 & 1 & 2 \\\\ 0 & 0 & 0 \\end{array}\\right)"},
+    {text: "On the left of the bar we get the 2×2 identity (plus a row of zeros): the rank is 2.", tex: "\\begin{pmatrix} I_2 & X \\\\ 0 & 0 \\end{pmatrix}, \\quad X = \\begin{pmatrix} -1 \\\\ 2 \\end{pmatrix}"}
+  ]} />
+  <Warn title={"Mind where the pivots are"} text={"With row operations alone the pivots sometimes do not fall in the first columns. For example, (1 2 0; 0 0 1) has pivots in columns 1 and 3: the identity is «spread out» and we would also need to swap columns to see <span class=\"mr\">[I X]</span>. The number of pivots is still the rank."} />
+  <Prose html={"<b>What it is for.</b> The echelon form turns a complicated matrix into one with the same information but easy to read: rank, solutions of a system, inverse."} />
+</Section>
+
+<Section eyebrow={"04 · Rank"} title={"Rank of a matrix"} lead={"The rank counts how many «independent» rows a matrix has: how many survive when it is reduced. A row that is a combination of others adds nothing new."}>
+  <Defs>
+    <DefItem title={"Rank rank(A)"} text={"Number of non-zero rows of an echelon matrix row-equivalent to A. It is the same as the number of pivots."} />
+    <DefItem title={"rank(A) = rank(Aᵗ)"} text={"Counting by rows or by columns gives the same number."} />
+    <DefItem title={"Limit: rank(A) ≤ min(m, n)"} text={"There is at most one pivot per row and per column. In a 4×5 matrix the rank is at most 4."} />
+    <DefItem title={"Full rank"} text={"When the rank reaches the largest possible value: <span class=\"mr\">rank(A) = min(m, n)</span>."} />
+  </Defs>
+  <Prose html={"There are four ways to compute the rank. The first two use the <b>determinant</b>, a number computed from a square matrix: for a 2×2, <span class=\"mr\">det = ad − bc</span> (main diagonal minus the other one); for a 3×3 we use <b>Sarrus's rule</b>: <span class=\"mr\">det = aei + bfg + cdh − ceg − bdi − afh</span>, where the letters are the entries row by row. A 2×2 <b>minor</b> is the determinant of a 2×2 submatrix (we choose two rows and two columns)."} />
+  <Defs>
+    <DefItem title={"2 × 2"} text={"<span class=\"mr\">det ≠ 0</span> → rank 2. <span class=\"mr\">det = 0</span> → rank 1 (or 0 if every entry is 0)."} demo={"la-rank-2x2"} more={"why"} />
+    <DefItem title={"3 × 3"} text={"With Sarrus: <span class=\"mr\">det ≠ 0</span> → rank 3. If <span class=\"mr\">det = 0</span>, look for a non-zero 2×2 minor: if there is one, rank 2; if they are all 0, rank 1 (or 0 if the matrix is zero)."} demo={"la-rank-3x3"} more={"open"} />
+    <DefItem title={"Gauss"} text={"Reduce to echelon form and count the non-zero rows. Best when the matrix is 4×4 or larger, not square, or has many zeros."} />
+    <DefItem title={"Triangular"} text={"The determinant is the product of the diagonal. If there are no zeros on the diagonal, the rank is full (n)."} demo={"la-rank-triangular"} more={"why"} />
+  </Defs>
+  <Steps items={[
+    {text: "Worked example with Gauss on a non-square 3×4 matrix:", tex: "A = \\begin{pmatrix} 1 & 2 & 1 & 3 \\\\ 2 & 4 & 0 & 2 \\\\ 3 & 6 & 1 & 5 \\end{pmatrix}"},
+    {text: "R₂ ← R₂ − 2·R₁ and R₃ ← R₃ − 3·R₁ make zeros below the first pivot.", tex: "\\begin{pmatrix} 1 & 2 & 1 & 3 \\\\ 0 & 0 & -2 & -4 \\\\ 0 & 0 & -2 & -4 \\end{pmatrix}"},
+    {text: "Column 2 can no longer hold a pivot. The second pivot is in column 3: R₃ ← R₃ − R₂.", tex: "\\begin{pmatrix} 1 & 2 & 1 & 3 \\\\ 0 & 0 & -2 & -4 \\\\ 0 & 0 & 0 & 0 \\end{pmatrix}"},
+    {text: "There are two non-zero rows: the rank is 2, below the largest possible value, min(3, 4) = 3.", tex: "r = 2 < \\min(3,\\,4)"}
+  ]} />
+  <Prose html={"<b>What it is for.</b> The rank measures how much independent information a matrix holds. It says whether a system has a unique solution, whether a square matrix has an inverse (rank n) and how many unknowns stay free."} />
+  <IdGroup>
+    <DemoCard demo="la-rank-2x2" />
+    <DemoCard demo="la-rank-3x3" />
+    <DemoCard demo="la-rank-triangular" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"05 · Inverse"} title={"Inverse of a matrix"} lead={"The inverse of a matrix is the one that «undoes» it, just as dividing undoes multiplying. It can only exist if the matrix is square."}>
+  <Defs>
+    <DefItem title={"Inverse A⁻¹"} text={"For <span class=\"mr\">A ∈ M<sub>n</sub>(ℝ or ℂ)</span>, the matrix <i>B</i> in M<sub>n</sub> with <span class=\"mr\">AB = BA = I<sub>n</sub></span>. It is written <span class=\"mr\">A⁻¹</span>."} />
+    <DefItem title={"Regular and singular"} text={"A matrix with an inverse is called <i>regular</i>; without one, <i>singular</i>."} />
+    <DefItem title={"When does it exist?"} text={"If and only if <span class=\"mr\">det A ≠ 0</span>, or equivalently <span class=\"mr\">rank(A) = n</span>."} demo={"la-inv-rank"} more={"why"} />
+    <DefItem title={"How is it computed? Gauss-Jordan"} text={"We write <span class=\"mr\">[A | I<sub>n</sub>]</span> and operate on rows until we reach <span class=\"mr\">[I<sub>n</sub> | B]</span>. Then <i>B</i> is <span class=\"mr\">A⁻¹</span>."} demo={"la-gauss-jordan"} more={"why"} />
+  </Defs>
+  <Steps items={[
+    {text: "Worked 3×3 example: we write [A | I].", tex: "\\left(\\begin{array}{ccc|ccc} 1 & 2 & 3 & 1 & 0 & 0 \\\\ 0 & 1 & 4 & 0 & 1 & 0 \\\\ 5 & 6 & 0 & 0 & 0 & 1 \\end{array}\\right)"},
+    {text: "R₃ ← R₃ − 5·R₁: we make the 5 in the first column a 0.", tex: "\\left(\\begin{array}{ccc|ccc} 1 & 2 & 3 & 1 & 0 & 0 \\\\ 0 & 1 & 4 & 0 & 1 & 0 \\\\ 0 & -4 & -15 & -5 & 0 & 1 \\end{array}\\right)"},
+    {text: "R₁ ← R₁ − 2·R₂ and R₃ ← R₃ + 4·R₂: zeros in the second column (except the pivot).", tex: "\\left(\\begin{array}{ccc|ccc} 1 & 0 & -5 & 1 & -2 & 0 \\\\ 0 & 1 & 4 & 0 & 1 & 0 \\\\ 0 & 0 & 1 & -5 & 4 & 1 \\end{array}\\right)"},
+    {text: "R₁ ← R₁ + 5·R₃ and R₂ ← R₂ − 4·R₃: zeros in the third column.", tex: "\\left(\\begin{array}{ccc|ccc} 1 & 0 & 0 & -24 & 18 & 5 \\\\ 0 & 1 & 0 & 20 & -15 & -4 \\\\ 0 & 0 & 1 & -5 & 4 & 1 \\end{array}\\right)"},
+    {text: "On the left we now have I; on the right, the inverse.", tex: "A^{-1} = \\begin{pmatrix} -24 & 18 & 5 \\\\ 20 & -15 & -4 \\\\ -5 & 4 & 1 \\end{pmatrix}"},
+    {text: "Check of the first row of A·A⁻¹ (the rest is checked the same way): (1, 2, 3) times each column of A⁻¹ gives 1, 0, 0.", tex: "\\begin{aligned} 1(-24) + 2\\cdot 20 + 3(-5) &= 1 \\\\ 1\\cdot 18 + 2(-15) + 3\\cdot 4 &= 0 \\\\ 1\\cdot 5 + 2(-4) + 3\\cdot 1 &= 0 \\end{aligned}"}
+  ]} />
+  <Steps items={[
+    {text: "If it does not exist: A = (1 2; 2 4) has rank 1. When we reduce [A | I], a whole row on the left vanishes and I is never reached.", tex: "\\left(\\begin{array}{cc|cc} 1 & 2 & 1 & 0 \\\\ 2 & 4 & 0 & 1 \\end{array}\\right) \\sim \\left(\\begin{array}{cc|cc} 1 & 2 & 1 & 0 \\\\ 0 & 0 & -2 & 1 \\end{array}\\right)"}
+  ]} />
+  <Prose html={"For 2×2 matrices there is a shortcut: <span class=\"mr\">A⁻¹ = (1/det)·(d −b; −c a)</span>, that is, swap the entries of the main diagonal, change the sign of the other two and divide by the determinant. <b>What it is for.</b> With the inverse you «divide» by a matrix: solve systems, undo a transformation or isolate a matrix in an equation."} />
+  <IdGroup>
+    <DemoCard demo="la-gauss-jordan" />
+    <DemoCard demo="la-inverse-example" />
+    <DemoCard demo="la-inv-rank" />
+  </IdGroup>
+</Section>
+
+<Section eyebrow={"06 · Properties"} title={"Properties of the inverse and systems"} lead={"Given two regular square matrices A and B of the same order:"}>
+  <IdGroup>
+    <IdCard demo="la-inv-transpose" title={"Inverse of the transpose"} tex={"(A^t)^{-1} = (A^{-1})^t"} text={"The inverse of the transpose is the transpose of the inverse. Example: A = (1 2; 3 5) has A⁻¹ = (−5 2; 3 −1), and (Aᵗ)⁻¹ = (−5 3; 2 −1) = (A⁻¹)ᵗ."} />
+    <IdCard demo="la-inv-product" title={"Inverse of a product"} tex={"(AB)^{-1} = B^{-1}A^{-1}"} text={"The inverse of a product is the product of the inverses in REVERSE ORDER, like taking off your shoes and socks. Example with A = (1 2; 0 1) and B = (1 0; 3 1): (AB)⁻¹ = (1 −2; −3 7)."} />
+    <IdCard demo="la-solve-inverse" title={"Solving a system"} tex={["AX = b", "X = A^{-1}b"]} text={"To solve a system with a regular A, multiply on the left by A⁻¹: (A⁻¹A)X = A⁻¹b. Example: 2x + y = 3, x + y = 2 gives X = (1, 1)."} />
+  </IdGroup>
+  <Prose html={"<b>What it is for.</b> These rules let you invert, transpose and multiply in whichever order is more convenient without recomputing from scratch. And the last one is the most used: if A is square with an inverse, the system always has a unique solution. When A is not square (more equations than unknowns or the other way round) we need the <b>pseudoinverse</b>, which is the next topic."} />
+</Section>
+
+<Section eyebrow={"07 · Applications"} title={"What are rank and inverse for?"}>
+  <Uses items={[["Solving systems", "Circuits, structures or prices: many equations at once. With A⁻¹, the solution is X = A⁻¹b for any b."], ["Knowing whether the solution is unique", "If the rank of A equals the number of unknowns, there is no freedom: the solution, if it exists, is unique."], ["Graphics and animation", "Rotating or scaling an object is multiplying by a matrix; the inverse undoes the movement, for example to go from the screen back to the 3D world."], ["Cryptography", "In the Hill cipher a message is encrypted by multiplying by a matrix; it is decrypted with its inverse (which must exist)."], ["Economics", "In Leontief's model, the production needed to meet a demand d is obtained with (I − C)⁻¹d."], ["Data and statistics", "The rank tells how many truly independent variables a data table has, and how many are redundant."]]} />
+</Section>

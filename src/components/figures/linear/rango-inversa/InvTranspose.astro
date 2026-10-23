@@ -1,0 +1,21 @@
+---
+import { contentLang } from "../../../../i18n";
+import Arr from "./Arr.astro";
+
+const es = contentLang(Astro) === "es";
+---
+
+<svg class="mfig" viewBox="0 0 340 170" fill="var(--fg)" aria-hidden="true">
+  <text x="60" y="44" text-anchor="middle" font-size="22" font-style="italic" fill="var(--a)">A</text>
+  <text x="270" y="44" text-anchor="middle" font-size="22" font-style="italic" fill="var(--g)">A⁻¹</text>
+  <text x="60" y="144" text-anchor="middle" font-size="22" font-style="italic" fill="var(--b)">Aᵗ</text>
+  <text x="270" y="144" text-anchor="middle" font-size="19" font-style="italic" fill="var(--fg)">(Aᵗ)⁻¹ = (A⁻¹)ᵗ</text>
+  <Arr x1={92} y1={38} x2={226} y2={38} color="var(--muted)" />
+  <Arr x1={92} y1={138} x2={170} y2={138} color="var(--muted)" />
+  <Arr x1={60} y1={58} x2={60} y2={118} color="var(--muted)" />
+  <Arr x1={270} y1={58} x2={270} y2={118} color="var(--muted)" />
+  <text x="159" y="28" text-anchor="middle" font-size="13" fill="var(--muted)">{es ? "inversa" : "inverse"}</text>
+  <text x="131" y="128" text-anchor="middle" font-size="13" fill="var(--muted)">{es ? "inversa" : "inverse"}</text>
+  <text x="48" y="92" text-anchor="end" font-size="13" fill="var(--muted)">{es ? "transp." : "transp."}</text>
+  <text x="282" y="92" text-anchor="start" font-size="13" fill="var(--muted)">{es ? "transp." : "transp."}</text>
+</svg>

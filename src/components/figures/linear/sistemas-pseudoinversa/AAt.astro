@@ -1,0 +1,34 @@
+---
+import { contentLang } from "../../../../i18n";
+
+const es = contentLang(Astro) === "es";
+const rg = es ? "rg" : "rank";
+---
+
+<svg class="mfig" viewBox="0 0 380 320" fill="var(--fg)" aria-hidden="true">
+  <rect x="20" y="40" width="100" height="54" rx="4" fill="var(--a)" fill-opacity="0.22" stroke="var(--a)" />
+  <text x="70" y="72" text-anchor="middle" font-size="16" font-style="italic">A</text>
+  <text x="70" y="30" text-anchor="middle" font-size="12" fill="var(--muted)">m × n</text>
+  <text x="140" y="72" text-anchor="middle" font-size="18">·</text>
+  <rect x="160" y="22" width="54" height="100" rx="4" fill="var(--b)" fill-opacity="0.22" stroke="var(--b)" />
+  <text x="187" y="76" text-anchor="middle" font-size="16" font-style="italic">Aᵗ</text>
+  <text x="187" y="138" text-anchor="middle" font-size="12" fill="var(--muted)">n × m</text>
+  <text x="236" y="72" text-anchor="middle" font-size="18">=</text>
+  <rect x="256" y="40" width="54" height="54" rx="4" fill="var(--g)" fill-opacity="0.22" stroke="var(--g)" />
+  <text x="283" y="72" text-anchor="middle" font-size="14" font-style="italic">AAᵗ</text>
+  <text x="283" y="108" text-anchor="middle" font-size="12" fill="var(--muted)">m × m</text>
+  <text x="190" y="156" text-anchor="middle" font-size="14" fill="var(--g)">{`${rg} = m  ⇒  ∃ (AAᵗ)⁻¹`}</text>
+
+  <rect x="20" y="186" width="100" height="54" rx="4" fill="var(--b)" fill-opacity="0.22" stroke="var(--b)" />
+  <text x="70" y="218" text-anchor="middle" font-size="16" font-style="italic">Aᵗ</text>
+  <text x="140" y="218" text-anchor="middle" font-size="18">·</text>
+  <rect x="160" y="168" width="54" height="100" rx="4" fill="var(--a)" fill-opacity="0.22" stroke="var(--a)" />
+  <text x="187" y="222" text-anchor="middle" font-size="16" font-style="italic">A</text>
+  <text x="236" y="218" text-anchor="middle" font-size="18">=</text>
+  <rect x="256" y="186" width="54" height="54" rx="4" fill="var(--g)" fill-opacity="0.22" stroke="var(--g)" />
+  <text x="283" y="218" text-anchor="middle" font-size="14" font-style="italic">AᵗA</text>
+  <text x="283" y="256" text-anchor="middle" font-size="12" fill="var(--muted)">n × n</text>
+  <text x="70" y="178" text-anchor="middle" font-size="12" fill="var(--muted)">n × m</text>
+  <text x="187" y="284" text-anchor="middle" font-size="12" fill="var(--muted)">m × n</text>
+  <text x="190" y="308" text-anchor="middle" font-size="14" fill="var(--g)">{`${rg} = n  ⇒  ∃ (AᵗA)⁻¹`}</text>
+</svg>

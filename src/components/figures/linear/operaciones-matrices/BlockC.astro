@@ -1,0 +1,9 @@
+---
+import MatrixRow from "../tipos-matrices/MatrixRow.astro";
+import { cellsOf, mat } from "../tipos-matrices/grid";
+
+const C = mat([[2, 3, 3, 3], [5, 8, 4, 4], [2, 0, 2, 4], [4, 2, 0, 2]]);
+const fills = cellsOf(C, (i, j) => (i < 2 ? (j < 2 ? "a" : "b") : j < 2 ? "cos" : "cot"));
+---
+
+<MatrixRow cell={30} rows={[[{ data: C, fills, splitRows: [2], splitCols: [2], label: "AB" }]]} />

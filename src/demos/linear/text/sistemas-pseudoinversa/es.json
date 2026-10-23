@@ -1,0 +1,163 @@
+{
+  "la-nul-example": {
+    "title": "El espacio nulo Nul(A): un ejemplo",
+    "summary": "Todos los X con AX = 0. Para A = (1 1 0; 0 1 1) son los múltiplos de (−1, 1, −1).",
+    "steps": [
+      "El espacio nulo (o núcleo) Nul(A) son todos los X que cumplen AX = 0. Para A = (1 1 0; 0 1 1) y X = (x₁, x₂, x₃), AX = 0 son dos ecuaciones: x₁ + x₂ = 0 y x₂ + x₃ = 0.",
+      "Hay 3 incógnitas y solo 2 ecuaciones, así que una queda libre. Elegimos x₂ = t, donde t es cualquier número real.",
+      "Despejamos las otras dos: x₁ = −x₂ = −t y x₃ = −x₂ = −t.",
+      "Sacamos t como factor común: todos los vectores del núcleo son múltiplos de (−1, 1, −1). Es decir, Nul(A) = t(−1, 1, −1). (Si prefieres el vector (1, −1, 1), describe la misma recta: basta tomar t = −1.)",
+      "Comprobamos con el vector (−1, 1, −1): A·(−1, 1, −1) = (−1 + 1 + 0, 0 + 1 − 1) = (0, 0).",
+      "Por qué es un «espacio»: si Av = 0, también A(tv) = t·Av = 0 para cualquier t; y si u y v cumplen Au = Av = 0, también A(u + v) = 0. Aquí es una recta que pasa por el origen."
+    ],
+    "use": "El núcleo recoge «lo que sobra»: los vectores que A convierte en 0. Sumárselos a una solución no cambia el resultado, y por eso explican que un sistema pueda tener infinitas soluciones."
+  },
+  "la-dimension": {
+    "title": "Dimensión: cuántas letras libres hacen falta",
+    "summary": "Un punto tiene dimensión 0, una recta 1 y un plano 2: son las letras libres (t, s, …) de sus vectores.",
+    "steps": [
+      "La dimensión es el número de letras libres (t, s, …) que necesitas para escribir todos los vectores de un conjunto; es decir, en cuántas direcciones puedes moverte. Un punto, el vector 0: ninguna letra, dimensión 0. No puedes moverte.",
+      "Una recta por el origen: X = t·v. Una letra, dimensión 1: solo puedes avanzar o retroceder en una dirección.",
+      "Un plano por el origen: X = s·v + t·w con v y w no paralelos (si lo fueran, solo habría una dirección). Dos letras, dimensión 2.",
+      "El Nul(A) de la demostración anterior es t(−1, 1, −1): una letra, dimensión 1. Es una recta.",
+      "Otro ejemplo: x₁ + x₂ + x₃ = 0 (una sola ecuación y 3 incógnitas). Dejamos libres x₂ = s y x₃ = t; entonces x₁ = −s − t.",
+      "X = s(−1, 1, 0) + t(−1, 0, 1): dos letras, dimensión 2, un plano. Comprobación: (−1, 1, 0) y (−1, 0, 1) suman −1 + 1 + 0 = 0 y −1 + 0 + 1 = 0."
+    ],
+    "use": "Mide el «tamaño» de un conjunto de soluciones: dimensión 0 es una única solución, 1 una recta de soluciones, 2 un plano de soluciones."
+  },
+  "la-rank-nullity": {
+    "title": "Teorema rango-nulidad: dim Nul(A) = n − r",
+    "summary": "Las incógnitas libres son las incógnitas menos las ecuaciones útiles (el rango). Aquí r = rg(A).",
+    "steps": [
+      "Tomamos una A de 3×4 (3 ecuaciones y 4 incógnitas) y la escalonamos: F₃ ← F₃ − F₁ y luego F₃ ← F₃ − F₂ anulan la tercera fila.",
+      "Quedan 2 filas no nulas: el rango es r = 2. Los pivotes están en las columnas 1 y 3.",
+      "Las incógnitas sin pivote (x₂ y x₄) quedan libres: n − r = 4 − 2 = 2. Las llamamos s y t.",
+      "Las ecuaciones que quedan son x₁ + 2x₂ + x₄ = 0 y x₃ + x₄ = 0. Despejando las incógnitas con pivote: x₁ = −2s − t y x₃ = −t.",
+      "X = s(−2, 1, 0, 0) + t(−1, 0, −1, 1): dos letras libres, así que dim Nul(A) = 2. Comprueba: A·(−2, 1, 0, 0) = (−2 + 2, 0, −2 + 2) = (0, 0, 0).",
+      "En general, dim Nul(A) = n − r: incógnitas menos ecuaciones útiles. El rango cuenta las ecuaciones que no sobran."
+    ],
+    "use": "Dice, antes de resolver nada, cuántas direcciones libres tiene el conjunto de soluciones. Si r = m y hay más columnas que filas, n − m > 0 y el sistema tiene infinitas soluciones."
+  },
+  "la-aat-invertible": {
+    "title": "Cuándo AAᵗ y AᵗA tienen inversa",
+    "summary": "Si el rango es m, AAᵗ (m×m) tiene inversa; si es n, AᵗA (n×n) la tiene. Aquí r = rg(A).",
+    "steps": [
+      "Si A es m×n, Aᵗ es n×m, así que AAᵗ es cuadrada de tamaño m×m. Ser cuadrada es necesario para tener inversa; falta ver cuándo la tiene.",
+      "Supón que (AAᵗ)x = 0 y queremos ver que x = 0. Multiplicamos por xᵗ por la izquierda.",
+      "Como (Aᵗx)ᵗ = xᵗA, resulta xᵗAAᵗx = (Aᵗx)ᵗ(Aᵗx) = ‖Aᵗx‖², la suma de los cuadrados de las entradas del vector Aᵗx.",
+      "Una suma de cuadrados de números reales solo vale 0 si todos los términos son 0 (aquí se usa que A es real): Aᵗx = 0.",
+      "Aᵗ es n×m y su rango es r = m (rg(A) = rg(Aᵗ)). Por el teorema rango-nulidad, dim Nul(Aᵗ) = m − m = 0: Aᵗx = 0 solo ocurre con x = 0.",
+      "Hemos visto que AAᵗx = 0 obliga a x = 0, o sea Nul(AAᵗ) = {0}. Por rango-nulidad, su rango rg(AAᵗ) es m y, al ser cuadrada, tiene inversa. (Si r < m no la tiene: el rango de un producto no supera el de sus factores.)",
+      "Lo mismo con AᵗA, de tamaño n×n, cuando r = n: basta aplicar lo anterior a Aᵗ en lugar de A."
+    ],
+    "use": "Es la razón por la que las fórmulas de las pseudoinversas funcionan: sin rango completo no se puede invertir AAᵗ ni AᵗA. Todo esto es para matrices de números reales."
+  },
+  "la-right-pseudo": {
+    "title": "Pseudoinversa por la derecha: R = Aᵗ(AAᵗ)⁻¹",
+    "summary": "Si el rango es m, existe R con AR = I<sub>m</sub>, y se calcula con Aᵗ(AAᵗ)⁻¹. Aquí r = rg(A).",
+    "steps": [
+      "Buscamos R (de tamaño n×m) con AR = I<sub>m</sub>. Idea: construir R a partir de Aᵗ, porque así aparece un producto cuadrado que sí sabemos invertir. Escribimos R = AᵗC, con C de m×m por determinar.",
+      "Sustituimos: AR = A·AᵗC = (AAᵗ)C, y queremos que valga I.",
+      "AAᵗ es m×m y, como el rango de A es m, tiene inversa (demostración anterior). Multiplicando por ella: C = (AAᵗ)⁻¹.",
+      "Volvemos a R = AᵗC y sustituimos C: R = Aᵗ(AAᵗ)⁻¹.",
+      "Comprobación: AR = AAᵗ(AAᵗ)⁻¹ = I.",
+      "Ejemplo con A = (1 1 0; 0 1 1): AAᵗ = (2 1; 1 2), con det = 3, y su inversa es (1/3)(2 −1; −1 2).",
+      "R = Aᵗ(AAᵗ)⁻¹ = (1/3)(2 −1; 1 1; −1 2). Es una matriz de 3×2: n×m.",
+      "Comprobamos que AR = I₂ multiplicando A por R."
+    ],
+    "use": "Da una matriz R que «deshace» A por la derecha, y sirve para sistemas con más incógnitas que ecuaciones (rango = número de filas). R no es única (hay más matrices con AR = I); esta es la que da la fórmula."
+  },
+  "la-particular": {
+    "title": "Solución particular: X<sub>p</sub> = Rb",
+    "summary": "Si AR = I, el vector Rb siempre resuelve AX = b.",
+    "steps": [
+      "Partimos de AR = I<sub>m</sub> (existe R porque el rango es m).",
+      "Probamos que X<sub>p</sub> = Rb es solución. Calculamos A(Rb) y, por la propiedad asociativa, es (AR)b.",
+      "Como AR = I<sub>m</sub>, queda I<sub>m</sub>b = b. Es decir, A·X<sub>p</sub> = b.",
+      "Ejemplo con b = (3, 3): Rb = (1, 2, 1). Los tamaños: R es 3×2 y b es 2×1, así que Rb es 3×1, un vector con las 3 incógnitas.",
+      "Comprobación: A·(1, 2, 1) = (1 + 2 + 0, 0 + 2 + 1) = (3, 3) = b."
+    ],
+    "use": "Da siempre una solución concreta (particular) cuando el rango es igual al número de filas: el sistema nunca es incompatible. No es la única; las demás salen de sumarle el núcleo."
+  },
+  "la-homogeneous": {
+    "title": "Solución homogénea: X<sub>h</sub> = X − Rb está en el núcleo",
+    "summary": "La diferencia entre una solución cualquiera y Rb cumple A·X<sub>h</sub> = 0.",
+    "steps": [
+      "Sea X cualquier solución de AX = b. Sumamos y restamos Rb: X = Rb + (X − Rb). Es una identidad trivial, como 5 = 3 + (5 − 3).",
+      "Veamos qué hace A con la parte X − Rb. Por la propiedad distributiva, A(X − Rb) = AX − A(Rb).",
+      "AX = b porque X es solución, y A(Rb) = (AR)b = Ib = b. Resulta b − b = 0.",
+      "Como A·X<sub>h</sub> = 0, el vector X<sub>h</sub> = X − Rb está en el núcleo de A. Se llama solución homogénea porque resuelve AX = 0.",
+      "Ejemplo: X = (0, 3, 0) es otra solución, porque A·X = (0 + 3 + 0, 0 + 3 + 0) = (3, 3).",
+      "X<sub>h</sub> = X − Rb = (0, 3, 0) − (1, 2, 1) = (−1, 1, −1), que está en Nul(A): es el vector t = 1 que vimos antes."
+    ],
+    "use": "Dice que la diferencia entre dos soluciones cualesquiera de AX = b siempre vive en el núcleo. Por eso, conociendo el núcleo, se controlan todas las soluciones."
+  },
+  "la-general-solution": {
+    "title": "Todas las soluciones: X = Rb + Nul(A)",
+    "summary": "Las soluciones de AX = b son una solución particular más cualquier vector del núcleo.",
+    "steps": [
+      "Ya sabemos que toda solución X se escribe X = X<sub>p</sub> + X<sub>h</sub>, con X<sub>p</sub> = Rb y X<sub>h</sub> = X − Rb en el núcleo.",
+      "Al revés, cualquier X<sub>p</sub> + X<sub>h</sub> con X<sub>h</sub> en el núcleo es solución: A(X<sub>p</sub> + X<sub>h</sub>) = AX<sub>p</sub> + AX<sub>h</sub> = b + 0 = b.",
+      "Conclusión: el conjunto de todas las soluciones es X<sub>p</sub> más el núcleo, X = Rb + Nul(A).",
+      "En el ejemplo, Nul(A) = t(−1, 1, −1), luego X = (1, 2, 1) + t(−1, 1, −1).",
+      "Cada valor de t da una solución: con t = 0 sale (1, 2, 1); con t = 1, (0, 3, 0); con t = 2, (−1, 4, −1). Hay infinitas.",
+      "Comprobamos t = 2: A·(−1, 4, −1) = (−1 + 4 + 0, 0 + 4 − 1) = (3, 3)."
+    ],
+    "use": "Describe TODAS las soluciones con una sola fórmula. Geométricamente es una recta (o un plano, según la dimensión del núcleo) paralela al núcleo que pasa por X<sub>p</sub>."
+  },
+  "la-left-pseudo": {
+    "title": "Pseudoinversa por la izquierda: L = (AᵗA)⁻¹Aᵗ",
+    "summary": "Si el rango es n, existe L con LA = I<sub>n</sub>, y se calcula con (AᵗA)⁻¹Aᵗ. Aquí r = rg(A).",
+    "steps": [
+      "Ahora buscamos L (de tamaño n×m) con LA = I<sub>n</sub>. Igual que antes, la construimos con Aᵗ, pero por el otro lado: L = CAᵗ, con C de n×n por determinar.",
+      "Sustituimos: LA = C·AᵗA = C(AᵗA), y queremos que valga I.",
+      "AᵗA es n×m·m×n = n×n y, como el rango de A es n, tiene inversa (misma demostración con Aᵗ en lugar de A). Entonces C = (AᵗA)⁻¹.",
+      "Volvemos a L = CAᵗ y sustituimos C: L = (AᵗA)⁻¹Aᵗ.",
+      "Comprobación: LA = (AᵗA)⁻¹AᵗA = (AᵗA)⁻¹(AᵗA) = I.",
+      "Ejemplo con A = (1 0; 0 1; 1 1), de 3×2 y con columnas independientes (rango 2 = n): AᵗA = (2 1; 1 2) y su inversa es (1/3)(2 −1; −1 2).",
+      "L = (AᵗA)⁻¹Aᵗ = (1/3)(2 −1 1; −1 2 1). Es una matriz de 2×3: n×m.",
+      "Comprobamos que LA = I₂ multiplicando L por A."
+    ],
+    "use": "Da una matriz L que «deshace» A por la izquierda, y sirve para sistemas con más ecuaciones que incógnitas (rango = número de columnas)."
+  },
+  "la-left-unique": {
+    "title": "Con L, la solución es única: X = Lb",
+    "summary": "Si LA = I y el sistema tiene solución, solo puede ser Lb: el núcleo es {0}. Aquí r = rg(A).",
+    "steps": [
+      "Partimos de AX = b y multiplicamos los dos lados por L por la izquierda.",
+      "Con la propiedad asociativa agrupamos: (LA)X = Lb.",
+      "Como LA = I, queda X = Lb: si el sistema tiene solución, tiene que ser esta.",
+      "Unicidad: si X<sub>h</sub> está en el núcleo (AX<sub>h</sub> = 0), entonces X<sub>h</sub> = (LA)X<sub>h</sub> = L(AX<sub>h</sub>) = L·0 = 0. El único vector del núcleo es 0.",
+      "Es coherente con el teorema rango-nulidad: dim Nul(A) = n − r = 0 cuando r = n.",
+      "Ejemplo con A = (1 0; 0 1; 1 1) y b = (1, 2, 3): Lb = (1/3)(2 − 2 + 3, −1 + 4 + 3) = (1, 2).",
+      "Comprobamos: A·(1, 2) = (1, 2, 1 + 2) = (1, 2, 3) = b."
+    ],
+    "use": "Con más ecuaciones que incógnitas y rango completo por columnas, hay a lo sumo una solución y L la encuentra. Pero Lb es solo la candidata: hay que comprobar que de verdad resuelve el sistema (siguiente demostración)."
+  },
+  "la-left-colspace": {
+    "title": "Lb es solución si y solo si b está en Col(A)",
+    "summary": "Col(A) son las combinaciones de las columnas de A. Si b no está ahí, el sistema no tiene solución.",
+    "steps": [
+      "Col(A) (espacio columna o imagen) son todos los vectores que se pueden formar combinando las columnas de A: AX = x₁a₁ + ⋯ + x<sub>n</sub>a<sub>n</sub>, donde a₁, …, a<sub>n</sub> son las columnas.",
+      "Si Lb es solución, entonces b = A(Lb) tiene la forma AX, luego b está en Col(A).",
+      "Al revés, si b está en Col(A), b = AX₀ para algún X₀. Entonces Lb = LAX₀ = X₀, y A(Lb) = AX₀ = b: Lb sí es solución.",
+      "Para A = (1 0; 0 1; 1 1) las columnas son (1, 0, 1) y (0, 1, 1). Combinándolas sale (x₁, x₂, x₁ + x₂): los vectores cuya tercera componente es la suma de las dos primeras (un plano de ℝ³).",
+      "b = (1, 2, 3): 1 + 2 = 3, así que b está en Col(A), y A(Lb) = A(1, 2) = b. Hay solución, y es única.",
+      "b′ = (1, 2, 0): 1 + 2 ≠ 0, no está en Col(A). Lb′ = (0, 1), pero A(Lb′) = (0, 1, 1) ≠ b′: Lb′ NO es solución. Las ecuaciones x₁ = 1, x₂ = 2 y x₁ + x₂ = 0 se contradicen."
+    ],
+    "use": "Es el test práctico: calcula Lb y comprueba que A(Lb) = b. Si se cumple, esa es la única solución; si no, el sistema no tiene ninguna (los mínimos cuadrados, más adelante, buscan la mejor aproximación)."
+  },
+  "la-both-cases": {
+    "title": "Si A es cuadrada y regular, R = L = A⁻¹",
+    "summary": "Cuando m = n = r, las dos pseudoinversas coinciden con la inversa de siempre. Aquí r = rg(A).",
+    "steps": [
+      "Si A es cuadrada de rango n, existen R y L, y A y Aᵗ tienen inversa. Usamos (AB)⁻¹ = B⁻¹A⁻¹ en AAᵗ: (AAᵗ)⁻¹ = (Aᵗ)⁻¹A⁻¹.",
+      "Sustituimos en R: R = Aᵗ(Aᵗ)⁻¹A⁻¹ = I·A⁻¹ = A⁻¹.",
+      "Para L: (AᵗA)⁻¹ = A⁻¹(Aᵗ)⁻¹, con el mismo razonamiento.",
+      "L = A⁻¹(Aᵗ)⁻¹Aᵗ = A⁻¹·I = A⁻¹.",
+      "Ejemplo con A = (2 1; 1 1): AAᵗ = (5 3; 3 2), con det = 10 − 9 = 1, y (AAᵗ)⁻¹ = (2 −3; −3 5).",
+      "R = Aᵗ(AAᵗ)⁻¹ = (2 1; 1 1)(2 −3; −3 5) = (1 −1; −1 2), que es justo A⁻¹."
+    ],
+    "use": "Une los casos: la inversa de toda la vida es el caso en que R y L coinciden. Con A cuadrada y regular, la solución X = A⁻¹b es única y siempre existe."
+  }
+}

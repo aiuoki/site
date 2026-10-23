@@ -1,0 +1,114 @@
+---
+// Generic "sizes" figure: each matrix is a rectangle whose width and height
+// are its columns and rows, with the name inside and "rows × columns" below.
+import { round, tint } from "../../../../lib/figure";
+import type { Token } from "./grid";
+
+export interface BoxItem {
+  // Columns and rows (rectangle size = unit times these).
+  cols: number;
+  rows: number;
+  name: string;
+  dims: string;
+  token: Token;
+  // Optional coloured size labels along the top / left side.
+  top?: [string, Token];
+  left?: [string, Token];
+}
+export interface BoxOp {
+  op: string;
+}
+export interface Brace {
+  // Item indices (inclusive) under / over the bracket, and its caption.
+  from: number;
+  to: number;
+  token: Token;
+  text: string;
+  below?: boolean;
+}
+export interface BoxRowData {
+  items: (BoxItem | BoxOp)[];
+  braces?: Brace[];
+}
+
+interface Props {
+  rows: BoxRowData[];
+  unit?: number;
+}
+
+const { rows, unit = 18 } = Astro.props;
+const isOp = (i: BoxItem | BoxOp): i is BoxOp => "op" in i;
+const opWidth = 30;
+const sideRoom = 20; // left label
+const topRoom = 20;
+const pad = 10;
+const rowGap = 16;
+const widthOf = (i: BoxItem | BoxOp) => (isOp(i) ? opWidth : i.cols * unit + (i.left ? sideRoom : 0));
+const widths = rows.map((r) => r.items.reduce((s, i) => s + widthOf(i), 0));
+const W = Math.max(...widths) + 2 * pad;
+const bodyOf = (r: BoxRowData) => Math.max(...r.items.filter((i): i is BoxItem => !isOp(i)).map((i) => i.rows * unit));
+const rowH = rows.map((r) => bodyOf(r) + topRoom + 26 + (r.braces?.length ? 28 : 0));
+const H = rowH.reduce((a, b) => a + b, 0) + rowGap * (rows.length - 1) + 2 * pad;
+
+type Cell =
+  | { kind: "op"; text: string; cx: number; cy: number }
+  | { kind: "box"; item: BoxItem; bx: number; by: number; bw: number; bh: number };
+
+let cursor = pad;
+const placed = rows.map((r, ri) => {
+  const body = bodyOf(r);
+  const y0 = cursor + topRoom;
+  cursor += rowH[ri]! + rowGap;
+  let x = (W - widths[ri]!) / 2;
+  const cells: Cell[] = r.items.map((item) => {
+    const left = x;
+    x += widthOf(item);
+    if (isOp(item)) return { kind: "op", text: item.op, cx: left + opWidth / 2, cy: y0 + body / 2 };
+    const bx = left + (item.left ? sideRoom : 0);
+    const bw = item.cols * unit;
+    const bh = item.rows * unit;
+    return { kind: "box", item, bx, by: y0 + (body - bh) / 2, bw, bh };
+  });
+  const braces = (r.braces ?? []).map((b) => {
+    const a = cells[b.from]!;
+    const z = cells[b.to]!;
+    const x0 = a.kind === "box" ? a.bx : a.cx - 15;
+    const x1 = z.kind === "box" ? z.bx + z.bw : z.cx + 15;
+    const y = b.below ? y0 + body + 28 : y0 - 10;
+    return { b, x0, x1, y, tick: b.below ? -5 : 5 };
+  });
+  return { cells, y0, body, braces };
+});
+---
+
+<svg class="mfig" viewBox={`0 0 ${round(W)} ${round(H)}`} aria-hidden="true">
+  {
+    placed.map((row) => (
+      <g>
+        {row.cells.map((c) =>
+          c.kind === "op" ? (
+            <text x={round(c.cx)} y={round(c.cy + 8)} text-anchor="middle" font-size="22" fill="var(--muted)">{c.text}</text>
+          ) : (
+            <g>
+              <rect x={round(c.bx)} y={round(c.by)} width={c.bw} height={c.bh} rx="5" fill={tint(c.item.token, 24)} stroke={`var(--${c.item.token})`} stroke-width="2" />
+              <text x={round(c.bx + c.bw / 2)} y={round(c.by + c.bh / 2 + 6)} text-anchor="middle" font-size={c.item.name.length > 3 ? 14 : 18} font-style="italic" fill="var(--fg)">{c.item.name}</text>
+              <text x={round(c.bx + c.bw / 2)} y={round(row.y0 + row.body + 18)} text-anchor="middle" font-size="13" fill="var(--muted)">{c.item.dims}</text>
+              {c.item.top && (
+                <text x={round(c.bx + c.bw / 2)} y={round(c.by - 6)} text-anchor="middle" font-size="14" font-style="italic" fill={`var(--${c.item.top[1]})`}>{c.item.top[0]}</text>
+              )}
+              {c.item.left && (
+                <text x={round(c.bx - 6)} y={round(c.by + c.bh / 2 + 5)} text-anchor="end" font-size="14" font-style="italic" fill={`var(--${c.item.left[1]})`}>{c.item.left[0]}</text>
+              )}
+            </g>
+          ),
+        )}
+        {row.braces.map((k) => (
+          <g>
+            <path d={`M${round(k.x0)} ${round(k.y + k.tick)} V${round(k.y)} H${round(k.x1)} V${round(k.y + k.tick)}`} fill="none" stroke={`var(--${k.b.token})`} stroke-width="1.8" />
+            <text x={round((k.x0 + k.x1) / 2)} y={round(k.b.below ? k.y + 15 : k.y - 6)} text-anchor="middle" font-size="13" font-style="italic" fill={`var(--${k.b.token})`}>{k.b.text}</text>
+          </g>
+        ))}
+      </g>
+    ))
+  }
+</svg>

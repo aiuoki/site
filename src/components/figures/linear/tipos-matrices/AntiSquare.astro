@@ -1,0 +1,27 @@
+---
+import MatrixRow from "./MatrixRow.astro";
+import { all, cellsOf, mat } from "./grid";
+
+const A = mat([[0, 1, 2], [-1, 0, 3], [-2, -3, 0]]);
+const A2 = mat([[-5, -6, 3], [-6, -10, -2], [3, -2, -13]]);
+const pair = (i: number, j: number) => {
+  if (i === j) return null;
+  const key = Math.min(i, j) * 3 + Math.max(i, j);
+  return key === 1 ? "a" : key === 2 ? "b" : "cot";
+};
+---
+
+<MatrixRow
+  cell={32}
+  rows={[
+    [
+      { data: A, fills: all(A, "a"), label: "A" },
+      { op: "·" },
+      { data: A, fills: all(A, "a"), label: "A" },
+    ],
+    [
+      { op: "=" },
+      { data: A2, fills: cellsOf(A2, pair), label: "A²" },
+    ],
+  ]}
+/>

@@ -1,0 +1,29 @@
+---
+import { contentLang } from "../../../../i18n";
+import Arr from "../rango-inversa/Arr.astro";
+
+const es = contentLang(Astro) === "es";
+const dim = es ? "dimensión" : "dimension";
+---
+
+<svg class="mfig wide" viewBox="0 0 520 170" fill="var(--fg)" aria-hidden="true">
+  <circle cx="80" cy="70" r="6" fill="var(--a)" />
+  <text x="80" y="104" text-anchor="middle" font-size="15">X = 0</text>
+  <text x="80" y="140" text-anchor="middle" font-size="14" fill="var(--a)">{`${dim} 0`}</text>
+
+  <line x1="190" y1="104" x2="330" y2="36" stroke="var(--b)" stroke-width="1.6" stroke-dasharray="4 4" />
+  <Arr x1={260} y1={70} x2={318} y2={42} color="var(--b)" width={2.6} />
+  <Arr x1={260} y1={70} x2={202} y2={98} color="var(--b)" width={2.6} />
+  <circle cx="260" cy="70" r="4" fill="var(--fg)" />
+  <text x="260" y="120" text-anchor="middle" font-size="15">X = t·v</text>
+  <text x="260" y="140" text-anchor="middle" font-size="14" fill="var(--b)">{`${dim} 1`}</text>
+
+  <path d="M370 100 L440 100 L496 44 L426 44 Z" fill="var(--g)" fill-opacity="0.2" stroke="var(--g)" stroke-width="1.4" />
+  <circle cx="433" cy="72" r="4" fill="var(--fg)" />
+  <Arr x1={433} y1={72} x2={480} y2={72} color="var(--g)" width={2.6} />
+  <Arr x1={433} y1={72} x2={452} y2={48} color="var(--g)" width={2.6} />
+  <text x="482" y="86" font-size="13" fill="var(--g)" font-style="italic">v</text>
+  <text x="456" y="46" font-size="13" fill="var(--g)" font-style="italic">w</text>
+  <text x="433" y="120" text-anchor="middle" font-size="15">X = s·v + t·w</text>
+  <text x="433" y="140" text-anchor="middle" font-size="14" fill="var(--g)">{`${dim} 2`}</text>
+</svg>

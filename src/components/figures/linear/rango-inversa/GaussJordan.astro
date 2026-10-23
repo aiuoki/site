@@ -1,0 +1,31 @@
+---
+import { contentLang } from "../../../../i18n";
+import Arr from "./Arr.astro";
+
+const es = contentLang(Astro) === "es";
+// Three snapshots of [A | I]: every box is one block of the matrix.
+const steps = [
+  { x: 10, l: "A", r: "I", lc: "var(--a)", rc: "var(--b)" },
+  { x: 190, l: "E₁A", r: "E₁", lc: "var(--a)", rc: "var(--g)" },
+  { x: 370, l: "I", r: "P", lc: "var(--b)", rc: "var(--g)" },
+];
+---
+
+<svg class="mfig wide" viewBox="0 0 520 150" fill="var(--fg)" aria-hidden="true">
+  {
+    steps.map((s) => (
+      <>
+        <rect x={s.x} y="30" width="64" height="56" rx="6" fill={s.lc} fill-opacity="0.22" stroke={s.lc} />
+        <rect x={s.x + 70} y="30" width="64" height="56" rx="6" fill={s.rc} fill-opacity="0.22" stroke={s.rc} />
+        <text x={s.x + 32} y="64" text-anchor="middle" font-size="17" font-style="italic">{s.l}</text>
+        <text x={s.x + 102} y="64" text-anchor="middle" font-size="17" font-style="italic">{s.r}</text>
+      </>
+    ))
+  }
+  <Arr x1={148} y1={58} x2={184} y2={58} color="var(--muted)" />
+  <Arr x1={328} y1={58} x2={364} y2={58} color="var(--muted)" />
+  <text x="166" y="48" text-anchor="middle" font-size="12" fill="var(--muted)">E₁</text>
+  <text x="346" y="48" text-anchor="middle" font-size="12" fill="var(--muted)">E₂ … E<tspan baseline-shift="sub" font-size="72%">k</tspan></text>
+  <text x="260" y="112" text-anchor="middle" font-size="15" fill="var(--g)">P = E<tspan baseline-shift="sub" font-size="72%">k</tspan> ⋯ E₂E₁</text>
+  <text x="260" y="136" text-anchor="middle" font-size="14" fill="var(--muted)">{es ? "PA = I  ⇒  P = A⁻¹" : "PA = I  ⇒  P = A⁻¹"}</text>
+</svg>

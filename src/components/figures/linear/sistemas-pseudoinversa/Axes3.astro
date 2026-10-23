@@ -1,0 +1,26 @@
+---
+import Arr from "../rango-inversa/Arr.astro";
+import type { Projector } from "./proj";
+
+interface Props {
+  p: Projector;
+  // Half-axis lengths: [negative, positive] for x1, x2 and x3.
+  ext: { x: [number, number]; y: [number, number]; z: [number, number] };
+}
+
+const { p, ext } = Astro.props;
+const axes = [
+  { from: p.pt(ext.x[0], 0, 0), to: p.pt(ext.x[1], 0, 0), label: "x₁" },
+  { from: p.pt(0, ext.y[0], 0), to: p.pt(0, ext.y[1], 0), label: "x₂" },
+  { from: p.pt(0, 0, ext.z[0]), to: p.pt(0, 0, ext.z[1]), label: "x₃" },
+];
+---
+
+{
+  axes.map((a) => (
+    <>
+      <Arr x1={a.from[0]} y1={a.from[1]} x2={a.to[0]} y2={a.to[1]} color="var(--axis)" width={1.2} head={7} />
+      <text x={a.to[0] + (a.to[0] >= a.from[0] ? 6 : -6)} y={a.to[1] + 4} font-size="12" fill="var(--muted)" font-style="italic" text-anchor={a.to[0] >= a.from[0] ? "start" : "end"}>{a.label}</text>
+    </>
+  ))
+}

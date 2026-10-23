@@ -1,0 +1,20 @@
+---
+import MatrixRow from "./MatrixRow.astro";
+import { cellsOf, mat } from "./grid";
+
+const A = mat([[1, 2, 3], [4, 5, 6]]);
+const At = mat([[1, 4], [2, 5], [3, 6]]);
+const rowColors = cellsOf(A, (i) => (i === 0 ? "a" : "b"));
+const colColors = cellsOf(At, (_, j) => (j === 0 ? "a" : "b"));
+---
+
+<MatrixRow
+  cell={28}
+  rows={[[
+    { data: A, fills: rowColors, label: "A", note: "2 × 3" },
+    { op: "→" },
+    { data: At, fills: colColors, label: "Aᵗ", note: "3 × 2" },
+    { op: "→" },
+    { data: A, fills: rowColors, label: "(Aᵗ)ᵗ", note: "2 × 3" },
+  ]]}
+/>

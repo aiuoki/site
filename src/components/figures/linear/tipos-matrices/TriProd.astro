@@ -1,0 +1,25 @@
+---
+import MatrixRow from "./MatrixRow.astro";
+import { cellsOf, mat, upper } from "./grid";
+
+const U = mat([[1, 2, 3], [0, 4, 5], [0, 0, 6]]);
+const V = mat([[2, 1, 0], [0, 3, 1], [0, 0, 5]]);
+const UV = mat([[2, 7, 17], [0, 12, 29], [0, 0, 30]]);
+const zeros = (m: string[][]) => cellsOf(m, (i, j) => (j < i ? "muted" : null));
+const marks: [number, number][] = [[0, 0], [1, 1], [2, 2]];
+---
+
+<MatrixRow
+  cell={32}
+  rows={[
+    [
+      { data: U, fills: upper(U, "a"), inks: zeros(U), marks, label: "A" },
+      { op: "·" },
+      { data: V, fills: upper(V, "b"), inks: zeros(V), marks, label: "B" },
+    ],
+    [
+      { op: "=" },
+      { data: UV, fills: upper(UV, "g"), inks: zeros(UV), marks, label: "AB" },
+    ],
+  ]}
+/>

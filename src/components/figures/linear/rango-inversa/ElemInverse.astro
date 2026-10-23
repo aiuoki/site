@@ -1,0 +1,22 @@
+---
+import { contentLang } from "../../../../i18n";
+import MGrid from "./MGrid.astro";
+
+const es = contentLang(Astro) === "es";
+const r = es ? "F" : "R";
+---
+
+<svg class="mfig" viewBox="0 0 390 130" fill="var(--fg)" aria-hidden="true">
+  <text x="48" y="18" text-anchor="middle" font-size="12" fill="var(--muted)">{`${r}₂ + 3·${r}₁`}</text>
+  <text x="144" y="18" text-anchor="middle" font-size="12" fill="var(--muted)">{`${r}₂ − 3·${r}₁`}</text>
+  <MGrid x={14} y={34} cells={[["1", "0"], ["3", "1"]]} fills={{ "1,0": "var(--b)" }} />
+  <text x="96" y="68" text-anchor="middle" font-size="18">·</text>
+  <MGrid x={110} y={34} cells={[["1", "0"], ["−3", "1"]]} fills={{ "1,0": "var(--a)" }} />
+  <text x="192" y="68" text-anchor="middle" font-size="18">=</text>
+  <MGrid x={206} y={34} cells={[["1", "0"], ["0", "1"]]} fills={{ "1,0": "var(--g)" }} />
+  <text x="48" y="108" text-anchor="middle" font-size="15" font-style="italic">E′</text>
+  <text x="144" y="108" text-anchor="middle" font-size="15" font-style="italic">E</text>
+  <text x="240" y="108" text-anchor="middle" font-size="15" font-style="italic">I</text>
+  <text x="334" y="60" text-anchor="middle" font-size="14" fill="var(--g)">3 − 3 = 0</text>
+  <text x="334" y="80" text-anchor="middle" font-size="14" fill="var(--g)">E′ = E⁻¹</text>
+</svg>

@@ -1,0 +1,22 @@
+---
+import { contentLang } from "../../../../i18n";
+import MGrid from "./MGrid.astro";
+
+const es = contentLang(Astro) === "es";
+const rg = es ? "rg" : "rank";
+const cells = [
+  ["t₁₁", "∗", "∗", "∗"],
+  ["0", "t₂₂", "∗", "∗"],
+  ["0", "0", "t₃₃", "∗"],
+  ["0", "0", "0", "t₄₄"],
+];
+const fills = Object.fromEntries([0, 1, 2, 3].map((i) => [`${i},${i}`, "var(--a)"]));
+---
+
+<svg class="mfig" viewBox="0 0 340 150" fill="var(--fg)" aria-hidden="true">
+  <MGrid x={14} y={22} cw={40} ch={28} cells={cells} fills={fills} dimZeros />
+  <text x="250" y="52" text-anchor="middle" font-size="13">det = t₁₁·t₂₂·t₃₃·t₄₄</text>
+  <text x="250" y="82" text-anchor="middle" font-size="13" fill="var(--b)">{es ? "sin ceros en la diagonal" : "no zeros on the diagonal"}</text>
+  <text x="250" y="100" text-anchor="middle" font-size="14" fill="var(--b)">{`${rg} = 4`}</text>
+  <text x="250" y="126" text-anchor="middle" font-size="13" fill="var(--sec)">{es ? "algún cero: rango menor" : "any zero: lower rank"}</text>
+</svg>

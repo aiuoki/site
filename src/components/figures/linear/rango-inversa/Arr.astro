@@ -1,0 +1,32 @@
+---
+// Straight arrow between two pixel points of a figure.
+interface Props {
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  color?: string;
+  width?: number;
+  dash?: string;
+  head?: number;
+}
+
+const { x1, y1, x2, y2, color = "var(--fg)", width = 2, dash, head = 9 } = Astro.props;
+const len = Math.hypot(x2 - x1, y2 - y1);
+const ux = (x2 - x1) / len;
+const uy = (y2 - y1) / len;
+const hl = Math.min(head, len * 0.5);
+const bx = x2 - ux * hl;
+const by = y2 - uy * hl;
+const r = (v: number) => Math.round(v * 100) / 100;
+const tip = `M${r(x2)} ${r(y2)} L${r(bx - uy * hl * 0.45)} ${r(by + ux * hl * 0.45)} L${r(bx + uy * hl * 0.45)} ${r(by - ux * hl * 0.45)} Z`;
+---
+
+{
+  len > 1 && (
+    <>
+      <line x1={r(x1)} y1={r(y1)} x2={r(bx + ux * 1)} y2={r(by + uy * 1)} stroke={color} stroke-width={width} stroke-linecap="round" stroke-dasharray={dash} />
+      <path d={tip} fill={color} />
+    </>
+  )
+}

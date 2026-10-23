@@ -1,0 +1,18 @@
+---
+import MatrixRow from "../tipos-matrices/MatrixRow.astro";
+import { all, mat } from "../tipos-matrices/grid";
+
+const A = mat([[1, -2], [0, 4]]);
+const R = mat([[3, -6], [0, 12]]);
+---
+
+<MatrixRow
+  cell={32}
+  rows={[[
+    { op: "3", ink: "g" },
+    { op: "·" },
+    { data: A, fills: all(A, "a"), label: "A" },
+    { op: "=" },
+    { data: R, fills: all(R, "g"), label: "3A" },
+  ]]}
+/>

@@ -1,0 +1,142 @@
+{
+  "la-add-laws": {
+    "title": "Properties of the sum: commutative, associative, zero and opposite",
+    "summary": "Since matrices are added entry by entry, matrix addition inherits the properties of adding numbers.",
+    "steps": [
+      "To add two matrices of the same size, add the entries in the same position: entry (i, j) of A + B is a_ij + b_ij.",
+      "Commutative: in each position a_ij + b_ij = b_ij + a_ij, because they are numbers. Every position agrees, so A + B = B + A.",
+      "Associative: in each position (a_ij + b_ij) + c_ij = a_ij + (b_ij + c_ij). So (A + B) + C = A + (B + C) and you can write A + B + C without parentheses.",
+      "Zero element: the zero matrix 0 (all zeros, same size) changes nothing, because a_ij + 0 = a_ij.",
+      "Opposite: the matrix −A has every entry with its sign changed, and a_ij + (−a_ij) = 0. So A + (−A) = 0, and subtracting A − B means adding the opposite A + (−B).",
+      "Example with 2 × 3 matrices. In the drawing, the marked position adds 4 + 2 = 6; the others are added the same way, each one with the entry in the same position."
+    ],
+    "use": "They guarantee that you can work with sums of matrices as with sums of numbers: reorder, group and solve for unknowns. For example, from A + X = B you get X = B − A."
+  },
+  "la-scalar-laws": {
+    "title": "Properties of the product by a scalar",
+    "summary": "A number multiplies every entry, and it distributes over sums of matrices and sums of numbers.",
+    "steps": [
+      "Multiplying a matrix by a number (scalar) λ means multiplying every entry by λ: entry (i, j) of λA is λ·a_ij.",
+      "λ(A + B) = λA + λB: in each position λ(a_ij + b_ij) = λa_ij + λb_ij, which is the distributive property of numbers.",
+      "(λ + μ)A = λA + μA: in each position (λ + μ)a_ij = λa_ij + μa_ij.",
+      "(λμ)A = λ(μA): in each position (λμ)a_ij = λ(μ·a_ij). Multiplying by μ and then by λ is the same as multiplying by λμ.",
+      "Example: multiply every entry of the matrix by 3. In the drawing, each cell of 3A is three times the matching cell of A.",
+      "Check of the second property with λ = 2 and μ = 3: 5A equals 2A + 3A."
+    ],
+    "use": "They let you take out common factors and distribute numbers in expressions with matrices, just as in ordinary algebra. Together with the properties of the sum, they say that matrices can be treated like vectors: you can add them and multiply them by numbers."
+  },
+  "la-prod-entry": {
+    "title": "The product of matrices: row times column",
+    "summary": "Each entry of AB is a row of A times a column of B: a sum of products.",
+    "steps": [
+      "A row times a column (with the same number of entries, p) gives a number: multiply the entries in pairs, a₁b₁, a₂b₂, … and add them up.",
+      "To multiply, the number of columns of A must equal the number of rows of B. If A is n × p and B is p × m, the product C = AB is n × m.",
+      "Entry c_ij of C is row i of A times column j of B.",
+      "Written with the entries and the sum symbol, c_ij = a_i1·b_1j + a_i2·b_2j + … + a_ip·b_pj. The index k of the sum runs through the p terms (the notes use the same letter p for the index and for the size; here the index is k).",
+      "Example: c₂₁ uses row 2 of A, (4, 5, 6), and column 1 of B, (7, 9, 11). In the drawing, the row is orange, the column is teal and the result is pink: 4·7 + 5·9 + 6·11 = 139.",
+      "Repeating this with every row and every column gives the complete 2 × 2 matrix AB."
+    ],
+    "use": "The product is the way to combine information: apply one transformation after another, compute totals such as price times quantity, or write a system of equations as AX = b."
+  },
+  "la-prod-size": {
+    "title": "Size of the product: (n × p)(p × m) = n × m",
+    "summary": "To multiply, the columns of A must match the rows of B; the result takes the rows of A and the columns of B.",
+    "steps": [
+      "Let A be n × p and B be q × m (we do not yet know whether q equals p).",
+      "Each entry c_ij requires multiplying row i of A (with p entries) by column j of B (with q entries), in pairs. That is only possible if p = q: A must have as many columns as B has rows.",
+      "There is one c_ij for each row i of A (n rows) and each column j of B (m columns), so AB has size n × m.",
+      "Example: (2 × 3)·(3 × 4) = (2 × 4). The two middle 3s match (green in the drawing) and disappear; 2 and 4 remain.",
+      "The other way round, (3 × 4)·(2 × 3) cannot be computed, because 4 ≠ 2. The existence of AB does not guarantee the existence of BA."
+    ],
+    "use": "It is the first check before multiplying matrices: if the sizes do not fit, the product is not defined. It also tells you the size of the result without doing any arithmetic."
+  },
+  "la-prod-assoc": {
+    "title": "Associative property: (AB)C = A(BC)",
+    "summary": "You can group the products however you like; the result is the same.",
+    "steps": [
+      "With A being n × p, B being p × q and C being q × m, both (AB)C and A(BC) can be computed and are n × m. In the drawing, the upper bracket groups AB and the lower one groups BC.",
+      "Entry (i, l) of (AB)C is the sum over k of (AB)_ik · c_kl, and each (AB)_ik is itself a sum over j of a_ij · b_jk.",
+      "Entry (i, l) of A(BC) is the sum over j of a_ij · (BC)_jl, and each (BC)_jl is a sum over k of b_jk · c_kl.",
+      "In both cases we get the same double sum of the terms a_ij · b_jk · c_kl, just added in a different order. Since the sum of numbers does not depend on the order, they agree.",
+      "That is why you can write ABC without parentheses. The symbol =: means \"is defined as\".",
+      "Example: AB = ((6, 3), (3, 1)) and (AB)C = ((12, 3), (5, 1)). The other way, BC = ((2, 1), (5, 1)) and A(BC) = ((12, 3), (5, 1)): they match."
+    ],
+    "use": "It lets you choose the cheapest order of computation (for example, multiplying by a vector first) and chain transformations: applying B and then A is the same as applying a single matrix AB."
+  },
+  "la-prod-dist": {
+    "title": "Distributive property: (A + B)C = AC + BC",
+    "summary": "The product distributes over the sum, both on the right and on the left.",
+    "steps": [
+      "For them to be added, A and B must have the same size, n × p; C is p × m, so all three products are defined.",
+      "Entry (i, j) of (A + B)C is the sum over k of (a_ik + b_ik) · c_kj.",
+      "Each term is expanded with the distributive property of numbers and split into two sums: the first is entry (i, j) of AC and the second is entry (i, j) of BC. Therefore (A + B)C = AC + BC.",
+      "With C on the left the reasoning is the same: c_ik · (a_kj + b_kj) gives C(A + B) = CA + CB. C must stay on the left in both terms, because order matters.",
+      "Example: A + B = ((1, 3), (3, 2)) and (A + B)C = ((7, 3), (7, 2)). Separately, AC = ((5, 2), (2, 1)) and BC = ((2, 1), (5, 1)), which add up to the same thing."
+    ],
+    "use": "It lets you expand and factor expressions with matrices, as long as you take care over the order of the factors. For example, (A + B)² = A² + AB + BA + B²."
+  },
+  "la-prod-identity": {
+    "title": "The identity matrix is the neutral element: IA = AI = A",
+    "summary": "Multiplying by the identity (on either side) leaves the matrix unchanged.",
+    "steps": [
+      "The identity I has ones on the diagonal and zeros elsewhere. It is written with the Kronecker delta: δ_ij is 1 if i = j and 0 if i ≠ j.",
+      "In entry (i, j) of IA, the sum of δ_ik · a_kj has only one non-zero term, the one with k = i, which equals a_ij. So IA = A.",
+      "Same on the other side: in the sum of a_ik · δ_kj only k = j survives and a_ij remains. So AI = A.",
+      "If A is n × m, the identity of order n is used on the left and the one of order m on the right. They are different identities, but the result is the same A.",
+      "Example with a 2 × 3 matrix A: on the left, the 2 × 2 identity; on the right, the 3 × 3 identity. In the drawing, the identity has its diagonal highlighted."
+    ],
+    "use": "The identity plays the role of the number 1: it changes nothing when multiplying. It is essential to define the inverse matrix, which is the one that gives I when multiplied by A."
+  },
+  "la-prod-noncomm": {
+    "title": "The product is not commutative: AB ≠ BA",
+    "summary": "In general, the order of the factors does change the product.",
+    "steps": [
+      "Even if both AB and BA can be computed, they may have different sizes: with A being n × p and B being p × n, AB is n × n and BA is p × p. If n ≠ p they cannot be equal.",
+      "Example with A being 2 × 3 and B being 3 × 2: AB is 2 × 2 and BA is 3 × 3.",
+      "Even with square matrices of the same size the result differs. Here B swaps: AB swaps the columns of A and BA swaps its rows.",
+      "A single entry is enough: (AB)₁₁ = 1·0 + 2·1 = 2, but (BA)₁₁ = 0·1 + 1·3 = 3. In the drawing, those cells are marked.",
+      "Some pairs do commute: the identity with any matrix, a matrix with its own powers, or a matrix with a multiple of the identity."
+    ],
+    "use": "It is the most frequent mistake when working with matrices. For example, (A + B)² is not A² + 2AB + B², because AB and BA are different. When solving matrix equations you must always multiply on the same side in both members."
+  },
+  "la-block": {
+    "title": "Block multiplication",
+    "summary": "If matrices are split into compatible blocks, the blocks multiply as if they were numbers.",
+    "steps": [
+      "Split A into blocks A_ik and B into blocks B_kj so that the partition of the columns of A matches the partition of the rows of B. Then every product A_ik·B_kj is defined. In the drawing, the dashed lines mark the cuts.",
+      "Why it works: in the sum c_ij = Σ a_ik·b_kj, separate the first p₁ terms (those using the columns of the first block of A and the rows of the first block of B) from the remaining p − p₁ (those of the second block).",
+      "Each block of the result is the sum of the products of the blocks in row i of A by the blocks in column j of B: C_ij = A_i1·B_1j + A_i2·B_2j. It is the \"row times column\" rule with blocks instead of numbers; the statement shows the complete result.",
+      "Example with 4 × 4 matrices split into 2 × 2 blocks. In A, the lower left block is 0 and the lower right block is 2I; the upper right block is I.",
+      "C₁₁ = A₁₁B₁₁ + A₁₂B₂₁. Compute the two 2 × 2 products and add them.",
+      "C₁₂ = A₁₁B₁₂ + A₁₂B₂₂, computed in the same way.",
+      "In the bottom row A₂₁ = 0, so only the second term remains: C₂₁ = 2B₂₁ and C₂₂ = 2B₂₂.",
+      "Putting the four blocks together gives AB. It is exactly the matrix you get by multiplying the two 4 × 4 matrices in the ordinary way."
+    ],
+    "use": "It reduces big matrices to operations with small ones, and blocks of zeros save a great deal of computation. It is used in computers (splitting the work into pieces) and in proofs about matrices with structure."
+  },
+  "la-trace-lin": {
+    "title": "The trace is linear: tr(A + B) = tr A + tr B and tr(λA) = λ tr A",
+    "summary": "The trace of a sum is the sum of the traces, and scalars come out.",
+    "steps": [
+      "The trace of a square matrix is the sum of the entries on its main diagonal: tr A = a₁₁ + a₂₂ + … + a_nn.",
+      "The diagonal of A + B has the entries a_ii + b_ii. Adding them, they split into the sum of the a_ii and the sum of the b_ii.",
+      "That is, tr(A + B) = tr A + tr B.",
+      "With a scalar, each diagonal entry is multiplied by λ, and λ comes out as a common factor of the sum: tr(λA) = λ·tr A.",
+      "Example: A and B have traces 1 + 4 = 5 and 5 + 2 = 7. A + B has diagonal 6 and 6, with trace 12 = 5 + 7. In the drawing, the diagonal is highlighted."
+    ],
+    "use": "It lets you compute traces of complicated expressions by adding the traces of each piece. The trace summarises a square matrix in a single number."
+  },
+  "la-trace-prod": {
+    "title": "tr(AB) = tr(BA)",
+    "summary": "The trace of a product does not depend on the order of the two factors, even though AB and BA are different.",
+    "steps": [
+      "With A being n × p and B being p × n, AB is n × n and BA is p × p. Both are square, so both have a trace, although they are not the same size.",
+      "The trace of AB adds the diagonal entries (AB)_ii, and each of them is itself the sum of the products a_ik·b_ki. The result is a double sum of all the a_ik·b_ki.",
+      "The trace of BA adds the (BA)_kk, and each of them is the sum of b_ki·a_ik. It is another double sum, with the same products.",
+      "The terms are the same (b_ki·a_ik = a_ik·b_ki) and only the order of adding them changes, which does not matter. Therefore tr(AB) = tr(BA).",
+      "Example with A being 2 × 3 and B being 3 × 2: AB (2 × 2) has trace 5 + 7 = 12 and BA (3 × 3) has trace 1 + 5 + 6 = 12, even though they are matrices of different sizes and do not look alike.",
+      "With three factors they can only be moved in a cycle: tr(ABC) = tr(BCA) = tr(CAB). In general, tr(ACB) may be different."
+    ],
+    "use": "It is a widely used tool for simplifying expressions with matrices and proving properties. It appears in statistics, quantum mechanics and machine learning."
+  }
+}

@@ -88,4 +88,10 @@ export const figures = {
   "cx-example": CxExample,
 };
 
+// Linear algebra figures register themselves: figures/linear/<topic>.ts
+// exports `figures` (id -> component).
+type FigureComponent = (typeof figures)[keyof typeof figures];
+const linear = import.meta.glob<Record<string, FigureComponent>>("./linear/*.ts", { eager: true, import: "figures" });
+Object.assign(figures, ...Object.values(linear));
+
 export type FigureId = keyof typeof figures;

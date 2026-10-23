@@ -1,0 +1,30 @@
+---
+import MatrixRow from "./MatrixRow.astro";
+import { all, cellsOf, mat, offDiag } from "./grid";
+
+const A = mat([[1, 2, 0], [3, 1, 2]]);
+const At = mat([[1, 3], [2, 1], [0, 2]]);
+const S = mat([[5, 5], [5, 14]]);
+const T = mat([[10, 5, 6], [5, 5, 2], [6, 2, 4]]);
+const pair = (i: number, j: number) => (i === j ? null : i + j === 1 ? "g" : i + j === 2 ? "cos" : "cot");
+---
+
+<MatrixRow
+  cell={28}
+  rows={[
+    [
+      { data: A, fills: all(A, "a"), label: "A" },
+      { op: "·" },
+      { data: At, fills: all(At, "b"), label: "Aᵗ" },
+      { op: "=" },
+      { data: S, fills: offDiag(S, "g"), label: "AAᵗ" },
+    ],
+    [
+      { data: At, fills: all(At, "b"), label: "Aᵗ" },
+      { op: "·" },
+      { data: A, fills: all(A, "a"), label: "A" },
+      { op: "=" },
+      { data: T, fills: cellsOf(T, pair), label: "AᵗA" },
+    ],
+  ]}
+/>

@@ -1,0 +1,11 @@
+---
+import MapDiagram from "./MapDiagram.astro";
+---
+
+<MapDiagram
+  left={{ space: "ℝⁿ", point: "X = (1, 2)", color: "var(--csc)" }}
+  right={{ space: "ℝᵐ", point: "b = (1, 2, 3)", color: "var(--b)" }}
+  forward={{ name: "A", color: "var(--a)" }}
+  back={{ name: "L", color: "var(--g)" }}
+  note="L·(AX) = (LA)X = X"
+/>

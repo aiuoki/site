@@ -1,0 +1,32 @@
+---
+import MatrixRow from "./MatrixRow.astro";
+import { cellsOf, mat, offDiag } from "./grid";
+
+const S1 = mat([[1, 2], [2, 3]]);
+const S2 = mat([[0, 5], [5, 4]]);
+const S = mat([[1, 7], [7, 7]]);
+const K1 = mat([[0, 1], [-1, 0]]);
+const K2 = mat([[0, 2], [-2, 0]]);
+const K = mat([[0, 3], [-3, 0]]);
+const antiFills = (m: string[][]) => cellsOf(m, (i, j) => (i === j ? "cot" : "b"));
+---
+
+<MatrixRow
+  cell={30}
+  rows={[
+    [
+      { data: S1, fills: offDiag(S1, "g") },
+      { op: "+" },
+      { data: S2, fills: offDiag(S2, "g") },
+      { op: "=" },
+      { data: S, fills: offDiag(S, "g") },
+    ],
+    [
+      { data: K1, fills: antiFills(K1) },
+      { op: "+" },
+      { data: K2, fills: antiFills(K2) },
+      { op: "=" },
+      { data: K, fills: antiFills(K) },
+    ],
+  ]}
+/>

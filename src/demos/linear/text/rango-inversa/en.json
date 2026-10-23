@@ -1,0 +1,151 @@
+{
+  "la-elem-matrix": {
+    "title": "An elementary operation = multiplying by an elementary matrix",
+    "summary": "Doing a row operation to A is the same as multiplying A on the left by a matrix E.",
+    "steps": [
+      "An elementary matrix E is the identity after doing ONE elementary operation to it. Here we do R₂ ← R₂ − 3·R₁ to the 2×2 identity: row 1 stays the same and from row 2 we subtract 3 times row 1, so its first entry goes from 0 to −3.",
+      "What does E do when it multiplies? Row i of EA is a combination of the rows of A: each row k of A (we call it A<sub>k•</sub>) is multiplied by the number e<sub>ik</sub> of row i of E, and everything is added up.",
+      "Row 1 of E is (1, 0): 1 times row 1 of A and 0 times row 2. Result: row 1 does not change.",
+      "Row 2 of E is (−3, 1): −3 times row 1 of A plus 1 times row 2. That is exactly R₂ − 3·R₁.",
+      "Putting both rows together, EA is A with the operation already done. That is why doing an elementary operation is the same as multiplying on the left by an elementary matrix.",
+      "Swapping rows (R₁ ↔ R₂): the elementary matrix is the identity with its rows swapped, and multiplying swaps the rows of any matrix.",
+      "Multiplying a row by k (R₂ ← k·R₂, with k ≠ 0): the elementary matrix is the identity with k in place of the 1 of that row."
+    ],
+    "use": "It turns Gauss's method, which you do by hand row by row, into matrix algebra: a chain of operations is a product of matrices, so you can reason about it (prove that B = PA, compute inverses, understand the rank)."
+  },
+  "la-elem-inverse": {
+    "title": "Every elementary operation can be undone",
+    "summary": "Elementary matrices always have an inverse, and it is another elementary matrix.",
+    "steps": [
+      "R₂ ← R₂ − 3·R₁ is undone with R₂ ← R₂ + 3·R₁: what you subtracted, you add back. We call E the matrix that subtracts and E′ the one that adds.",
+      "We multiply E′E. In position (2, 1) we get 3·1 + 1·(−3) = 0 and in (2, 2) we get 1. The identity comes out, so E′ = E⁻¹.",
+      "Swapping two rows is undone by swapping them again: S·S = I. A swap matrix is its own inverse.",
+      "Multiplying a row by k is undone by multiplying it by 1/k. That is why the operation requires k ≠ 0: multiplying by 0 destroys the row and it can no longer be recovered.",
+      "If we do several operations in a row, P = E<sub>k</sub>⋯E₂E₁, they are undone in reverse order: P⁻¹ = E₁⁻¹E₂⁻¹⋯E<sub>k</sub>⁻¹. So every product of elementary matrices is invertible."
+    ],
+    "use": "It guarantees that operating on rows loses no information: you can always go back. That is why the relation A ~ B is symmetric and why Gauss-Jordan ends up giving the inverse."
+  },
+  "la-equiv-rows": {
+    "title": "[I | A] ~ [P | B] implies B = PA",
+    "summary": "If you do to [I | A] the same operations that take A to B, the matrix P is left on the left with B = PA.",
+    "steps": [
+      "Doing an elementary operation to [I | A] is the same as multiplying the whole matrix by E (block by block): E·I = E and E·A = EA. After the operation, the left block is no longer I, it is E.",
+      "We do a second operation E₂ on the result: the left block becomes E₂E₁ and the right block E₂E₁A.",
+      "After k operations, the left side is P = E<sub>k</sub>⋯E₁ and the right side is PA. If we call B the matrix on the right, we have proved that B = PA: P keeps a record of all the operations we have done to A.",
+      "Example with A = (1 2; 3 4). First R₂ ← R₂ − 3·R₁ and then R₁ ← R₁ + R₂. We start with I on the left of the bar and A on the right.",
+      "We check: P·A gives exactly the matrix B left on the right.",
+      "Since P is a product of elementary matrices, it is invertible. From B = PA we solve A = P⁻¹B: if B comes from A, then A also comes from B. That is why we write A ~ B (row equivalent)."
+    ],
+    "use": "It is the practical way to know which matrix P sums up all the operations you did. It is the basis for computing inverses with [A | I] and for understanding the rank."
+  },
+  "la-rank-2x2": {
+    "title": "Rank of a 2×2 matrix with the determinant",
+    "summary": "If det ≠ 0 the rank is 2; if det = 0 the rank is 1 (or 0 if every entry is 0). Here r = rank(A).",
+    "steps": [
+      "Suppose a ≠ 0. To make a zero below a we subtract (c/a) times row 1 from row 2: R₂ ← R₂ − (c/a)·R₁. Below we get (0, d − bc/a).",
+      "We put that number over a common denominator: d − bc/a = (ad − bc)/a. It is the determinant divided by a.",
+      "The echelon form already has a first pivot a ≠ 0. The second pivot is det/a, which is non-zero exactly when det ≠ 0. Then there are 2 non-zero rows and r = 2. If det = 0, the second row vanishes and r = 1.",
+      "If a = 0, we swap the rows: we get (c d; 0 b) and the determinant is −bc. If c ≠ 0 there are two pivots (c and b) when b ≠ 0, that is, when bc ≠ 0. If c = 0, the first column is zero, det = 0 and r ≤ 1.",
+      "Example: (1 2; 3 4) has det = 1·4 − 2·3 = −2 ≠ 0, so r = 2.",
+      "Example: (1 2; 2 4) has det = 4 − 4 = 0, so r = 1: row 2 is twice row 1. The rank is 0 only when all four numbers are 0."
+    ],
+    "use": "For a 2×2 matrix the rank can be read from a single number, the determinant. It is also the test for whether the matrix is regular (has an inverse): det ≠ 0."
+  },
+  "la-rank-3x3": {
+    "title": "Rank of a 3×3 matrix: Sarrus, minors and Gauss",
+    "summary": "Three paths to the same rank: the Sarrus determinant, a non-zero 2×2 minor and the echelon form. Here r = rank(A).",
+    "steps": [
+      "Sarrus's rule: add the three products along the descending diagonals (aei + bfg + cdh) and subtract the three along the ascending ones (ceg + bdi + afh). Here (a, b, c) = (0, 1, 2), (d, e, f) = (1, 1, 1) and (g, h, i) = (2, 3, 4).",
+      "We get det A = 0, so the rank is NOT 3: r < 3.",
+      "If det = 0, we look for a non-zero 2×2 minor (a minor is the determinant of a square submatrix). With rows 2 and 3 and columns 1 and 2: 1·3 − 1·2 = 1 ≠ 0. So r ≥ 2 and, since r < 3, r = 2.",
+      "We check with Gauss: R₁ ↔ R₂; then R₃ ← R₃ − 2·R₁ (we get (0, 1, 2)) and R₃ ← R₃ − R₂ (we get 0). There are 2 non-zero rows: r = 2.",
+      "If every 2×2 minor is 0 and the matrix is not zero, the rank is 1. Example: all the rows of B are proportional to (1, 2, 3). If every entry were 0, the rank would be 0."
+    ],
+    "use": "For 3×3 matrices Sarrus and minors are handy; for 4×4 or larger, non-square matrices or matrices with many zeros, Gauss is better. All three methods give the same rank."
+  },
+  "la-rank-triangular": {
+    "title": "Rank of a triangular matrix",
+    "summary": "The determinant is the product of the diagonal: if there are no zeros on it, the rank is full. Here r = rank(A).",
+    "steps": [
+      "An upper triangular matrix has zeros below the diagonal. Expanding along the first column (only its first entry is non-zero), det = t₁₁ times the determinant of what is left; repeating, det = product of the diagonal. Here 2·(−1)·5 = −10.",
+      "No diagonal entry is 0, so the matrix is already in echelon form with 3 pivots (2, −1 and 5): full rank, r = 3 = n.",
+      "If the second diagonal entry is 0 (matrix T′), det = 2·0·5 = 0. With Gauss, R₃ ← R₃ − (5/4)·R₂ makes the third row vanish and we get r = 2 < 3.",
+      "Why does this always happen? If t<sub>kk</sub> = 0, row k and the rows below it have zeros in columns 1, …, k. Their first possible pivot is in column k + 1 or further right.",
+      "There are n − k + 1 rows (from k to n) for only n − k columns (from k + 1 to n), and each column holds a single pivot. Since n − k + 1 > n − k, at least one of those rows vanishes: r < n."
+    ],
+    "use": "Looking at the diagonal is enough: with no zeros the rank is full and the matrix has an inverse; with any zero, the rank drops. It is useful because many matrices that come out of Gauss are triangular."
+  },
+  "la-gauss-jordan": {
+    "title": "Why [A | I] ~ [I | A⁻¹] computes the inverse",
+    "summary": "The same operations that take A to I, applied to the identity, turn it into A⁻¹.",
+    "steps": [
+      "If A is n×n and its rank is n, it has a pivot in every row and every column, and row operations lead to the identity I. Each operation is an elementary matrix; we call P the product of all of them, and PA = I.",
+      "We do exactly those same operations to [A | I]. Block by block, each one multiplies both halves by E: in the end [PA | PI] = [I | P].",
+      "PA = I only says that P undoes A on one side. But P is a product of elementary matrices, so it is invertible: multiplying PA = I by P⁻¹ gives A = P⁻¹, and then AP = P⁻¹P = I. P works on both sides.",
+      "PA = AP = I is exactly the definition of the inverse: P = A⁻¹. And P is the right half of the final matrix."
+    ],
+    "use": "It is the practical method to compute inverses, by hand or with a program. It also warns you when no inverse exists: if a row vanishes on the left, you cannot reach I."
+  },
+  "la-inverse-example": {
+    "title": "Example: computing an inverse with Gauss-Jordan",
+    "summary": "From [A | I] to [I | A⁻¹] step by step with A = (1 2; 2 5), and a check.",
+    "steps": [
+      "We write A on the left and the identity on the right, separated by a bar.",
+      "R₂ ← R₂ − 2·R₁ makes the 2 at the bottom left a 0. On the right, the identity changes: (0, 1) − 2·(1, 0) = (−2, 1).",
+      "R₁ ← R₁ − 2·R₂ makes the 2 at the top a 0. On the right: (1, 0) − 2·(−2, 1) = (5, −2). The left is now I and the right is A⁻¹.",
+      "We check: A·A⁻¹ = I. (And also A⁻¹·A = I, because for square matrices the inverse works on both sides.)",
+      "For 2×2 there is a shortcut: A⁻¹ = (1/det)·(d −b; −c a). Here det = 1·5 − 2·2 = 1 and we get the same matrix."
+    ],
+    "use": "Once you have A⁻¹ you can solve AX = b for any b with one multiplication, without repeating Gauss's method."
+  },
+  "la-inv-rank": {
+    "title": "It has an inverse if and only if the rank is n",
+    "summary": "A square n×n matrix is invertible exactly when its rank is n. Here r = rank(A).",
+    "steps": [
+      "If r = n, the reduced form of A is I. This is the case of the Gauss-Jordan proof: P is built with PA = I and P = A⁻¹. So rank n implies that an inverse exists.",
+      "The other way round: suppose A has an inverse but r < n. When we reduce, PA = E has a row of zeros (the last one): E<sub>n•</sub> = (0, …, 0).",
+      "We multiply by A⁻¹ on the right: P = P(AA⁻¹) = (PA)A⁻¹ = EA⁻¹.",
+      "Row n of EA⁻¹ is (row n of E)·A⁻¹, which is zeros. So P has a row of zeros.",
+      "But P has an inverse (it is a product of elementary matrices) and PP⁻¹ = I. Row n of PP⁻¹ would be P<sub>n•</sub>P⁻¹ = (0, …, 0), while row n of I is not zero. Contradiction: r < n is impossible.",
+      "Example: A = (1 2; 2 4) has rank 1. After R₂ ← R₂ − 2·R₁, the left part of [A | I] has a row of zeros: you cannot reach I and A⁻¹ does not exist."
+    ],
+    "use": "It tells you when it is worth looking for the inverse: rank n (det ≠ 0) yes, lower rank no. And for systems, a square A of rank n has a unique solution for any b."
+  },
+  "la-inv-product": {
+    "title": "The inverse of a product: (AB)⁻¹ = B⁻¹A⁻¹",
+    "summary": "To invert a product, invert the factors and reverse the order.",
+    "steps": [
+      "To see that B⁻¹A⁻¹ is the inverse of AB we multiply it by AB. With the associative property we group: A(BB⁻¹)A⁻¹.",
+      "BB⁻¹ = I, and I changes nothing: we are left with AA⁻¹ = I.",
+      "On the other side: (B⁻¹A⁻¹)(AB) = B⁻¹(A⁻¹A)B = B⁻¹B = I. It works on both sides, which is the definition of the inverse.",
+      "Example: A = (1 2; 0 1) and B = (1 0; 3 1). Their product is AB = (7 2; 3 1).",
+      "B⁻¹ = (1 0; −3 1) and A⁻¹ = (1 −2; 0 1). Their product B⁻¹A⁻¹ = (1 −2; −3 7) is the inverse of AB (with the 2×2 shortcut: det(AB) = 7 − 6 = 1).",
+      "If they were multiplied in the same order, A⁻¹B⁻¹ = (7 −2; −3 1), which is NOT the inverse of AB. The order is reversed."
+    ],
+    "use": "It is like socks and shoes: if you put on socks first and then shoes, to undo it you take off the shoes first. It is used, for example, to prove that R = L = A⁻¹ when the matrix is square."
+  },
+  "la-inv-transpose": {
+    "title": "The inverse of the transpose: (Aᵗ)⁻¹ = (A⁻¹)ᵗ",
+    "summary": "Inverting and transposing can be done in either order.",
+    "steps": [
+      "We use two facts: the transpose of a product reverses the order, (XY)ᵗ = YᵗXᵗ, and Iᵗ = I.",
+      "Aᵗ(A⁻¹)ᵗ = (A⁻¹A)ᵗ, because transposing the product reverses the order; and (A⁻¹A)ᵗ = Iᵗ = I.",
+      "On the other side, (A⁻¹)ᵗAᵗ = (AA⁻¹)ᵗ = Iᵗ = I. So (A⁻¹)ᵗ is the inverse of Aᵗ.",
+      "Example: A = (1 2; 3 5), with det = −1 and A⁻¹ = (−5 2; 3 −1). We transpose A⁻¹: (A⁻¹)ᵗ = (−5 3; 2 −1).",
+      "By the other route: Aᵗ = (1 3; 2 5), with det = 5 − 6 = −1, and (Aᵗ)⁻¹ = (−5 3; 2 −1). They match."
+    ],
+    "use": "It lets you invert and transpose in whichever order is more convenient. For example, it proves that the inverse of a symmetric matrix (A = Aᵗ) is also symmetric."
+  },
+  "la-solve-inverse": {
+    "title": "Solving AX = b with the inverse: X = A⁻¹b",
+    "summary": "If A is square with an inverse, the system has a unique solution: A⁻¹b.",
+    "steps": [
+      "We start from AX = b, with A square and invertible. We multiply both sides by A⁻¹ on the LEFT (with matrices the order matters).",
+      "With the associative property we group: (A⁻¹A)X.",
+      "A⁻¹A = I and IX = X. We are left with X = A⁻¹b.",
+      "We check that it is a solution: A(A⁻¹b) = (AA⁻¹)b = Ib = b. So a solution exists and, since we chose nothing along the way, it is the only one.",
+      "Example: 2x + y = 3 and x + y = 2. With A⁻¹ = (1 −1; −1 2), X = A⁻¹(3, 2) = (3 − 2, −3 + 4) = (1, 1)."
+    ],
+    "use": "It solves the system without repeating Gauss: if b changes, you just multiply again. It only works for a square A with an inverse; the other cases (more unknowns than equations, or the other way round) are the topic of the pseudoinverse."
+  }
+}

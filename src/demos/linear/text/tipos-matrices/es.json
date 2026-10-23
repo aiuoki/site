@@ -1,0 +1,149 @@
+{
+  "la-transp-twice": {
+    "title": "Transponer dos veces: (Aᵗ)ᵗ = A",
+    "summary": "Intercambiar filas y columnas dos veces devuelve la matriz original.",
+    "steps": [
+      "La transpuesta Aᵗ se forma cambiando filas por columnas: el elemento que está en la fila j y la columna i de Aᵗ es a_ji. Si A tiene m filas y n columnas, Aᵗ tiene n filas y m columnas. Esto vale también para matrices rectangulares.",
+      "Ejemplo: A tiene 2 filas y 3 columnas. Su primera fila (1, 2, 3) pasa a ser la primera columna de Aᵗ, y su segunda fila (4, 5, 6) pasa a ser la segunda columna. En el dibujo, cada color sigue una fila de A hasta su columna en Aᵗ.",
+      "Ahora transponemos Aᵗ. Su elemento en la fila i, columna j es el elemento de Aᵗ en la fila j, columna i, que a su vez es a_ij. Es decir, los dos intercambios de índices se cancelan.",
+      "Las dos matrices tienen el mismo tamaño (m × n) y los mismos elementos en cada posición, así que son iguales: (Aᵗ)ᵗ = A."
+    ],
+    "use": "Es la regla que permite simplificar cualquier expresión con transpuestas: dos transposiciones seguidas se eliminan. También prueba que transponer es reversible: nunca se pierde información."
+  },
+  "la-transp-prod": {
+    "title": "Transpuesta de un producto: (AB)ᵗ = BᵗAᵗ",
+    "summary": "Al transponer un producto, los factores se transponen y cambian de orden.",
+    "steps": [
+      "Para poder multiplicar, las columnas de A deben coincidir con las filas de B: A es n × p y B es p × m. El producto AB es n × m, luego (AB)ᵗ es m × n.",
+      "Bᵗ es m × p y Aᵗ es p × n: ahora el número de columnas de Bᵗ (p) coincide con las filas de Aᵗ (p), así que BᵗAᵗ se puede calcular y es m × n. Tiene el mismo tamaño que (AB)ᵗ; con el orden AᵗBᵗ ni siquiera se podría multiplicar en general. En el dibujo, el tamaño p que se «anula» está en verde.",
+      "El elemento (i, j) de (AB)ᵗ es el elemento (j, i) de AB: la fila j de A por la columna i de B, es decir, la suma de los productos a_jk · b_ki.",
+      "El elemento (i, j) de BᵗAᵗ es la fila i de Bᵗ por la columna j de Aᵗ. La fila i de Bᵗ es la columna i de B (elementos b_ki) y la columna j de Aᵗ es la fila j de A (elementos a_jk).",
+      "Las dos sumas son iguales término a término (el producto de números reales es conmutativo), así que (AB)ᵗ = BᵗAᵗ.",
+      "Comprobación numérica con matrices rectangulares: AB = ((5, 2), (5, 7)), luego (AB)ᵗ = ((5, 5), (2, 7)). Calculando BᵗAᵗ por separado sale exactamente lo mismo."
+    ],
+    "use": "Se usa en cuanto aparece una transpuesta delante de un producto: es la clave para demostrar que AAᵗ es simétrica, que la inversa de una simétrica es simétrica y muchas propiedades más. El cambio de orden es el mismo que al ponerse y quitarse calcetines y zapatos."
+  },
+  "la-sym-gram": {
+    "title": "AAᵗ y AᵗA siempre son simétricas",
+    "summary": "Multiplicar una matriz por su transpuesta, en cualquier orden, da una matriz simétrica.",
+    "steps": [
+      "Si A es m × n (no hace falta que sea cuadrada), AAᵗ es m × m y AᵗA es n × n. Las dos son cuadradas, y solo las cuadradas pueden ser simétricas.",
+      "Transponemos AAᵗ con la regla del producto, (XY)ᵗ = YᵗXᵗ, tomando X = A e Y = Aᵗ. El orden se invierte y queda (Aᵗ)ᵗ Aᵗ.",
+      "Como (Aᵗ)ᵗ = A, el resultado es AAᵗ. La matriz es igual a su transpuesta: es simétrica.",
+      "Con AᵗA ocurre lo mismo: (AᵗA)ᵗ = Aᵗ(Aᵗ)ᵗ = AᵗA.",
+      "Ejemplo con A de 2 × 3. AAᵗ es 2 × 2 y su elemento (i, j) es la fila i de A por la fila j de A; por eso coincide con el elemento (j, i). AᵗA es 3 × 3 y sus elementos son productos de columnas de A. En ambos casos los elementos simétricos respecto a la diagonal (mismo color en el dibujo) son iguales."
+    ],
+    "use": "Es la forma más rápida de fabricar matrices simétricas a partir de cualquier matriz, y por eso aparecen constantemente: en mínimos cuadrados (AᵗA), en estadística (matrices de covarianza) y en la pseudoinversa."
+  },
+  "la-sym-inv": {
+    "title": "La inversa de una simétrica es simétrica",
+    "summary": "Si A = Aᵗ y A tiene inversa, entonces A⁻¹ también es simétrica.",
+    "steps": [
+      "Partimos de que A es invertible, es decir, existe A⁻¹ con A⁻¹A = I. Transponemos esa igualdad con la regla del producto: (A⁻¹A)ᵗ = Aᵗ(A⁻¹)ᵗ.",
+      "La transpuesta de la identidad es la propia identidad (I es simétrica). Por tanto Aᵗ(A⁻¹)ᵗ = I.",
+      "Como A es simétrica, Aᵗ = A. Sustituyendo queda A(A⁻¹)ᵗ = I.",
+      "Multiplicamos por A⁻¹ por la izquierda en los dos lados: A⁻¹A(A⁻¹)ᵗ = A⁻¹I. A la izquierda A⁻¹A = I, y a la derecha A⁻¹I = A⁻¹. Resultado: (A⁻¹)ᵗ = A⁻¹.",
+      "Ejemplo: A = ((2, 1), (1, 1)) es simétrica y su inversa es ((1, −1), (−1, 2)). Se comprueba multiplicando que AA⁻¹ = I, y la inversa también es simétrica: los dos −1 coinciden."
+    ],
+    "use": "Permite resolver sistemas con matrices simétricas sabiendo que la inversa conserva esa estructura, lo que ahorra memoria y cálculos en métodos numéricos."
+  },
+  "la-sym-prod": {
+    "title": "El producto de simétricas solo es simétrico si AB = BA",
+    "summary": "Dos matrices simétricas no siempre dan un producto simétrico: depende de que conmuten.",
+    "steps": [
+      "Aplicamos la regla de la transpuesta de un producto: (AB)ᵗ = BᵗAᵗ.",
+      "Como A y B son simétricas, Bᵗ = B y Aᵗ = A. Entonces (AB)ᵗ = BA.",
+      "AB es simétrica cuando (AB)ᵗ = AB. Usando el paso anterior, eso equivale a BA = AB: el producto es simétrico justo cuando A y B conmutan (se pueden multiplicar en cualquier orden).",
+      "Contraejemplo: A y B son simétricas, pero AB = ((0, 1), (2, 0)) no lo es (un 1 frente a un 2) y BA = ((0, 2), (1, 0)) es distinta de AB. En el dibujo, las casillas rojas deberían ser iguales y no lo son.",
+      "Ejemplo en el que sí funciona: con estas A y B se cumple AB = BA = ((11, 10), (10, 11)), que es simétrica."
+    ],
+    "use": "Avisa de un error muy común: no se puede suponer que el producto de simétricas es simétrico. Sí lo es en casos importantes, como las potencias de una misma matriz (A · A = A²) o dos matrices diagonales."
+  },
+  "la-sum-types": {
+    "title": "Suma de simétricas y suma de antisimétricas",
+    "summary": "Sumar dos simétricas da una simétrica; sumar dos antisimétricas da una antisimétrica.",
+    "steps": [
+      "La transpuesta de una suma es la suma de las transpuestas: el elemento (i, j) de (A + B)ᵗ es el (j, i) de A + B, es decir, a_ji + b_ji, que es el elemento (i, j) de Aᵗ + Bᵗ.",
+      "Si A y B son simétricas (Aᵗ = A y Bᵗ = B), entonces (A + B)ᵗ = A + B: la suma es simétrica.",
+      "Si A y B son antisimétricas (Aᵗ = −A y Bᵗ = −B), entonces (A + B)ᵗ = −A − B = −(A + B): la suma es antisimétrica.",
+      "Ejemplo con simétricas: los elementos simétricos respecto a la diagonal (2 y 2, 5 y 5) se suman entre sí y dan 7 y 7.",
+      "Ejemplo con antisimétricas: la diagonal sigue siendo 0 y los elementos opuestos 1 y −1, 2 y −2 dan 3 y −3."
+    ],
+    "use": "Significa que las matrices simétricas forman un conjunto cerrado por la suma (y por multiplicar por un número), igual que las antisimétricas. Es lo que permite sumar y combinar sin perder la estructura."
+  },
+  "la-anti-diag": {
+    "title": "Una antisimétrica tiene la diagonal llena de ceros",
+    "summary": "Si Aᵗ = −A, entonces A es cuadrada y todos sus elementos a_ii valen 0.",
+    "steps": [
+      "Aᵗ = −A significa, elemento a elemento, que a_ji = −a_ij para cualesquiera i y j: los elementos simétricos respecto a la diagonal son iguales pero de signo contrario.",
+      "Si A es m × n, Aᵗ es n × m. Para que Aᵗ = −A sean iguales deben tener el mismo tamaño, así que m = n. Una antisimétrica es siempre cuadrada (los apuntes dicen «no siempre cuadrada», pero la condición lo obliga).",
+      "En la diagonal i = j, la relación del primer paso dice a_ii = −a_ii: cada elemento es igual a su opuesto.",
+      "Pasando el término al otro lado, 2a_ii = 0 y, como 2 ≠ 0, a_ii = 0.",
+      "Ejemplo: en el dibujo, la diagonal (rosa) vale 0 y cada elemento tiene enfrente su opuesto del mismo color: 1 y −1, 2 y −2, 3 y −3."
+    ],
+    "use": "Sirve para reconocer una antisimétrica de un vistazo: diagonal de ceros y elementos opuestos en espejo. Solo hay que conocer los elementos por encima de la diagonal, porque el resto se deduce."
+  },
+  "la-anti-odd": {
+    "title": "Antisimétrica de orden impar: determinante 0",
+    "summary": "Una antisimétrica n × n con n impar nunca tiene inversa.",
+    "steps": [
+      "El determinante no cambia al transponer: det(Aᵗ) = det(A). (Propiedad conocida de los determinantes.)",
+      "Al multiplicar toda la matriz por −1, se saca un factor −1 de cada una de las n filas: det(−A) = (−1)ⁿ det(A).",
+      "Como Aᵗ = −A, los dos determinantes anteriores son iguales: det(A) = det(Aᵗ) = det(−A) = (−1)ⁿ det(A).",
+      "Si n es impar (n = 2k + 1), (−1)ⁿ = −1 y queda det(A) = −det(A).",
+      "Entonces 2 det(A) = 0 y det(A) = 0. Una matriz cuadrada solo tiene inversa si su determinante es distinto de 0, luego esta no la tiene.",
+      "Ejemplo: la antisimétrica 3 × 3 del dibujo, desarrollando por la primera fila, da 0 · 9 − 1 · 6 + 2 · 3 = 0 − 6 + 6 = 0."
+    ],
+    "use": "Atajo muy útil: una antisimétrica 3 × 3, 5 × 5, etc. es singular sin calcular nada. Con orden par sí puede tener inversa, por ejemplo ((0, 1), (−1, 0)) tiene determinante 1."
+  },
+  "la-anti-square": {
+    "title": "El cuadrado de una antisimétrica es simétrico",
+    "summary": "Si Aᵗ = −A, entonces A² es simétrica (y las potencias alternan: simétrica, antisimétrica...).",
+    "steps": [
+      "Transponemos A² = AA con la regla del producto: (AA)ᵗ = AᵗAᵗ.",
+      "Como Aᵗ = −A, queda (−A)(−A). Los dos signos menos se cancelan y el resultado es A². Así (A²)ᵗ = A²: es simétrica.",
+      "Ejemplo con la antisimétrica 3 × 3: aunque A tiene ceros en la diagonal, A² tiene −5, −10 y −13, y los elementos en espejo (−6 y −6, 3 y 3, −2 y −2) coinciden.",
+      "Más en general, (Aᵏ)ᵗ = (Aᵗ)ᵏ = (−A)ᵏ = (−1)ᵏAᵏ. Las potencias pares son simétricas y las impares son antisimétricas."
+    ],
+    "use": "Muestra que «antisimétrica» no se conserva al multiplicar: solo las potencias impares lo son. Aparece, por ejemplo, en el producto vectorial y en las rotaciones infinitesimales de la física."
+  },
+  "la-tri-prod": {
+    "title": "Producto de triangulares superiores",
+    "summary": "El producto de dos triangulares superiores es triangular superior y su diagonal es el producto de las diagonales.",
+    "steps": [
+      "Triangular superior significa que todo lo que queda por debajo de la diagonal es 0: a_ik = 0 si i > k, y b_kj = 0 si k > j.",
+      "El elemento (i, j) de C = AB es la fila i de A por la columna j de B: c_ij es la suma de los productos a_ik · b_kj, con k desde 1 hasta n.",
+      "Tomamos un elemento por debajo de la diagonal de C (i > j) y miramos cada término. Si k < i, entonces a_ik = 0. Si k ≥ i, como i > j se tiene k > j y entonces b_kj = 0. Todos los términos tienen un factor cero.",
+      "Por tanto c_ij = 0 para i > j: AB tiene ceros bajo la diagonal, es triangular superior.",
+      "En la diagonal (i = j), el término a_ik · b_ki solo puede ser distinto de 0 si k ≥ i (por A) y k ≤ i (por B), es decir, para k = i. Así c_ii = a_ii · b_ii.",
+      "Ejemplo: las diagonales 1, 4, 6 y 2, 3, 5 dan 1·2 = 2, 4·3 = 12 y 6·5 = 30, exactamente la diagonal del producto. Los ceros siguen debajo.",
+      "Para triangulares inferiores se usa la transpuesta: Aᵗ y Bᵗ son superiores, así que (AB)ᵗ = BᵗAᵗ es superior y, por tanto, AB es inferior."
+    ],
+    "use": "Permite calcular potencias y determinantes de triangulares sin esfuerzo: la diagonal de Aⁿ es la diagonal de A elevada a n."
+  },
+  "la-tri-inv": {
+    "title": "La inversa de una triangular superior es triangular superior",
+    "summary": "Una triangular superior con inversa tiene una inversa que sigue siendo triangular superior.",
+    "steps": [
+      "La columna j de A⁻¹, que llamamos x, cumple A·x = e_j, donde e_j es la columna j de la identidad (un 1 en la posición j y ceros en el resto). Esto sale de la igualdad AA⁻¹ = I columna a columna.",
+      "Como A es triangular superior, su última ecuación solo tiene una incógnita: a_nn · x_n = (e_j)_n. Además a_nn ≠ 0, porque el determinante es el producto de la diagonal y A tiene inversa.",
+      "Si j < n, el lado derecho vale 0 y x_n = 0. Subiendo por las ecuaciones: la anterior es a_(n−1,n−1)·x_(n−1) + a_(n−1,n)·x_n = 0 y, con x_n = 0, queda x_(n−1) = 0. Se sigue igual hasta x_(j+1) = 0.",
+      "Los elementos de la columna j de A⁻¹ por debajo de la diagonal (fila i > j) son entonces 0: la inversa es triangular superior.",
+      "Ejemplo: A⁻¹ = ((1, −2, 5), (0, 1, −4), (0, 0, 1)) multiplicada por A da la identidad. Los ceros bajo la diagonal se mantienen en la inversa."
+    ],
+    "use": "Invertir una triangular es mucho más barato que una matriz general: basta con sustitución hacia atrás. Es la base de cómo se resuelven los sistemas en la práctica, tras reducirlos a forma triangular. Para inferiores sirve el mismo argumento con la transpuesta."
+  },
+  "la-split": {
+    "title": "Toda matriz cuadrada = simétrica + antisimétrica",
+    "summary": "Cualquier matriz cuadrada se escribe de una única forma como suma de una simétrica y una antisimétrica.",
+    "steps": [
+      "Llamamos S = (A + Aᵗ)/2. Su transpuesta es (Aᵗ + (Aᵗ)ᵗ)/2 = (Aᵗ + A)/2 = S, luego S es simétrica.",
+      "Llamamos K = (A − Aᵗ)/2. Su transpuesta es (Aᵗ − A)/2, que es el opuesto de K, luego K es antisimétrica.",
+      "Sumándolas, los términos Aᵗ se cancelan: S + K = (2A)/2 = A. Así queda demostrada la descomposición.",
+      "Ejemplo con A = ((1, 4), (2, 3)): A + Aᵗ = ((2, 6), (6, 6)) y A − Aᵗ = ((0, 2), (−2, 0)).",
+      "Dividiendo entre 2: S = ((1, 3), (3, 3)) y K = ((0, 1), (−1, 0)). En el dibujo, el 4 y el 2 de A se reparten: el promedio 3 va a S y la mitad de la diferencia (±1) va a K. S + K da de nuevo A.",
+      "La descomposición es única: si A = S' + K' con S' simétrica y K' antisimétrica, al transponer queda Aᵗ = S' − K'. Sumando y restando con A se obtienen justamente las fórmulas de S y de K."
+    ],
+    "use": "Permite estudiar una matriz cualquiera separando su parte «espejo» (simétrica) de su parte «giro» (antisimétrica). Se usa, por ejemplo, en mecánica de sólidos, donde la deformación es la parte simétrica y la rotación la antisimétrica."
+  }
+}

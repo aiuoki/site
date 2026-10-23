@@ -1,0 +1,60 @@
+---
+// A matrix as a grid of numbers inside an SVG, with optional coloured rows,
+// columns or cells and the vertical bar of an augmented matrix.
+import { colX, gridHeight, gridWidth, layout, pick, rowY } from "./grid";
+
+interface Props {
+  cells: string[][];
+  x: number;
+  y: number;
+  cw?: number;
+  ch?: number;
+  fs?: number;
+  // Column before which the bar of [A | I] is drawn.
+  divider?: number;
+  // Highlight keys: "r1", "c0" or "1,2" -> theme token such as "var(--a)".
+  fills?: Record<string, string>;
+  ink?: Record<string, string>;
+  brackets?: boolean;
+  // Dim cells equal to "0" (pivot columns stand out more).
+  dimZeros?: boolean;
+}
+
+const { cells, x, y, cw = 34, ch = 26, fs = 15, divider, fills, ink, brackets = true, dimZeros = false } = Astro.props;
+const l = layout({ cw, ch, divider });
+const w = gridWidth(cells[0]!.length, l);
+const h = gridHeight(cells.length, l);
+const b = 5;
+---
+
+<g transform={`translate(${x} ${y})`}>
+  {
+    cells.map((row, i) =>
+      row.map((text, j) => {
+        const fill = pick(fills, i, j);
+        const color = pick(ink, i, j) ?? (dimZeros && text === "0" ? "var(--muted)" : "var(--fg)");
+        return (
+          <>
+            {fill && <rect x={colX(j, l)} y={rowY(i, l)} width={cw} height={ch} rx="4" fill={fill} fill-opacity="0.22" />}
+            <text x={colX(j, l) + cw / 2} y={rowY(i, l) + ch / 2 + fs * 0.35} text-anchor="middle" font-size={fs} fill={color}>
+              {text}
+            </text>
+          </>
+        );
+      }),
+    )
+  }
+  {
+    brackets && (
+      <>
+        <path d={`M${b} -3 H0 V${h + 3} H${b}`} fill="none" stroke="var(--fg)" stroke-width="1.6" />
+        <path d={`M${w - b} -3 H${w} V${h + 3} H${w - b}`} fill="none" stroke="var(--fg)" stroke-width="1.6" />
+      </>
+    )
+  }
+  {
+    divider !== undefined && (
+      <line x1={colX(divider, l) - l.gap / 2} y1="-3" x2={colX(divider, l) - l.gap / 2} y2={h + 3} stroke="var(--muted)" stroke-width="1.4" stroke-dasharray="3 3" />
+    )
+  }
+</g>

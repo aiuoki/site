@@ -1,0 +1,28 @@
+---
+import MatrixRow from "../tipos-matrices/MatrixRow.astro";
+import { all, diag, mat } from "../tipos-matrices/grid";
+
+const A = mat([[1, 2, 3], [4, 5, 6]]);
+const I2 = mat([[1, 0], [0, 1]]);
+const I3 = mat([[1, 0, 0], [0, 1, 0], [0, 0, 1]]);
+---
+
+<MatrixRow
+  cell={28}
+  rows={[
+    [
+      { data: I2, fills: diag(I2, "cos"), label: "I" },
+      { op: "·" },
+      { data: A, fills: all(A, "a"), label: "A" },
+      { op: "=" },
+      { data: A, fills: all(A, "a"), label: "A" },
+    ],
+    [
+      { data: A, fills: all(A, "a"), label: "A" },
+      { op: "·" },
+      { data: I3, fills: diag(I3, "cos"), label: "I" },
+      { op: "=" },
+      { data: A, fills: all(A, "a"), label: "A" },
+    ],
+  ]}
+/>

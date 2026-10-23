@@ -1,0 +1,27 @@
+---
+import BoxRow from "./BoxRow.astro";
+---
+
+<BoxRow
+  unit={22}
+  rows={[
+    {
+      items: [
+        { cols: 3, rows: 2, name: "A", dims: "n × p", token: "a", top: ["p", "csc"] },
+        { op: "·" },
+        { cols: 4, rows: 3, name: "B", dims: "p × m", token: "b", left: ["p", "csc"] },
+        { op: "=" },
+        { cols: 4, rows: 2, name: "AB", dims: "n × m", token: "g" },
+      ],
+    },
+    {
+      items: [
+        { cols: 3, rows: 4, name: "Bᵗ", dims: "m × p", token: "b", top: ["p", "csc"] },
+        { op: "·" },
+        { cols: 2, rows: 3, name: "Aᵗ", dims: "p × n", token: "a", left: ["p", "csc"] },
+        { op: "=" },
+        { cols: 2, rows: 4, name: "(AB)ᵗ", dims: "m × n", token: "g" },
+      ],
+    },
+  ]}
+/>

@@ -1,0 +1,116 @@
+---
+title: "Types of matrices"
+eyebrow: "Interactive guide · linear algebra"
+intro: "What a matrix is and how they are classified: square, identity, diagonal, symmetric, antisymmetric and triangular. Every property has its step-by-step proof: click any card to see it."
+description: "What a matrix is and its types: square, identity, diagonal, transpose, symmetric, antisymmetric and triangular, with worked examples and step-by-step proofs."
+---
+
+<Section eyebrow={"01 · Definition"} title={"What is a matrix?"} lead={"A matrix is a rectangular table of numbers arranged in rows (horizontal) and columns (vertical). It stores many data together and lets you operate on them all at once."}>
+  <Defs>
+    <DefItem title={"Size m × n"} text={"A matrix with <i>m</i> rows and <i>n</i> columns has size <span class='mr'><i>m</i> × <i>n</i></span>. Always say the rows first and then the columns."} />
+    <DefItem title={"Entry a<sub>ij</sub>"} text={"The number in row <i>i</i> and column <i>j</i>. So <span class='mr'><i>A</i> = [<i>a</i><sub><i>ij</i></sub>]<sub><i>m</i>×<i>n</i></sub></span> is the matrix made of all its entries."} />
+    <DefItem title={"The set M<sub>m×n</sub>(K)"} text={"All the <i>m</i> × <i>n</i> matrices with entries in <span class='mr'>K</span>, the set of numbers we work with (usually ℝ or ℂ), where you can add, subtract, multiply and divide."} />
+    <DefItem title={"Main diagonal"} text={"The entries <span class='mr'><i>a</i><sub>11</sub>, <i>a</i><sub>22</sub>, <i>a</i><sub>33</sub>, …</span>, that is, those whose row number equals their column number. It runs from the top left corner down and to the right."} />
+  </Defs>
+  <Steps items={[
+    {text: "Worked example. This matrix has 2 rows and 3 columns: its size is 2 × 3.", tex: "A = \\begin{pmatrix} 1 & 2 & 3 \\\\ 4 & 5 & 6 \\end{pmatrix} \\in M_{2 \\times 3}(\\mathbb{R})"},
+    {text: "The entry a₁₂ is in row 1, column 2.", tex: "a_{12} = 2"},
+    {text: "The entry a₂₃ is in row 2, column 3.", tex: "a_{23} = 6"}
+  ]} />
+  <Prose html={"<b>What it is for.</b> A matrix is the tidy way to store a table of data, the coefficients of a system of equations or a transformation of the plane. Everything that follows classifies matrices by the shape of their table and by their symmetries, because each type satisfies properties that save work."} />
+</Section>
+
+<Section eyebrow={"02 · Square, identity and diagonal"} title={"Square matrices"} lead={"They are called square because of their shape: they have as many rows as columns. Two very important types live inside them."}>
+  <Defs>
+    <DefItem title={"Square matrix"} text={"<span class='mr'><i>m</i> = <i>n</i></span>. It is said to have order <i>n</i>. Only square matrices have a full main diagonal, a determinant and an inverse."} />
+    <DefItem title={"Identity matrix I"} text={"Square, with ones on the main diagonal and zeros elsewhere. It changes nothing when multiplying (like the number 1)."} />
+    <DefItem title={"Diagonal matrix"} text={"Square, with every entry 0 except those on the main diagonal. The identity is a diagonal matrix."} />
+  </Defs>
+  <Steps items={[
+    {text: "Worked example. A square matrix of order 3 (3 rows, 3 columns):", tex: "\\begin{pmatrix} 4 & 1 & 0 \\\\ 2 & 5 & 7 \\\\ 3 & 6 & 9 \\end{pmatrix}"},
+    {text: "The identity of order 3: ones on the diagonal, zeros elsewhere.", tex: "I_3 = \\begin{pmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}"},
+    {text: "A diagonal matrix: only the entries 2, −1 and 5 on the diagonal can be non-zero.", tex: "D = \\begin{pmatrix} 2 & 0 & 0 \\\\ 0 & -1 & 0 \\\\ 0 & 0 & 5 \\end{pmatrix}"}
+  ]} />
+  <Prose html={"<b>What it is for.</b> Square matrices describe transformations of a space into itself and are the only ones that can have an inverse. The identity plays the role of \"1\" in the matrix product, and diagonal matrices are the easiest to use: they are multiplied and raised to powers entry by entry on the diagonal."} />
+</Section>
+
+<Section eyebrow={"03 · Transpose"} title={"The transpose Aᵗ"} lead={"The transpose of a matrix is obtained by swapping its rows for its columns. It works for any matrix, rectangular (non-square) ones included."}>
+  <Split figure="la-mirror" html={"If <span class='mr'><i>A</i> = [<i>a</i><sub><i>ij</i></sub>]</span>, then <span class='mr'><i>A</i><sup><i>t</i></sup> = [<i>a</i><sub><i>ji</i></sub>]</span>: the entry in row <i>i</i>, column <i>j</i> moves to row <i>j</i>, column <i>i</i>. The diagonal stays put and the rest swap in pairs (each pair has its own colour). If <i>A</i> is <i>m</i> × <i>n</i>, <i>A</i><sup><i>t</i></sup> is <i>n</i> × <i>m</i>."} />
+  <Steps items={[
+    {text: "Worked example with a rectangular 2 × 3 matrix.", tex: "A = \\begin{pmatrix} 1 & 2 & 3 \\\\ 4 & 5 & 6 \\end{pmatrix}"},
+    {text: "The rows of A (1, 2, 3 and 4, 5, 6) are written as columns. The transpose is 3 × 2.", tex: "A^t = \\begin{pmatrix} 1 & 4 \\\\ 2 & 5 \\\\ 3 & 6 \\end{pmatrix}"}
+  ]} />
+  <IdGroup title={"Properties"}>
+    <DemoCard demo="la-transp-twice" />
+    <DemoCard demo="la-transp-prod" />
+  </IdGroup>
+  <Prose html={"<b>What it is for.</b> The transpose lets you go from rows to columns, and it is used to define symmetric and antisymmetric matrices. It also appears when computing dot products and in the least squares method."} />
+</Section>
+
+<Section eyebrow={"04 · Symmetric"} title={"Symmetric matrices"} lead={"A square matrix is symmetric when it equals its transpose. It is as if the diagonal were a mirror: what is on one side is repeated on the other."}>
+  <Defs>
+    <DefItem title={"Symmetric matrix"} text={"<span class='mr'><i>A</i> = <i>A</i><sup><i>t</i></sup></span>, that is, <span class='mr'><i>a</i><sub><i>ij</i></sub> = <i>a</i><sub><i>ji</i></sub></span> for all <i>i</i> and <i>j</i>."} />
+  </Defs>
+  <Steps items={[
+    {text: "Worked example. The entries 2 and 2, 5 and 5, 7 and 7 are at the same distance from the diagonal and are equal.", tex: "A = \\begin{pmatrix} 1 & 2 & 5 \\\\ 2 & 3 & 7 \\\\ 5 & 7 & 4 \\end{pmatrix} = A^t"},
+    {text: "A matrix like ((1, 4), (2, 3)) is not symmetric: a₁₂ = 4 but a₂₁ = 2.", tex: "\\begin{pmatrix} 1 & 4 \\\\ 2 & 3 \\end{pmatrix}^t = \\begin{pmatrix} 1 & 2 \\\\ 4 & 3 \\end{pmatrix} \\neq \\begin{pmatrix} 1 & 4 \\\\ 2 & 3 \\end{pmatrix}"}
+  ]} />
+  <IdGroup title={"Properties"}>
+    <DemoCard demo="la-sym-inv" />
+    <DemoCard demo="la-sum-types" />
+    <DemoCard demo="la-sym-prod" />
+    <DemoCard demo="la-sym-gram" />
+  </IdGroup>
+  <Prose html={"<b>What it is for.</b> Symmetric matrices appear whenever something is measured between pairs of items: distances between cities, covariances between variables or undirected networks of contacts. Symmetry lets you store only half of the data and simplifies many computations."} />
+</Section>
+
+<Section eyebrow={"05 · Antisymmetric"} title={"Antisymmetric matrices"} lead={"It is the \"sign-changed\" version of the symmetric matrix: mirrored entries are equal in value but have opposite sign."}>
+  <Defs>
+    <DefItem title={"Antisymmetric matrix"} text={"<span class='mr'><i>A</i><sup><i>t</i></sup> = −<i>A</i></span>, that is, <span class='mr'><i>a</i><sub><i>ij</i></sub> = −<i>a</i><sub><i>ji</i></sub></span>. It is always square."} demo="la-anti-diag" more="why" />
+    <DefItem title={"Sum of antisymmetric matrices"} text={"The sum of two antisymmetric matrices is antisymmetric."} demo="la-sum-types" more="why" />
+  </Defs>
+  <Steps items={[
+    {text: "Worked example. The diagonal is all 0 and each entry has its opposite across from it: 1 and −1, 2 and −2, 3 and −3.", tex: "A = \\begin{pmatrix} 0 & 1 & 2 \\\\ -1 & 0 & 3 \\\\ -2 & -3 & 0 \\end{pmatrix}"},
+    {text: "Its transpose is −A: every entry changes sign.", tex: "A^t = \\begin{pmatrix} 0 & -1 & -2 \\\\ 1 & 0 & -3 \\\\ 2 & 3 & 0 \\end{pmatrix} = -A"}
+  ]} />
+  <IdGroup title={"Properties"}>
+    <DemoCard demo="la-anti-diag" />
+    <DemoCard demo="la-anti-odd" />
+    <DemoCard demo="la-anti-square" />
+  </IdGroup>
+  <Prose html={"<b>What it is for.</b> They describe rotations and imbalances: the cross product is written with an antisymmetric matrix, and so is the rotation of a solid. The rule about the determinant of odd order is a shortcut to rule out an inverse without computing anything."} />
+</Section>
+
+<Section eyebrow={"06 · Triangular"} title={"Triangular matrices"} lead={"They have zeros on one side of the main diagonal. They are the matrices you aim for when solving systems, because with them the equations can be solved one at a time."}>
+  <Split figure="la-tri-zones" html={"On the left, an <b>upper</b> triangular matrix: zeros below the diagonal (∗ is any number). On the right, a <b>lower</b> triangular matrix: zeros above the diagonal."} />
+  <Defs>
+    <DefItem title={"Upper triangular"} text={"Zeros below the diagonal: <span class='mr'><i>a</i><sub><i>ij</i></sub> = 0</span> if <span class='mr'><i>i</i> &gt; <i>j</i></span>."} />
+    <DefItem title={"Lower triangular"} text={"Zeros above the diagonal: <span class='mr'><i>a</i><sub><i>ij</i></sub> = 0</span> if <span class='mr'><i>i</i> &lt; <i>j</i></span>."} />
+    <DefItem title={"Echelon"} text={"An upper triangular matrix that is not square is called echelon. (A properly echelon matrix also requires the first non-zero entry of each row to lie to the right of the one in the row above.) It is the look a matrix has after Gaussian elimination."} />
+    <DefItem title={"The transpose changes type"} text={"Transposing swaps rows and columns, so what was below the diagonal ends up above it: the transpose of an upper triangular matrix is lower triangular, and that of a lower one is upper."} />
+  </Defs>
+  <Steps items={[
+    {text: "Worked example. An upper triangular and a lower triangular matrix.", tex: "U = \\begin{pmatrix} 1 & 2 & 3 \\\\ 0 & 4 & 5 \\\\ 0 & 0 & 6 \\end{pmatrix},\\qquad L = U^t = \\begin{pmatrix} 1 & 0 & 0 \\\\ 2 & 4 & 0 \\\\ 3 & 5 & 6 \\end{pmatrix}"},
+    {text: "A non-square upper triangular matrix (2 × 3): zeros below the diagonal.", tex: "\\begin{pmatrix} 1 & 2 & 3 \\\\ 0 & 4 & 5 \\end{pmatrix}"}
+  ]} />
+  <IdGroup title={"Properties"}>
+    <DemoCard demo="la-tri-prod" />
+    <DemoCard demo="la-tri-inv" />
+  </IdGroup>
+  <Prose html={"<b>What it is for.</b> A system with a triangular matrix is solved by working from the bottom up (or from the top down), with no further computation. That is why the aim of Gaussian elimination is to turn any matrix into a triangular or echelon one."} />
+</Section>
+
+<Section eyebrow={"07 · Decomposition"} title={"Symmetric + antisymmetric"} lead={"Every square matrix splits in exactly one way as the sum of a symmetric matrix and an antisymmetric matrix."}>
+  <DemoCard demo="la-split" />
+  <Steps items={[
+    {text: "Worked example with the matrix A. First its transpose, swapping rows and columns.", tex: "A = \\begin{pmatrix} 1 & 4 \\\\ 2 & 3 \\end{pmatrix},\\qquad A^t = \\begin{pmatrix} 1 & 2 \\\\ 4 & 3 \\end{pmatrix}"},
+    {text: "Symmetric part: add A and Aᵗ and divide by 2.", tex: "S = \\frac{A + A^t}{2} = \\frac{1}{2}\\begin{pmatrix} 2 & 6 \\\\ 6 & 6 \\end{pmatrix} = \\begin{pmatrix} 1 & 3 \\\\ 3 & 3 \\end{pmatrix}"},
+    {text: "Antisymmetric part: subtract Aᵗ from A and divide by 2.", tex: "K = \\frac{A - A^t}{2} = \\frac{1}{2}\\begin{pmatrix} 0 & 2 \\\\ -2 & 0 \\end{pmatrix} = \\begin{pmatrix} 0 & 1 \\\\ -1 & 0 \\end{pmatrix}"},
+    {text: "Check: the sum gives A back.", tex: "S + K = \\begin{pmatrix} 1 & 3 \\\\ 3 & 3 \\end{pmatrix} + \\begin{pmatrix} 0 & 1 \\\\ -1 & 0 \\end{pmatrix} = \\begin{pmatrix} 1 & 4 \\\\ 2 & 3 \\end{pmatrix} = A"}
+  ]} />
+  <Prose html={"<b>What it is for.</b> It lets you separate any matrix into its \"mirror\" part and its \"twist\" part. It is used, for example, in materials physics: the deformation of a solid is the symmetric part and its rotation the antisymmetric part."} />
+</Section>
+
+<Section eyebrow={"08 · Applications"} title={"What are the types of matrices for?"}>
+  <Uses items={[["Data and tables","A spreadsheet is a matrix. Rows are individuals and columns are variables: the transpose swaps their roles."],["Systems of equations","They are written as AX = b. If A is triangular or diagonal, the system is solved almost effortlessly."],["Statistics","The covariance matrix is symmetric, and AᵗA and AAᵗ always are. They appear in regression and in principal component analysis."],["Graphics and games","Rotating or stretching an object is multiplying by a matrix. Infinitesimal rotations are written with antisymmetric matrices."],["Networks","The adjacency matrix of an undirected network (friends on a social network) is symmetric; with directions it no longer is."],["Physics","The strain tensor of a solid is symmetric and the rotation tensor is antisymmetric: the decomposition A = S + K separates them."]]} />
+</Section>

@@ -1,0 +1,21 @@
+---
+import { round } from "../../../../lib/figure";
+import { plane } from "../../../../lib/complex-figure";
+
+const m = plane({ s: 50, ox: 44, oy: 196, w: 300, h: 230 });
+const seg = (f: (x: number) => number, x0: number, x1: number) =>
+  `M${round(m.px(x0))} ${round(m.py(f(x0)))} L${round(m.px(x1))} ${round(m.py(f(x1)))}`;
+---
+
+<svg class="mfig" viewBox={m.viewBox} fill="var(--fg)" aria-hidden="true">
+  <line x1={m.px(-0.5)} y1={m.oy} x2={m.px(4.9)} y2={m.oy} stroke="var(--axis)" stroke-width="1.2" />
+  <line x1={m.ox} y1={m.py(-0.5)} x2={m.ox} y2={m.py(3.5)} stroke="var(--axis)" stroke-width="1.2" />
+  <text x={m.px(4.9)} y={m.oy - 6} text-anchor="end" font-size="12" fill="var(--muted)" font-style="italic">x</text>
+  <text x={m.ox + 6} y={m.py(3.5) + 10} font-size="12" fill="var(--muted)" font-style="italic">y</text>
+  <path d={seg((x) => 3 - 2 * x, -0.2, 1.9)} stroke="var(--a)" stroke-width="2.4" fill="none" stroke-linecap="round" />
+  <path d={seg((x) => 2 - x, -0.5, 2.4)} stroke="var(--b)" stroke-width="2.4" fill="none" stroke-linecap="round" />
+  <text x={m.px(0.55)} y={m.py(2.3)} font-size="13" fill="var(--a)" font-style="italic">2x + y = 3</text>
+  <text x={m.px(2.1)} y={m.py(0.5)} font-size="13" fill="var(--b)" font-style="italic">x + y = 2</text>
+  <circle cx={m.px(1)} cy={m.py(1)} r="5" fill="var(--g)" />
+  <text x={m.px(1) + 10} y={m.py(1) - 8} font-size="15" fill="var(--g)">X = (1, 1)</text>
+</svg>
