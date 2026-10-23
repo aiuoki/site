@@ -15,7 +15,7 @@
   let { value = $bindable(), name, mode, unit, locale }: Props = $props();
 
   const id = $props.id();
-  const color = name === "z" ? "--z" : "--w";
+  const color = $derived(name === "z" ? "--z" : "--w");
   const labels = $derived(mode === "bin" ? (name === "z" ? ["a =", "b ="] : ["c =", "d ="]) : ["ρ =", "θ ="]);
   const unitLabel = $derived(mode === "bin" ? "" : unit === "deg" ? "°" : "rad");
 
