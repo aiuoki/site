@@ -44,8 +44,9 @@ Web de apuntes interactivos de matemáticas. Astro (salida estática) + islas de
 ├─ CLAUDE.md                  reglas permanentes
 ├─ README.md                  cómo arrancar, compilar y desplegar
 ├─ astro.config.mjs           salida estática, i18n, KaTeX, Svelte y MDX
-├─ package.json               scripts: dev, build, preview, check, test
+├─ package.json               scripts: dev, build (incluye check), preview, check (astro check + svelte-check), test
 ├─ tsconfig.json              TypeScript estricto (excluye legacy/)
+├─ tsconfig.svelte-check.json solo los .svelte, para svelte-check (astro check no revisa los tipos de los .svelte)
 ├─ vitest.config.ts           Vitest con la config de Astro (permite renderizar .astro en tests)
 ├─ svelte.config.js           preprocesado de TypeScript en Svelte
 ├─ legacy/                    web antigua, solo como referencia (no se publica)
@@ -65,20 +66,23 @@ Web de apuntes interactivos de matemáticas. Astro (salida estática) + islas de
    ├─ i18n/
    │  ├─ ui/<lang>.json       textos de la interfaz (9 idiomas, mismas claves que es.json)
    │  ├─ locales.ts           lista de idiomas y metadatos (sin dependencias)
-   │  ├─ topics/<tema>/       textos propios de un tema que no está en los 9 idiomas (complejos: es, en)
+   │  ├─ topics/<tema>/       textos propios de un tema que no está en los 9 idiomas (complejos: es, en);
+   │                          algebra-lineal/: common/ + un diccionario por tema, linearDict(tema, idioma) los junta
    │  └─ index.ts             t(), fallback de contenido y contentLang() (idioma del contenido de la página)
    ├─ content.config.ts       esquema de las colecciones (Astro 7 lo exige aquí)
    ├─ content/<asignatura>/<tema>/<lang>.mdx   apuntes de cada tema
    ├─ demos/
    │  ├─ types.ts             forma de una demostración (fórmulas y textos)
    │  ├─ index.ts             demosForTopic(): demostraciones de cada página
-   │  └─ <tema>/              fórmulas en LaTeX por paso + figuras (trig/formulas.ts, complex/basics.ts y polar.ts) y text/<lang>.json
+   │  └─ <tema>/              fórmulas en LaTeX por paso + figuras (trig/formulas.ts, complex/basics.ts y polar.ts) y text/<lang>.json;
+   │                          linear/: topics/<tema>.ts (ids con prefijo la-) y text/<lang>/<tema>.json, registro por import.meta.glob
    ├─ lib/                    lógica pura y probada, sin DOM:
    │                          trig.ts, format.ts, plot.ts (lienzo 700×700), trig-checks.ts (comprobaciones en vivo),
    │                          notation.ts + katex.ts (fórmulas por idioma), remark-localized-math.ts,
    │                          expr.ts (parser seguro de números con π y √), complex.ts (aritmética),
    │                          complex-format.ts (formas exactas), complex-panel.ts, complex-checks.ts, complex-plot.ts,
-   │                          chain.ts (pasos que empiezan por «=» llevan delante el lado izquierdo), seo.ts (JSON-LD, sitemap, descripciones), figure.ts, complex-figure.ts, theme-css.ts, paths.ts, text.ts
+   │                          chain.ts (pasos que empiezan por «=» llevan delante el lado izquierdo), seo.ts (JSON-LD, sitemap, descripciones), figure.ts, complex-figure.ts, theme-css.ts, paths.ts, text.ts,
+   │                          fraction.ts (racionales exactos), matrix.ts, gauss.ts (eliminación paso a paso, rango, inversa, Nul), systems.ts (pseudoinversas y AX = b)
    ├─ components/
    │  ├─ layout/              Header, Footer, SubjectNav, TopicTabs, LangSwitch, ThemeToggle, Support, DonateButton, Flag, Soon
    │  ├─ ui/                  Card, Formula, DemoDialog(s) (Astro); Chip, Segmented (Svelte)
@@ -86,7 +90,8 @@ Web de apuntes interactivos de matemáticas. Astro (salida estática) + islas de
    │  ├─ figures/             figuras SVG de las demostraciones (una por archivo, parts/ compartidas, index.ts registro)
    │  ├─ interactive/         TopicApp.astro elige la isla del tema; trig/: UnitCircle, AngleSum, paneles,
    │  │                       LiveCheck, QuadrantGrid, NotableTable y state.svelte.ts (estado compartido entre islas);
-   │  │                       complex/: ComplexPlane (plano, panel, formas), ComplexLive, LoadExample, examples.ts
+   │  │                       complex/: ComplexPlane (plano, panel, formas), ComplexLive, LoadExample, examples.ts;
+   │  │                       linear/: TypesLab, ProductLab, RankLab, SystemLab, shared/ (MatrixEditor, MatrixView) y una carpeta por isla
    │  └─ mascot/              Mascot.astro (pulpo con insignia Ω; props pose, size, label), poses.ts, mascot.css
    ├─ layouts/BaseLayout.astro   html, head, variables del tema, fuentes
    └─ pages/
@@ -104,6 +109,8 @@ Web de apuntes interactivos de matemáticas. Astro (salida estática) + islas de
 - Las palabras propias de un tema dentro de fórmulas se escriben `\W{clave}` y salen de `words` en `i18n/topics/<tema>`.
 - Las islas reciben los textos por props (`dict.trig`, `notation`, `locale`); nunca importan `src/i18n/index.ts` en el cliente (cargaría los 9 idiomas). Usa `src/lib/text.ts` para interpolar.
 - Mascota: `<Mascot pose="idle|wave|think|happy|build" size="160px" />`. Solo aparece en el panel de «Próximamente» (pose `build`); no hay mascota fija en las páginas. Es decorativa (aria-hidden) salvo que reciba `label` desde los JSON de idioma. Sus colores son los tokens `mascot*` de `theme.ts`; las poses son estados CSS de las mismas capas y se paran con `prefers-reduced-motion`.
+- Álgebra lineal: los números son fracciones exactas (`Frac`), nunca decimales. Las figuras de `figures/linear/<tema>/` se registran solas con `import.meta.glob`. Notación: rg(A) y F₂ ← F₂ − 3·F₁ en español; rank(A) y R₂ ← R₂ − 3·R₁ en inglés.
+- Clases CSS de las islas: no reutilices nombres de las globales de `guide.css` (`steps`, `step`, `warn`, `use`...), que se aplican también dentro de la isla.
 - SEO: `SeoHead.astro` pone título («<página> · Daniel Ceban»), descripción (máx. 158 caracteres), canonical, hreflang y JSON-LD. El sitemap lo genera `@astrojs/sitemap` excluyendo lo que dice `sitemapExcludes()` (raíz, redirecciones, «Próximamente» y copias de respaldo). Las páginas de respaldo tienen canonical al idioma original. La raíz apunta a `/es/`.
 - Variables CSS del tema: cada token de `theme.ts` se convierte en `--token` en kebab-case (`surface2` → `--surface-2`). Alias de complejos: `--z`, `--w`, `--result`, `--re`, `--im`.
 

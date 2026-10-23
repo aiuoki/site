@@ -26,7 +26,11 @@
   "topics": {
     "trigonometria": "Un angle",
     "suma-angulos": "Suma d'angles",
-    "complejos": "Nombres complexos"
+    "complejos": "Nombres complexos",
+    "tipos-matrices": "Tipus de matrius",
+    "operaciones-matrices": "Operacions amb matrius",
+    "rango-inversa": "Rang i inversa",
+    "sistemas-pseudoinversa": "Sistemes i pseudoinversa"
   },
   "notation": {
     "sin": "sin",

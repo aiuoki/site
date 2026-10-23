@@ -26,7 +26,11 @@
   "topics": {
     "trigonometria": "Un unghi",
     "suma-angulos": "Suma unghiurilor",
-    "complejos": "Numere complexe"
+    "complejos": "Numere complexe",
+    "tipos-matrices": "Tipuri de matrice",
+    "operaciones-matrices": "Operații cu matrice",
+    "rango-inversa": "Rang și inversă",
+    "sistemas-pseudoinversa": "Sisteme și pseudoinversă"
   },
   "notation": {
     "sin": "sin",

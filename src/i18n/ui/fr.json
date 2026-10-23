@@ -26,7 +26,11 @@
   "topics": {
     "trigonometria": "Un angle",
     "suma-angulos": "Somme d'angles",
-    "complejos": "Nombres complexes"
+    "complejos": "Nombres complexes",
+    "tipos-matrices": "Types de matrices",
+    "operaciones-matrices": "Opérations sur les matrices",
+    "rango-inversa": "Rang et inverse",
+    "sistemas-pseudoinversa": "Systèmes et pseudo-inverse"
   },
   "notation": {
     "sin": "sin",

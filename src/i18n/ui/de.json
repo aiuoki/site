@@ -26,7 +26,11 @@
   "topics": {
     "trigonometria": "Ein Winkel",
     "suma-angulos": "Winkelsumme",
-    "complejos": "Komplexe Zahlen"
+    "complejos": "Komplexe Zahlen",
+    "tipos-matrices": "Matrixtypen",
+    "operaciones-matrices": "Matrixoperationen",
+    "rango-inversa": "Rang und Inverse",
+    "sistemas-pseudoinversa": "Gleichungssysteme und Pseudoinverse"
   },
   "notation": {
     "sin": "sin",

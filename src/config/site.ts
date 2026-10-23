@@ -39,5 +39,15 @@ export const subjects: readonly Subject[] = [
     ],
   },
   { slug: "estadistica", symbol: "σ", soonSymbol: "σ  x̄", status: "soon", topics: [] },
-  { slug: "algebra-lineal", symbol: "[A]", soonSymbol: "[A]  λ", status: "soon", topics: [] },
+  {
+    slug: "algebra-lineal",
+    symbol: "[A]",
+    status: "available",
+    topics: [
+      { slug: "tipos-matrices", symbol: "Aᵗ", locales: ["es", "en"] },
+      { slug: "operaciones-matrices", symbol: "A·B", locales: ["es", "en"] },
+      { slug: "rango-inversa", symbol: "A⁻¹", locales: ["es", "en"] },
+      { slug: "sistemas-pseudoinversa", symbol: "Ax = b", locales: ["es", "en"] },
+    ],
+  },
 ];

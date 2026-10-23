@@ -26,7 +26,11 @@
   "topics": {
     "trigonometria": "Один угол",
     "suma-angulos": "Сумма углов",
-    "complejos": "Комплексные числа"
+    "complejos": "Комплексные числа",
+    "tipos-matrices": "Виды матриц",
+    "operaciones-matrices": "Операции с матрицами",
+    "rango-inversa": "Ранг и обратная матрица",
+    "sistemas-pseudoinversa": "Системы и псевдообратная матрица"
   },
   "notation": {
     "sin": "sin",
