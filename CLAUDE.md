@@ -78,7 +78,7 @@ Web de apuntes interactivos de matemáticas. Astro (salida estática) + islas de
    │                          notation.ts + katex.ts (fórmulas por idioma), remark-localized-math.ts,
    │                          expr.ts (parser seguro de números con π y √), complex.ts (aritmética),
    │                          complex-format.ts (formas exactas), complex-panel.ts, complex-checks.ts, complex-plot.ts,
-   │                          chain.ts (pasos que empiezan por «=» llevan delante el lado izquierdo), figure.ts, complex-figure.ts, theme-css.ts, paths.ts, text.ts
+   │                          chain.ts (pasos que empiezan por «=» llevan delante el lado izquierdo), seo.ts (JSON-LD, sitemap, descripciones), figure.ts, complex-figure.ts, theme-css.ts, paths.ts, text.ts
    ├─ components/
    │  ├─ layout/              Header, Footer, SubjectNav, TopicTabs, LangSwitch, ThemeToggle, Support, DonateButton, Flag, Soon
    │  ├─ ui/                  Card, Formula, DemoDialog(s) (Astro); Chip, Segmented (Svelte)
@@ -104,6 +104,7 @@ Web de apuntes interactivos de matemáticas. Astro (salida estática) + islas de
 - Las palabras propias de un tema dentro de fórmulas se escriben `\W{clave}` y salen de `words` en `i18n/topics/<tema>`.
 - Las islas reciben los textos por props (`dict.trig`, `notation`, `locale`); nunca importan `src/i18n/index.ts` en el cliente (cargaría los 9 idiomas). Usa `src/lib/text.ts` para interpolar.
 - Mascota: `<Mascot pose="idle|wave|think|happy|build" size="160px" />`. Solo aparece en el panel de «Próximamente» (pose `build`); no hay mascota fija en las páginas. Es decorativa (aria-hidden) salvo que reciba `label` desde los JSON de idioma. Sus colores son los tokens `mascot*` de `theme.ts`; las poses son estados CSS de las mismas capas y se paran con `prefers-reduced-motion`.
+- SEO: `SeoHead.astro` pone título («<página> · Daniel Ceban»), descripción (máx. 158 caracteres), canonical, hreflang y JSON-LD. El sitemap lo genera `@astrojs/sitemap` excluyendo lo que dice `sitemapExcludes()` (raíz, redirecciones, «Próximamente» y copias de respaldo). Las páginas de respaldo tienen canonical al idioma original. La raíz apunta a `/es/`.
 - Variables CSS del tema: cada token de `theme.ts` se convierte en `--token` en kebab-case (`surface2` → `--surface-2`). Alias de complejos: `--z`, `--w`, `--result`, `--re`, `--im`.
 
 ## Entorno
