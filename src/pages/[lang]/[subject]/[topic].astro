@@ -8,9 +8,11 @@ import { guideComponents } from "../../../components/guide";
 import TopicApp from "../../../components/interactive/TopicApp.astro";
 import DemoDialogs from "../../../components/ui/DemoDialogs.astro";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
-import { subjects } from "../../../config/site";
+import { site, subjects } from "../../../config/site";
 import { demosForTopic } from "../../../demos";
-import { contentLocale, locales, useTranslations, type UiKey } from "../../../i18n";
+import { contentLocale, localeMeta, locales, useTranslations, type UiKey } from "../../../i18n";
+import { switchLocale } from "../../../lib/paths";
+import { topicGraph } from "../../../lib/seo";
 
 export const getStaticPaths = (() =>
   locales.flatMap((lang) =>
@@ -33,14 +35,24 @@ const entryId = `${subject.slug}/${topic.slug}/${content.locale}`;
 const entry = (await getCollection("notes")).find((e) => e.id === entryId);
 const rendered = entry ? await render(entry) : null;
 const demos = demosForTopic(topic.slug, content.locale);
+const heading = entry?.data.title ?? t(`topics.${topic.slug}` as UiKey);
+// A page showing another language's notes points search engines to the original.
+const canonical = new URL(content.fallback ? switchLocale(Astro.url.pathname, content.locale) : Astro.url.pathname, site.url).href;
+const structured = entry
+  ? topicGraph(site, { title: heading, description: entry.data.description, url: canonical, bcp47: localeMeta[content.locale].bcp47 })
+  : undefined;
 ---
 
 <BaseLayout
   lang={lang}
   eyebrow={entry?.data.eyebrow ?? t(`subjects.${subject.slug}` as UiKey)}
-  heading={entry?.data.title ?? t(`topics.${topic.slug}` as UiKey)}
+  heading={heading}
   intro={entry?.data.intro}
   description={entry?.data.description}
+  canonical={canonical}
+  structured={structured}
+  alternates={topic.locales}
+  contentLang={content.locale}
   subject={subject}
   topic={topic.slug}
 >

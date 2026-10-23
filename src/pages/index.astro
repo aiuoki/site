@@ -1,10 +1,19 @@
 ---
+import SeoHead from "../components/layout/SeoHead.astro";
+import { site } from "../config/site";
+import { t } from "../i18n";
 import { defaultLocale, langStorageKey, locales } from "../i18n/locales";
 import { LEGACY_HASHES } from "../lib/paths";
+import { websiteGraph } from "../lib/seo";
 
 // Root: redirect to the stored language, or to the default one. Links to the
-// old single-page site (/#complejos) go straight to their new page.
+// old single-page site (/#complejos) go straight to their new page. Search
+// engines are pointed to the Spanish home, the version this page lands on.
 const fallback = `/${defaultLocale}/`;
+const siteTitle = t(defaultLocale, "site.title");
+const title = `${siteTitle} · ${site.author}`;
+const description = t(defaultLocale, "site.description", { author: site.author });
+const structured = websiteGraph(site);
 ---
 
 <!doctype html>
@@ -12,8 +21,8 @@ const fallback = `/${defaultLocale}/`;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex" />
-    <title>danielceban.com</title>
+    <SeoHead lang={defaultLocale} title={title} description={description} canonical={new URL(fallback, site.url).href} path="/" alternates={[]} structured={structured} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <script is:inline define:vars={{ locales, langStorageKey, fallback, legacy: LEGACY_HASHES }}>
       let target = fallback;
       try {
@@ -25,7 +34,8 @@ const fallback = `/${defaultLocale}/`;
       location.replace(target);
     </script>
     <noscript><meta http-equiv="refresh" content={`0; url=${fallback}`} /></noscript>
-    <link rel="canonical" href={fallback} />
   </head>
-  <body></body>
+  <body>
+    <noscript><a href={fallback}>{title}</a></noscript>
+  </body>
 </html>

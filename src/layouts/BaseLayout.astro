@@ -12,14 +12,14 @@ import "@fontsource/ibm-plex-mono/600.css";
 import "../styles/global.css";
 import Footer from "../components/layout/Footer.astro";
 import Header from "../components/layout/Header.astro";
+import SeoHead from "../components/layout/SeoHead.astro";
 import SubjectNav from "../components/layout/SubjectNav.astro";
 import Support from "../components/layout/Support.astro";
 import TopicTabs from "../components/layout/TopicTabs.astro";
 import { aliases, themeStorageKey, themes } from "../config/theme";
 import { site, type Subject } from "../config/site";
-import { localeMeta, locales, useTranslations, type Locale } from "../i18n";
+import { useTranslations, type Locale } from "../i18n";
 import { themeCss } from "../lib/theme-css";
-import { switchLocale } from "../lib/paths";
 
 interface Props {
   lang: Locale;
@@ -27,16 +27,28 @@ interface Props {
   heading: string;
   intro?: string;
   description?: string;
+  // Full document title; defaults to "<heading> · <author>".
+  title?: string;
+  // URL to index instead of this one (pages showing another language's notes).
+  canonical?: string;
+  // schema.org data for this page.
+  structured?: unknown;
+  // Languages the page content exists in; all by default.
+  alternates?: readonly Locale[];
+  // Language of the notes when the page shows a fallback translation.
+  contentLang?: Locale;
+  noindex?: boolean;
   subject?: Subject;
   topic?: string;
 }
 
-const { lang, eyebrow, heading, intro, description, subject, topic } = Astro.props;
+const { lang, eyebrow, heading, intro, subject, topic, structured, alternates, contentLang, noindex } = Astro.props;
 const t = useTranslations(lang);
-const title = `${heading} · ${t("site.title")}`;
+const title = Astro.props.title ?? `${heading} · ${site.author}`;
+const description = Astro.props.description ?? t("site.description", { author: site.author });
 const css = themeCss(themes, aliases);
 const path = Astro.url.pathname;
-const canonical = new URL(path, site.url);
+const canonical = Astro.props.canonical ?? new URL(path, site.url).href;
 ---
 
 <!doctype html>
@@ -44,12 +56,17 @@ const canonical = new URL(path, site.url);
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>{title}</title>
-    {description && <meta name="description" content={description} />}
-    <link rel="canonical" href={canonical} />
-    {locales.map((code) => <link rel="alternate" hreflang={code} href={new URL(switchLocale(path, code), site.url)} />)}
+    <SeoHead
+      lang={contentLang ?? lang}
+      title={title}
+      description={description}
+      canonical={canonical}
+      path={path}
+      alternates={alternates}
+      noindex={noindex}
+      structured={structured}
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta property="og:locale" content={localeMeta[lang].bcp47.replace("-", "_")} />
     <style is:inline set:html={css} />
     <script is:inline define:vars={{ themeStorageKey }}>
       // Runs before paint so the stored theme never flashes.

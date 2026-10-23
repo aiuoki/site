@@ -1,6 +1,7 @@
 {
   "site": {
-    "title": "Maths notes"
+    "title": "Maths notes",
+    "description": "Interactive maths notes by {author}: trigonometry, angle addition and complex numbers, with step-by-step proofs."
   },
   "nav": {
     "subjects": "Subjects",

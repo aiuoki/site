@@ -1,6 +1,7 @@
 {
   "site": {
-    "title": "Apontamentos de matemática"
+    "title": "Apontamentos de matemática",
+    "description": "Apontamentos interativos de matemática de {author}: trigonometria, soma de ângulos e números complexos, com demonstrações passo a passo."
   },
   "nav": {
     "subjects": "Disciplinas",

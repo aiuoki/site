@@ -2,17 +2,21 @@
 import type { GetStaticPaths } from "astro";
 import Card from "../../components/ui/Card.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { subjects } from "../../config/site";
+import { site, subjects } from "../../config/site";
 import { locales, useTranslations, type UiKey } from "../../i18n";
 import { subjectPath, topicPath } from "../../lib/paths";
+import { websiteGraph } from "../../lib/seo";
 
 export const getStaticPaths = (() => locales.map((lang) => ({ params: { lang }, props: { lang } }))) satisfies GetStaticPaths;
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+const title = `${t("site.title")} · ${site.author}`;
+const description = t("site.description", { author: site.author });
+const structured = websiteGraph(site);
 ---
 
-<BaseLayout lang={lang} eyebrow={t("site.title")} heading={t("nav.subjects")}>
+<BaseLayout lang={lang} eyebrow={t("site.title")} heading={t("nav.subjects")} title={title} description={description} structured={structured}>
   <div class="grid">
     {
       subjects.map((subject) => (

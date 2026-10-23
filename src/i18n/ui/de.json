@@ -1,6 +1,7 @@
 {
   "site": {
-    "title": "Mathe-Notizen"
+    "title": "Mathe-Notizen",
+    "description": "Interaktive Mathe-Notizen von {author}: Trigonometrie, Winkelsummen und komplexe Zahlen, mit Schritt-für-Schritt-Beweisen."
   },
   "nav": {
     "subjects": "Fächer",

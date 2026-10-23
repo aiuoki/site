@@ -1,6 +1,7 @@
 {
   "site": {
-    "title": "Appunti di matematica"
+    "title": "Appunti di matematica",
+    "description": "Appunti interattivi di matematica di {author}: trigonometria, somma di angoli e numeri complessi, con dimostrazioni passo dopo passo."
   },
   "nav": {
     "subjects": "Materie",

@@ -1,0 +1,48 @@
+---
+// Tags read by search engines and social networks: description, canonical
+// URL, language alternates, Open Graph and structured data (JSON-LD).
+import { site } from "../../config/site";
+import { defaultLocale, localeMeta, locales, type Locale } from "../../i18n";
+import { switchLocale } from "../../lib/paths";
+import { jsonLd, metaDescription } from "../../lib/seo";
+
+interface Props {
+  // Language of the content (fallback pages show another one).
+  lang: Locale;
+  title: string;
+  description: string;
+  // Absolute URL Google should index for this page.
+  canonical: string;
+  // Path used to build the language alternates.
+  path: string;
+  // Languages this page really exists in (others only show a translation).
+  alternates?: readonly Locale[];
+  // Placeholder pages: kept out of search results, links still followed.
+  noindex?: boolean;
+  structured?: unknown;
+}
+
+const { lang, title, canonical, path, alternates = locales, noindex = false, structured } = Astro.props;
+const description = metaDescription(Astro.props.description);
+const abs = (p: string) => new URL(p, site.url).href;
+// x-default: the Spanish version when it exists (the root also points there).
+const xDefault = alternates.length
+  ? abs(switchLocale(path, alternates.includes(defaultLocale) ? defaultLocale : alternates[0]!))
+  : null;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="author" content={site.author} />
+{noindex && <meta name="robots" content="noindex, follow" />}
+<link rel="canonical" href={canonical} />
+{alternates.map((code) => <link rel="alternate" hreflang={code} href={abs(switchLocale(path, code))} />)}
+{xDefault && <link rel="alternate" hreflang="x-default" href={xDefault} />}
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:locale" content={localeMeta[lang].bcp47.replace("-", "_")} />
+<meta name="twitter:card" content="summary" />
+{structured && <script type="application/ld+json" set:html={jsonLd(structured)} />}

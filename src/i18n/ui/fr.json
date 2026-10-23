@@ -1,6 +1,7 @@
 {
   "site": {
-    "title": "Notes de maths"
+    "title": "Notes de maths",
+    "description": "Notes de mathématiques interactives de {author} : trigonométrie, addition d'angles et nombres complexes, avec des démonstrations pas à pas."
   },
   "nav": {
     "subjects": "Matières",

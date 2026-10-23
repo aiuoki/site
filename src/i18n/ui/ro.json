@@ -1,6 +1,7 @@
 {
   "site": {
-    "title": "Notițe de matematică"
+    "title": "Notițe de matematică",
+    "description": "Notițe interactive de matematică de {author}: trigonometrie, suma unghiurilor și numere complexe, cu demonstrații pas cu pas."
   },
   "nav": {
     "subjects": "Materii",

@@ -1,6 +1,7 @@
 {
   "site": {
-    "title": "Apuntes de matemáticas"
+    "title": "Apuntes de matemáticas",
+    "description": "Apuntes interactivos de matemáticas de {author}: trigonometría, suma de ángulos y números complejos, con demostraciones paso a paso."
   },
   "nav": {
     "subjects": "Asignaturas",

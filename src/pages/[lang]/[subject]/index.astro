@@ -19,6 +19,13 @@ const firstTopic = subject.topics[0];
 if (firstTopic) return Astro.redirect(topicPath(lang, subject.slug, firstTopic.slug));
 ---
 
-<BaseLayout lang={lang} eyebrow={t("site.title")} heading={t(`subjects.${subject.slug}` as UiKey)} subject={subject}>
+<BaseLayout
+  lang={lang}
+  eyebrow={t("site.title")}
+  heading={t(`subjects.${subject.slug}` as UiKey)}
+  description={t("nav.soonText", { s: t(`subjects.${subject.slug}` as UiKey) })}
+  subject={subject}
+  noindex
+>
   <Soon lang={lang} subject={subject} />
 </BaseLayout>
