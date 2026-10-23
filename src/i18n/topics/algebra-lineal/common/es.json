@@ -1,0 +1,11 @@
+{
+  "rows": "Filas",
+  "cols": "Columnas",
+  "addRow": "Añadir fila",
+  "removeRow": "Quitar fila",
+  "addCol": "Añadir columna",
+  "removeCol": "Quitar columna",
+  "invalidCell": "Escribe un número, un decimal o una fracción como -2/3",
+  "notDefined": "no está definido",
+  "size": "{m} × {n}"
+}

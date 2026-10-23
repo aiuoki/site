@@ -1,0 +1,11 @@
+{
+  "rows": "Rows",
+  "cols": "Columns",
+  "addRow": "Add row",
+  "removeRow": "Remove row",
+  "addCol": "Add column",
+  "removeCol": "Remove column",
+  "invalidCell": "Type a number, a decimal or a fraction such as -2/3",
+  "notDefined": "is not defined",
+  "size": "{m} × {n}"
+}
